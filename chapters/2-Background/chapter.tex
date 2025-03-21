@@ -1,0 +1,25 @@
+\setcounter{equation}{0}
+\chapter{Background}
+
+\section{Semi-Flexible filaments}
+Biopolymers can be separated into three categories by the ratio of their persistence length $l_p$ to their relevant contour length $l_c$ (in the case of networks the relevant length is the average length between crosslinks). The persistence length is a measure of the rigidity of the polymer and defines the length at which the polymer's orientation remains correlated. Therefore, the persistence length of a polymer can be intuitively thought of as the length at which thermal energy, $k_{B}T$, is large enough to have an effect on the direction of the polymer (formally defined as the length at which the correlation between the two tangent equals $1/e$) and can be defined by $l_p = \kappa / (k_{B}T)$.
+
+For short or stiff polymers where $l_p \ll l_c$ the polymer acts like a rigid rod with its mechanical response governed by the polymer's stretching of molecular bonds. Polymers where $l_p \gg l_c$ take a naturally folded state as the thermal energy is sufficient to bend the filament significantly, these polymers have mechanical responses driven by entropy where the initial response is governed by the reduction of accessible conformations as the polymer unfolded, followed by a regime governed by the stretching of molecular bonds as in the stiff case. Semiflexible polymers therefore constitute an intermediate state between the two where their persistence length $l_p$ is large enough relative to their contour length $l_c$ to avoid collapsing into a random coil but large enough that thermally induced bending remains relevant. 
+
+The standard model for polymers is the extensible worm-like chain, where each polymer is treated as a homogeneous cylindrical elastic rod with radius $r$ and Young's modulus $E$ \cite{doi_theory_1988}. As such the stretching rigidity of the rod can be expressed in terms of the product of its Young's modulus and cross-sectional area $\mu = E \pi r^2$ and its bending rigidity in terms of its Young's modulus and moment of inertia $\kappa = E I = E \pi r^4 / 4$. We therefore write the Hamiltonian of a  single filament as the the sum of two integrals 
+\begin{equation}
+    \mathcal{H}_f = \frac{\mu}{2} \int ds \left( \frac{dl}{ds} \right)^2 + \frac{\kappa}{2} \int ds \left| \frac{\partial \vec{t}}{\partial s} \right|^2
+\end{equation}
+where $s$ is the arc length coordinate, $dl/ds$ is the relative strain of the polymer at point $s$ and $\vec{t}$ is the tangent vector to the polymer. We neglect any energy contributions from the polymers twisting along their axis. This continuum model can be discretised, such that we discrete  extensible worm-like chains \cite{mackintosh_elasticity_1995} for which the Hamiltonian of each segment can be expressed as
+\begin{equation}
+    \mathcal{H}_f = \frac{\mu}{2} \sum_{ij} \frac{( l_{ij} - l_{ij,0} )^2}{l_{ij,0}} + \frac{\kappa}{2} \sum_{ijk} \frac{( \theta_{ijk} - \theta_{ijk,0} )^2}{l_{ijk,0}}
+\end{equation}
+where the first sum is taken over all pairs $ij$ and triplets $ijk$ along the polymer length. We define $l_{ij}$ and $l_{ij,0}$ as the instantaneous and natural length between nodes $i$ and $j$ respectively, $\theta_{ijk}$ and $\theta_{ijk,0}$ to be the instances and natural angle between nodes  $i$, $j$ and $k$, respectively, and $l_{ijk,0} = (l_{ij,0} + l_{jk,0})/2$. In all cases, we consider a central force model only where bending rigidity is neglected, this can be thought of as the polymers having a small cross-sectional area relative to their length such that their moment of inertia is neglectable compared to their cross-section area
+
+\section{Rigidity}
+
+\section{Athermal Fracture}
+
+\section{Thermal Fracture}
+
+\section{Network Structure}
