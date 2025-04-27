@@ -13,9 +13,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
+        uses: actions/checkout@v4
+
 
       #- name: Setup Git user
       #  run: |
@@ -30,3 +29,19 @@ jobs:
       - name: Push rebased Tracking
         run: |
           git push --force-with-lease origin Tracking
+
+    # ─────────── Python setup & command ───────────
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+          cache: 'pip'
+
+      - run: pip install re sqlite3 argparse datetime
+
+      - uses: ConorMacBride/install-package@v1
+        with:
+          apt: texlive-extra-utils
+
+
+        
