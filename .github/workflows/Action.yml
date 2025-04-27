@@ -42,7 +42,7 @@ jobs:
 
       - run: python3 Tracking/analyse.py -i Tracking/output.texcount --db Tracking/progress.db
 
-      - run: /
+      - run: |
           git add .
           git commit -a -m "Update progress"
           git push
