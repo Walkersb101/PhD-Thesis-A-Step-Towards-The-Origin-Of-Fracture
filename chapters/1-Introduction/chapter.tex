@@ -2,3 +2,28 @@
 \chapter{Introduction}
 
 \section{Layout of thesis}
+
+\section{Notation}
+Denote vectors and tensors in bold, such as the position vector $\mathbf{r}$ or the stress tensor $\mathbf{\Sigma}$.
+
+non bold symbols denote scalars such as the volume fraction $\phi$.
+
+Given a bold symbol the corresponding non-bold symbol, in the absence of a sub- or superscript specifying a component, denotes its magnitude, i.e. $r := |\mathbf{r}|$.
+
+Bold symbols with the subscript denote the relative version of the vector between nodes $i$ and $j$, for example $\mathbf{r}_{ij} := \mathbf{r}_j - \mathbf{r}_i$ denotes the relative position of node $j$ with respect to particle $i$.
+
+use einstein notation
+$\partial_i = \frac{\partial}{\partial x_i}$
+
+The use of the Circumflex (\quotes{hat}) notation denotes the denotes the equivalent object in fourier space i.e. $\hat{f}(x) = \mathcal{F}(f)(k)$ where $\mathcal{F}$ denotes the fourier transform of the object $f$ and $k$ the wavenumber.
+
+\begin{equation}
+    \begin{cases} 
+        0, & \text{if } x < 0 \\ 
+        1, & \text{if } x \ge 0 
+    \end{cases}
+    \label{eq:heaviside_function}
+\end{equation}
+
+\section{Mathematical tricks}
+Derivatives in real space are equivalent to multiplying by $ik$ in Fourier space. 
