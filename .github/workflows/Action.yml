@@ -15,19 +15,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-
-      #- name: Setup Git user
-      #  run: |
-      #    git config user.name "github-actions[bot]"
-      #    git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-      - name: Rebase Tracking onto main
-        run: |
-          git checkout Tracking
-          git rebase origin/main
-          git push
-
-    # ─────────── Python setup & command ───────────
       - name: Setup Python
         uses: actions/setup-python@v5
         with:
@@ -38,7 +25,7 @@ jobs:
       - run: sudo apt-get -y install texlive-extra-utils
 
       - run: texcount -dir -inc thesis.tex      
-      - run: texcount -dir -inc thesis.tex |> Tracking/output.texcount
+      - run: texcount -dir -inc thesis.tex -out=Tracking/output.texcount
 
       - run: python3 Tracking/analyse.py -i Tracking/output.texcount --db Tracking/progress.db
 
