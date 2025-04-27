@@ -1,0 +1,32 @@
+name: Rebase tracking branch
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  rebase-tracking:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      #- name: Setup Git user
+      #  run: |
+      #    git config user.name "github-actions[bot]"
+      #    git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Rebase Tracking onto main
+        run: |
+          git checkout Tracking
+          git rebase origin/main
+
+      - name: Push rebased Tracking
+        run: |
+          git push --force-with-lease origin Tracking
