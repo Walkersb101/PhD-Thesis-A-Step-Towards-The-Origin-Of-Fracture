@@ -25,10 +25,7 @@ jobs:
         run: |
           git checkout Tracking
           git rebase origin/main
-
-      - name: Push rebased Tracking
-        run: |
-          git push --force-with-lease origin Tracking
+          git push
 
     # ─────────── Python setup & command ───────────
       - name: Setup Python
