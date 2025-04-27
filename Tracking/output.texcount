@@ -1,0 +1,90 @@
+File: thesis.tex
+Encoding: ascii
+Words in text: 1
+Words in headers: 7
+Words outside text (captions, etc.): 0
+Number of headers: 1
+Number of floats/tables/figures: 0
+Number of math inlines: 0
+Number of math displayed: 0
+
+Included file: chapters/1-Introduction/chapter.tex
+Encoding: ascii
+Words in text: 118
+Words in headers: 7
+Words outside text (captions, etc.): 0
+Number of headers: 4
+Number of floats/tables/figures: 0
+Number of math inlines: 15
+Number of math displayed: 1
+Subcounts:
+  text+headers+captions (#headers/#floats/#inlines/#displayed)
+  0+1+0 (1/0/0/0) Chapter: Introduction
+  0+3+0 (1/0/0/0) Section: Layout of thesis
+  106+1+0 (1/0/14/1) Section: Notation
+  12+2+0 (1/0/1/0) Section: Mathematical tricks
+
+Included file: chapters/2-Background/chapter.tex
+Encoding: utf8
+Words in text: 2767
+Words in headers: 20
+Words outside text (captions, etc.): 3
+Number of headers: 11
+Number of floats/tables/figures: 1
+Number of math inlines: 156
+Number of math displayed: 15
+Subcounts:
+  text+headers+captions (#headers/#floats/#inlines/#displayed)
+  0+1+0 (1/0/0/0) Chapter: Background
+  0+1+0 (1/0/0/0) Section: Networks
+  452+2+0 (1/0/29/2) Subsection: Semi-Flexible filaments
+  537+2+0 (1/0/50/2) Subsection: Calculating Stress
+  953+1+0 (1/0/26/2) Subsection: Rigidity
+  241+3+0 (1/0/13/1) Subsection: Fracturing the network} \label{sec:Fracture
+  0+2+0 (1/0/0/0) Subsection: Athermal Fracture
+  0+2+0 (1/0/0/0) Subsection: Thermal Fracture
+  341+2+3 (1/1/20/1) Subsection: Network Structure
+  0+1+0 (1/0/0/0) Section: Rheology
+  243+3+0 (1/0/18/7) Subsection: Oseen/Stokeslet Tensor
+
+Included file: chapters/DoubleNetworkFracture/chapter.tex
+Encoding: ascii
+Words in text: 109
+Words in headers: 13
+Words outside text (captions, etc.): 400
+Number of headers: 2
+Number of floats/tables/figures: 5
+Number of math inlines: 25
+Number of math displayed: 0
+Subcounts:
+  text+headers+captions (#headers/#floats/#inlines/#displayed)
+  0+11+0 (1/0/0/0) Chapter: Toughness of double network hydrogels: the role of reduced stress propagation
+  109+2+400 (1/5/25/0) Section: Paper Images
+
+Included file: references/ref.tex
+Encoding: ascii
+Words in text: 0
+Words in headers: 0
+Words outside text (captions, etc.): 0
+Number of headers: 0
+Number of floats/tables/figures: 0
+Number of math inlines: 0
+Number of math displayed: 0
+
+Sum of files: thesis.tex
+File(s) total: thesis.tex
+Words in text: 2995
+Words in headers: 47
+Words outside text (captions, etc.): 403
+Number of headers: 18
+Number of floats/tables/figures: 6
+Number of math inlines: 196
+Number of math displayed: 16
+Files: 5
+Subcounts:
+  text+headers+captions (#headers/#floats/#inlines/#displayed)
+  1+7+0 (1/0/0/0) File: thesis.tex
+  118+7+0 (4/0/15/1) Included file: chapters/1-Introduction/chapter.tex
+  2767+20+3 (11/1/156/15) Included file: chapters/2-Background/chapter.tex
+  109+13+400 (2/5/25/0) Included file: chapters/DoubleNetworkFracture/chapter.tex
+
