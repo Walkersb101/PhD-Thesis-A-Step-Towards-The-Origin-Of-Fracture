@@ -22,11 +22,11 @@ jobs:
       #    git config user.name "github-actions[bot]"
       #    git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
-      - name: Rebase tracking onto main
+      - name: Rebase Tracking onto main
         run: |
-          git checkout tracking
+          git checkout Tracking
           git rebase origin/main
 
-      - name: Push rebased tracking
+      - name: Push rebased Tracking
         run: |
           git push --force-with-lease origin tracking
