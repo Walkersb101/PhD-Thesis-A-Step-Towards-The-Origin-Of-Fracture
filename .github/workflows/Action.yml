@@ -35,9 +35,12 @@ jobs:
 
       - run: pip install polars matplotlib
 
-      - uses: ConorMacBride/install-package@v1
-        with:
-          apt: texlive-extra-utils
+      - run: sudo apt-get -y install texlive-extra-utils
+
+      - run: texcount -dir -inc thesis.tex |> Tracking/output.texcount
+
+      - run: python3 Tracking/analyse.py -i Tracking/output.texcount --db Tracking/progress.db
+
 
 
         
