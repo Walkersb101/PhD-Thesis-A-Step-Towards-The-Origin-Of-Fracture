@@ -100,26 +100,44 @@ The value of $\R0$ is taken such that a target packing fraction $\phi>\phi_J$, w
 While it is possible to generate a lower connectivity network, still above the isostatic point of $z=4$, by choosing a $\phi>\phi_J$ where $\phi_J$ is the jamming fraction where the system undergoes an athermal jamming transition \cite{ikeda_unified_2012}. Instead, we generate lower connectivity networks by iteratively removing bonds from the highest connected node in a network generated at $\phi=1$. During this process, we remove dangling ends and clusters, such that all bonds actively contribute to the reported mechanical response.
 \missingfigure{Diagram of dangling ends and clusters}
 
-\section{Rheology}
+\subsection{Hydrodynamics}
+
+\subsection{Navier Stokes}
+By considering the conservation of mass and momentum the Navier-Stokes equations for a generalised incompressible flow can be expressed as,
+
+%\begin{subequations}
+%\label{eq:NavierStokes}
+%\begin{align}
+%    \rho \left(\partial_t+(\bm{v} \cdot \nabla)\right)\bm{v} &= \nabla \cdot \left( 2\mu\bm{D} - p\bm{I} + \bm{\sigma \right) + \bm{f} \label{eq:incompressibleNavier1} \\
+%    \mu\cdot\bm{v} &= 0 \label{eq:incompressibleNavier2}
+%\end{align}
+%\end{subequations}
+%where $\rho$ and $\my$ are the fluid's density and viscosity, respectively. The total stress in the fluid is given by $2\mu\bm{D} - p\bm{I} + \bm{\sigma}$. The symmetric rate of strain tensor $\bm{D}(\bm{r}) = $
+
 \subsection{Oseen/Stokeslet Tensor}
 
-\begin{align}
-- \nabla p(\bm{r}) + \mu \nabla^2 \bm{v}(\bm{r}) &= -\bm{F} \delta(\bm{r}), \nonumber\\
-\nabla \cdot \bm{v} &= 0. 
+\todo[inline]{Im not sure my elastic-plastic model comes from Navier-Stokes, it more appears from a Stokes-like equation when considering force balance found in Pasty materials}
+
+\begin{subequations}
 \label{eq:Stokes}
+\begin{align}
+- \nabla p(\bm{r}) + \mu \nabla^2 \bm{v}(\bm{r}) &= -\bm{F} \delta(\bm{r}), \label{eq:Stokes1} \\
+\nabla \cdot \bm{v} &= 0. \label{eq:Stokes2}
 \end{align}
+\end{subequations}
+
 
 %\begin{align}
 %\mu \partial_j \partial_j v_i(\bm{r}) + F_i \delta(\bm{r}) - %\partial_i p &= 0,\\
 %\partial_i v_i(\bm{r}) &= 0.
 %\end{align}
 
-We enfore that the flow field vanishes at infinity, i.e. $\lim_{r \to 0}|\bm{v}(\bm{r})| = 0$. We use a method inspired by Ref. \cite{kim_microhydrodynamics_1991} to derive the Green's function $\mathbb{G}_{ij}$ for \cref{eq:Stokes}. As the Stokes equations are linear in $p(\bm{r})$ and $\bm{v}(\bm{r})$, we can write the pressure field as the scalar product of the point force $\bm{F}$ and a vector field $\bm{P}(\bm{r})$ and the velocity field $\bm{v}(\bm{r})$ as the Oseen tensor $\mathbb{G}_{ij}$ acting on $F$:
+Inspired by Ref. \cite{kim_microhydrodynamics_1991}, we enforce that the flow field $\bm{v}(\bm{r})$ of \cref{eq:Stokes} vanishes at infinity, i.e. $\lim_{r \to 0}|\bm{v}(\bm{r})| = 0$. Under this assumption and using that the Stokes equations are linear in $p(\bm{r})$ and $\bm{v}(\bm{r})$, we can write the pressure field as the scalar product of the point force $\bm{F}$ and a vector field $\bm{P}(\bm{r})$ and the velocity field $\bm{v}(\bm{r})$ as the Oseen tensor $\mathbb{G}_{ij}$ acting on $F$:
 \begin{equation}
     p(\bm{r}) = P_j F_j, \qquad
     v_i(\bm{r}) = G_{ij} F_j.
 \end{equation}
-Applying the Fourier transform to \cref{eq:Stokes}, we get 
+Applying the Fourier transform to \cref{eq:Stokes}, we obtain 
 \begin{equation}
 - i k_i \hat{P}_j F_j 
 - k^2 \hat{\mathbb{G}}_{ij} F_j 
@@ -139,9 +157,12 @@ This gives an expression for the velocity and velocity gradients in Fourier Spac
     \hat{v}_i = \frac{1}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right)F_j, \qquad ik_l\hat{v}_i = \frac{ik_l}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right)F_j
     \label{eq:stokesVelocity}
 \end{equation}
-respectively. The above expressions naturally describe velocity and gradient fields for a periodic system up to an arbitrary constant $\bm{v}_0$. This is due to the singularity at $\bm{k}=\bm{0}$, For simplicity, it is common take $\bm{v}_0 = \bm{0}$ corresponding to no net displacement of the material. 
+respectively. The above expressions naturally describe velocity and gradient fields for a periodic system up to an arbitrary constant $\bm{v}_0$. This is due to the singularity at $\bm{k}=\bm{0}$, For simplicity, it is common to take $\bm{v}_0 = \bm{0}$ corresponding to no net displacement of the material. 
 
-The strain tensor of the fluid is given by $\epsilon_{ij} = \frac{1}{2}\left(\partial_i v_j + \partial_j v_i\right)$ \todo{Need a derivation of this} and assuming linear elasticity and incompressibility the stress tensor if given by $\sigma_{ij} = \mu \epsilon_{ij}$. Following the arguments presented in Ref. \cite{picard_elastic_2004}, we assume that the total strain in the system can split into the sum of an elastic strain and a plastic strain.
+
+
+
+The strain tensor of the fluid is given by $\epsilon_{ij} = \frac{1}{2}\left(\partial_i u_j + \partial_j u_i\right)$ \todo[inline]{https://ocw.mit.edu/courses/2-080j-structural-mechanics-fall-2013/71034688fba0ff26d25653a4bd236a4a\_MIT2\_080JF13\_Lecture2.pdf} and assuming linear elasticity and incompressibility the stress tensor if given by $\sigma_{ij} = \mu \epsilon_{ij}$. Following the arguments presented in Ref. \cite{picard_elastic_2004}, we assume that the total strain in the system can be split into the sum of an elastic strain and a plastic strain.
 \begin{equation}
     \epsilon_{ij} = \epsilon_{ij}^{el} + \epsilon_{ij}^{pl}
 \end{equation}
@@ -149,4 +170,6 @@ The strain tensor of the fluid is given by $\epsilon_{ij} = \frac{1}{2}\left(\pa
 
 
 
-For a non-periodic system, the method of images \cite{blake_note_1971} may be used to simulate solid walls with a non-slip boundary condition, although a stream-function formalism for systems is often easier to numerically implement for 2-dimensional systems \todo{Need a reference}.
+For a non-periodic system, the method of images \cite{blake_note_1971} may be used to simulate solid walls with a non-slip boundary condition. However, a stream-function formalism for systems is often easier to implement for 2-dimensional systems numerically \cite{acheson_elementary_1990}.
+
+\section{Rheology}
