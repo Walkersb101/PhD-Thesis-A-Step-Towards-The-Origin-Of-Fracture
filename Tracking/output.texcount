@@ -26,13 +26,13 @@ Subcounts:
 
 Included file: chapters/2-Background/chapter.tex
 Encoding: utf8
-Words in text: 2767
-Words in headers: 20
+Words in text: 3060
+Words in headers: 24
 Words outside text (captions, etc.): 3
-Number of headers: 11
+Number of headers: 14
 Number of floats/tables/figures: 1
-Number of math inlines: 156
-Number of math displayed: 15
+Number of math inlines: 188
+Number of math displayed: 19
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
   0+1+0 (1/0/0/0) Chapter: Background
@@ -44,8 +44,10 @@ Subcounts:
   0+2+0 (1/0/0/0) Subsection: Athermal Fracture
   0+2+0 (1/0/0/0) Subsection: Thermal Fracture
   341+2+3 (1/1/20/1) Subsection: Network Structure
+  0+1+0 (1/0/0/0) Section: Hydrodynamics
+  274+2+0 (1/0/29/4) Subsection: Navier Stokes
+  262+4+0 (2/0/21/7) Subsection: Oseen/Stokeslet Tensor
   0+1+0 (1/0/0/0) Section: Rheology
-  243+3+0 (1/0/18/7) Subsection: Oseen/Stokeslet Tensor
 
 Included file: chapters/DoubleNetworkFracture/chapter.tex
 Encoding: ascii
@@ -73,18 +75,18 @@ Number of math displayed: 0
 
 Sum of files: thesis.tex
 File(s) total: thesis.tex
-Words in text: 2995
-Words in headers: 47
+Words in text: 3288
+Words in headers: 51
 Words outside text (captions, etc.): 403
-Number of headers: 18
+Number of headers: 21
 Number of floats/tables/figures: 6
-Number of math inlines: 196
-Number of math displayed: 16
+Number of math inlines: 228
+Number of math displayed: 20
 Files: 5
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
   1+7+0 (1/0/0/0) File: thesis.tex
   118+7+0 (4/0/15/1) Included file: chapters/1-Introduction/chapter.tex
-  2767+20+3 (11/1/156/15) Included file: chapters/2-Background/chapter.tex
+  3060+24+3 (14/1/188/19) Included file: chapters/2-Background/chapter.tex
   109+13+400 (2/5/25/0) Included file: chapters/DoubleNetworkFracture/chapter.tex
 
