@@ -100,42 +100,66 @@ The value of $\R0$ is taken such that a target packing fraction $\phi>\phi_J$, w
 While it is possible to generate a lower connectivity network, still above the isostatic point of $z=4$, by choosing a $\phi>\phi_J$ where $\phi_J$ is the jamming fraction where the system undergoes an athermal jamming transition \cite{ikeda_unified_2012}. Instead, we generate lower connectivity networks by iteratively removing bonds from the highest connected node in a network generated at $\phi=1$. During this process, we remove dangling ends and clusters, such that all bonds actively contribute to the reported mechanical response.
 \missingfigure{Diagram of dangling ends and clusters}
 
-\subsection{Hydrodynamics}
+\section{Hydrodynamics}
 
 \subsection{Navier Stokes}
 By considering the conservation of mass and momentum the Navier-Stokes equations for a generalised incompressible flow can be expressed as,
 
-%\begin{subequations}
-%\label{eq:NavierStokes}
-%\begin{align}
-%    \rho \left(\partial_t+(\bm{v} \cdot \nabla)\right)\bm{v} &= \nabla \cdot \left( 2\mu\bm{D} - p\bm{I} + \bm{\sigma \right) + \bm{f} \label{eq:incompressibleNavier1} \\
-%    \mu\cdot\bm{v} &= 0 \label{eq:incompressibleNavier2}
-%\end{align}
-%\end{subequations}
-%where $\rho$ and $\my$ are the fluid's density and viscosity, respectively. The total stress in the fluid is given by $2\mu\bm{D} - p\bm{I} + \bm{\sigma}$. The symmetric rate of strain tensor $\bm{D}(\bm{r}) = $
-
-\subsection{Oseen/Stokeslet Tensor}
-
-\todo[inline]{Im not sure my elastic-plastic model comes from Navier-Stokes, it more appears from a Stokes-like equation when considering force balance found in Pasty materials}
-
 \begin{subequations}
-\label{eq:Stokes}
+\label{eq:NavierStokes}
 \begin{align}
-- \nabla p(\bm{r}) + \mu \nabla^2 \bm{v}(\bm{r}) &= -\bm{F} \delta(\bm{r}), \label{eq:Stokes1} \\
-\nabla \cdot \bm{v} &= 0. \label{eq:Stokes2}
+    \rho \left(\partial_t+(\bm{v} \cdot \nabla)\right)\bm{v} &= \nabla \cdot \bm{\Sigma} \label{eq:incompressibleNavier1} \\
+    \mu\cdot\bm{v} &= 0 \label{eq:incompressibleNavier2}
 \end{align}
 \end{subequations}
 
+where $\rho$ is the fluid's density. The total stress in the fluid can be expressed as $\bm{\Sigma} = \bm{\sigma} - P\bm{I}$, where $P$ is the hydrostatic pressure and $\bm{\sigma}$ the devioric stress tensor. 
+The physics we wish to concider in this thesis is the slow flow of pasty materials where the internal viscous forces dominate over the inertial forces we concider the limit of \cref{eq:incompressibleNavier} as $Re=\rho |\bm{v}| L / \mu -> 0$ where $L$ is the typical length scale for the fluid. In this limit, the navier stokes equations reduces to,
+\begin{subequations}
+\label{eq:StokesLimit}
+\begin{align}
+    \nabla \cdot (\bm{\sigma} - p\bm{I}) &= 0 \\
+    \nabla \cdot \bm{v} &= 0.
+\end{align}
+\end{subequations}
 
-%\begin{align}
-%\mu \partial_j \partial_j v_i(\bm{r}) + F_i \delta(\bm{r}) - %\partial_i p &= 0,\\
-%\partial_i v_i(\bm{r}) &= 0.
-%\end{align}
+Following the arguments of Ref. \cite{picard_elastic_2004} we will assume that the strain $\bm{\epsilon}$ is as linear superposition of a plastic flow $\bm{\epsilon^{pl}}$ and elastic deformation $\bm{\epsilon^{el}}$ and that the fluid is homogeneous, isotropic, and linearly elastic. The strain $\bm{\epsilon}$ of the fluid can be therefore be expressed as 
+\begin{equation*}
+    \bm{\epsilon}= \bm{\epsilon^{el}} + \bm{\epsilon^{pl}}, \quad \text{and, }\bm{\epsilon^{el}} = \frac{1}{2}\left(\nabla \bm{u} + \left( \nabla \bm{u} \right)^T \right)
+\end{equation*} 
+where $\bm{u}(\bm{r})$ is the total displacement vector at a position $\bm{r}$.
+In addition, for simplicity we will concider the case where the fluid is incompressible $\nabla \cdot \bm{u} = 0$ such that the stress $\bm{\sigma} = 2\mu$ The devioric stress tensor $\bm{\sigma}$ can be expresses as $\bm{\sigma} = 2 \mu \bm{\epsilon^{el}} = 2\mu\bm{\epsilon} - 2\mu\bm{\epsilon^{pl}}$.
 
-Inspired by Ref. \cite{kim_microhydrodynamics_1991}, we enforce that the flow field $\bm{v}(\bm{r})$ of \cref{eq:Stokes} vanishes at infinity, i.e. $\lim_{r \to 0}|\bm{v}(\bm{r})| = 0$. Under this assumption and using that the Stokes equations are linear in $p(\bm{r})$ and $\bm{v}(\bm{r})$, we can write the pressure field as the scalar product of the point force $\bm{F}$ and a vector field $\bm{P}(\bm{r})$ and the velocity field $\bm{v}(\bm{r})$ as the Oseen tensor $\mathbb{G}_{ij}$ acting on $F$:
+Concidering a single localised plastic event induced by elastic loading, the strain field $\bm{\epsilon}$ can be decomposed into futher as a superposition of $\bm{\epsilon^{el0}}$, $\bm{\epsilon^{el1}}$ and $\bm{\epsilon^{pl1}}$ where the superscript $0$ denotes the contribution from the elastic loading and $1$ the contribution from the localised plastic event. Each elastic contribution results in a deformation vector $\bm{u^0}$ and $\bm{u^1}$ respectively, where $\bm{u} = \bm{u^0} + \bm{u^1}$. As the elastic contribution must obay \cref{eq:StokesLimit} and the incompressibility condition $\nabla \cdot \bm{u^0} = 0$ the deformation resulting from the localised plastic event $\bm{u^1}$ must satisfy, 
+\begin{subequations}
+    \label{eq:plasticStokes}
+    \begin{align}
+        \nabla \cdot \left( 2 \mu \bm{\epsilon^{el1}} - p^1 \bm{I} \right) &= 2 \mu \nabla \cdot \bm{\epsilon^{pl1}}, \label{eq:plasticStokes1}\\
+        \nabla \cdot \bm{u^1} &= 0.
+    \end{align}
+\end{subequations}
+Under the assumption that the deformation is isotropic and $\nabla \cdot \bm{\epsilon} = \bm{0}$ for any deformation at rest we can express the right hand side of \cref{eq:plasticStokes1} as $\nabla \cdot \left( 2 \mu \bm{\epsilon^{el1}} - p^1 \bm{I} \right) = -\nabla p^1 + \mu \nabla^2 \bm{u^1}$.
+
+\subsection{Oseen/Stokeslet Tensor}
+The solution to \cref{eq:plasticStokes} is well known and has been studied in a wide range of systems. The most common way to approach the problem is to concider the responce to a point force $F$ applied at $\bm{r^\prime}$ in a periodic system,
+\begin{subequations}
+\label{eq:Stokes}
+\begin{align}
+- \nabla p(\bm{r}) + \mu \nabla^2 \bm{u}(\bm{r}) &= -\bm{F} \delta(\bm{r^\prime}), \label{eq:Stokes1} \\
+\nabla \cdot \bm{u} &= 0. \label{eq:Stokes2}
+\end{align}
+\end{subequations}
+where the solution to the deformation field can be expressed as convolution of the point force with the Green's function $\mathbb{G}_{ij}(\bm{r},\bm{r^\prime})$ of the system, 
+\begin{equation}
+    \bm{u}(\bm{r}) = \int \bm{\mathbb{G}}(\bm{r},\bm{r^\prime}) \bm{F} \delta(\bm{r^\prime}).
+\end{equation}
+The tensor $\bm{\mathbb{G}}$ is known as either the Oseen-Burgers  tensor or Stokeslet tensor, depening on the field of the author.
+
+\subsubsection{Derivation}
+Inspired by Ref. \cite{kim_microhydrodynamics_1991}, we enforce that the deformation field $\bm{u}(\bm{r})$ of \cref{eq:Stokes} vanishes at infinity, i.e. $\lim_{r \to 0}|\bm{u}(\bm{r})| = 0$. Under this assumption and using that the Stokes equations are linear in $p(\bm{r})$ and $\bm{u}(\bm{r})$, we can write the pressure field as the scalar product of the point force $\bm{F}$ and a vector field $\bm{P}(\bm{r})$ and the deformation field $\bm{u}(\bm{r})$ as the tensor $\mathbb{G}_{ij}$ acting on $F$:
 \begin{equation}
     p(\bm{r}) = P_j F_j, \qquad
-    v_i(\bm{r}) = G_{ij} F_j.
+    u_i(\bm{r}) = \mathbb{G}_{ij} F_j.
 \end{equation}
 Applying the Fourier transform to \cref{eq:Stokes}, we obtain 
 \begin{equation}
@@ -144,32 +168,21 @@ Applying the Fourier transform to \cref{eq:Stokes}, we obtain
 = -F_i = -F_j \delta_{ij}^{K}.
 \label{eq:StokesFourier}
 \end{equation}
-By cancelling $F_j$ and multiplying by $k_i$ we can apply the incompressibility condition $ik_i\hat{v}_i=ik_i\hat{\mathbb{G}}_{ij} F_j=0$ to obtain
+By cancelling $F_j$ and multiplying by $k_i$ we can apply the incompressibility condition $ik_i\hat{u}_i=ik_i\hat{\mathbb{G}}_{ij} F_j=0$ to obtain
 \begin{equation*}
     \hat{P}_j = -\frac{ik_j}{k^2}.
 \end{equation*}
-Substituting $\hat{P}_j$ back into \cref{eq:StokesFourier} we find a closed expression for the ossen tensor
+Substituting $\hat{P}_j$ back into \cref{eq:StokesFourier} we find a closed expression for $\bm{\hat{\mathbb{G}}}$
 \begin{equation}
     \hat{\mathbb{G}}_{ij} = \frac{1}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right).
 \end{equation}
-This gives an expression for the velocity and velocity gradients in Fourier Space as 
+This gives an expression for the deformation and deformation gradients in Fourier Space as 
 \begin{equation}
-    \hat{v}_i = \frac{1}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right)F_j, \qquad ik_l\hat{v}_i = \frac{ik_l}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right)F_j
+    \hat{u}_i = \frac{1}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right)F_j, \qquad ik_l\hat{u}_i = \frac{ik_l}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right)F_j
     \label{eq:stokesVelocity}
 \end{equation}
-respectively. The above expressions naturally describe velocity and gradient fields for a periodic system up to an arbitrary constant $\bm{v}_0$. This is due to the singularity at $\bm{k}=\bm{0}$, For simplicity, it is common to take $\bm{v}_0 = \bm{0}$ corresponding to no net displacement of the material. 
+respectively. The above expressions naturally describe deformation and gradient fields for a periodic system up to an arbitrary constant $\bm{u}_0$. This is due to the singularity at $\bm{k}=\bm{0}$, For simplicity, it is common to take $\bm{u}_0 = \bm{0}$ corresponding to no net displacement of the material. 
 
-
-
-
-The strain tensor of the fluid is given by $\epsilon_{ij} = \frac{1}{2}\left(\partial_i u_j + \partial_j u_i\right)$ \todo[inline]{https://ocw.mit.edu/courses/2-080j-structural-mechanics-fall-2013/71034688fba0ff26d25653a4bd236a4a\_MIT2\_080JF13\_Lecture2.pdf} and assuming linear elasticity and incompressibility the stress tensor if given by $\sigma_{ij} = \mu \epsilon_{ij}$. Following the arguments presented in Ref. \cite{picard_elastic_2004}, we assume that the total strain in the system can be split into the sum of an elastic strain and a plastic strain.
-\begin{equation}
-    \epsilon_{ij} = \epsilon_{ij}^{el} + \epsilon_{ij}^{pl}
-\end{equation}
-
-
-
-
-For a non-periodic system, the method of images \cite{blake_note_1971} may be used to simulate solid walls with a non-slip boundary condition. However, a stream-function formalism for systems is often easier to implement for 2-dimensional systems numerically \cite{acheson_elementary_1990}.
+For a non-periodic system, the method of images may be used to simulate solid walls with a non-slip boundary condition \cite{blake_note_1971}. However, a stream-function formalism for systems is often easier to implement for 2-dimensional systems numerically \cite{acheson_elementary_1990}.
 
 \section{Rheology}
