@@ -41,10 +41,27 @@ where $r_{n,j}$ denotes the position of node $n$ along the $j$-axis. The two $\T
 \end{align}
 where $\bm{r}_{mn} = \bm{r}_{n}-\bm{r}_{m}$. We note that $\Theta$ in \cref{eq:viralDevTheta} restricts the position of node $n$ to be higher than node $m$ along the $j$-axis. By Newton's second law $\bm{f}_{mn} = -\bm{f}_{nm}$ and symmetry under exchanging $m$ and $n$, we see that it can be replaced by a factor of $1/2$ to instead correct for double counting in the summation.
 
-The derivation above extends trivially to three dimensions, where we instead consider the force contribution from above and below an arbitrary plane perpendicular to the $j$-axis. Calculating the stress by this approach eliminates the computing numerical derivatives and is more computationally efficient, as both $\bm{r}{ij}$ and $\bm{f}{ij}$ are already calculated at each timestep when evaluating the system's dynamics. A more thorough derivation of the viral stress tensor, including fluid effects, can be found in Ref. \cite{yang_generalized_2012}.
+The derivation above extends trivially to three dimensions, where we instead consider the force contribution from above and below an arbitrary plane perpendicular to the $j$-axis. Calculating the stress by this approach eliminates the computation of numerical derivatives and is more computationally efficient, as both $\bm{r}_{ij}$ and $\bm{f}_{ij}$ are already calculated at each timestep when evaluating the system's dynamics. A more thorough derivation of the viral stress tensor, including fluid effects, can be found in Ref. \cite{yang_generalized_2012}.
+
+\subsection{Generalised Lees-Edwards Boundary conditions}
+When studying rheology, we typically wish to apply a macroscopic strain to a material and study the resulting macroscopic stress. In an experimental setup, this involves placing a sample of the material of interest into a rheometer and applying a macroscopic strain by moving one or more of the sample's boundaries. To measure the material's bulk properties, the samples often need to be large to avoid edge effects dominating the physics. This proves a challenge in simulations where achieving these scales is computationally expensive or impossible. A common way to avoid these issues is to use periodic boundary conditions, where an object passing through one side of the unit cell reappears on the opposite side with the same velocity. This, by definition, removes the edges of the computational systems; therefore, macroscopic strains must be applied through an alternative method, rather than being applied the conventional way, i.e. by applying a stress along one of the edges.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.8\linewidth]{chapters/2-Background/Figures/Lees-Edwards.png}
+    \caption{
+    An illustration of Lees-Edwards boundary conditions where the unit cell (centre) is sheared, while its periodic image cells are sheared and displaced simultaneously to provide homogeneous shear.
+    \todo[inline]{Redo figure, currently taken from the internet}}
+    \label{fig:Lees-Edwards}
+\end{figure}
+
+Instead, in computational simulations, macroscopic stresses are applied by deforming the lattice vectors which define the relationship between the unit cell and its periodic images. Elongational stresses can be applied simply by deforming the unit cell and lattice vectors; however, applying a macroscopic shear requires a more complicated treatment.
+
+
+When applying only a global macroscopic shear in this manner, the modified boundary conditions are known as Lees-Edward Boundary conditions \cite{lees_computer_1972}. 
 
 \subsection{Rigidity}
-\todo[inline]{This is a copy of my first year report and needs paraphrasing and adaptiving to contex}
+\todo[inline]{This is a copy of my first year report and needs paraphrasing and adapting to context}
 One of the most fundamental properties of these interconnected fibre networks is the rigidity of the network, both on a local and global scale. Consider first frameworks where each connection in our network has a fixed length and is allowed to freely hinge around the connecting nodes. (The limit as $\mu \to \infty$ and $\kappa \to 0$.) Defining $\bm{r_i(t)}$ to be the position of the $i$th node of the system then we can define our network through the set of equations $|\bm{r}_i(t) - \bm{r}_j(t)|^2 = l_{ij,0}^2$ for all connected pairs $ij$. By differentiating with respect to $t$, a set of constraints can be generated,
 \begin{equation} \label{eq:FrameworkRigidity}
     (\bm{\dot{r}}_i(t) - \bm{\dot{r}}_j(t))\cdot(\bm{r}_i(t) - \bm{r}_j(t))=0 \text{ for all pairs } ij
@@ -93,7 +110,7 @@ The value of $\R0$ is taken such that a target packing fraction $\phi>\phi_J$, w
 \includegraphics[width=.3\textwidth]{chapters/2-Background/Figures/particles.png}\hfill
 \includegraphics[width=.3\textwidth]{chapters/2-Background/Figures/Stack.png}\hfill
 \includegraphics[width=.3\textwidth]{chapters/2-Background/Figures/Network.png}
-\caption{\todo[inline]{Write this caption}}
+\caption{Step of generating a jammed-packed network from 900 soft spheres at $\phi = 1$. A Packing of bidisperse disks with ratio of radii 1: 1.4 (left) in an energy minimum state. Network bonds are created through the contact network of the packing (where spheres overlap) (middle). The nodes are removed (right) leaving only the springs. }
 \label{fig:SingleNetworkGeneration}
 \end{figure}
 
