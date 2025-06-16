@@ -26,24 +26,25 @@ Subcounts:
 
 Included file: chapters/2-Background/chapter.tex
 Encoding: utf8
-Words in text: 3060
-Words in headers: 24
-Words outside text (captions, etc.): 3
-Number of headers: 14
-Number of floats/tables/figures: 1
-Number of math inlines: 188
+Words in text: 3286
+Words in headers: 28
+Words outside text (captions, etc.): 86
+Number of headers: 15
+Number of floats/tables/figures: 2
+Number of math inlines: 189
 Number of math displayed: 19
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
   0+1+0 (1/0/0/0) Chapter: Background
   0+1+0 (1/0/0/0) Section: Networks
   452+2+0 (1/0/29/2) Subsection: Semi-Flexible filaments
-  537+2+0 (1/0/50/2) Subsection: Calculating Stress
+  538+2+0 (1/0/50/2) Subsection: Calculating Stress
+  225+4+34 (1/1/0/0) Subsection: Generalised Lees-Edwards Boundary conditions
   953+1+0 (1/0/26/2) Subsection: Rigidity
   241+3+0 (1/0/13/1) Subsection: Fracturing the network} \label{sec:Fracture
   0+2+0 (1/0/0/0) Subsection: Athermal Fracture
   0+2+0 (1/0/0/0) Subsection: Thermal Fracture
-  341+2+3 (1/1/20/1) Subsection: Network Structure
+  341+2+52 (1/1/21/1) Subsection: Network Structure
   0+1+0 (1/0/0/0) Section: Hydrodynamics
   274+2+0 (1/0/29/4) Subsection: Navier Stokes
   262+4+0 (2/0/21/7) Subsection: Oseen/Stokeslet Tensor
@@ -75,18 +76,18 @@ Number of math displayed: 0
 
 Sum of files: thesis.tex
 File(s) total: thesis.tex
-Words in text: 3288
-Words in headers: 51
-Words outside text (captions, etc.): 403
-Number of headers: 21
-Number of floats/tables/figures: 6
-Number of math inlines: 228
+Words in text: 3514
+Words in headers: 55
+Words outside text (captions, etc.): 486
+Number of headers: 22
+Number of floats/tables/figures: 7
+Number of math inlines: 229
 Number of math displayed: 20
 Files: 5
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
   1+7+0 (1/0/0/0) File: thesis.tex
   118+7+0 (4/0/15/1) Included file: chapters/1-Introduction/chapter.tex
-  3060+24+3 (14/1/188/19) Included file: chapters/2-Background/chapter.tex
+  3286+28+86 (15/2/189/19) Included file: chapters/2-Background/chapter.tex
   109+13+400 (2/5/25/0) Included file: chapters/DoubleNetworkFracture/chapter.tex
 
