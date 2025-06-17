@@ -20,14 +20,15 @@ where the first sum is taken over all pairs $ij$ and triplets $ijk$ along the po
 
 \subsection{Calculating Stress}
 \todo[inline]{The first paragraph is a copy from 1st year report, it needs paraphrasing}
-The definition of stress in molecular dynamical systems is often hard to directly define or is computationally expensive. The principle of virtual work allows for the computation of the stress tensor by taking a numerical derivative of the Hamiltonian of the system. According to the principle of virtual work, an infinitesimal change in the system's strain $\delta \gamma$ causes a variation in the system's energy $\delta \mathcal{H}$, which can be expressed as $\delta \mathcal{H} = V\sigma_{xy}\delta\gamma$ where $V$ is the volume of the system. Thus, by computing the energy of the system before and after a small strain we can approximate the stress tensor component $\sigma_{xy}$. This, however, is computationally expensive as we need to relax the system after the small strain step $\delta\gamma$ and possibly average over several incremental shear strain steps to accurately compute the derivative. This method also only allows for the computation of a single component of the stress tensor at a time, as computing the normal stresses $\sigma_{xx} $ and $\sigma_{yy}$ requires separate small uniaxial strains $\delta\varepsilon_x$ and $\delta\varepsilon_y$ to be taken and the energy of the system minimised.
 
-Following the arguments of Doi and Edwards in Ref. \cite{doi_theory_1988} we here present a brief derivation of the viral stress tensor derived by Irving and Kirkwood in Ref. \cite{irving_statistical_1950} in two dimensions. We consider an arbitrary line perpendicular to the $j$-axis, which intersects the network at a position $h$ along the $j$-axis. The $ij$ stress component on this line, $\sigma_{ij}(h)$, is by definition the $\alpha$ component of the force (per length) exerted by the section of the network above the plane onto the section network below the plane denoted $F_i(h)$. The macroscopic stress $\sigma_{ij}$ exerted by the network can thus be computed by averaging $\sigma_{ij}(h)$ over the full length of the network along the $j$-axis,
+In molecular dynamics simulations, defining stress precisely can be challenging or computationally demanding. While methods such as the principle of virtual work allow for the system's stress to be found by taking a numerical derivative of the Hamiltonian of the system. However, these methods are computationally expensive as we need to relax the system after the small strain step $\delta\gamma$ and possibly average over several incremental shear strain steps to accurately compute the derivative. Instead, stresses reported by molecular dynamical systems report the viral stress of the system. While there are many formulations of the viral stress tensor \cite{walton_pressure_1983,erpenbeck_einstein-kubo-helfand_1995,tsai_virial_1979}, we will present a brief derivation of the viral stress tensor derived by Irving and Kirkwood in Ref. \cite{irving_statistical_1950} in two dimensions.
+
+Following the arguments of Doi and Edwards in Ref. \cite{doi_theory_1988}, we consider an arbitrary line perpendicular to the $j$-axis, which intersects the network at a position $h$ along the $j$-axis. The $ij$ stress component on this line, $\sigma_{ij}(h)$, is by definition the $\alpha$ component of the force (per length) exerted by the section of the network above the plane onto the section network below the plane denoted $F_i(h)$. The macroscopic stress $\sigma_{ij}$ exerted by the network can thus be computed by averaging $\sigma_{ij}(h)$ over the full length of the network along the $j$-axis,
 \begin{gather}
     \sigma_{ij} = \left< \sigma_{ij}(h)\right> = \left< F_i(h)\right> / L_i \\
     \sigma_{ij} = \frac{1}{L_iL_j}\int_0^L F_i(h) dh \label{eq:viralDevInt}
 \end{gather}
-where $L_i$ and $L_j$ is the length of the network intersected by the line and is the full length of the intersection along the $j$-axis respectively. We note that $L_iL_j$ is the area of our system $A$. For simplicity we ignore solvent effect and conciser only the contribution on the stress from the inter-node forces. 
+where $L_i$ and $L_j$ is the length of the network intersected by the line and is the full length of the intersection along the $j$-axis, respectively. We note that $L_iL_j$ is the area of our system $A$. For simplicity, we ignore the solvent effect and consider only the contribution to the stress from the inter-node forces. 
 The force $F_i(h)$ can be expressed as the sum of all the $i$-component of the force $f_{mn}$ exserted on node $m$ by node $n$
 \begin{equation}
     F_i(h) = \sum_{m,n} f_{mn,i} \Theta(h-r_{n,j})\Theta(r_{m,j}-h)
@@ -46,19 +47,31 @@ The derivation above extends trivially to three dimensions, where we instead con
 \subsection{Generalised Lees-Edwards Boundary conditions}
 When studying rheology, we typically wish to apply a macroscopic strain to a material and study the resulting macroscopic stress. In an experimental setup, this involves placing a sample of the material of interest into a rheometer and applying a macroscopic strain by moving one or more of the sample's boundaries. To measure the material's bulk properties, the samples often need to be large to avoid edge effects dominating the physics. This proves a challenge in simulations where achieving these scales is computationally expensive or impossible. A common way to avoid these issues is to use periodic boundary conditions, where an object passing through one side of the unit cell reappears on the opposite side with the same velocity. This, by definition, removes the edges of the computational systems; therefore, macroscopic strains must be applied through an alternative method, rather than being applied the conventional way, i.e. by applying a stress along one of the edges.
 
-\begin{figure}
+\begin{figure}[hbt!]
     \centering
-    \includegraphics[width=0.8\linewidth]{chapters/2-Background/Figures/Lees-Edwards.png}
-    \caption{
-    An illustration of Lees-Edwards boundary conditions where the unit cell (centre) is sheared, while its periodic image cells are sheared and displaced simultaneously to provide homogeneous shear.
-    \todo[inline]{Redo figure, currently taken from the internet}}
-    \label{fig:Lees-Edwards}
+    \centering
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=.8\linewidth]{chapters/2-Background/Figures/TriClinic.tikz}
+        \caption{Triclinic Boundary Conditions}
+        \label{fig:Tri-Clinic}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=.8\linewidth]{chapters/2-Background/Figures/LeesEdwards.tikz}
+        \caption{Lees Edwards Boundary Conditions}
+        \label{fig:Lees-Edwards}
+    \end{subfigure}
+    \caption{An Illustration of two equivalent boundary conditions used in simulation to apply macroscopic stresses to a system} 
+    \label{fig:BoundaryConditions}
 \end{figure}
 
-Instead, in computational simulations, macroscopic stresses are applied by deforming the lattice vectors which define the relationship between the unit cell and its periodic images. Elongational stresses can be applied simply by deforming the unit cell and lattice vectors; however, applying a macroscopic shear requires a more complicated treatment.
+In computational simulations, macroscopic stresses are instead applied by deforming the lattice vectors, which define the relationship between the unit cell and its periodic images. Applying simple stresses to the system can be trivially done simply by updating the unit cell and lattice vectors of the system and affinely transforming the system's coordinates to the new unit cell coordinates. While theoretically, this also works for applying shear stresses, where we deform the unit cell and lattice vectors to a triclinic (non-orthogonal) box as shown in \cref{fig:Tri-Clinic}, computationally, this has problems at large strains where the unit cell is heavily deformed. Alternatively, a set of suitably modified periodic boundaries was proposed by Lees and Edwards in \cite{lees_computer_1972} and is illustrated in \cref{fig:Lees-Edwards}. 
+
+Assuming that the shear occurs in the x-direction, which is always possible by rotating the system such that one of the lattice vectors lies along the x-axis, involves affinely deforming the particles in the unit cell along the x-axis and "sliding" the periodic images in the adjacent rows as shown in \cref{fig:Lees-Edwards}. This proves more computationally efficient as the unit cell remains orthogonal. The computation details for implementing these can be found in Ref. \cite{allen_computer_2017}.
 
 
-When applying only a global macroscopic shear in this manner, the modified boundary conditions are known as Lees-Edward Boundary conditions \cite{lees_computer_1972}. 
 
 \subsection{Rigidity}
 \todo[inline]{This is a copy of my first year report and needs paraphrasing and adapting to context}
@@ -131,7 +144,7 @@ By considering the conservation of mass and momentum the Navier-Stokes equations
 \end{subequations}
 
 where $\rho$ is the fluid's density. The total stress in the fluid can be expressed as $\bm{\Sigma} = \bm{\sigma} - P\bm{I}$, where $P$ is the hydrostatic pressure and $\bm{\sigma}$ the devioric stress tensor. 
-The physics we wish to concider in this thesis is the slow flow of pasty materials where the internal viscous forces dominate over the inertial forces we concider the limit of \cref{eq:incompressibleNavier} as $Re=\rho |\bm{v}| L / \mu -> 0$ where $L$ is the typical length scale for the fluid. In this limit, the navier stokes equations reduces to,
+The physics we wish to concider in this thesis is the slow flow of pasty materials where the internal viscous forces dominate over the inertial forces we concider the limit of \cref{eq:incompressibleNavier1} as $Re=\rho |\bm{v}| L / \mu -> 0$ where $L$ is the typical length scale for the fluid. In this limit, the navier stokes equations reduces to,
 \begin{subequations}
 \label{eq:StokesLimit}
 \begin{align}

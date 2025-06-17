@@ -1,0 +1,60 @@
+\begin{tikzpicture}
+  % Define parallelogram dimensions
+  \def\w{1}   % base width
+  \def\h{1}   % height
+  \def\slant{0.5} % slant offset in x-direction
+
+  % Basis vectors for tiling
+  \coordinate (e1) at (\w, 0);
+  \coordinate (e2) at (\slant, \h);
+
+  % Center cell (i=1, j=1)
+  \pgfmathsetmacro{\cxMid}{1*\w + 1*\slant + 0.5*\w + 0.5*\slant}
+  \pgfmathsetmacro{\cyMid}{1*\h + 0.5*\h}
+  \coordinate (centerMiddle) at (\cxMid,\cyMid);
+
+  % Top-middle cell (i=1, j=2)
+  \pgfmathsetmacro{\cxTop}{1*\w + 2*\slant + 0.5*\w + 0.5*\slant}
+  \pgfmathsetmacro{\cyTop}{2*\h + 0.5*\h}
+  \coordinate (centerTop) at (\cxTop,\cyTop);
+
+  % Center of middle-right cell (i=2, j=1)
+  \pgfmathsetmacro{\cxRight}{2*\w + 1*\slant + 0.5*\w + 0.5*\slant}
+  \pgfmathsetmacro{\cyRight}{1*\h + 0.5*\h}
+  \coordinate (centerRight) at (\cxRight,\cyRight);
+
+  % Loop over rows and columns to draw a slanted grid
+ \foreach \i in {0,1,2} {
+    \foreach \j in {0,1,2} {
+
+      % Compute position
+      \pgfmathsetmacro{\xshift}{\i*\w + \j*\slant}
+      \pgfmathsetmacro{\yshift}{\j*\h}
+
+      % Check if this is the center cell
+      \ifnum\i=1 \ifnum\j=1
+        \def\border{4pt}     % thick line
+        \def\fillcolor{gray!40} % gray fill
+      \else
+        \def\border{1pt}
+        \def\fillcolor{white}
+      \fi \else
+        \def\border{1pt}
+        \def\fillcolor{white}
+      \fi
+
+      % Draw parallelogram
+      \begin{scope}[shift={(\xshift,\yshift)}]
+        \draw[fill=\fillcolor, draw=black]
+          (0,0) -- (\slant,\h) -- ({\w+\slant},\h) -- (\w,0) -- cycle;
+          \draw[draw=black, line width=\border]
+          (0,0) -- (\slant,\h) -- ({\w+\slant},\h) -- (\w,0) -- cycle;
+      \end{scope}
+    }
+  }
+
+    % Lattice vectors
+  \draw[->, thick] (centerMiddle) -- (centerTop) node[anchor=south west] {\Large $\bm{a}$};
+  \draw[->, thick] (centerMiddle) -- (centerRight) node[anchor=west] {\Large $\bm{b}$} ;
+  
+\end{tikzpicture}
