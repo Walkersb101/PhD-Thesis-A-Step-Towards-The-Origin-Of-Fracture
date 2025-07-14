@@ -67,7 +67,8 @@
 % ============                                                              %
 \setlength{\voffset}{-1in}                                                  %
 \setlength{\marginparsep}{0in}                                              %
-\setlength{\marginparwidth}{0in}                                            %
+%\setlength{\marginparwidth}{0in}                                            %
+\setlength{\marginparwidth}{2cm}                                            %
 \setlength{\marginparpush}{0in}                                             %
 \setlength{\hoffset}{-1in}                                                  %
 \setlength{\oddsidemargin}{3.8cm}                                           %

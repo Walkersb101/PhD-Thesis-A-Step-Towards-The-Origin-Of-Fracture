@@ -1,134 +1,27 @@
 \setcounter{equation}{0}
 \chapter{Background}
 
-\section{Networks}
+In this thesis, we will consider several rheological constitutive models which explore a range of soft matter systems. In order to explore these models, we will consider a range of deformation protocols which are the rheologically reinvent to each model and the material they represent. The overarching theme of this thesis and the main focus of each chapter is that we analyse the yielding (or fracture) behaviour of the material, and hopefully provide a small step to understand the origins of these behaviours. 
 
-\subsection{Semi-Flexible filaments}
-Biopolymers can be separated into three categories by the ratio of their persistence length $l_p$ to their relevant contour length $l_c$ (in the case of networks the relevant length is the average length between crosslinks). The persistence length is a measure of the rigidity of the polymer and defines the length at which the polymer's orientation remains correlated. Therefore, the persistence length of a polymer can be intuitively thought of as the length at which thermal energy, $k_{B}T$, is large enough to have an effect on the direction of the polymer (formally defined as the length at which the correlation between the two tangent equals $1/e$) and can be defined by $l_p = \kappa / (k_{B}T)$.
+In this chapter, we will discuss the underlying theories of these models and provide further context and definitions for the phenomena that we will explore. We will start by introducing some basic rheology concepts which appear throughout this thesis. We secondly approach the problem of viscoelastic flows from a Newtonian perspective by introducing the generalised continuum equations for incompressible fluid flow, which include arbitrary stresses, and derive an approach for solving them for the case of Stokesian (i.e., zero Re) hydrodynamics. Finally, we explore the problem from a Hookean perspective, but introducing a model for Semi-Flexible filaments, explore how non-linearity manifests in these systems and how we introduce plasticity in these models. Finally, we introduce some fundamental numerical techniques used in this thesis to perform the studies undertaken.
 
-For short or stiff polymers where $l_p \ll l_c$ the polymer acts like a rigid rod with its mechanical response governed by the polymer's stretching of molecular bonds. Polymers where $l_p \gg l_c$ take a naturally folded state as the thermal energy is sufficient to bend the filament significantly, these polymers have mechanical responses driven by entropy where the initial response is governed by the reduction of accessible conformations as the polymer unfolded, followed by a regime governed by the stretching of molecular bonds as in the stiff case. Semiflexible polymers therefore constitute an intermediate state between the two where their persistence length $l_p$ is large enough relative to their contour length $l_c$ to avoid collapsing into a random coil but large enough that thermally induced bending remains relevant. 
+\section{Rheology}
+\todo[inline]{write rheology section}
 
-The standard model for polymers is the extensible worm-like chain, where each polymer is treated as a homogeneous cylindrical elastic rod with radius $r$ and Young's modulus $E$ \cite{doi_theory_1988}. As such the stretching rigidity of the rod can be expressed in terms of the product of its Young's modulus and cross-sectional area $\mu = E \pi r^2$ and its bending rigidity in terms of its Young's modulus and moment of inertia $\kappa = E I = E \pi r^4 / 4$. We therefore write the Hamiltonian of a  single filament as the the sum of two integrals 
-\begin{equation}
-    \mathcal{H}_f = \frac{\mu}{2} \int ds \left( \frac{dl}{ds} \right)^2 + \frac{\kappa}{2} \int ds \left| \frac{\partial \vec{t}}{\partial s} \right|^2
-\end{equation}
-where $s$ is the arc length coordinate, $dl/ds$ is the relative strain of the polymer at point $s$ and $\vec{t}$ is the tangent vector to the polymer. We neglect any energy contributions from the polymers twisting along their axis. This continuum model can be discretised, such that we discrete  extensible worm-like chains \cite{mackintosh_elasticity_1995} for which the Hamiltonian of each segment can be expressed as
-\begin{equation}
-    \mathcal{H}_f = \frac{\mu}{2} \sum_{ij} \frac{( l_{ij} - l_{ij,0} )^2}{l_{ij,0}} + \frac{\kappa}{2} \sum_{ijk} \frac{( \theta_{ijk} - \theta_{ijk,0} )^2}{l_{ijk,0}}
-\end{equation}
-where the first sum is taken over all pairs $ij$ and triplets $ijk$ along the polymer length. We define $l_{ij}$ and $l_{ij,0}$ as the instantaneous and natural length between nodes $i$ and $j$ respectively, $\theta_{ijk}$ and $\theta_{ijk,0}$ to be the instances and natural angle between nodes  $i$, $j$ and $k$, respectively, and $l_{ijk,0} = (l_{ij,0} + l_{jk,0})/2$. In all cases, we consider a central force model only where bending rigidity is neglected, this can be thought of as the polymers having a small cross-sectional area relative to their length such that their moment of inertia is neglectable compared to their cross-sectional area.
+Rheology is the study of the response of a material to an applied flow deformation/ stress. The term originates from the early 20th century and comes from the combination of the Greek words rheo, meaning “to flow,” and logos, meaning “study”\cite{barnes_introduction_1989}\todo[]{More background references}.  While very early work by Hooke \cite{hooke_lectures_1678} and Newton \cite{newton_philosophiae_1687} laid the foundation of simple linear rheological cases, stating respectively “the power of any spring is in the same proportion with the tension thereof” and “if you double the force, you double the velocity gradient”. Modern rheology is more interested in the cases where these simple rules do not hold and nonlinear behaviours dominate the physics. 
 
-\subsection{Calculating Stress}
-\todo[inline]{The first paragraph is a copy from 1st year report, it needs paraphrasing}
-
-In molecular dynamics simulations, defining stress precisely can be challenging or computationally demanding. While methods such as the principle of virtual work allow for the system's stress to be found by taking a numerical derivative of the Hamiltonian of the system. However, these methods are computationally expensive as we need to relax the system after the small strain step $\delta\gamma$ and possibly average over several incremental shear strain steps to accurately compute the derivative. Instead, stresses reported by molecular dynamical systems report the viral stress of the system. While there are many formulations of the viral stress tensor \cite{walton_pressure_1983,erpenbeck_einstein-kubo-helfand_1995,tsai_virial_1979}, we will present a brief derivation of the viral stress tensor derived by Irving and Kirkwood in Ref. \cite{irving_statistical_1950} in two dimensions.
-
-Following the arguments of Doi and Edwards in Ref. \cite{doi_theory_1988}, we consider an arbitrary line perpendicular to the $j$-axis, which intersects the network at a position $h$ along the $j$-axis. The $ij$ stress component on this line, $\sigma_{ij}(h)$, is by definition the $\alpha$ component of the force (per length) exerted by the section of the network above the plane onto the section network below the plane denoted $F_i(h)$. The macroscopic stress $\sigma_{ij}$ exerted by the network can thus be computed by averaging $\sigma_{ij}(h)$ over the full length of the network along the $j$-axis,
-\begin{gather}
-    \sigma_{ij} = \left< \sigma_{ij}(h)\right> = \left< F_i(h)\right> / L_i \\
-    \sigma_{ij} = \frac{1}{L_iL_j}\int_0^L F_i(h) dh \label{eq:viralDevInt}
-\end{gather}
-where $L_i$ and $L_j$ is the length of the network intersected by the line and is the full length of the intersection along the $j$-axis, respectively. We note that $L_iL_j$ is the area of our system $A$. For simplicity, we ignore the solvent effect and consider only the contribution to the stress from the inter-node forces. 
-The force $F_i(h)$ can be expressed as the sum of all the $i$-component of the force $f_{mn}$ exserted on node $m$ by node $n$
-\begin{equation}
-    F_i(h) = \sum_{m,n} f_{mn,i} \Theta(h-r_{n,j})\Theta(r_{m,j}-h)
-    \label{eq:viralDevForce}
-\end{equation}
-where $r_{n,j}$ denotes the position of node $n$ along the $j$-axis. The two $\Theta$ function (defined in \cref{eq:heaviside_function}) restrict node $n$ to be below the line and node $m$ to above the line. Substituting \cref{eq:viralDevForce} into $\cref{eq:viralDevInt}$ and integrating over $h$ gives
-\begin{align}
-    \sigma_{ij} &= \frac{1}{A} \sum_{m,n} f_{mn,i}(r_{n,j}-r_{n,j})\Theta(r_{n,j}-r_{m,j}) \label{eq:viralDevTheta} \\
-    \sigma_{ij} &= \frac{1}{2A} \sum_{m,n} f_{mn,i}(r_{n,j}-r_{m,j}) \label{eq:viralDevfinal} \\
-    \sigma_{ij} &= \frac{1}{2A} \sum_{m,n} f_{mn,i}r_{mn,j} \label{eq:viralStress}
-\end{align}
-where $\bm{r}_{mn} = \bm{r}_{n}-\bm{r}_{m}$. We note that $\Theta$ in \cref{eq:viralDevTheta} restricts the position of node $n$ to be higher than node $m$ along the $j$-axis. By Newton's second law $\bm{f}_{mn} = -\bm{f}_{nm}$ and symmetry under exchanging $m$ and $n$, we see that it can be replaced by a factor of $1/2$ to instead correct for double counting in the summation.
-
-The derivation above extends trivially to three dimensions, where we instead consider the force contribution from above and below an arbitrary plane perpendicular to the $j$-axis. Calculating the stress by this approach eliminates the computation of numerical derivatives and is more computationally efficient, as both $\bm{r}_{ij}$ and $\bm{f}_{ij}$ are already calculated at each timestep when evaluating the system's dynamics. A more thorough derivation of the viral stress tensor, including fluid effects, can be found in Ref. \cite{yang_generalized_2012}.
-
-\subsection{Generalised Lees-Edwards Boundary conditions}
-When studying rheology, we typically wish to apply a macroscopic strain to a material and study the resulting macroscopic stress. In an experimental setup, this involves placing a sample of the material of interest into a rheometer and applying a macroscopic strain by moving one or more of the sample's boundaries. To measure the material's bulk properties, the samples often need to be large to avoid edge effects dominating the physics. This proves a challenge in simulations where achieving these scales is computationally expensive or impossible. A common way to avoid these issues is to use periodic boundary conditions, where an object passing through one side of the unit cell reappears on the opposite side with the same velocity. This, by definition, removes the edges of the computational systems; therefore, macroscopic strains must be applied through an alternative method, rather than being applied the conventional way, i.e. by applying a stress along one of the edges.
-
-\begin{figure}[hbt!]
-    \centering
-    \centering
-    \begin{subfigure}[t]{0.5\linewidth}
-        \centering
-        \includegraphics[width=.8\linewidth]{chapters/2-Background/Figures/TriClinic.tikz}
-        \caption{Triclinic Boundary Conditions}
-        \label{fig:Tri-Clinic}
-    \end{subfigure}%
-    \hfill
-    \begin{subfigure}[t]{0.5\linewidth}
-        \centering
-        \includegraphics[width=.8\linewidth]{chapters/2-Background/Figures/LeesEdwards.tikz}
-        \caption{Lees Edwards Boundary Conditions}
-        \label{fig:Lees-Edwards}
-    \end{subfigure}
-    \caption{An Illustration of two equivalent boundary conditions used in simulation to apply macroscopic stresses to a system} 
-    \label{fig:BoundaryConditions}
-\end{figure}
-
-In computational simulations, macroscopic stresses are instead applied by deforming the lattice vectors, which define the relationship between the unit cell and its periodic images. Applying simple stresses to the system can be trivially done simply by updating the unit cell and lattice vectors of the system and affinely transforming the system's coordinates to the new unit cell coordinates. While theoretically, this also works for applying shear stresses, where we deform the unit cell and lattice vectors to a triclinic (non-orthogonal) box as shown in \cref{fig:Tri-Clinic}, computationally, this has problems at large strains where the unit cell is heavily deformed. Alternatively, a set of suitably modified periodic boundaries was proposed by Lees and Edwards in \cite{lees_computer_1972} and is illustrated in \cref{fig:Lees-Edwards}. 
-
-Assuming that the shear occurs in the x-direction, which is always possible by rotating the system such that one of the lattice vectors lies along the x-axis, involves affinely deforming the particles in the unit cell along the x-axis and "sliding" the periodic images in the adjacent rows as shown in \cref{fig:Lees-Edwards}. This proves more computationally efficient as the unit cell remains orthogonal. The computation details for implementing these can be found in Ref. \cite{allen_computer_2017}.
+\subsection{Stress and Strain}
 
 
+\subsection{Experiments}
 
-\subsection{Rigidity}
-\todo[inline]{This is a copy of my first year report and needs paraphrasing and adapting to context}
-One of the most fundamental properties of these interconnected fibre networks is the rigidity of the network, both on a local and global scale. Consider first frameworks where each connection in our network has a fixed length and is allowed to freely hinge around the connecting nodes. (The limit as $\mu \to \infty$ and $\kappa \to 0$.) Defining $\bm{r_i(t)}$ to be the position of the $i$th node of the system then we can define our network through the set of equations $|\bm{r}_i(t) - \bm{r}_j(t)|^2 = l_{ij,0}^2$ for all connected pairs $ij$. By differentiating with respect to $t$, a set of constraints can be generated,
-\begin{equation} \label{eq:FrameworkRigidity}
-    (\bm{\dot{r}}_i(t) - \bm{\dot{r}}_j(t))\cdot(\bm{r}_i(t) - \bm{r}_j(t))=0 \text{ for all pairs } ij
-\end{equation}
-where $\bm{\dot{r}_i(t)}$ is the velocity of the node $i$ at time $t$. If it is possible to find a non-trivial set of velocities which satisfies \cref{eq:FrameworkRigidity}, then the framework can move infinitesimally as at least one node can be moved freely. This defines the most strict definition of rigidity where for a given network we define it to be rigid only if and only if the solution to \cref{eq:FrameworkRigidity} is the trivial solution of $\dot{r}_i(t) = 0$ for all $i$. This idea is more simply understood through the work of Maxwell \cite{maxwell_calculation_2011} who initially pointed out that this definition of rigidity is directly related to the number of constraints in the system, where for a $d$-dimensional system of $N$ nodes the condition for the number of constraints $N_c$  for the system to be rigid is $N_c \geq dN - d(d+1)/2$ \cite{maxwell_calculation_2011}. Assuming that the network is homogeneous so we can define the average connectivity of the network as $z = 2N_c/N$ and letting $N\to\infty$ then the simple criteria for rigidity is $z\geq 2d$, where $z = 2d$ is often referred to as the isostatic point. This statement is only valid when there is one rigid cluster and all bonds are independent. However, this is often not the case for over-constrained systems. In these cases, the network contains areas of self-stress, which are configurations of internal forces that are in equilibrium, where the actual number of degrees of freedom and constraints in these systems is different from just counting the number of nodes and connections \cite{calladine_buckminster_1978}.
+In order to understand these nonlinear effects, which are often controlled dynamics of internal microstructure, experimental rheologists use a number of experimental techniques which often involve shearing a material between two plates.
 
-This definition is often over-prescriptive and does not work in non-homogeneous networks where the average connectivity $z$ does not provide enough information to define if the network is rigid. For example, if we consider attaching a single freely hanging node to an otherwise rigid network then we disrupt the overall definition of rigidity as this new node is now free to rotate without affecting the overall global rigidity of the network and its ability to retain stress. For such a problem we need to consider where the constraints are located within the system to determine the global rigidity of the system. We also need to consider the case of sparsely connected networks below the isostatic point, where we find small clusters of rigid nodes connected by floppy under-constrained regions. In extremely non-homogenous cases, these networks can have connectivity greater than $z_c=2d$, rearrange such that the global deformation does not require the extension of any bonds. As such a network only requires a single system-spanning rigid cluster to hold regions of self stress, this is why the identification of the rigidity transition is referred to as rigidity percolation \cite{zhang_correlated_2019}. This should not be confused with geometrical percolation which identifies when the top and bottom of a network are connected to each other \cite{kendall_percolation_2009,broadbent_percolation_1957}. In two dimensions this problem has been well studied \cite{ellenbroek_rigidity_2015} through algorithms such as the pebble game \cite{jacobs_algorithm_1997, jacobs_generic_1995}. 
-
-All these considerations only describe a system's \quotes{structural} or \quotes{first-order rigidity}, where the structure of the network inhibits the motion of the system on both a global and local level. It is well known that under-constrained spring networks can undergo a rigidity transition at coordination number less than $z_c=2d$ \cite{feng_percolation_1984, sharma_strain-controlled_2016, wyart_elasticity_2008, feng_nonlinear_2016, vermeulen_geometry_2017, rens_micromechanical_2018}. The simplest example of such a transition is a simple string with fixed ends when the two fixed ends are closer together than the length of the string, the string provides no resistance to its deformation and can be classed as floppy. However, once the fixed points are moved far enough apart that the string is now in tension, it can resist deflection and thus appears to be rigid \cite{biot_mechanics_1965}. We refer to this as \quotes{second-order} rigidity \cite{connelly_second-order_1996}, where non-structural changes can cause the system to act as if it is in a rigid configuration. Second-order rigidity is mathematically expressed by the differentiation of \cref{eq:FrameworkRigidity} to find,
-\begin{equation*}
-    (\bm{r}_i(t) - \bm{r}_j(t))\cdot(\bm{\ddot{r}}_i(t) - \bm{\ddot{r}}_j(t)) + (\bm{\dot{r}}_i(t) - \bm{\dot{r}}_j(t))\cdot(\bm{\dot{r}}_i(t) - \bm{\dot{r}}_j(t))=0
-\end{equation*}
-where $\bm{\dot{r}_i(t)}$ is the acceleration of the node $i$ at time $t$. This allows for rigidity to occur when there are non-trivial solutions to \cref{eq:FrameworkRigidity} due to force balances in the material. This provides a weaker form of rigidity but still allows for the network to hold regions of self-stress. These configurations are much harder to predict \cite{holmes-cerfon_almost-rigidity_2021} as they arise from non-linear effects which have been highlighted in the context of the frameworks and tensegrities \cite{connelly_frameworks_2022, connelly_second-order_1996, calladine_first-order_1991}. In fact, determining whether a planar network of springs is rigid is NP-hard \cite{abbott_generalizations_2008} and as such there is no simple theory that can determine if the system is truly rigid.
-
-For a system of semiflexible fibres where each fibre can naturally extend, both first and second-order rigidity provides a reasonable proxy for the rigidity of the system \cite{van_hecke_jamming_2010}. However, they are unable to fully capture the complexity of the network. A more recent and intuitive idea of \quotes{energetic rigidity} \cite{damavandi_energetic_2022} has provided a more relevant idea to the rigidity of fibre networks. Energetic rigidity defines a rigid state to be one where any small deformation increases the elastic energy of the structure, or, more simply, where the network resides in a local energy minimum This idea has provided valuable insights into the rigidity of spring networks, vertex models, and jammed packings of soft particles \cite{damavandi_energetic_2022-1}, especially in the context of prestressed systems. However, this still does not provide a comprehensive framework to predict the rigidity of the system.
-
-\subsection{Fracturing the network} \label{sec:Fracture}
-\todo[inline]{This needs splitting into two section and expanding on}
-To study fracture in these network materials it is common to define a local rupture threshold at which any bond between nodes will break. Typically this is done by breaking bonds whose length exceeds their natural length by a threshold fraction $\lambda = (l_{\rm break} - l_0) / l_0$ \cite{tauber_role_2020,dussi_athermal_2020}. These models then introduce temperature through a stochastic term, which represents random kicks from the molecules in the implicit solvent defined by $\sqrt{2k_B T} R(t)$ where $k_B$ is Boltzmann’s constant, $T$ the thermodynamic temperature and $R(t)$ a standard Wiener process. We, however, propose a different model of fracture inspired by the soft glassy rheology model (SGR) \cite{sollich_rheological_1998,mfielding_shear_2009,sollich_thermodynamic_2012} where each bond sits in a local energy well, defined by a global breaking energy $E$, local elastic strain energy ${\mu}{(l-l_0)^2}/{2l_0^2}$ and an effective noise temperature $x$. Each bond then has the ability to hop out of its energy well and break at a rate $\Gamma$ given by
-\begin{equation} \label{eq:SGRRate}
-    \Gamma = \Gamma_0 \min \left\{ \exp \left[ \frac{E - \frac{\mu}{2}\frac{(l-l_0)^2}{l_0^2}}{x} \right], 1 \right\}
-\end{equation}
-where $\Gamma_0$ is a microscopic breaking rate. We work in units of time where $\Gamma_0 = 1$ and the rate is given a maximum value of $1$ in order to ensure the model remains thermodynamically consistent \cite{sollich_thermodynamic_2012}.
-
-For systems in which the thermal energy is of the same order as the depth of the energy well the temperature parameter can be interpreted as the true thermodynamic temperature, with $x = k_B T$ \cite{sollich_thermodynamic_2012}. However, in our network system, where the energy depths are much larger than the thermal contributions, the effective noise temperature is related to how stress would propagate across the microscopic structure of the bond. 
-
-\subsection{Athermal Fracture}
-
-\subsection{Thermal Fracture}
-
-\subsection{Network Structure}
-Network structures generated from jammed disk or sphere packing have been extensively studied to study elastic or fibre networks \cite{rens_rigidity_2019,wyart_elasticity_2008,lerner_unified_2012,shivers_normal_2019,shivers_scaling_2019,shivers_phase_2022}.
-
-The Jammed packing networks we use in subsequent work are generated by distributing $N$ disks with bidispersed radii in a square periodic box with side length $L$. An equal number of disks are chosen to have either radii $\R0$ or $f\R0$ where $f$ is chosen to take a value which reduces crystallisation in the system. A common value and the one used to generate any networks presented in this work is $f=1.4$ \cite{van_hecke_jamming_2010, chacko_slow_2019, desmond_random_2009}, which produces a packing with no macroscopic order. Overlapping disks are allowed to interact through a pairwise repulsive interaction potential of the form
-\begin{equation}
-    U_{ij}\left(r_{ij}\right)\begin{cases} 
-      R_0^3\left(1-\frac{r_{ij}}{D_{ij}}\right)^2 & r_{ij} < D_{ij} \\
-      0 & r_{ij} \geq D_{ij}
-   \end{cases}
-\end{equation}
-where $r_{ij}$ denotes the distance between particles $i$ and $j$ and $D_{ij}=R_i+R_j$ is the sum of the two particles radii. The total energy due to these interactions can be calculated by summing over all pairs of particles $U_{\text{tot}} = \sum_{i}\sum_{j<i} U_{ij}$. This can then be minimised by evolving an overdamped equation of motion as is done in Ref.\citep{chacko_slow_2019}, which is equivalent to the method of steepest descent. For larger systems, a more efficient minimisation algorithm, such as the FIRE algorithm \cite{guenole_assessment_2020}, is needed to reach the minimised state quickly. We then generate a network topology from the force/contact network of this minimised state, where overlapping spheres are connected with bonds before the disks are removed. 
-The value of $\R0$ is taken such that a target packing fraction $\phi>\phi_J$, where $\phi_J$ is the jamming fraction where the system undergoes an athermal jamming transition \cite{ikeda_unified_2012}, is obtained. For all networks generated in subsequent work, we take $\phi=1$ unless stated otherwise. For single networks, this gives an average network connectivity of $ z\approx5.4$. 
-
-\begin{figure}[htp]
-\centering
-\includegraphics[width=.3\textwidth]{chapters/2-Background/Figures/particles.png}\hfill
-\includegraphics[width=.3\textwidth]{chapters/2-Background/Figures/Stack.png}\hfill
-\includegraphics[width=.3\textwidth]{chapters/2-Background/Figures/Network.png}
-\caption{Step of generating a jammed-packed network from 900 soft spheres at $\phi = 1$. A Packing of bidisperse disks with ratio of radii 1: 1.4 (left) in an energy minimum state. Network bonds are created through the contact network of the packing (where spheres overlap) (middle). The nodes are removed (right) leaving only the springs. }
-\label{fig:SingleNetworkGeneration}
-\end{figure}
-
-While it is possible to generate a lower connectivity network, still above the isostatic point of $z=4$, by choosing a $\phi>\phi_J$ where $\phi_J$ is the jamming fraction where the system undergoes an athermal jamming transition \cite{ikeda_unified_2012}. Instead, we generate lower connectivity networks by iteratively removing bonds from the highest connected node in a network generated at $\phi=1$. During this process, we remove dangling ends and clusters, such that all bonds actively contribute to the reported mechanical response.
-\missingfigure{Diagram of dangling ends and clusters}
+\subsection{Shear protocol}
+\subsubsection{Shear Startup}
+\subsubsection{Large Amplitude Oscillatory shear}
+\subsubsection{Step Strain}
+\subsection{Rate dependence / quasistatic}
 
 \section{Hydrodynamics}
 
@@ -154,11 +47,16 @@ The physics we wish to concider in this thesis is the slow flow of pasty materia
 \end{subequations}
 
 Following the arguments of Ref. \cite{picard_elastic_2004} we will assume that the strain $\bm{\epsilon}$ is as linear superposition of a plastic flow $\bm{\epsilon^{pl}}$ and elastic deformation $\bm{\epsilon^{el}}$ and that the fluid is homogeneous, isotropic, and linearly elastic. The strain $\bm{\epsilon}$ of the fluid can be therefore be expressed as 
-\begin{equation*}
+\begin{equation}
     \bm{\epsilon}= \bm{\epsilon^{el}} + \bm{\epsilon^{pl}}, \quad \text{and, }\bm{\epsilon^{el}} = \frac{1}{2}\left(\nabla \bm{u} + \left( \nabla \bm{u} \right)^T \right)
-\end{equation*} 
+    \label{eq:decompositionAndDeformation}
+\end{equation} 
 where $\bm{u}(\bm{r})$ is the total displacement vector at a position $\bm{r}$.
-In addition, for simplicity we will concider the case where the fluid is incompressible $\nabla \cdot \bm{u} = 0$ such that the stress $\bm{\sigma} = 2\mu$ The devioric stress tensor $\bm{\sigma}$ can be expresses as $\bm{\sigma} = 2 \mu \bm{\epsilon^{el}} = 2\mu\bm{\epsilon} - 2\mu\bm{\epsilon^{pl}}$.
+In addition, for simplicity we will concider the case where the fluid is incompressible $\nabla \cdot \bm{u} = 0$ such that the stress $\bm{\sigma} = 2\mu$ The devioric stress tensor $\bm{\sigma}$ can therefore be expresses as 
+\begin{equation}
+    \bm{\sigma} = 2 \mu \bm{\epsilon^{el}} = 2\mu\bm{\epsilon} - 2\mu\bm{\epsilon^{pl}}.
+    \label{eq:elasticStress}
+\end{equation}
 
 Concidering a single localised plastic event induced by elastic loading, the strain field $\bm{\epsilon}$ can be decomposed into futher as a superposition of $\bm{\epsilon^{el0}}$, $\bm{\epsilon^{el1}}$ and $\bm{\epsilon^{pl1}}$ where the superscript $0$ denotes the contribution from the elastic loading and $1$ the contribution from the localised plastic event. Each elastic contribution results in a deformation vector $\bm{u^0}$ and $\bm{u^1}$ respectively, where $\bm{u} = \bm{u^0} + \bm{u^1}$. As the elastic contribution must obay \cref{eq:StokesLimit} and the incompressibility condition $\nabla \cdot \bm{u^0} = 0$ the deformation resulting from the localised plastic event $\bm{u^1}$ must satisfy, 
 \begin{subequations}
@@ -206,13 +104,153 @@ Substituting $\hat{P}_j$ back into \cref{eq:StokesFourier} we find a closed expr
 \begin{equation}
     \hat{\mathbb{G}}_{ij} = \frac{1}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right).
 \end{equation}
-This gives an expression for the deformation and deformation gradients in Fourier Space as 
+This gives an expression for the deformation and deformation gradients ($\partial_l u_i$) in Fourier Space as 
 \begin{equation}
     \hat{u}_i = \frac{1}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right)F_j, \qquad ik_l\hat{u}_i = \frac{ik_l}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right)F_j
     \label{eq:stokesVelocity}
 \end{equation}
-respectively. The above expressions naturally describe deformation and gradient fields for a periodic system up to an arbitrary constant $\bm{u}_0$. This is due to the singularity at $\bm{k}=\bm{0}$, For simplicity, it is common to take $\bm{u}_0 = \bm{0}$ corresponding to no net displacement of the material. 
+respectively \todo{explain differentiation in Fourier}. The above expressions naturally describe deformation and gradient fields for a periodic system up to an arbitrary constant $\bm{u}_0$, due to the singularity at $\bm{k}=\bm{0}$. 
+
+The associated stress and strain fields are then obtained by substituting this result for $\partial_l u_i$ into \cref{eq:decompositionAndDeformation,eq:elasticStress} in Fourier space, giving the resultant Shear stress correction in
+\begin{equation}
+    \hat{\sigma}_{x y}^1=2 \mu^2\left(q_y^2 \hat{\mathbb{G}}_{x x}+q_x^2 \hat{\mathbb{G}}_{y y}+2 q_x q_y \hat{\mathbb{G}}_{x y}-1 / \mu\right) \hat{\epsilon}_{x y}^{\mathrm{pl1}}.
+\end{equation}
+In two ($D=2$) and three ($D=3$) dimensions respectively, $\hat{\mathbb{G}}_{xy}$ takes the following forms
+\begin{equation*}
+    \hat{\mathbb{ G }}_{ xy } = -4 \frac{ k_x^2 k_y^2 }{ k^4 } \quad \text{ and, } \quad \hat{\mathbb{ G }}_{ xy } = -4 \frac{ k_x^2 k_y^2 }{ k^4 } + \frac{ k_z^2 }{ k^2 }.
+\end{equation*}
+Both these equations show the well-known $\cos(4\theta)$ angular dependence in the $xy$ plane with a $\sim 1/r^{D-1}$ power law decrease in real space \cite{eshelby_determination_1997}. When resolving the singularity at $\bm{k}=0 $, it is common to conserve strain in a stress controlled system and stress in a strain controlled system by setting $\hat{\mathbb{G}}_{00} = 0$ (resulting in no net displacement) or $\hat{\mathbb{G}}_{00} = -1$ respectively \cite{nicolas_deformation_2018, martens_spontaneous_2012, jocteur_protocol_2025, lin_scaling_2014}.
 
 For a non-periodic system, the method of images may be used to simulate solid walls with a non-slip boundary condition \cite{blake_note_1971}. However, a stream-function formalism for systems is often easier to implement for 2-dimensional systems numerically \cite{acheson_elementary_1990}.
 
-\section{Rheology}
+\section{Networks}
+
+\subsection{Semi-Flexible filaments}
+Biopolymers can be separated into three categories by the ratio of their persistence length $l_p$ to their relevant contour length $l_c$ (in the case of networks the relevant length is the average length between crosslinks). The persistence length is a measure of the rigidity of the polymer and defines the length at which the polymer's orientation remains correlated. Therefore, the persistence length of a polymer can be intuitively thought of as the length at which thermal energy, $k_{B}T$, is large enough to have an effect on the direction of the polymer (formally defined as the length at which the correlation between the two tangent equals $1/e$) and can be defined by $l_p = \kappa / (k_{B}T)$.
+
+For short or stiff polymers where $l_p \ll l_c$, the polymer acts like a rigid rod with its mechanical response governed by the polymer's stretching of molecular bonds. Polymers where $l_p \gg l_c$ take a naturally folded state as the thermal energy is sufficient to bend the filament significantly, these polymers have mechanical responses driven by entropy where the initial response is governed by the reduction of accessible conformations as the polymer unfolded, followed by a regime governed by the stretching of molecular bonds as in the stiff case. Semiflexible polymers, therefore, constitute an intermediate state between the two where their persistence length $l_p$ is large enough relative to their contour length $l_c$ to avoid collapsing into a random coil but large enough that thermally induced bending remains relevant. 
+
+The standard model for polymers is the extensible worm-like chain, where each polymer is treated as a homogeneous cylindrical elastic rod with radius $r$ and Young's modulus $E$ \cite{doi_theory_1988}. As such the stretching rigidity of the rod can be expressed in terms of the product of its Young's modulus and cross-sectional area $\mu = E \pi r^2$ and its bending rigidity in terms of its Young's modulus and moment of inertia $\kappa = E I = E \pi r^4 / 4$. The Hamiltonian of a single filament can therefore be written as the sum of two integrals 
+\begin{equation}
+    \mathcal{H}_f = \frac{\mu}{2} \int ds \left( \frac{dl}{ds} \right)^2 + \frac{\kappa}{2} \int ds \left| \frac{\partial \vec{t}}{\partial s} \right|^2
+\end{equation}
+where $s$ is the arc length coordinate, $dl/ds$ is the relative strain of the polymer at point $s$ and $\vec{t}$ is the tangent vector to the polymer. We neglect any energy contributions from the polymers twisting along their axis. Numerically, we discretise each filament into a series of segments \cite{mackintosh_elasticity_1995} for which the Hamiltonian of each filament can be expressed as
+\begin{equation}
+    \mathcal{H}_f = \frac{\mu}{2} \sum_{ij} \frac{( l_{ij} - l_{ij,0} )^2}{l_{ij,0}} + \frac{\kappa}{2} \sum_{ijk} \frac{( \theta_{ijk} - \theta_{ijk,0} )^2}{l_{ijk,0}}
+\end{equation}
+where the first sum is taken over all pairs $ij$ and triplets $ijk$ along the polymer length. We define $l_{ij}$ and $l_{ij,0}$ as the instantaneous and natural length between nodes $i$ and $j$ respectively, $\theta_{ijk}$ and $\theta_{ijk,0}$ to be the instances and natural angle between nodes  $i$, $j$ and $k$, respectively, and $l_{ijk,0} = (l_{ij,0} + l_{jk,0})/2$. In all cases, we consider a central force model only where bending rigidity is neglected; this can be thought of as the polymers having a small cross-sectional area relative to their length, such that their moment of inertia is negligible compared to their cross-sectional area.
+
+\subsection{Rigidity}
+\todo[inline]{This is a copy of my first year report and needs paraphrasing and adapting to context}
+One of the most fundamental properties of these interconnected fibre networks is the rigidity of the network, both on a local and global scale. Consider first frameworks where each connection in our network has a fixed length and is allowed to freely hinge around the connecting nodes. (The limit as $\mu \to \infty$ and $\kappa \to 0$.) Defining $\bm{r_i(t)}$ to be the position of the $i$th node of the system then we can define our network through the set of equations $|\bm{r}_i(t) - \bm{r}_j(t)|^2 = l_{ij,0}^2$ for all connected pairs $ij$. By differentiating with respect to $t$, a set of constraints can be generated,
+\begin{equation} \label{eq:FrameworkRigidity}
+    (\bm{\dot{r}}_i(t) - \bm{\dot{r}}_j(t))\cdot(\bm{r}_i(t) - \bm{r}_j(t))=0 \text{ for all pairs } ij
+\end{equation}
+where $\bm{\dot{r}_i(t)}$ is the velocity of the node $i$ at time $t$. If it is possible to find a non-trivial set of velocities which satisfies \cref{eq:FrameworkRigidity}, then the framework can move infinitesimally as at least one node can be moved freely. This defines the most strict definition of rigidity where for a given network we define it to be rigid only if and only if the solution to \cref{eq:FrameworkRigidity} is the trivial solution of $\dot{r}_i(t) = 0$ for all $i$. This idea is more simply understood through the work of Maxwell \cite{maxwell_calculation_2011} who initially pointed out that this definition of rigidity is directly related to the number of constraints in the system, where for a $d$-dimensional system of $N$ nodes the condition for the number of constraints $N_c$  for the system to be rigid is $N_c \geq dN - d(d+1)/2$ \cite{maxwell_calculation_2011}. Assuming that the network is homogeneous so we can define the average connectivity of the network as $z = 2N_c/N$ and letting $N\to\infty$ then the simple criteria for rigidity is $z\geq 2d$, where $z = 2d$ is often referred to as the isostatic point. This statement is only valid when there is one rigid cluster and all bonds are independent. However, this is often not the case for over-constrained systems. In these cases, the network contains areas of self-stress, which are configurations of internal forces that are in equilibrium, where the actual number of degrees of freedom and constraints in these systems is different from just counting the number of nodes and connections \cite{calladine_buckminster_1978}.
+
+This definition is often over-prescriptive and does not work in non-homogeneous networks where the average connectivity $z$ does not provide enough information to define if the network is rigid. For example, if we consider attaching a single freely hanging node to an otherwise rigid network then we disrupt the overall definition of rigidity as this new node is now free to rotate without affecting the overall global rigidity of the network and its ability to retain stress. For such a problem we need to consider where the constraints are located within the system to determine the global rigidity of the system. We also need to consider the case of sparsely connected networks below the isostatic point, where we find small clusters of rigid nodes connected by floppy under-constrained regions. In extremely non-homogenous cases, these networks can have connectivity greater than $z_c=2d$, rearrange such that the global deformation does not require the extension of any bonds. As such a network only requires a single system-spanning rigid cluster to hold regions of self stress, this is why the identification of the rigidity transition is referred to as rigidity percolation \cite{zhang_correlated_2019}. This should not be confused with geometrical percolation which identifies when the top and bottom of a network are connected to each other \cite{kendall_percolation_2009,broadbent_percolation_1957}. In two dimensions this problem has been well studied \cite{ellenbroek_rigidity_2015} through algorithms such as the pebble game \cite{jacobs_algorithm_1997, jacobs_generic_1995}. 
+
+All these considerations only describe a system's \quotes{structural} or \quotes{first-order rigidity}, where the structure of the network inhibits the motion of the system on both a global and local level. It is well known that under-constrained spring networks can undergo a rigidity transition at coordination number less than $z_c=2d$ \cite{feng_percolation_1984, sharma_strain-controlled_2016, wyart_elasticity_2008, feng_nonlinear_2016, vermeulen_geometry_2017, rens_micromechanical_2018}. The simplest example of such a transition is a simple string with fixed ends when the two fixed ends are closer together than the length of the string, the string provides no resistance to its deformation and can be classed as floppy. However, once the fixed points are moved far enough apart that the string is now in tension, it can resist deflection and thus appears to be rigid \cite{biot_mechanics_1965}. We refer to this as \quotes{second-order} rigidity \cite{connelly_second-order_1996}, where non-structural changes can cause the system to act as if it is in a rigid configuration. Second-order rigidity is mathematically expressed by the differentiation of \cref{eq:FrameworkRigidity} to find,
+\begin{equation*}
+    (\bm{r}_i(t) - \bm{r}_j(t))\cdot(\bm{\ddot{r}}_i(t) - \bm{\ddot{r}}_j(t)) + (\bm{\dot{r}}_i(t) - \bm{\dot{r}}_j(t))\cdot(\bm{\dot{r}}_i(t) - \bm{\dot{r}}_j(t))=0
+\end{equation*}
+where $\bm{\dot{r}_i(t)}$ is the acceleration of the node $i$ at time $t$. This allows for rigidity to occur when there are non-trivial solutions to \cref{eq:FrameworkRigidity} due to force balances in the material. This provides a weaker form of rigidity but still allows for the network to hold regions of self-stress. These configurations are much harder to predict \cite{holmes-cerfon_almost-rigidity_2021} as they arise from non-linear effects which have been highlighted in the context of the frameworks and tensegrities \cite{connelly_frameworks_2022, connelly_second-order_1996, calladine_first-order_1991}. In fact, determining whether a planar network of springs is rigid is NP-hard \cite{abbott_generalizations_2008} and as such there is no simple theory that can determine if the system is truly rigid.
+
+For a system of semiflexible fibres where each fibre can naturally extend, both first and second-order rigidity provide a reasonable proxy for the rigidity of the system \cite{van_hecke_jamming_2010}. However, they are unable to fully capture the complexity of the network. A more recent and intuitive idea of \quotes{energetic rigidity} \cite{damavandi_energetic_2022} has provided a more relevant idea to the rigidity of fibre networks. Energetic rigidity defines a rigid state to be one where any small deformation increases the elastic energy of the structure, or, more simply, where the network resides in a local energy minimum This idea has provided valuable insights into the rigidity of spring networks, vertex models, and jammed packings of soft particles \cite{damavandi_energetic_2022-1}, especially in the context of prestressed systems. However, this still does not provide a comprehensive framework to predict the rigidity of the system.
+
+\subsection{Fracturing the network} \label{sec:Fracture}
+\todo[inline]{This needs splitting into two section and expanding on. Write this more as a literature review, and don't state the specific form used in my work. This can be done in each chapter to keep relevant information much closer to the chapter}
+
+
+To study fractures in these network materials, it is common to define a local rupture threshold at which any bond between nodes will break. Typically, this is done by breaking bonds whose length exceeds their natural length by a threshold fraction $\lambda = (l_{\rm break} - l_0) / l_0$ \cite{tauber_role_2020,dussi_athermal_2020}. These models then introduce temperature through a stochastic term, which represents random kicks from the molecules in the implicit solvent defined by $\sqrt{2k_B T} R(t)$ where $k_B$ is Boltzmann’s constant, $T$ the thermodynamic temperature and $R(t)$ a standard Wiener process. We, however, propose a different model of fracture inspired by the soft glassy rheology model (SGR) \cite{sollich_rheological_1998,mfielding_shear_2009,sollich_thermodynamic_2012} where each bond sits in a local energy well, defined by a global breaking energy $E$, local elastic strain energy ${\mu}{(l-l_0)^2}/{2l_0^2}$ and an effective noise temperature $x$. Each bond then has the ability to hop out of its energy well and break at a rate $\Gamma$ given by
+\begin{equation} \label{eq:SGRRate}
+    \Gamma = \Gamma_0 \min \left\{ \exp \left[ \frac{E - \frac{\mu}{2}\frac{(l-l_0)^2}{l_0^2}}{x} \right], 1 \right\}
+\end{equation}
+where $\Gamma_0$ is a microscopic breaking rate. We work in units of time where $\Gamma_0 = 1$ and the rate is given a maximum value of $1$ in order to ensure the model remains thermodynamically consistent \cite{sollich_thermodynamic_2012}.
+
+For systems in which the thermal energy is of the same order as the depth of the energy well the temperature parameter can be interpreted as the true thermodynamic temperature, with $x = k_B T$ \cite{sollich_thermodynamic_2012}. However, in our network system, where the energy depths are much larger than the thermal contributions, the effective noise temperature is related to how stress would propagate across the microscopic structure of the bond. 
+
+
+\todo[inline]{Is it really thermal vs athermal? where does brownian sit in this? Do I want to define thermal in the results chapter? Look at taubers work}
+\subsection{Athermal Fracture}
+
+\subsection{Thermal Fracture}
+
+\subsection{Network Structure}
+Network structures generated from jammed disk or sphere packing have been extensively studied to study elastic or fibre networks \cite{rens_rigidity_2019,wyart_elasticity_2008,lerner_unified_2012,shivers_normal_2019,shivers_scaling_2019,shivers_phase_2022}.
+
+The Jammed packing networks we use in subsequent work are generated by distributing $N$ disks with bidispersed radii in a square periodic box with side length $L$. An equal number of disks are chosen to have either radii $\R0$ or $f\R0$ where $f$ is chosen to take a value which reduces crystallisation in the system. A common value and the one used to generate any networks presented in this work is $f=1.4$ \cite{van_hecke_jamming_2010, chacko_slow_2019, desmond_random_2009}, which produces a packing with no macroscopic order. Overlapping disks are allowed to interact through a pairwise repulsive interaction potential of the form
+\begin{equation}
+    U_{ij}\left(r_{ij}\right)\begin{cases} 
+      R_0^3\left(1-\frac{r_{ij}}{D_{ij}}\right)^2 & r_{ij} < D_{ij} \\
+      0 & r_{ij} \geq D_{ij}
+   \end{cases}
+\end{equation}
+where $r_{ij}$ denotes the distance between particles $i$ and $j$ and $D_{ij}=R_i+R_j$ is the sum of the two particles radii. The total energy due to these interactions can be calculated by summing over all pairs of particles $U_{\text{tot}} = \sum_{i}\sum_{j<i} U_{ij}$. This can then be minimised by evolving an overdamped equation of motion as is done in Ref.\citep{chacko_slow_2019}, which is equivalent to the method of steepest descent. For larger systems, a more efficient minimisation algorithm, such as the FIRE algorithm \cite{guenole_assessment_2020}, is needed to reach the minimised state quickly. We then generate a network topology from the force/contact network of this minimised state, where overlapping spheres are connected with bonds before the disks are removed. 
+The value of $\R0$ is taken such that a target packing fraction $\phi>\phi_J$, where $\phi_J$ is the jamming fraction where the system undergoes an athermal jamming transition \cite{ikeda_unified_2012}, is obtained. For all networks generated in subsequent work, we take $\phi=1$ unless stated otherwise. For single networks, this gives an average network connectivity of $ z\approx5.4$. 
+
+\begin{figure}[htp]
+\centering
+\includegraphics[width=.3\textwidth]{chapters/2-Background/Figures/particles.png}\hfill
+\includegraphics[width=.3\textwidth]{chapters/2-Background/Figures/Stack.png}\hfill
+\includegraphics[width=.3\textwidth]{chapters/2-Background/Figures/Network.png}
+\caption{Step of generating a jammed-packed network from 900 soft spheres at $\phi = 1$. A Packing of bidisperse disks with ratio of radii 1: 1.4 (left) in an energy minimum state. Network bonds are created through the contact network of the packing (where spheres overlap) (middle). The nodes are removed (right) leaving only the springs. }
+\label{fig:SingleNetworkGeneration}
+\end{figure}
+
+While it is possible to generate a lower connectivity network, still above the isostatic point of $z=4$, by choosing a $\phi>\phi_J$ where $\phi_J$ is the jamming fraction where the system undergoes an athermal jamming transition \cite{ikeda_unified_2012}. Instead, we generate lower connectivity networks by iteratively removing bonds from the highest connected node in a network generated at $\phi=1$. During this process, we remove dangling ends and clusters, such that all bonds actively contribute to the reported mechanical response.
+\missingfigure{Diagram of dangling ends and clusters}
+
+\subsection{Calculating Stress}
+
+In molecular dynamics simulations, defining stress precisely can be challenging or computationally demanding. While methods such as the principle of virtual work allow for the system's stress to be found by taking a numerical derivative of the Hamiltonian of the system. However, these methods are computationally expensive as evaluating the Hamiltonian requires the relaxation of the system after the small strain step $\delta\gamma$/$\delta\epsilon$ and possibly averaging over several incremental shear strain steps to compute the derivative accurately. Instead, stresses reported by molecular dynamical systems report the viral stress of the system. While there are many formulations of the viral stress tensor \cite{walton_pressure_1983,erpenbeck_einstein-kubo-helfand_1995,tsai_virial_1979}, we will present a brief derivation of the viral stress tensor derived by Irving and Kirkwood in Ref. \cite{irving_statistical_1950} in two dimensions.
+
+Following the arguments of Doi and Edwards in Ref. \cite{doi_theory_1988}, we consider an arbitrary line perpendicular to the $j$-axis, which intersects the network at a position $h$ along the $j$-axis. The $ij$ stress component on this line, $\sigma_{ij}(h)$, is by definition the $\alpha$ component of the force (per length) exerted by the section of the network above the plane onto the section network below the plane denoted $F_i(h)$. The macroscopic stress $\sigma_{ij}$ exerted by the network can thus be computed by averaging $\sigma_{ij}(h)$ over the full length of the network along the $j$-axis,
+\begin{gather}
+    \sigma_{ij} = \left< \sigma_{ij}(h)\right> = \left< F_i(h)\right> / L_i \\
+    \sigma_{ij} = \frac{1}{L_iL_j}\int_0^L F_i(h) dh \label{eq:viralDevInt}
+\end{gather}
+where $L_i$ and $L_j$ is the length of the network intersected by the line and is the full length of the intersection along the $j$-axis, respectively. We note that $L_iL_j$ is the area of our system $A$. For simplicity, we ignore the solvent effect and consider only the contribution to the stress from the inter-node forces. 
+The force $F_i(h)$ can be expressed as the sum of all the $i$-component of the force $f_{mn}$ exserted on node $m$ by node $n$
+\begin{equation}
+    F_i(h) = \sum_{m,n} f_{mn,i} \Theta(h-r_{n,j})\Theta(r_{m,j}-h)
+    \label{eq:viralDevForce}
+\end{equation}
+where $r_{n,j}$ denotes the position of node $n$ along the $j$-axis. The two $\Theta$ function (defined in \cref{eq:heaviside_function}) restrict node $n$ to be below the line and node $m$ to above the line. Substituting \cref{eq:viralDevForce} into $\cref{eq:viralDevInt}$ and integrating over $h$ gives
+\begin{align}
+    \sigma_{ij} &= \frac{1}{A} \sum_{m,n} f_{mn,i}(r_{n,j}-r_{n,j})\Theta(r_{n,j}-r_{m,j}) \label{eq:viralDevTheta} \\
+    \sigma_{ij} &= \frac{1}{2A} \sum_{m,n} f_{mn,i}(r_{n,j}-r_{m,j}) \label{eq:viralDevfinal} \\
+    \sigma_{ij} &= \frac{1}{2A} \sum_{m,n} f_{mn,i}r_{mn,j} \label{eq:viralStress}
+\end{align}
+where $\bm{r}_{mn} = \bm{r}_{n}-\bm{r}_{m}$. We note that $\Theta$ in \cref{eq:viralDevTheta} restricts the position of node $n$ to be higher than node $m$ along the $j$-axis. By Newton's second law $\bm{f}_{mn} = -\bm{f}_{nm}$ and symmetry under exchanging $m$ and $n$, we see that it can be replaced by a factor of $1/2$ to instead correct for double counting in the summation.
+
+The derivation above extends trivially to three dimensions, where we instead consider the force contribution from above and below an arbitrary plane perpendicular to the $j$-axis. Calculating the stress by this approach eliminates the computation of numerical derivatives and is more computationally efficient, as both $\bm{r}_{ij}$ and $\bm{f}_{ij}$ are already calculated at each timestep when evaluating the system's dynamics. A more thorough derivation of the viral stress tensor, including fluid effects, can be found in Ref. \cite{yang_generalized_2012}.
+
+\subsection{Generalised Lees-Edwards Boundary conditions}
+\todo[inline]{Does this need to go in a numerics chapter? It is much less theoretical than the rest of the chapter will be}
+
+When studying rheology, we typically wish to apply a macroscopic strain to a material and study the resulting macroscopic stress. In an experimental setup, this involves placing a sample of the material of interest into a rheometer and applying a macroscopic strain by moving one or more of the sample's boundaries. To measure the material's bulk properties, the samples often need to be large to avoid edge effects dominating the physics. This proves a challenge in simulations where achieving these scales is computationally expensive or impossible. A common way to avoid these issues is to use periodic boundary conditions, where an object passing through one side of the unit cell reappears on the opposite side with the same velocity. This, by definition, removes the edges of the computational systems; therefore, macroscopic strains must be applied through an alternative method, rather than being applied the conventional way, i.e. by applying a stress along one of the edges.
+
+\begin{figure}[hbt!]
+    \centering
+    \centering
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=.8\linewidth]{chapters/2-Background/Figures/TriClinic.tikz}
+        \caption{Triclinic Boundary Conditions}
+        \label{fig:Tri-Clinic}
+    \end{subfigure}%
+    \hfill
+    \begin{subfigure}[t]{0.5\linewidth}
+        \centering
+        \includegraphics[width=.8\linewidth]{chapters/2-Background/Figures/LeesEdwards.tikz}
+        \caption{Lees Edwards Boundary Conditions}
+        \label{fig:Lees-Edwards}
+    \end{subfigure}
+    \caption{An Illustration of two equivalent boundary conditions used in simulation to apply macroscopic stresses to a system} 
+    \label{fig:BoundaryConditions}
+\end{figure}
+
+In computational simulations, macroscopic stresses are instead applied by deforming the lattice vectors, which define the relationship between the unit cell and its periodic images. Applying simple stresses to the system can be trivially done simply by updating the unit cell and lattice vectors of the system and affinely transforming the system's coordinates to the new unit cell coordinates. While theoretically, this also works for applying shear stresses, where we deform the unit cell and lattice vectors to a triclinic (non-orthogonal) box as shown in \cref{fig:Tri-Clinic}, computationally, this has problems at large strains where the unit cell is heavily deformed. Alternatively, a set of suitably modified periodic boundaries was proposed by Lees and Edwards in \cite{lees_computer_1972} and is illustrated in \cref{fig:Lees-Edwards}. 
+
+Assuming that the shear occurs in the x-direction, which is always possible by rotating the system such that one of the lattice vectors lies along the x-axis, involves affinely deforming the particles in the unit cell along the x-axis and "sliding" the periodic images in the adjacent rows as shown in \cref{fig:Lees-Edwards}. This proves more computationally efficient as the unit cell remains orthogonal. The computation details for implementing these can be found in Ref. \cite{allen_computer_2017}.
