@@ -11,9 +11,9 @@ Number of math displayed: 0
 Included file: chapters/1-Introduction/chapter.tex
 Encoding: ascii
 Words in text: 118
-Words in headers: 7
+Words in headers: 11
 Words outside text (captions, etc.): 0
-Number of headers: 4
+Number of headers: 5
 Number of floats/tables/figures: 0
 Number of math inlines: 15
 Number of math displayed: 1
@@ -21,34 +21,39 @@ Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
   0+1+0 (1/0/0/0) Chapter: Introduction
   0+3+0 (1/0/0/0) Section: Layout of thesis
-  106+1+0 (1/0/14/1) Section: Notation
+  0+4+0 (1/0/0/0) Section: An aside for maths
+  106+1+0 (1/0/14/1) Subsection: Notation
   12+2+0 (1/0/1/0) Section: Mathematical tricks
 
 Included file: chapters/2-Background/chapter.tex
 Encoding: utf8
-Words in text: 3344
-Words in headers: 28
+Words in text: 3844
+Words in headers: 45
 Words outside text (captions, etc.): 76
-Number of headers: 15
+Number of headers: 22
 Number of floats/tables/figures: 2
-Number of math inlines: 180
-Number of math displayed: 19
+Number of math inlines: 190
+Number of math displayed: 22
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
-  0+1+0 (1/0/0/0) Chapter: Background
+  211+1+0 (1/0/0/0) Chapter: Background
+  111+1+0 (1/0/0/0) Section: Rheology
+  0+3+0 (1/0/0/0) Subsection: Stress and Strain
+  32+1+0 (1/0/0/0) Subsection: Experiments
+  0+10+0 (4/0/0/0) Subsection: Shear protocol
+  0+3+0 (1/0/0/0) Subsection: Rate dependence / quasistatic
+  0+1+0 (1/0/0/0) Section: Hydrodynamics
+  275+2+0 (1/0/28/5) Subsection: Navier Stokes
+  339+4+0 (2/0/31/9) Subsection: Oseen/Stokeslet Tensor
   0+1+0 (1/0/0/0) Section: Networks
-  452+2+0 (1/0/29/2) Subsection: Semi-Flexible filaments
-  468+2+0 (1/0/41/2) Subsection: Calculating Stress
-  353+4+24 (1/1/0/0) Subsection: Generalised Lees-Edwards Boundary conditions
+  449+2+0 (1/0/29/2) Subsection: Semi-Flexible filaments
   953+1+0 (1/0/26/2) Subsection: Rigidity
-  241+3+0 (1/0/13/1) Subsection: Fracturing the network} \label{sec:Fracture
+  300+3+0 (1/0/13/1) Subsection: Fracturing the network} \label{sec:Fracture
   0+2+0 (1/0/0/0) Subsection: Athermal Fracture
   0+2+0 (1/0/0/0) Subsection: Thermal Fracture
   341+2+52 (1/1/21/1) Subsection: Network Structure
-  0+1+0 (1/0/0/0) Section: Hydrodynamics
-  274+2+0 (1/0/29/4) Subsection: Navier Stokes
-  262+4+0 (2/0/21/7) Subsection: Oseen/Stokeslet Tensor
-  0+1+0 (1/0/0/0) Section: Rheology
+  458+2+0 (1/0/42/2) Subsection: Calculating Stress
+  375+4+24 (1/1/0/0) Subsection: Generalised Lees-Edwards Boundary conditions
 
 Included file: chapters/DoubleNetworkFracture/chapter.tex
 Encoding: ascii
@@ -76,18 +81,18 @@ Number of math displayed: 0
 
 Sum of files: thesis.tex
 File(s) total: thesis.tex
-Words in text: 3572
-Words in headers: 55
+Words in text: 4072
+Words in headers: 76
 Words outside text (captions, etc.): 476
-Number of headers: 22
+Number of headers: 30
 Number of floats/tables/figures: 7
-Number of math inlines: 220
-Number of math displayed: 20
+Number of math inlines: 230
+Number of math displayed: 23
 Files: 5
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
   1+7+0 (1/0/0/0) File: thesis.tex
-  118+7+0 (4/0/15/1) Included file: chapters/1-Introduction/chapter.tex
-  3344+28+76 (15/2/180/19) Included file: chapters/2-Background/chapter.tex
+  118+11+0 (5/0/15/1) Included file: chapters/1-Introduction/chapter.tex
+  3844+45+76 (22/2/190/22) Included file: chapters/2-Background/chapter.tex
   109+13+400 (2/5/25/0) Included file: chapters/DoubleNetworkFracture/chapter.tex
 
