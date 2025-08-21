@@ -20,12 +20,17 @@ jobs:
         with:
           python-version: '3.13'
 
-      - run: pip install polars matplotlib
-      - run: sudo apt-get update
-      - run: sudo apt-get -y install texlive-extra-utils
+      - name: Setup Perl
+        uses: shogo82148/actions-setup-perl@v1
+        with:
+          perl-version: "5.38"
+          install-modules-with: cpanm
+          install-modules-args: --with-develop --with-configure
 
-      - run: texcount -dir -inc thesis.tex      
-      - run: texcount -dir -inc thesis.tex -out=Tracking/output.texcount
+      - run: pip install polars matplotlib
+
+      - run: perl Tracking/texcount.pl -dir -inc thesis.tex      
+      - run: perl Tracking/texcount.pl -dir -inc thesis.tex -out=Tracking/output.texcount
 
       - run: python3 Tracking/analyse.py -i Tracking/output.texcount --db Tracking/progress.db
 
