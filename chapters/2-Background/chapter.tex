@@ -3,15 +3,17 @@
 
 In this thesis, we will consider several rheological constitutive models which explore a range of soft matter systems. In order to explore these models, we will consider a range of deformation protocols which are rheologically reinvent to each model and the material they represent. The overarching theme of this thesis and the main focus of each chapter is that we analyse the yielding (or fracture) behaviour of the material, and hopefully provide a small step to understand the origins of these behaviours. 
 
-In this chapter, we will discuss the underlying theories of these models and provide further context and definitions for the phenomena that we will explore. We will start by introducing some basic rheology concepts which appear throughout this thesis. We secondly approach the problem of viscoelastic flows from a Newtonian perspective by introducing the generalised continuum equations for incompressible fluid flow, which include arbitrary stresses, and derive an approach for solving them for the case of Stokesian (i.e., zero Re) hydrodynamics. Finally, we explore the problem from a Hookean perspective, but introducing a model for Semi-Flexible filaments, explore how non-linearity manifests in these systems and how we introduce plasticity in these models. Finally, we introduce some fundamental numerical techniques used in this thesis to perform the studies undertaken.
+In this chapter, we will discuss the underlying theories of these models and provide further context and definitions for the phenomena that we will explore. We will start by introducing some basic rheology concepts which appear throughout this thesis. We secondly approach the problem of viscoelastic flows from a Newtonian perspective by introducing the generalised continuum equations for incompressible fluid flow, which include arbitrary stresses, and derive an approach for solving them for the case of Stokesian (i.e., zero Re) hydrodynamics. Finally, we explore the problem from a Hookean perspective, by introducing a model for Semi-Flexible filaments, exploring how non-linearity manifests in these systems and how we introduce plasticity in these models. Finally, we introduce some fundamental numerical techniques used in this thesis to perform the studies undertaken.
 
 \section{Rheology}
 \todo[inline]{write rheology section}
 
-Rheology is the study of the response of a material to an applied flow deformation/ stress. The term originates from the early 20th century and comes from the combination of the Greek words rheo, meaning “to flow,” and logos, meaning “study”\cite{barnes_introduction_1989}\todo[]{More background references}.  While very early work by Hooke \cite{hooke_lectures_1678} and Newton \cite{newton_philosophiae_1687} laid the foundation of simple linear rheological cases, stating respectively “the power of any spring is in the same proportion with the tension thereof” and “if you double the force, you double the velocity gradient”. Modern rheology is more interested in the cases where these simple rules do not hold and nonlinear behaviours dominate the physics. 
+Rheology is the study of the response of a material to an applied flow deformation/stress  \cite{larson_structure_1999,chenRheologySoftMaterials2010,tannerEngineeringRheology2000,barnes_introduction_1989}. The term originates from the early 20th century and comes from the combination of the Greek words rheo, meaning “to flow,” and logos, meaning “study”\cite{barnes_introduction_1989}.  While very early work by Hooke \cite{hooke_lectures_1678} and Newton \cite{newton_philosophiae_1687} laid the foundation of simple linear rheological cases, stating respectively “the power of any spring is in the same proportion with the tension thereof” and “if you double the force, you double the velocity gradient”. Modern rheology is more interested in the cases where these simple rules do not hold and nonlinear behaviours dominate the physics. 
 
 \subsection{Stress and Strain}
-When considering the flow of a material, the strain is a measure of the deformation undergone as a result of the flow, and the stress is a measure of the resulting internal forces. Strain is defined by the deformation of a 
+The concepts of stress and strain constitute the fundamental building blocks of rheology. While a brief definition is provided here, a more detailed treatment can be found in Refs. \cite{tannerEngineeringRheology2000,barnes_introduction_1989,larson_structure_1999}. When considering the flow of a material, the strain is defined to be a measure of the deformation undergone as a result of the flow, and the stress is a measure of the resulting internal forces. As both stress and strain are dependent on direction and the axis/basis on which they are expressed on we express them as rank-2 tensors $\bm{\sigma}_{ij}$ and $\bm{\epsilon}_{ij}$ respectively. 
+\subsubsection{Strain}
+For simplicity, we will consider $\bm{\epsilon}_{ij}$ to take the form of Cauchy's strain tensor. Considering a point $\bm{X}$ in a fluid, then the displacement vector of that point can be expressed as $\bm{u}(\bm{X},t) = \bm{X} - \bm{x}$ where $\bm{x}$ is the new position of point $\bm{X}$ after the deformation. 
 
 \subsection{Experiments}
 
@@ -25,19 +27,18 @@ In order to understand these nonlinear effects, which are often controlled dynam
 
 \section{Hydrodynamics}
 
-\subsection{Navier Stokes}
-By considering the conservation of mass and momentum the Navier-Stokes equations for a generalised incompressible flow can be expressed as,
+By considering the conservation of mass and momentum, the Navier-Stokes equations for a generalised incompressible flow can be expressed as,
 
 \begin{subequations}
 \label{eq:NavierStokes}
 \begin{align}
-    \rho \left(\partial_t+(\bm{v} \cdot \nabla)\right)\bm{v} &= \nabla \cdot \bm{\Sigma} \label{eq:incompressibleNavier1} \\
-    \mu\cdot\bm{v} &= 0 \label{eq:incompressibleNavier2}
+    \rho \left(\partial_t+(\bm{u} \cdot \nabla)\right)\bm{u} &= \nabla \cdot \bm{\Sigma} \label{eq:incompressibleNavier1} \\
+    \mu\cdot\bm{u} &= 0 \label{eq:incompressibleNavier2}
 \end{align}
 \end{subequations}
 
-where $\rho$ is the fluid's density. The total stress in the fluid can be expressed as $\bm{\Sigma} = \bm{\sigma} - P\bm{I}$, where $P$ is the hydrostatic pressure and $\bm{\sigma}$ the devioric stress tensor. 
-The physics we wish to concider in this thesis is the slow flow of pasty materials where the internal viscous forces dominate over the inertial forces we concider the limit of \cref{eq:incompressibleNavier1} as $Re=\rho |\bm{v}| L / \mu -> 0$ where $L$ is the typical length scale for the fluid. In this limit, the Navier-Stokes equations reduce to,
+where $\rho$ is the fluid's density, $\bm{u}$ the fluid's flow field and $\Sigma$ the total stress applied to the fluid. The total stress in the fluid can be decomposed into two components $\bm{\Sigma} = \bm{\sigma} - p\bm{I}$, where $p$ is the hydrostatic pressure and $\bm{\sigma}$ the deviatoric stress tensor. 
+The physics we wish to consider in this thesis is the slow flow of pasty materials where the internal viscous forces dominate over the inertial forces. To do this, we take the limit of \cref{eq:incompressibleNavier1} as $Re=\rho |\bm{v}| L / \mu -> 0$ where $L$ is the typical length scale for the fluid. In this limit, the Navier-Stokes equations reduce to,
 \begin{subequations}
 \label{eq:StokesLimit}
 \begin{align}
@@ -46,27 +47,27 @@ The physics we wish to concider in this thesis is the slow flow of pasty materia
 \end{align}
 \end{subequations}
 
-Following the arguments of Ref. \cite{picard_elastic_2004} we will assume that the strain $\bm{\epsilon}$ is as linear superposition of a plastic flow $\bm{\epsilon^{pl}}$ and elastic deformation $\bm{\epsilon^{el}}$ and that the fluid is homogeneous, isotropic, and linearly elastic. The strain $\bm{\epsilon}$ of the fluid can be therefore be expressed as 
+Following the arguments of Ref. \cite{picard_elastic_2004} we will assume that the strain $\bm{\epsilon}$ is as linear superposition of a plastic flow $\bm{\epsilon}^{pl}$ and elastic deformation $\bm{\epsilon^{el}}$ and that the fluid is homogeneous, isotropic, and linearly elastic. The strain $\bm{\epsilon}$ of the fluid can be therefore be expressed as 
 \begin{equation}
-    \bm{\epsilon}= \bm{\epsilon^{el}} + \bm{\epsilon^{pl}}, \quad \text{and, }\bm{\epsilon^{el}} = \frac{1}{2}\left(\nabla \bm{u} + \left( \nabla \bm{u} \right)^T \right)
+    \bm{\epsilon}= \bm{\epsilon^{el}} + \bm{\epsilon}^{pl}, \quad \text{and, }\bm{\epsilon^{el}} = \frac{1}{2}\left(\nabla \bm{u} + \left( \nabla \bm{u} \right)^T \right)
     \label{eq:decompositionAndDeformation}
 \end{equation} 
 where $\bm{u}(\bm{r})$ is the total displacement vector at a position $\bm{r}$.
 In addition, for simplicity, we will consider the case where the fluid is incompressible $\nabla \cdot \bm{u} = 0$ such that the stress $\bm{\sigma} = 2\mu$. The deviatoric stress tensor $\bm{\sigma}$ can therefore be expressed as 
 \begin{equation}
-    \bm{\sigma} = 2 \mu \bm{\epsilon^{el}} = 2\mu\bm{\epsilon} - 2\mu\bm{\epsilon^{pl}}.
+    \bm{\sigma} = 2 \mu \bm{\epsilon^{el}} = 2\mu\bm{\epsilon} - 2\mu\bm{\epsilon}^{pl}.
     \label{eq:elasticStress}
 \end{equation}
 
-considering a single localised plastic event induced by elastic loading, the strain field $\bm{\epsilon}$ can be decomposed into futher as a superposition of $\bm{\epsilon^{el0}}$, $\bm{\epsilon^{el1}}$ and $\bm{\epsilon^{pl1}}$ where the superscript $0$ denotes the contribution from the elastic loading and $1$ the contribution from the localised plastic event. Each elastic contribution results in a deformation vector $\bm{u^0}$ and $\bm{u^1}$ respectively, where $\bm{u} = \bm{u^0} + \bm{u^1}$. As the elastic contribution must obay \cref{eq:StokesLimit} and the incompressibility condition $\nabla \cdot \bm{u^0} = 0$ the deformation resulting from the localised plastic event $\bm{u^1}$ must satisfy, 
+Considering a single localised plastic event induced by elastic loading, the strain field $\bm{\epsilon}$ can be decomposed into a superposition of $\bm{\epsilon}^{el0}$, $\bm{\epsilon}^{el1}$ and $\bm{\epsilon}^{pl1}$ where the superscript $0$ denotes the contribution from the elastic loading and $1$ the contribution from the localised plastic event. The materials deformation field can also be decomposed in the same way into a pair of deformation fields $\bm{u}^0$ and $\bm{u}^1$, which are the material's elastic and plastic responses, respectively, again by superposition $\bm{u} = \bm{u}^0 + \bm{u}^1$. As the elastic contribution must obey \cref{eq:StokesLimit} and the incompressibility condition $\nabla \cdot \bm{u}^0 = 0$, the plastic deformation $\bm{u}^1$ resulting from the localised plastic event must satisfy, 
 \begin{subequations}
     \label{eq:plasticStokes}
     \begin{align}
-        \nabla \cdot \left( 2 \mu \bm{\epsilon^{el1}} - p^1 \bm{I} \right) &= 2 \mu \nabla \cdot \bm{\epsilon^{pl1}}, \label{eq:plasticStokes1}\\
-        \nabla \cdot \bm{u^1} &= 0.
+        \nabla \cdot \left( 2 \mu \bm{\epsilon}^{el1} - p^1 \bm{I} \right) &= 2 \mu \nabla \cdot \bm{\epsilon}^{pl1}, \label{eq:plasticStokes1}\\
+        \nabla \cdot \bm{u}^1 &= 0.
     \end{align}
 \end{subequations}
-Under the assumption that the deformation is isotropic and $\nabla \cdot \bm{\epsilon} = \bm{0}$ for any deformation at rest we can express the right hand side of \cref{eq:plasticStokes1} as $\nabla \cdot \left( 2 \mu \bm{\epsilon^{el1}} - p^1 \bm{I} \right) = -\nabla p^1 + \mu \nabla^2 \bm{u^1}$.
+Under the assumption that the deformation is isotropic and $\nabla \cdot \bm{\epsilon} = \bm{0}$ for any deformation at rest, we can express the right hand side of \cref{eq:plasticStokes1} as $\nabla \cdot \left( 2 \mu \bm{\epsilon}^{el1} - p^1 \bm{I} \right) = -\nabla p^1 + \mu \nabla^2 \bm{u}^1$
 
 \subsection{Oseen/Stokeslet Tensor}
 The solution to \cref{eq:plasticStokes} is well known and has been studied in a wide range of systems. The most common way to approach the problem is to consider the response to a point force $F$ applied at $\bm{r^\prime}$ in a periodic system,
@@ -104,12 +105,17 @@ Substituting $\hat{P}_j$ back into \cref{eq:StokesFourier} we find a closed expr
 \begin{equation}
     \hat{\mathbb{G}}_{ij} = \frac{1}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right).
 \end{equation}
-This gives an expression for the deformation and deformation gradients ($\partial_l u_i$) in Fourier Space as 
+This gives an expression for the deformation as 
 \begin{equation}
-    \hat{u}_i = \frac{1}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right)F_j, \qquad ik_l\hat{u}_i = \frac{ik_l}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right)F_j
-    \label{eq:stokesVelocity}
+\hat{u}_i = \frac{1}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right)F_j,
+\label{eq:fourierDeformation}
 \end{equation}
-respectively \todo{explain differentiation in Fourier}. The above expressions naturally describe deformation and gradient fields for a periodic system up to an arbitrary constant $\bm{u}_0$, due to the singularity at $\bm{k}=\bm{0}$. 
+by taking the partial derivative ($\partial_l$) of $\hat{u}_i $ which is equivalent to multiplying by $ik_i$ in Fourier Space we find that deformation gradients ($\partial_l u_i$) can be expressed as 
+\begin{equation}
+    ik_l\hat{u}_i = \frac{ik_l}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right)F_j
+    \label{eq:fourierDeformationGradient}
+\end{equation}
+Both \cref{eq:fourierDeformation,eq:fourierDeformationGradient} naturally describe the deformation and gradient fields for a periodic system up to an arbitrary constant $\bm{u}_0$, due to the singularity at $\bm{k}=\bm{0}$. 
 
 The associated stress and strain fields are then obtained by substituting this result for $\partial_l u_i$ into \cref{eq:decompositionAndDeformation,eq:elasticStress} in Fourier space, giving the resultant Shear stress correction in
 \begin{equation}
@@ -119,7 +125,7 @@ In two ($D=2$) and three ($D=3$) dimensions respectively, $\hat{\mathbb{G}}_{xy}
 \begin{equation*}
     \hat{\mathbb{ G }}_{ xy } = -4 \frac{ k_x^2 k_y^2 }{ k^4 } \quad \text{ and, } \quad \hat{\mathbb{ G }}_{ xy } = -4 \frac{ k_x^2 k_y^2 }{ k^4 } + \frac{ k_z^2 }{ k^2 }.
 \end{equation*}
-Both these equations show the well-known $\cos(4\theta)$ angular dependence in the $xy$ plane with a $\sim 1/r^{D-1}$ power law decrease in real space \cite{eshelby_determination_1997}. When resolving the singularity at $\bm{k}=0 $, it is common to conserve strain in a stress controlled system and stress in a strain controlled system by setting $\hat{\mathbb{G}}_{00} = 0$ (resulting in no net displacement) or $\hat{\mathbb{G}}_{00} = -1$ respectively \cite{nicolas_deformation_2018, martens_spontaneous_2012, jocteur_protocol_2025, lin_scaling_2014}.
+Both these equations show the well-known $\cos(4\theta)$ angular dependence in the $xy$ plane with a $\sim 1/r^{D-1}$ power law decrease in real space \cite{eshelby_determination_1997}. When resolving the singularity at $\bm{k}=\bm{0}$, it is common to conserve strain in a stress controlled system and stress in a strain controlled system by setting $\hat{\mathbb{G}}_{00} = 0$ (resulting in no net displacement) or $\hat{\mathbb{G}}_{00} = -1$ respectively \cite{nicolas_deformation_2018, martens_spontaneous_2012, jocteur_protocol_2025, lin_scaling_2014}.
 
 For a non-periodic system, the method of images may be used to simulate solid walls with a non-slip boundary condition \cite{blake_note_1971}. However, a stream-function formalism for systems is often easier to implement for 2-dimensional systems numerically \cite{acheson_elementary_1990}.
 
@@ -142,6 +148,10 @@ where the first sum is taken over all pairs $ij$ and triplets $ijk$ along the po
 
 \subsection{Rigidity} \label{sec:Rigidity}
 \todo[inline]{This is a copy of my first year report and needs paraphrasing and adapting to context}
+
+
+
+
 One of the most fundamental properties of these interconnected fibre networks is the rigidity of the network, both on a local and global scale. Consider first frameworks where each connection in our network has a fixed length and is allowed to freely hinge around the connecting nodes. (The limit as $\mu \to \infty$ and $\kappa \to 0$.) Defining $\bm{r_i(t)}$ to be the position of the $i$th node of the system then we can define our network through the set of equations $|\bm{r}_i(t) - \bm{r}_j(t)|^2 = l_{ij,0}^2$ for all connected pairs $ij$. By differentiating with respect to $t$, a set of constraints can be generated,
 \begin{equation} \label{eq:FrameworkRigidity}
     (\bm{\dot{r}}_i(t) - \bm{\dot{r}}_j(t))\cdot(\bm{r}_i(t) - \bm{r}_j(t))=0 \text{ for all pairs } ij
