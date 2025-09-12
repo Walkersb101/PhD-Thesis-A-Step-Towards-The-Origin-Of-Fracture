@@ -6,23 +6,72 @@ In this thesis, we will consider several rheological constitutive models which e
 In this chapter, we will discuss the underlying theories of these models and provide further context and definitions for the phenomena that we will explore. We will start by introducing some basic rheology concepts which appear throughout this thesis. We secondly approach the problem of viscoelastic flows from a Newtonian perspective by introducing the generalised continuum equations for incompressible fluid flow, which include arbitrary stresses, and derive an approach for solving them for the case of Stokesian (i.e., zero Re) hydrodynamics. Finally, we explore the problem from a Hookean perspective, by introducing a model for Semi-Flexible filaments, exploring how non-linearity manifests in these systems and how we introduce plasticity in these models. Finally, we introduce some fundamental numerical techniques used in this thesis to perform the studies undertaken.
 
 \section{Rheology}
-\todo[inline]{write rheology section}
 
 Rheology is the study of the response of a material to an applied flow deformation/stress  \cite{larson_structure_1999,chenRheologySoftMaterials2010,tannerEngineeringRheology2000,barnes_introduction_1989}. The term originates from the early 20th century and comes from the combination of the Greek words rheo, meaning “to flow,” and logos, meaning “study”\cite{barnes_introduction_1989}.  While very early work by Hooke \cite{hooke_lectures_1678} and Newton \cite{newton_philosophiae_1687} laid the foundation of simple linear rheological cases, stating respectively “the power of any spring is in the same proportion with the tension thereof” and “if you double the force, you double the velocity gradient”. Modern rheology is more interested in the cases where these simple rules do not hold and nonlinear behaviours dominate the physics. 
 
 \subsection{Stress and Strain}
-The concepts of stress and strain constitute the fundamental building blocks of rheology. While a brief definition is provided here, a more detailed treatment can be found in Refs. \cite{tannerEngineeringRheology2000,barnes_introduction_1989,larson_structure_1999}. When considering the flow of a material, the strain is defined to be a measure of the deformation undergone as a result of the flow, and the stress is a measure of the resulting internal forces. As both stress and strain are dependent on direction and the axis/basis on which they are expressed on we express them as rank-2 tensors $\bm{\sigma}_{ij}$ and $\bm{\epsilon}_{ij}$ respectively. 
+The concepts of stress and strain constitute the fundamental building blocks of rheology. While a brief definition is provided here, a more detailed treatment can be found in Refs. \cite{tannerEngineeringRheology2000,barnes_introduction_1989,larson_structure_1999}. When considering the flow of a material, the strain is defined to be a measure of the deformation undergone as a result of the flow, and the stress is a measure of the resulting internal forces. As both stress and strain are dependent on direction and the axis/basis on which they are expressed on we express them as rank-2 tensors $\bm{\sigma}$ and $\bm{\epsilon}$ respectively. 
 \subsubsection{Strain}
-For simplicity, we will consider $\bm{\epsilon}_{ij}$ to take the form of Cauchy's strain tensor. Considering a point $\bm{X}$ in a fluid, then the displacement vector of that point can be expressed as $\bm{u}(\bm{X},t) = \bm{X} - \bm{x}$ where $\bm{x}$ is the new position of point $\bm{X}$ after the deformation. 
+For simplicity, we will consider \cite{TruesdellNoll1992} to take the form of Cauchy's linear strain tensor, as this holds throughout this thesis. If we consider a point $P$ which at time $t$ is at $\bm{x}$, which is displaced to a new position $\bm{X}$ at a time $t^\prime$, such that
+\begin{equation}
+    \bm{X}(t^\prime) = \bm{X}(\bm{x},t).
+\end{equation}
+Then, considering a nearby point $Q$ which starts at a distance $d\bm{x}$ from point $P$ we can define the relationship between $d\bm{X}$ and $d\bm{x}$ as 
+\begin{equation}
+    d\bm{X} = \frac{\partial \bm{X}}{\partial \bm{x}}d\bm{x} = \bm{F}d\bm{x}
+\end{equation}
+where $\bm{F}$ is defined to be the deformation gradient tensor relating $d\bm{X}$ and $d\bm{x}$. To relate the magnitudes of $d\bm{X}$ and $d\bm{x}$ we conciser 
+\begin{equation}
+    dX^2 = d\bm{X} \cdot d\bm{X} = d\bm{X}^T d\bm{X} = d\bm{x}^T\bm{F}^T\bm{F}d\bm{x}.
+\end{equation}
+The quantity $\bm{C}=\bm{F}^T\bm{F}$ is called the right relative Cauchy-Green Strain tensor\cite{TruesdellNoll1992}.
 
-\subsection{Experiments}
-
-In order to understand these nonlinear effects, which are often controlled dynamics of internal microstructure, experimental rheologists use a number of experimental techniques which often involve shearing a material between two plates.
+In order to derive $\bm{\epsilon}$ from $\bm{C}$ we will define the displacement vector 
+\begin{equation}
+    \bm{u}(\bm{X},t) = \bm{X} - \bm{x}.
+\end{equation}
+Then the strain tensor $\bm{C}$ can be written in terms of derivatives of the displacement vector
+\begin{equation*}
+    \frac{\partial u_i}{\partial x_j} = F_{ij} - \delta_{ij}, 
+\end{equation*}
+as 
+\begin{equation}
+    C_{ij} = \delta_{ij} + \frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i} + \frac{\partial u_i}{\partial x_j}\frac{\partial u_j}{\partial x_i}
+    \label{eq:nonlinearstrain}
+\end{equation}
+where we adopt Einstein notation for convenience and $\delta_{ij}$ is the Kronecker delta defined in \cref{symbol:delta}.
+In linear elasticity theory, we assume that all displacement gradients are small, such that we can rewrite \cref{eq:nonlinearstrain}
+\begin{equation}
+        2\epsilon_{ij} \equiv C_{ij} - \delta_{ij} = \frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i}  + \mathcal{O}\left\{ \left(\frac{\partial u_i}{\partial x_j}\right)^2 \right\}.
+        \label{eq:linearStrain}
+\end{equation}
+\subsubsection{Stress}
+Equation \ref{eq:linearStrain} means that the simplest linear relation (Hooke's Law) between stress and strain is,
+\begin{equation}
+    \sigma_{ij} = C_{ijkm}\epsilon_{ij}.
+\end{equation}
+where $C_{ijkm}$ is a four-tensor often called the stiffness or Elasticity tensor. By further applying the constraint that the material must deform isotropically, this reduces to 
+\begin{equation}
+    \sigma_{ij} = \lambda \epsilon_{kk}\delta_{ij} + 2G\epsilon_{ij},
+\end{equation}
+where $\lambda$ and $G$ are modulii (the Lam\'e constants).
+This assumption assumes that the stress of a material is solely determined by the deformation of the material, as in a compressible material. If instead the material is incompressible, then the stress must be rewritten as 
+\begin{equation}
+    \sigma_{ij} + p\delta_{ij} = 2G\epsilon_{ij},
+\end{equation}
+where $p$ is the pressure.
 
 \subsection{Shear protocol}
+
 \subsubsection{Shear Startup}
 \subsubsection{Large Amplitude Oscillatory shear}
 \subsubsection{Step Strain}
+
+\subsection{Experiments}
+
+In order to understand these nonlinear effects, which are often controlled by the dynamics of internal microstructure, experimental rheologists use a number of experimental techniques which often involve shearing a material between two plates.
+
+
 \subsection{Rate dependence / quasistatic}
 
 \section{Hydrodynamics}
@@ -123,7 +172,7 @@ The associated stress and strain fields are then obtained by substituting this r
 \end{equation}
 In two ($D=2$) and three ($D=3$) dimensions respectively, $\hat{\mathbb{G}}_{xy}$ takes the following forms
 \begin{equation*}
-    \hat{\mathbb{ G }}_{ xy } = -4 \frac{ k_x^2 k_y^2 }{ k^4 } \quad \text{ and, } \quad \hat{\mathbb{ G }}_{ xy } = -4 \frac{ k_x^2 k_y^2 }{ k^4 } + \frac{ k_z^2 }{ k^2 }.
+    \hat{\mathbb{ G }}_{ xy } = -4 \frac{ k_x^2 k_y^2 }{ k^4 } \quad \text{ and, } \quad \hat{\mathbb{ G }}_{ xy } = -4 \frac{ k_x^2 k_y^2 }{ k^4 } - \frac{ k_z^2 }{ k^2 }.
 \end{equation*}
 Both these equations show the well-known $\cos(4\theta)$ angular dependence in the $xy$ plane with a $\sim 1/r^{D-1}$ power law decrease in real space \cite{eshelby_determination_1997}. When resolving the singularity at $\bm{k}=\bm{0}$, it is common to conserve strain in a stress controlled system and stress in a strain controlled system by setting $\hat{\mathbb{G}}_{00} = 0$ (resulting in no net displacement) or $\hat{\mathbb{G}}_{00} = -1$ respectively \cite{nicolas_deformation_2018, martens_spontaneous_2012, jocteur_protocol_2025, lin_scaling_2014}.
 
@@ -190,19 +239,17 @@ For systems in which the thermal energy is of the same order as the depth of the
 Through the literature, a wide range of network geometries has been considered. The simplest are Affine isotropic models, which consider the response of a single filament to an applied deformation, averaging over all possible initial filament orientations, such as those studied in \cite{mackintosh_elasticity_1995, storm_nonlinear_2005}. While these models can be used to provide a baseline understanding for networks in the high $z$ or $\kappa$ limits, they fail to capture the important physics which arises from the non-affine rearrangements and orientational disorder found in real-world networks. "To consider these effects, we must prescribe a network topology which specifies how the bonds connect the nodes of the network.
 
 \subsubsection{Lattice-based networks}
-\todo[inline]{This is a copy of my first year report and needs paraphrasing and adapting to context}
 Lattice-based networks are the simplest network structures that are commonly used in studies of mechanical properties \cite{feng_percolation_1984}, including two-dimensional square \cite{mao_soft_2010}, triangular \cite{broedersz_criticality_2011, feng_percolation_1984}, and honeycomb \cite{rens_nonlinear_2016} lattices. Often used due to their simplicity to generate when compared to more disordered networks, and their relative numerical stability due to the uniform lattice spacing $l_0$, they provide an easy way to analyse the mechanical behaviour of fibre networks. 
 
-Naturally, these periodic lattices have predictable behaviour with discrete values for the connectivity and bond lengths of the network. Lattice-based networks typically introduce disorder through two complementary methods. Disorder in a network's connectivity is done through the random removal of bonds with probability $1 - p$, where $p$ defines the fraction of bonds present in the lattice or equivalently, not including a bond randomly during construction\cite{broedersz_criticality_2011,head_distinct_2003}. While simply removing bonds at random may not seem at first to introduce enough disorder in the system, it directly affects the rigidity of the system (as discussed later in \cref{sec:Rigidity}) with a distinct phase change at  $p_c$, where the network undergoes a transition from isolated rigid clusters to a single system-spanning one \cite{jacobs_generic_1995,zhang_correlated_2019}. The benefit of removing bonds from a lattice-based network is the breakup of long system-spanning force chains \cite{ruiz-franco_force_2022}\todo{reference here} which 
+Naturally, these periodic lattices have relatively predictable behaviour with discrete values for the connectivity and bond lengths of the network. Lattice-based networks typically introduce disorder through two complementary methods. 
 
+Disorder in a network's connectivity can be achieved through the random removal of bonds within the lattice. This is typically done by including (or equivalently excluding \cite{broedersz_criticality_2011,head_distinct_2003}) a bond with probability $1 - p$, where $p$ defines the desired fraction of bonds wanted in the lattice. While simply removing bonds at random may not seem at first to introduce enough disorder in the system, it directly affects the rigidity of the system (as discussed later in \cref{sec:Rigidity}) with a distinct phase changes at $p_c$, where the network undergoes a transition from isolated rigid clusters to a single system-spanning one \cite{jacobs_generic_1995,zhang_correlated_2019} and at the isostatic point where the network loses its first order rigidity. The benefit of removing bonds from a lattice-based network is the breakup of long system-spanning force chains \cite{ruiz-franco_force_2022}, which naturally occur as a result of the network's construction. Networks which do not undergo this pruning will generally present an initial low-strain softening of the shear modulus $K$ \cite{licup_nonlinear_2016} associated with the buckling of the long fibres. 
 
-
-
-Undistorted networks (networks with long, completely straight lines of bonds at zero strain) will generally present an initial low-strain softening of the shear modulus $K$ \cite{licup_nonlinear_2016} associated with the buckling of the long fibres. This can be mitigated by distorting the lattice grid, resulting in a generic network \cite{jacobs_generic_1995}, and redefining the natural lengths and natural angles. 
+This can be mitigated by the second type of disorder common in lattice networks, where the natural positions of the network's nodes are perturbed and the bonds' natural lengths and angles redefined. A network which has this kind of disorder is often referred to as a generic network \cite{jacobs_generic_1995}.
 
 
 \section{Packing-based networks}
-
+\todo[inline]{I seem to have edited my first year report but missed some stuff out, give this a read and put stuff back in.}
 Network structures generated from jammed disk or sphere packing have been extensively studied to study elastic or fibre networks \cite{rens_rigidity_2019,wyart_elasticity_2008,lerner_unified_2012,shivers_normal_2019,shivers_scaling_2019,shivers_phase_2022}.
 
 The Jammed packing networks we use in subsequent work are generated by distributing $N$ disks with bidispersed radii in a square periodic box with side length $L$. An equal number of disks are chosen to have either radii $\R0$ or $f\R0$ where $f$ is chosen to take a value which reduces crystallisation in the system. A common value and the one used to generate any networks presented in this work is $f=1.4$ \cite{van_hecke_jamming_2010, chacko_slow_2019, desmond_random_2009}, which produces a packing with no macroscopic order. Overlapping disks are allowed to interact through a pairwise repulsive interaction potential of the form
@@ -242,7 +289,7 @@ The force $F_i(h)$ can be expressed as the sum of all the $i$-component of the f
     F_i(h) = \sum_{m,n} f_{mn,i} \Theta(h-r_{n,j})\Theta(r_{m,j}-h)
     \label{eq:viralDevForce}
 \end{equation}
-where $r_{n,j}$ denotes the position of node $n$ along the $j$-axis. The two $\Theta$ function (defined in \cref{eq:heaviside_function}) restrict node $n$ to be below the line and node $m$ to above the line. Substituting \cref{eq:viralDevForce} into $\cref{eq:viralDevInt}$ and integrating over $h$ gives
+where $r_{n,j}$ denotes the position of node $n$ along the $j$-axis. The two $\Theta$ functions (defined in \cref{symbol:heaviside_function}) restrict node $n$ to be below the line and node $m$ to above the line. Substituting \cref{eq:viralDevForce} into $\cref{eq:viralDevInt}$ and integrating over $h$ gives
 \begin{align}
     \sigma_{ij} &= \frac{1}{A} \sum_{m,n} f_{mn,i}(r_{n,j}-r_{n,j})\Theta(r_{n,j}-r_{m,j}) \label{eq:viralDevTheta} \\
     \sigma_{ij} &= \frac{1}{2A} \sum_{m,n} f_{mn,i}(r_{n,j}-r_{m,j}) \label{eq:viralDevfinal} \\
@@ -253,7 +300,7 @@ where $\bm{r}_{mn} = \bm{r}_{n}-\bm{r}_{m}$. We note that $\Theta$ in \cref{eq:v
 The derivation above extends trivially to three dimensions, where we instead consider the force contribution from above and below an arbitrary plane perpendicular to the $j$-axis. Calculating the stress by this approach eliminates the computation of numerical derivatives and is more computationally efficient, as both $\bm{r}_{ij}$ and $\bm{f}_{ij}$ are already calculated at each timestep when evaluating the system's dynamics. A more thorough derivation of the viral stress tensor, including fluid effects, can be found in Ref. \cite{yang_generalized_2012}.
 
 \subsection{Generalised Lees-Edwards Boundary conditions}
-\todo[inline]{Does this need to go in a numerics chapter? It is much less theoretical than the rest of the chapter will be}
+\todo[inline]{Does this need to go in a numerics chapter? It is much less theoretical than the rest of the chapter.}
 
 When studying rheology, we typically wish to apply a macroscopic strain to a material and study the resulting macroscopic stress. In an experimental setup, this involves placing a sample of the material of interest into a rheometer and applying a macroscopic strain by moving one or more of the sample's boundaries. To measure the material's bulk properties, the samples often need to be large to avoid edge effects dominating the physics. This proves a challenge in simulations where achieving these scales is computationally expensive or impossible. A common way to avoid these issues is to use periodic boundary conditions, where an object passing through one side of the unit cell reappears on the opposite side with the same velocity. This, by definition, removes the edges of the computational systems; therefore, macroscopic strains must be applied through an alternative method, rather than being applied the conventional way, i.e. by applying a stress along one of the edges.
 

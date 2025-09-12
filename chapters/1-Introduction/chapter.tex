@@ -16,14 +16,24 @@ Given a bold symbol the corresponding non-bold symbol, in the absence of a sub- 
 Bold symbols with the subscript denote the relative version of the vector between nodes $i$ and $j$, for example $\mathbf{r}_{ij} := \mathbf{r}_j - \mathbf{r}_i$ denotes the relative position of node $j$ with respect to particle $i$.
 
 use einstein notation
+
 $\partial_i = \frac{\partial}{\partial x_i}$
+$\delta_{ij}$ is the Kronecker delta defined to be 
+\begin{equation}
+    \delta_{ij} =
+    \begin{cases}
+            1, &         \text{if } i=j,\\
+            0, &         \text{if } i\neq j.
+    \end{cases}
+    \label{symbol:delta}
+\end{equation}
 
 The use of the Circumflex (\quotes{hat}) notation denotes the equivalent object in Fourier space, i.e. $\hat{f}(x) = \mathcal{F}(f)(k)$ where $\mathcal{F}$ denotes the Fourier transform of the object $f$ and $k$ the wavenumber.
 
 \begin{equation}
-    \begin{cases} 
+    \Theta(x)= \begin{cases} 
         0, & \text{if } x < 0 \\ 
         1, & \text{if } x \ge 0 
     \end{cases}
-    \label{eq:heaviside_function}
+    \label{symbol:heaviside_function}
 \end{equation}
