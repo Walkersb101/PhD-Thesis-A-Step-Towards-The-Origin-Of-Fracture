@@ -25,13 +25,13 @@ Subcounts:
 
 Included file: chapters/2-Background/chapter.tex
 Encoding: utf8
-Words in text: 4622
+Words in text: 4728
 Words in headers: 50
 Words outside text (captions, etc.): 76
 Number of headers: 25
 Number of floats/tables/figures: 2
-Number of math inlines: 232
-Number of math displayed: 30
+Number of math inlines: 234
+Number of math displayed: 31
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
   210+1+0 (1/0/0/0) Chapter: Background
@@ -41,15 +41,14 @@ Subcounts:
   34+1+0 (1/0/0/0) Subsection: Experiments
   0+3+0 (1/0/0/0) Subsection: Rate dependence / quasistatic
   310+1+0 (1/0/33/2) Section: Hydrodynamics
-  355+4+0 (2/0/35/9) Subsection: Oseen/Stokeslet Tensor
+  459+4+0 (2/0/35/10) Subsection: Oseen/Stokeslet Tensor
   0+1+0 (1/0/0/0) Section: Networks
   449+2+0 (1/0/29/2) Subsection: Semi-Flexible filaments
   953+1+0 (1/0/26/2) Subsection: Rigidity} \label{sec:Rigidity
   300+3+0 (1/0/13/1) Subsection: Fracturing the network} \label{sec:Fracture
   0+2+0 (1/0/0/0) Subsection: Athermal Fracture
   0+2+0 (1/0/0/0) Subsection: Thermal Fracture
-  399+5+0 (2/0/7/0) Subsection: Disordered network models} \label{sec:NetworkStructure
-  364+2+52 (1/1/21/1) Section: Packing-based networks
+  765+7+52 (3/1/30/1) Subsection: Disordered network models} \label{sec:NetworkStructure
   439+2+0 (1/0/42/3) Subsection: Calculating Stress
   373+4+24 (1/1/0/0) Subsection: Generalised Lees-Edwards Boundary conditions
 
@@ -82,18 +81,18 @@ Number of math displayed: 0
 
 Sum of files: thesis.tex
 File(s) total: thesis.tex
-Words in text: 4949
+Words in text: 5055
 Words in headers: 79
 Words outside text (captions, etc.): 476
 Number of headers: 34
 Number of floats/tables/figures: 7
-Number of math inlines: 272
-Number of math displayed: 32
+Number of math inlines: 274
+Number of math displayed: 33
 Files: 5
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
   1+7+0 (1/0/0/0) File: thesis.tex
   217+5+0 (3/0/15/2) Included file: chapters/1-Introduction/chapter.tex
-  4622+50+76 (25/2/232/30) Included file: chapters/2-Background/chapter.tex
+  4728+50+76 (25/2/234/31) Included file: chapters/2-Background/chapter.tex
   109+17+400 (5/5/25/0) Included file: chapters/DoubleNetworkFracture/chapter.tex
 
