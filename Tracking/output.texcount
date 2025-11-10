@@ -25,23 +25,23 @@ Subcounts:
 
 Included file: chapters/2-Background/chapter.tex
 Encoding: utf8
-Words in text: 4728
-Words in headers: 50
-Words outside text (captions, etc.): 76
+Words in text: 5175
+Words in headers: 52
+Words outside text (captions, etc.): 88
 Number of headers: 25
-Number of floats/tables/figures: 2
-Number of math inlines: 234
-Number of math displayed: 31
+Number of floats/tables/figures: 4
+Number of math inlines: 270
+Number of math displayed: 36
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
   210+1+0 (1/0/0/0) Chapter: Background
   105+1+0 (1/0/0/0) Section: Rheology
-  331+5+0 (3/0/26/10) Subsection: Stress and Strain
-  0+10+0 (4/0/0/0) Subsection: Shear protocol
+  647+7+12 (3/2/60/14) Subsection: Stress and Strain
+  0+10+0 (4/0/0/0) Subsection: Rheological protocol
   34+1+0 (1/0/0/0) Subsection: Experiments
   0+3+0 (1/0/0/0) Subsection: Rate dependence / quasistatic
-  310+1+0 (1/0/33/2) Section: Hydrodynamics
-  459+4+0 (2/0/35/10) Subsection: Oseen/Stokeslet Tensor
+  340+1+0 (1/0/34/2) Section: Hydrodynamics
+  560+4+0 (2/0/36/11) Subsection: Oseen/Stokeslet Tensor
   0+1+0 (1/0/0/0) Section: Networks
   449+2+0 (1/0/29/2) Subsection: Semi-Flexible filaments
   953+1+0 (1/0/26/2) Subsection: Rigidity} \label{sec:Rigidity
@@ -81,18 +81,18 @@ Number of math displayed: 0
 
 Sum of files: thesis.tex
 File(s) total: thesis.tex
-Words in text: 5055
-Words in headers: 79
-Words outside text (captions, etc.): 476
+Words in text: 5502
+Words in headers: 81
+Words outside text (captions, etc.): 488
 Number of headers: 34
-Number of floats/tables/figures: 7
-Number of math inlines: 274
-Number of math displayed: 33
+Number of floats/tables/figures: 9
+Number of math inlines: 310
+Number of math displayed: 38
 Files: 5
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
   1+7+0 (1/0/0/0) File: thesis.tex
   217+5+0 (3/0/15/2) Included file: chapters/1-Introduction/chapter.tex
-  4728+50+76 (25/2/234/31) Included file: chapters/2-Background/chapter.tex
+  5175+52+88 (25/4/270/36) Included file: chapters/2-Background/chapter.tex
   109+17+400 (5/5/25/0) Included file: chapters/DoubleNetworkFracture/chapter.tex
 
