@@ -10,9 +10,20 @@ In this chapter, we will discuss the underlying theories of these models and pro
 Rheology is the study of the response of a material to an applied flow deformation/stress  \cite{larson_structure_1999,chenRheologySoftMaterials2010,tannerEngineeringRheology2000,barnes_introduction_1989}. The term originates from the early 20th century and comes from the combination of the Greek words rheo, meaning “to flow,” and logos, meaning “study”\cite{barnes_introduction_1989}.  While very early work by Hooke \cite{hooke_lectures_1678} and Newton \cite{newton_philosophiae_1687} laid the foundation of simple linear rheological cases, stating respectively “the power of any spring is in the same proportion with the tension thereof” and “if you double the force, you double the velocity gradient”. Modern rheology is more interested in the cases where these simple rules do not hold and nonlinear behaviours dominate the physics. 
 
 \subsection{Stress and Strain}
-The concepts of stress and strain constitute the fundamental building blocks of rheology. While a brief definition is provided here, a more detailed treatment can be found in Refs. \cite{tannerEngineeringRheology2000,barnes_introduction_1989,larson_structure_1999}. When considering the flow of a material, the strain is defined to be a measure of the deformation undergone as a result of the flow, and the stress is a measure of the resulting internal forces. As both stress and strain are dependent on direction and the axis/basis on which they are expressed on we express them as rank-2 tensors $\bm{\sigma}$ and $\bm{\epsilon}$ respectively. 
-\subsubsection{Strain}
-For simplicity, we will consider \cite{TruesdellNoll1992} to take the form of Cauchy's linear strain tensor, as this holds throughout this thesis. If we consider a point $P$ which at time $t$ is at $\bm{x}$, which is displaced to a new position $\bm{X}$ at a time $t^\prime$, such that
+The concepts of stress and strain constitute the fundamental building blocks of rheology. In considering the flow of a material, strain is defined as a measure of the deformation resulting from the flow, and stress is a measure of the internal forces that result. The simplest definition of strain, therefore, is 
+\begin{equation}
+    \epsilon = \frac{\Delta x}{L}
+    \label{eq:simpleStrain}
+\end{equation}
+where $\Delta x$ is a measure of the deformation and $L$ the systems size \cite{lubliner2008plasticity}. And correspondingly, stress can be defined by the ratio of the internal forces in a material to the cross-sectional area,
+\begin{equation*}
+    \Sigma = \frac{F}{A}
+    \label{eq:simpleStress}
+\end{equation*}
+where $F$ is a measure of the internal forces and $A$ the cross sectional area \cite{lubliner2008plasticity}. As both stress and strain are dependent on direction in which they are measure compared to the axis/basis on which they are expressed, i.e. the direction of the $\Delta x$ relative to $L$ or the direction of $F$ relative to the normal of $A$, we express them as rank-2 tensors $\bm{\sigma}$ and $\bm{\epsilon}$ respectively. For the strain tensor $\bm{\epsilon}$, we refer to the diagonal elements $i = j$ of $\epsilon_{ij}$ as extensional strains, as $\Delta x$ is measured parallel to $L$ and the off-diagonal $i \neq j$ as shear strains where $\Delta x$ is perpendicular to $L$. Respectively, when $F$ is measured parallel to the normal vector of $A$ ($\bm{\sigma}$ for $i = j$), it is a normal stress; otherwise, if it acts along the plane, it is a shear stress. While a brief further exploration into both $\bm{\sigma}$ and $\bm{\epsilon}$ is provided below, a more detailed treatment can be found in Refs. \cite{tannerEngineeringRheology2000, chandrasekharaiahContinuumMechanics2014}. 
+
+\subsubsection{Strain Tensor}
+For simplicity, we will consider the strain tensor $\bm{\epsilon}$ to take the form of Cauchy's linear strain tensor \cite{lubliner2008plasticity}, which will hold throughout this thesis. If we consider a point $P$ which at time $t$ is at $\bm{x}$, which is displaced to a new position $\bm{X}$ at a time $t^\prime$, such that
 \begin{equation}
     \bm{X}(t^\prime) = \bm{X}(\bm{x},t).
 \end{equation}
@@ -20,7 +31,7 @@ Then, considering a nearby point $Q$ which starts at a distance $d\bm{x}$ from p
 \begin{equation}
     d\bm{X} = \frac{\partial \bm{X}}{\partial \bm{x}}d\bm{x} = \bm{F}d\bm{x}
 \end{equation}
-where $\bm{F}$ is defined to be the deformation gradient tensor relating $d\bm{X}$ and $d\bm{x}$. To relate the magnitudes of $d\bm{X}$ and $d\bm{x}$ we conciser 
+where $\bm{F}$ is defined to be the deformation gradient tensor relating $d\bm{X}$ and $d\bm{x}$. To relate the magnitudes of $d\bm{X}$ and $d\bm{x}$ we consider 
 \begin{equation}
     dX^2 = d\bm{X} \cdot d\bm{X} = d\bm{X}^T d\bm{X} = d\bm{x}^T\bm{F}^T\bm{F}d\bm{x}.
 \end{equation}
@@ -40,12 +51,44 @@ as
     \label{eq:nonlinearstrain}
 \end{equation}
 where we adopt Einstein notation for convenience and $\delta_{ij}$ is the Kronecker delta defined in \cref{symbol:delta}.
-In linear elasticity theory, we assume that all displacement gradients are small, such that we can rewrite \cref{eq:nonlinearstrain}
+In linear elasticity theory, we assume that all displacement gradients are small \cite{TruesdellNoll1992}, such that we can rewrite \cref{eq:nonlinearstrain}
 \begin{equation}
-        2\epsilon_{ij} \equiv C_{ij} - \delta_{ij} = \frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i}  + \mathcal{O}\left\{ \left(\frac{\partial u_i}{\partial x_j}\right)^2 \right\}.
+        2\epsilon_{ij} \equiv C_{ij} - \delta_{ij} = \frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i}  + \mathcal{O}\left\{ \left(\frac{\partial u_i}{\partial x_j}\right)^2 \right\}
         \label{eq:linearStrain}
 \end{equation}
-\subsubsection{Stress}
+or in terms of the deformation gradient tensor $\bm{F}$
+\begin{equation}
+        \epsilon = \frac{1}{2}\left( \bm{F}^T + \bm{F} \right) - \bm{I}.
+\end{equation}
+
+The components of $\epsilon_{ij}$ can be separated into two classes: the diagonal components of $\epsilon_{ij}$ describe normal strains, while the off-diagonal elements represent the shear strains. \cref{fig:typesOfStrain} illustrates one diagonal and one off-diagonal element. 
+
+\begin{figure}[h]
+    \centering
+    \missingfigure[]{}
+    \caption{Figure showing extensional and simple shear}
+    \label{fig:typesOfStrain}
+\end{figure}
+
+In the context of continuum mechanics, the off-diagonal components of the strain tensor $\epsilon_{ij} (i \neq j)$ represent the \quotes{true} tensorial strains. While these are more suitable for analytical formulations and constitutive modelling, they do not coincide exactly with the strains reported in experiments, which often report the engineering strain as defined in \cref{eq:simpleStrain}. This inconsistency only occurs for shear, where measuring the engineering shear strain in the $xy$ plane as 
+\begin{equation*}
+    \gamma_{xy} = \frac{\Delta x}{L_y}.
+\end{equation*}
+would correspond to $\epsilon_{xy} = \epsilon_{yx} = \gamma / 2$.
+
+\todo[inline]{define simple and pure shear}
+\begin{figure}[h]
+    \centering
+    \missingfigure[]{}
+    \caption{Figure showing Pure and simple shear}
+    \label{fig:simpleAndPureShear}
+\end{figure}
+
+\subsubsection{Stress tensor}
+Considering instead a body then the total force acting upon the body $\bm{\mathcal{F}}$ can be decomposed into two parts $\bm{\mathcal{F}} = \bm{b} + \bm{F}$, where $\bm{b}$ is the body force and $\bm{F}$ the surface force \cite{chandrasekharaiahContinuumMechanics2014}. Assuming that the stress tensor takes the form of the Cauchy stress tensor, which only considers surface force $\bm{F}$, as the body forces are assumed to be uniform across the body's volume and therefore do not contribute to the deformation of the body \cite{macoskoRheologyPrinciplesMeasurements1994}. 
+
+
+
 Equation \ref{eq:linearStrain} means that the simplest linear relation (Hooke's Law) between stress and strain is,
 \begin{equation}
     \sigma_{ij} = C_{ijkm}\epsilon_{ij}.
@@ -58,14 +101,15 @@ where $\lambda$ and $G$ are modulii (the Lam\'e constants).
 This assumption assumes that the stress of a material is solely determined by the deformation of the material, as in a compressible material. If instead the material is incompressible, then the stress must be rewritten as 
 \begin{equation}
     \sigma_{ij} + p\delta_{ij} = 2G\epsilon_{ij},
+    \label{eq:incompressableStress}
 \end{equation}
 where $p$ is the pressure.
 
-\subsection{Shear protocol}
+\subsection{Rheological protocol}
 
+\subsubsection{Step Strain}
 \subsubsection{Shear Startup}
 \subsubsection{Large Amplitude Oscillatory shear}
-\subsubsection{Step Strain}
 
 \subsection{Experiments}
 
@@ -87,7 +131,7 @@ By considering the conservation of mass and momentum, the Navier-Stokes equation
 \end{subequations}
 
 where $\rho$ is the fluid's density, $\bm{u}$ the fluid's flow field and $\Sigma$ the total stress applied to the fluid. The total stress in the fluid can be decomposed into two components $\bm{\Sigma} = \bm{\sigma} - p\bm{I}$, where $p$ is the hydrostatic pressure and $\bm{\sigma}$ the deviatoric stress tensor. 
-The physics we wish to consider in this thesis is the slow flow of pasty materials where the internal viscous forces dominate over the inertial forces. To do this, we take the limit of \cref{eq:incompressibleNavier1} as $Re=\rho |\bm{v}| L / \mu -> 0$ where $L$ is the typical length scale for the fluid. In this limit, the Navier-Stokes equations reduce to,
+The physics we wish to consider in this thesis is the slow flow of pasty materials where the internal viscous forces dominate over the inertial forces. To do this, we take the limit of \cref{eq:incompressibleNavier1} as $Re=\rho |\bm{v}| L / \mu -> 0$ where $L$ is the typical length scale for the fluid. In this limit, the right-hand side of the \cref{eq:incompressibleNavier1} vanishes and the Navier-Stokes equations reduce to,
 \begin{subequations}
 \label{eq:StokesLimit}
 \begin{align}
@@ -95,6 +139,7 @@ The physics we wish to consider in this thesis is the slow flow of pasty materia
     \nabla \cdot \bm{v} &= 0.
 \end{align}
 \end{subequations}
+This can also be derived directly by considering the equilibrium state \cref{eq:incompressableStress}, that is, the net force in the system $\nabla \cdot 2G\bm{\epsilon} = \nabla \cdot \bm{\Sigma} = 0$.
 
 Following the arguments of Ref. \cite{picard_elastic_2004} we will assume that the strain $\bm{\epsilon}$ is as linear superposition of a plastic flow $\bm{\epsilon}^{pl}$ and elastic deformation $\bm{\epsilon^{el}}$ and that the fluid is homogeneous, isotropic, and linearly elastic. The strain $\bm{\epsilon}$ of the fluid can be therefore be expressed as 
 \begin{equation}
@@ -153,6 +198,7 @@ By cancelling $F_j$ and multiplying by $k_i$ we can apply the incompressibility 
 Substituting $\hat{P}_j$ back into \cref{eq:StokesFourier} we find a closed expression for $\bm{\hat{\mathbb{O}}}$ is
 \begin{equation}
     \hat{\mathbb{O}}_{ij} = \frac{1}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right).
+    \label{eq:Oseen}
 \end{equation}
 This gives an expression for the deformation as 
 \begin{equation}
@@ -168,21 +214,26 @@ Both \cref{eq:fourierDeformation,eq:fourierDeformationGradient} naturally descri
 
 The associated stress and strain fields are then obtained by substituting this result for $\partial_l u_i$ into \cref{eq:decompositionAndDeformation,eq:elasticStress} in Fourier space, giving the resultant Shear stress correction in
 \begin{equation}
-    \hat{\sigma}_{x y}^1=2 \mu^2\left(q_y^2 \hat{\mathbb{O}}_{x x}+q_x^2 \hat{\mathbb{O}}_{y y}+2 q_x q_y \hat{\mathbb{O}}_{x y}-1 / \mu\right) \hat{\epsilon}_{x y}^{\mathrm{pl1}}.
+    \hat{\sigma}_{x y}^1=2 \mu^2\left(q_y^2 \hat{\mathbb{O}}_{x x}+q_x^2 \hat{\mathbb{O}}_{y y}+2 q_x q_y \hat{\mathbb{O}}_{x y}-1 / \mu\right) \hat{\epsilon}_{x y}^{\mathrm{pl1}} = 2\mu \hat{\mathbb{ G }}_{ xy } \hat{\epsilon}_{x y}^{\mathrm{pl1}}.
 \end{equation}
 By collecting terms, we can compute the shear stress propagator $\mathbb{G}_{xy}$, which expresses the consequences of a single plastic event in an infinite medium by,
 \begin{equation}
     \sigma_{x y}^1(\bm{r}) = 2 \mu \int d\bm{r}^\prime \mathbb{G}_{xy} (\bm{r} - \bm{r}^\prime) \epsilon_{x y}^{\mathrm{pl1}}(\bm{r}^\prime)
 \end{equation}
 where, 
-\begin{equation*}
-    \hat{\mathbb{ G }}_{ xy } = -4 \frac{ k_x^2 k_y^2 }{ k^4 } \quad \text{ and, } \quad \hat{\mathbb{ G }}_{ xy } = -4 \frac{ k_x^2 k_y^2 }{ k^4 } - \frac{ k_z^2 }{ k^2 }.
-\end{equation*}
+\begin{equation}
+    \hat{\mathbb{ G }}_{ xy } = -4 \frac{ k_x^2 k_y^2 }{ k^4 } \quad \text{ and } \quad \hat{\mathbb{ G }}_{ xy } = -4 \frac{ k_x^2 k_y^2 }{ k^4 } - \frac{ k_z^2 }{ k^2 } \quad \text{ for } \bm{k} \neq \bm{0}
+    \label{eq:StressPropogator}
+\end{equation}
 in two ($D=2$) and three ($D=3$) dimensions respectively.
+Expressing both of these equations along the $xy$ plane in $\mathbb{R}^2$ we find that 
+\begin{equation*}
+    \mathbb{G}_{xy} \sim \frac{1}{\pi r^{D}}\cos{4\theta}
+\end{equation*}as described by Eshelby in Ref. \cite{eshelby_determination_1997} for an elliptical inclusion. The Eshelby Stress propagator defined in \cref{eq:StressPropogator}, is only defined up to a constant due to the singularity at $\bm{k}=\bm{0}$. In practice, this constant is defined by the boundary conditions of the system, where, in a strain-controlled regime, we want to conserve the elastic strain in the system, and as such, we resolve the singularity at $\bm{k}=\bm{0}$ by setting $\hat{\mathbb{G}}_{xy}(\bm{0}) = -1$ such that the total stress lost in the system due to plastic events is $2\mu\int d\bm{r}^\prime \epsilon_{x}^{\mathrm{pl1}}(\bm{r}^\prime)$. In a stress control regime, it is common to instead take $\hat{\mathbb{G}}_{xy}(\bm{0}) = 0$ where no total stress is lost due to the event and instead the lost plastic stress is converted to elastic stress by the system elasticity straining\cite{nicolas_deformation_2018, martens_spontaneous_2012, jocteur_protocol_2025, lin_scaling_2014}.  
 
-Both these equations show the well-known $\cos(4\theta)$ angular dependence in the $xy$ plane with a $\sim 1/r^{D-1}$ power law decrease in real space \cite{eshelby_determination_1997}. When resolving the singularity at $\bm{k}=\bm{0}$, it is common to conserve strain in a stress controlled system and stress in a strain controlled system by setting $\hat{\mathbb{G}}_{xy}(\bm{0}) = 0$ or $\hat{\mathbb{G}}_{xy}(\bm{0})  = -1$ respectively \cite{nicolas_deformation_2018, martens_spontaneous_2012, jocteur_protocol_2025, lin_scaling_2014}.
+For a non-periodic system, the method of images may be used to simulate solid walls with a non-slip boundary condition in order to derive an equivalent to \cref{eq:Oseen} \cite{blake_note_1971} and also the stress propogator \cite{picard_elastic_2004}. However, for 2-dimensional it is often easier numerically to take the equivalent stream-function formalism \cite{acheson_elementary_1990}.
 
-For a non-periodic system, the method of images may be used to simulate solid walls with a non-slip boundary condition \cite{blake_note_1971}. However, a stream-function formalism for systems is often easier to implement for 2-dimensional systems numerically \cite{acheson_elementary_1990}.
+\missingfigure{Plot of Propagator}
 
 \section{Networks}
 
