@@ -3,25 +3,37 @@
 
 \section{Introduction}
 
+While other models have been used to simulate double networks, such as the Multi-spring model used in Ref. \cite{tauber_microscopic_2020} or Molecular dynamics multi-component gels \cite{mugnaiInterspeciesInteractionsDual2025}, they fail to be able to resolve the 
+
+
 \section{Methodology}
+\subsection{Double Network Struture}
+To capture the salient physics of double network materials, we must extend the network structures defined in \cref{sec:NetworkStructure} to model both the sacrificial and matrix networks as well as how the two networks interact with each other. As a starting point, we take each network to evolve independently under \cref{eq:NetworkHamiltonian} as in the single network case, again ignoring the volume exclusion principle, both within each network, but also in interactions between the two networks. Each bond in our system can then be given a modulus $\mu_s$ and $\mu_m$, and a breakage threshold $\lambda_s$ and $\lambda_m$ for the sacrificial and matrix networks, respectively. 
 
-\section{Double-Network topologies}
+In the following work, we consider two forms of network structure, one based on a square lattice (described in \cref{sec:LatticeBasedNetworks} and the other based on Jammed Packing derived networks (described in \cref{sec:PackingBasedNetworks}). The two methods define two ways to construct double network geometries by defining how each network is constructed and how we define the nodes in which the two networks are allowed to connect. Importantly, they allow us to define a relative length scale difference $M$ between the two networks, which will allow us to capture both the relevant microphysics as well as the macroscopic physics of bulk failure. 
 
+\subsubsection{Double Lattice Based Networks}
+The simplest form of a single network structure is that of a lattice-based network. The Sacrificial network is constructed as described in \cref{sec:LatticeBasedNetworks} by defining a set of lattice vectors and rules for connecting them. The Matrix network can also be generated in the same way, 
+however, with a scaled set of lattice vectors. For simplicity, we choose $M\in\mathbf{R}$, such that the Sacrificial and Matrix lattices are commensurate: the Matrix lattice vectors are integer multiples of the Sacrificial ones. This ensures that the nodes of the Matrix lattice lie exactly on a subset of the nodes of the fine Sacrificial lattice.
 
-
-
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\linewidth]{chapters/DoubleNetworkFracture/Figures/SquareTypes.pdf}
+    \caption{Figure details the types of choices which can be made for choosing nodes which interact with both the Sacrificial and Matrix network for a square lattice double Network with $M=4$}
+    \label{fig:DoubleSquareTypes}
+\end{figure}
 
 \section{Paper Images}
 
 \begin{figure}[hbt]
     \centering
     \includegraphics[width=0.7\linewidth]{chapters/DoubleNetworkFracture/Paper Images/Figure1.png}
-\caption{Portion of an {\bf a)} single  and {\bf b)}  double network, with sacrificial bonds in red and matrix bonds  blue. {\bf c)} Stretched single network at a location on the stress-strain curve shown by the triangle in Fig.~\ref{fig:paperFig2}a). A Macroscopic crack has propagated across the network, causing catastrophic material failure. {\bf d)} Stretched double network  at a location on the stress-strain curve shown by the circle in Fig.~\ref{fig:paperFig2}b). Damage has arisen diffusely via many microcracks in the sacrificial network, which do not propagate macroscopically. This allows the double network to stretch much further than the single network without failing.}
+\caption{Portion of an {\bf a)} single  and {\bf b)}  double network, with sacrificial bonds in red and matrix bonds  blue. {\bf c)} Stretched single network at a location on the stress-strain curve shown by the triangle in Fig.~\ref{fig:paperFig2}a). A Macroscopic crack has propagated across the network, causing catastrophic material failure. {\bf d)} Stretched double network at a location on the stress-strain curve shown by the circle in Fig.~\ref{fig:paperFig2}b). Damage has arisen diffusely via many microcracks in the sacrificial network, which do not propagate macroscopically. This allows the double network to stretch much further than the single network without failing.}
 \label{fig:paperFig1}
 \end{figure}
 
 \begin{itemize}
-  \item Is this ok a a whole page figure, Could probably format it to be horisontal such that it fits nicely along the top and bottom of the page
+  \item Is this ok a a whole page figure? Could probably format it to be horizontal, such that it fits nicely along the top and bottom of the page
   \item Do we also generate this for the $z_m=3.5$ case, might be able to make a really nice full page figure if I do this
 \end{itemize}
 

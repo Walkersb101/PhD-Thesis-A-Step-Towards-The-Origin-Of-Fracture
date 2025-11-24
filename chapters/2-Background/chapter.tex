@@ -126,7 +126,7 @@ By considering the conservation of mass and momentum, the Navier-Stokes equation
 \label{eq:NavierStokes}
 \begin{align}
     \rho \left(\partial_t+(\bm{u} \cdot \nabla)\right)\bm{u} &= \nabla \cdot \bm{\Sigma} \label{eq:incompressibleNavier1} \\
-    \mu\cdot\bm{u} &= 0 \label{eq:incompressibleNavier2}
+    \nabla\cdot\bm{u} &= 0 \label{eq:incompressibleNavier2}
 \end{align}
 \end{subequations}
 
@@ -136,7 +136,7 @@ The physics we wish to consider in this thesis is the slow flow of pasty materia
 \label{eq:StokesLimit}
 \begin{align}
     \nabla \cdot (\bm{\sigma} - p\bm{I}) &= 0 \\
-    \nabla \cdot \bm{v} &= 0.
+    \nabla \cdot \bm{u} &= 0.
 \end{align}
 \end{subequations}
 This can also be derived directly by considering the equilibrium state \cref{eq:incompressableStress}, that is, the net force in the system $\nabla \cdot 2G\bm{\epsilon} = \nabla \cdot \bm{\Sigma} = 0$.
@@ -249,6 +249,7 @@ The standard model for polymers is the extensible worm-like chain, where each po
 where $s$ is the arc length coordinate, $dl/ds$ is the relative strain of the polymer at point $s$ and $\vec{t}$ is the tangent vector to the polymer. We neglect any energy contributions from the polymers twisting along their axis. Numerically, we discretise each filament into a series of segments \cite{mackintosh_elasticity_1995} for which the Hamiltonian of each filament can be expressed as
 \begin{equation}
     \mathcal{H}_f = \frac{\mu}{2} \sum_{ij} \frac{( l_{ij} - l_{ij,0} )^2}{l_{ij,0}} + \frac{\kappa}{2} \sum_{ijk} \frac{( \theta_{ijk} - \theta_{ijk,0} )^2}{l_{ijk,0}}
+    \label{eq:NetworkHamiltonian}
 \end{equation}
 where the first sum is taken over all pairs $ij$ and triplets $ijk$ along the polymer length. We define $l_{ij}$ and $l_{ij,0}$ as the instantaneous and natural length between nodes $i$ and $j$ respectively, $\theta_{ijk}$ and $\theta_{ijk,0}$ to be the instances and natural angle between nodes  $i$, $j$ and $k$, respectively, and $l_{ijk,0} = (l_{ij,0} + l_{jk,0})/2$. In all cases, we consider a central force model only where bending rigidity is neglected; this can be thought of as the polymers having a small cross-sectional area relative to their length, such that their moment of inertia is negligible compared to their cross-sectional area.
 
@@ -295,17 +296,18 @@ For systems in which the thermal energy is of the same order as the depth of the
 \subsection{Disordered network models} \label{sec:NetworkStructure}
 Through the literature, a wide range of network geometries has been considered. The simplest are Affine isotropic models, which consider the response of a single filament to an applied deformation, averaging over all possible initial filament orientations, such as those studied in \cite{mackintosh_elasticity_1995, storm_nonlinear_2005}. While these models can be used to provide a baseline understanding for networks in the high $z$ or $\kappa$ limits, they fail to capture the important physics which arises from the non-affine rearrangements and orientational disorder found in real-world networks. "To consider these effects, we must prescribe a network topology which specifies how the bonds connect the nodes of the network.
 
-\subsubsection{Lattice-based networks}
+\subsubsection{Lattice-based networks} \label{sec:LatticeBasedNetworks}
 Lattice-based networks are the simplest network structures that are commonly used in studies of mechanical properties \cite{feng_percolation_1984}, including two-dimensional square \cite{mao_soft_2010}, triangular \cite{broedersz_criticality_2011, feng_percolation_1984}, and honeycomb \cite{rens_nonlinear_2016} lattices. Often used due to their simplicity to generate when compared to more disordered networks, and their relative numerical stability due to the uniform lattice spacing $l_0$, they provide an easy way to analyse the mechanical behaviour of fibre networks. 
 
-Naturally, these periodic lattices have relatively predictable behaviour with discrete values for the connectivity and bond lengths of the network. Lattice-based networks typically introduce disorder through two complementary methods. 
+Lattice-based networks are constructed by first placing nodes in a regular pattern based on a set a lattice vectors and then systematically connecting these nodes based on a set of rules. For example, in a 2-dimensional square lattice, the node positions can be defined by the lattice vectors $(1,0)$ and $(0,1)$, and by connecting nearest-neighbour nodes vertically and horizontally, respecting boundary conditions as needed. Other simple lattices, such as the triangular lattice, can be expressed trivially using the same method, with more complicated lattices being able to be derived from these simple cases. For example, a hexagonal lattice starts as a triangular lattice with an added constraint of a node's connectivity $z$ being 3. Naturally, these periodic lattices have relatively predictable behaviour with discrete values for the connectivity and bond lengths of the network. 
 
-Disorder in a network's connectivity can be achieved through the random removal of bonds within the lattice. This is typically done by including (or equivalently excluding \cite{broedersz_criticality_2011,head_distinct_2003}) a bond with probability $1 - p$, where $p$ defines the desired fraction of bonds wanted in the lattice. While simply removing bonds at random may not seem at first to introduce enough disorder in the system, it directly affects the rigidity of the system (as discussed later in \cref{sec:Rigidity}) with a distinct phase changes at $p_c$, where the network undergoes a transition from isolated rigid clusters to a single system-spanning one \cite{jacobs_generic_1995,zhang_correlated_2019} and at the isostatic point where the network loses its first order rigidity. The benefit of removing bonds from a lattice-based network is the breakup of long system-spanning force chains \cite{ruiz-franco_force_2022}, which naturally occur as a result of the network's construction. Networks which do not undergo this pruning will generally present an initial low-strain softening of the shear modulus $K$ \cite{licup_nonlinear_2016} associated with the buckling of the long fibres. 
+Lattice-based networks typically introduce disorder through two complementary methods. The most common forms of disorder in a network's connectivity can be achieved through the random removal of bonds within the lattice. This is typically done by including (or equivalently excluding \cite{broedersz_criticality_2011,head_distinct_2003}) a bond with probability $1 - p$, where $p$ defines the desired fraction of bonds wanted in the lattice. While simply removing bonds at random may not seem at first to introduce enough disorder in the system, it directly affects the rigidity of the system (as discussed later in \cref{sec:Rigidity}) with a distinct phase changes at $p_c$, where the network undergoes a transition from isolated rigid clusters to a single system-spanning one \cite{jacobs_generic_1995,zhang_correlated_2019} and at the isostatic point where the network loses its first order rigidity. The benefit of removing bonds from a lattice-based network is the breakup of long system-spanning force chains \cite{ruiz-franco_force_2022}, which naturally occur as a result of the network's construction. Networks which do not undergo this pruning will generally present an initial low-strain softening of the shear modulus $K$ \cite{licup_nonlinear_2016} associated with the buckling of the long fibres. 
 
 This can be mitigated by the second type of disorder common in lattice networks, where the natural positions of the network's nodes are perturbed and the bonds' natural lengths and angles redefined. A network which has this kind of disorder is often referred to as a generic network \cite{jacobs_generic_1995}.
 
+\missingfigure[]{Lattice based network structure}
 
-\subsubsection{Packing-based networks}
+\subsubsection{Packing-based networks} \label{sec:PackingBasedNetworks}
 Network structures generated from jammed disk or sphere packing have been extensively studied to study elastic or fibre networks \cite{rens_rigidity_2019,wyart_elasticity_2008,lerner_unified_2012,shivers_normal_2019,shivers_scaling_2019,shivers_phase_2022}. Packing-based networks are the name suggests are derived from the packing configurations of soft spheres with a density above the jamming transition $\phi_J$\cite{Hernjamming2003,BoyerJamming2011,ikeda_unified_2012}. The newtorks considered in this works were created by randomly distributing $N$ disks in a square periodic box with side length $L$. An equal number of disks are chosen to have either radii $\R0$ or $f\R0$ where $f$ is chosen to take a value which reduces crystallisation in the system. A common value and the one used to generate any networks presented in this work is $f=1.4$ \cite{van_hecke_jamming_2010, chacko_slow_2019, desmond_random_2009}, which produces a packing with no macroscopic order. 
 
 
@@ -326,7 +328,11 @@ The value of $\R0$ is taken such that a target packing fraction $\phi>\phi_J$, w
 \label{fig:SingleNetworkGeneration}
 \end{figure}
 
-While it is possible to generate a lower connectivity network, still above the isostatic point of $z=4$, by choosing a $\phi>\phi_J$ where $\phi_J$ is the jamming fraction where the system undergoes an athermal jamming transition \cite{ikeda_unified_2012}. Instead, we generate lower connectivity networks by iteratively removing bonds from the highest connected node in a network generated at $\phi=1$. During this process, we remove dangling ends and clusters, such that all bonds actively contribute to the reported mechanical response.
+While it is possible to generate a lower connectivity network, still above the isostatic point of $z=4$, by choosing a $\phi>\phi_J$ where $\phi_J$ is the jamming fraction where the system undergoes an athermal jamming transition \cite{ikeda_unified_2012}. Instead, we generate lower connectivity networks by iteratively removing bonds from the highest connected node in a network generated at $\phi=1$. 
+
+\subsubsection{Pruning Networks}
+\todo[inline]{Write this little bit}
+During this process, we remove dangling ends and clusters, such that all bonds actively contribute to the reported mechanical response.
 \missingfigure{Diagram of dangling ends and clusters}
 
 \subsection{Calculating Stress}

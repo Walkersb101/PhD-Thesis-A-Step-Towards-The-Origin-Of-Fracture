@@ -1,0 +1,217 @@
+\documentclass{library/duthesis}
+
+\documenttype{Thesis}
+
+\title{A Step towards the Origin of Fracture}
+\author{Samuel Walker}
+\dept{Department of Physics}
+\degree{Doctor of Philosophy}
+\degreedate{March 2026}
+\copyrightyear{2026}
+
+%% File to be included while running latex.         
+%\includeonly{chapters/1-Introduction/chapter,       
+%             chapters/2-Background/chapter,          
+%             references/ref,                        
+%             appendices/a/appendix}                 
+
+\begin{document} 
+% Frontmatter.
+\frontmatter
+\titlepage
+\newpage
+
+\mainmatter
+\chapter{Introduction} 
+
+
+\chapter{Background}
+\section{Rheology}
+\begin{itemize}
+    \item What is rheology
+    \item Definitions of stress and strain from an intuitive/geometric definition ($\epsilon = \frac{\Delta x}{L}$ and $\sigma = \frac{F}{A}$)
+\end{itemize}
+\subsection{Strain}
+\begin{itemize}
+    \item Derivation of the Cauchy’s Finite strain tensor from first principles in terms of the deformation gradient tensor $\bm{F}$
+    \item Discussion on linear elasticity theory to get $\epsilon_{ij}$
+    \item Define Elogational Strain for Context and Simple (single and EPM) and Pure shear (Double Network) for Results chapters - Use Diagrams here
+\end{itemize}
+\subsection{Stress}
+\begin{itemize}
+    \item Define Stress tensor (Which definition/derivation to use?).
+    \item Go on define Generalised Hooks law and apply isotropic and incompressible constraints
+\end{itemize}
+
+\section{Hydrodynamics}
+\begin{itemize}
+    \item Navier Stokes $\rightarrow$ Stokes equation $\rightarrow$ force balance
+    \item Splitting of strain field into elastic and \quotes{plastic} fields as in Picard et al
+    \item Derivation of Oseen/Stokeslet 
+    \item Construction of the Elshelby Stress tensor as in Picard et al
+    \item Mention of streamline approximation
+\end{itemize}
+\section{Networks}
+\subsection{Semi-Flexible filaments}
+\begin{itemize}
+    \item Discussion of Semi-Flexible filaments
+    \item Discussion of Hamiltonian from MacKintosh et al
+    \item Take a central force model, ignoring the bending force
+\end{itemize}
+\subsection{Rigidity}
+\begin{itemize}
+    \item While not directly explored in the thesis, the concept underpins a lot of the physics/choices made. 
+    \item Define rigidity
+    \item Disscuss maxwell criteria and introduce average connectivity $z$
+    \item Where does Maxwell's criteria not work - Over constrained systems (regions of self stress) and Non-homogeneous networks
+    \item Relation to percolation
+    \item Types of rigidity
+    \begin{itemize}
+        \item First Order rigidity - from network structure
+        \item Second Order rigidity - Arises from force balances and non-linear effects
+    \end{itemize}
+    \item Energetic Rigidity - thinking of rigidity in terms of energy landscapes
+\end{itemize}
+\subsection{Fracture}
+\begin{itemize}
+    \item Discussion on how fracture is handled in network models
+\end{itemize}
+\subsection{Discorded Network topologies}
+\begin{itemize}
+    \item Lattice-based networks - So I can add a little bit of the early work on double networks
+    \item Jamming-based networks - Description of the generation of a single network, as this covers the fundamentals of both network chapters
+    \item Dangling and Disconnected clusters and how to prune networks
+\end{itemize}
+\subsection{Viral Stress tensor}
+\begin{itemize}
+    \item Derivation of the Viral Stress tensor
+\end{itemize}
+\subsection{Lees Edwards Boundary conditions}
+\begin{itemize}
+    \item How shear is applied in MD simulation through Lees-Edwards boundary conditions - Mostly maths with maybe a bit of pseudo code - might include triclinic boundary sets, which is the mathematical equivalent
+\end{itemize}
+
+\chapter{Fatigue in Lattice EPM}
+\section{Introduction}
+\begin{itemize}
+    \item Discussion of LAOS Protocol and why it is uses in experiments
+    \item Discussion of previous results in Oscillatory shear
+    \item What is an absorbed state, and what does it mean to yield in a quasistatic EPM model
+\end{itemize}
+
+\section{Methodology}
+\begin{itemize}
+    \item Implementation of a quasistatic Athermal EPM using results in the introduction
+\end{itemize}
+
+\section{Results}
+\begin{itemize}
+     \item Discussion on what an Absorbed state vs a Yielded state looks like ,with snapshots of the systems
+    \item Distributions of what state the systems end up in using stacked bar charts
+    \item Survivalship PDF Plots showing the probabilities of reaching the delayed dividing, Couple this with a slice of each when less than 10\% of samples pass this point showing???? behaviour
+    \item Long delayed yielding is driven by a decay to a random walk of one oscillator, where we have a two thresholds as to when the system absorbs or Yields
+    \item Maybe Hyper-uniform or distributions here, depending on results
+\end{itemize}
+
+\chapter{Thermal Delayed Yielding in Networks}
+\section{Introduction}
+\begin{itemize}
+    \item Follows work done previously in continuum models by Lockwood and Carrington
+    \item Discussion on what the expected stress response of the system is
+    \begin{itemize}
+        \item Would expect either a shear band to form immediately as the material is taken above the critical point
+        \item Or a slow relaxation to the equilibrium state
+        \item However, it is possible that the failure can be delayed almost indefinitely, with thermal activity eventually causing the failure
+        \item Highly delayed banding under step strain has been less explored.
+        \item This is important as the system exists in an apparent steady state (equilibrium point) for a very long time before thermal energy causes failure, so it could be unexpected if no knowledge of the strain history is known
+    \end{itemize}
+    \item Experimental work
+    \item Discussion on shear Banding vs Fracture
+    \item We are going to use two models to explore this one thermal model and an Athermal model 
+\end{itemize}
+
+\section{Brownian Model}
+\begin{itemize}
+    \item Change to model (add noise term)
+    \item Reference Thermal Stiffening - See Tauber et al 2020
+    \item Effect of $\gamma_0$ and temperature $T$
+    \item Computational cost required due to a small fixed time step means we can't access ultra-long time scales.
+\end{itemize}
+
+\section{SGR-Like Breakage Condition}
+\begin{itemize}
+    \item Implementation of Breakage condition in SGR-like way, Equivalent to a Boltzmann distribution
+    \item Analogy of the particles in a bond sitting in a potential well, randomly exploring until it exits and the bond breaks - A Boltzmann distribution drives the rate at which this happens.
+    \item Show early time relaxation to the same state after an imposed strain
+    \item Effect of Temperature on breakage time $t^*$, time is delayed with an exponential factor, amount of broken bonds converges to a constant small amount as the fracture behaviour goes from diffuse to localised
+    \item effect of $\gamma_0$ on the fracture time as we get closer to the failure point, The cracks again go from a diffuse to a localised regime
+    \item Direction of crack propagation changes as a function of $\gamma_0$. In the small strain regime, the system cracks evenly vertically or horizontally with even probability. At a large strain, it cracks diagonally, following the principal compression direction perpendicular to the axis of shear.
+\end{itemize}
+
+\section{Discussion}
+\begin{itemize}
+    \item Discussion on Athermal vs Thermal, Brownian is a thermal simulation, Breakage Condition added an effective temperature to an Athermal model
+\end{itemize}
+
+
+\chapter{Critical Bonds in Networks}
+\section{Introduction}
+\begin{itemize}
+    \item In the cases where we get a single crack at failure, is it possible to predict before failure where the crack might form
+    \item It would be great to understand any precursors to failure which has wide-reaching real-world applications: a good understanding of the precursors to yielding could allow engineers to identify when a material is likely to fail, even if there is no obvious indication from its macroscopic stress-strain relationship.
+\end{itemize}
+\section{Results}
+\begin{itemize}
+    \item Network Strain Distributions as a function of $\gamma_0$
+    \item Break Angles of Bonds in Simulations
+    \item Size of Avalanches after artificially breaking a bond
+    \item Edge Betweenness centrality
+\end{itemize}
+
+
+
+\chapter{Toughness of double network hydrogels: the role of reduced
+stress propagation}
+\section{Introduction}
+\begin{itemize}
+    \item What is a hydrogel? - context to polymer networks
+    \item Challenge: polymer networks are typically either brittle and stiff or ductile and flexible
+    \item Examples of why we might want a stiff/tough double network material
+    \begin{itemize}
+        \item tendons, ligaments and cartilage
+        \item Scaffolds for tissue engineering
+        \item Load-bearing gels
+    \end{itemize}
+    \item Explain pre-existing experiential work by gong, creton, ect. 
+    \item Lack of existing theoretical work on Double networks
+    \item Aim is to create a simple mesoscopic model
+\end{itemize}
+
+\section{Methodology}
+\begin{itemize}
+    \item Extension of the single network model to the double network
+    \begin{itemize}
+        \item Square lattice - choice of overlapping bonds
+        \item Jammed Network - Overlapping on nodes
+    \end{itemize}
+    \item Pure shear protocol - How the Quasistatic regime is implemented
+    \item Averaging of stress tensor to obtain heat maps
+\end{itemize}
+
+\section{Results}
+\subsection{Square Networks}
+\begin{itemize}
+        \item Stress Strain Curves in Square Network
+        \item effect of \quotes{overlapping} bonds
+        \item Propagator in Square network
+\end{itemize}
+\subsection{Jammed Networks Networks}
+\begin{itemize}
+    \item Affect of $\mu$ and $M$ on stress strain curve responses
+    \item Compromise this lead to between $\epsilon^*$, $\Sigma^*$ and $G_s/G_d$
+    \item Diffuse vs Single crack failure as we add the second network
+    \item Propagator in Jammed network and the reduction in the propagator as a function of $\mu$ and $M$
+    \item Discuss the effect of $z$ on the model behaviour.
+\end{itemize}
+\end{document}
+
