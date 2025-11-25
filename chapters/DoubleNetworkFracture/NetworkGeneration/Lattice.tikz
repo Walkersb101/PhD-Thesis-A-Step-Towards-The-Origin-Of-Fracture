@@ -1,0 +1,25 @@
+\begin{tikzpicture}[node distance=1.2cm]
+
+% === Column 1: two stacked boxes ===
+\node[draw, line width=1mm, inner sep=0.5\pgflinewidth, minimum width=4cm, minimum height=4cm] (A1) {\includegraphics[width=4cm]{chapters/DoubleNetworkFracture/NetworkGeneration/Sacrificial.pdf}};
+\node[draw, line width=1mm, inner sep=0.5\pgflinewidth, minimum width=4cm, minimum height=4cm, below=of A1] (A2) {\includegraphics[width=4cm]{chapters/DoubleNetworkFracture/NetworkGeneration/Matrix.pdf}};
+
+% === Column 2: two stacked boxes ===
+\node[draw, line width=1mm, inner sep=0.5\pgflinewidth, minimum width=4cm, minimum height=4cm, right=1cm of A1] (B1) {\includegraphics[width=4cm]{chapters/DoubleNetworkFracture/NetworkGeneration/Sacrificial_Red.pdf}};
+\node[draw, line width=1mm, inner sep=0.5\pgflinewidth, minimum width=4cm, minimum height=4cm, below=of B1] (B2) {\includegraphics[width=4cm]{chapters/DoubleNetworkFracture/NetworkGeneration/Matrix_Blue.pdf}};
+
+% === Column 3: large single box ===
+\node[draw, line width=1mm, inner sep=0.5\pgflinewidth, minimum width=8cm, minimum height=8cm, right=1cm of B1, yshift=-2.8cm] (C1) {\includegraphics[width=8cm]{chapters/DoubleNetworkFracture/NetworkGeneration/Matrix_Blue.pdf}
+};
+\node[draw, line width=1mm, inner sep=0.5\pgflinewidth, minimum width=8cm, minimum height=8cm, right=1cm of B1, yshift=-2.8cm] (C1) {\includegraphics[width=8cm]{chapters/DoubleNetworkFracture/NetworkGeneration/Sacrificial_Red.pdf}
+};
+
+% === Arrows Column 1 → Column 2 ===
+\draw[->, line width=1mm] (A1.east) -- (B1.west);
+\draw[->, line width=1mm] (A2.east) -- (B2.west);
+
+% === Arrows Column 2 → Column 3 ===
+\draw[->, line width=1mm] (B1.east) -- (C1.west |- B1.east);
+\draw[->, line width=1mm] (B2.east) -- (C1.west |- B2.east);
+
+\end{tikzpicture}
