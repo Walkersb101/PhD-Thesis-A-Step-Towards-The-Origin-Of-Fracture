@@ -25,13 +25,13 @@ Subcounts:
 
 Included file: chapters/2-Background/chapter.tex
 Encoding: utf8
-Words in text: 5311
-Words in headers: 54
+Words in text: 5489
+Words in headers: 55
 Words outside text (captions, etc.): 88
-Number of headers: 26
+Number of headers: 27
 Number of floats/tables/figures: 4
-Number of math inlines: 273
-Number of math displayed: 36
+Number of math inlines: 279
+Number of math displayed: 37
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
   210+1+0 (1/0/0/0) Chapter: Background
@@ -44,6 +44,7 @@ Subcounts:
   560+4+0 (2/0/36/11) Subsection: Oseen/Stokeslet Tensor
   0+1+0 (1/0/0/0) Section: Networks
   449+2+0 (1/0/29/2) Subsection: Semi-Flexible filaments
+  178+1+0 (1/0/6/1) Subsection: Dynamics} \label{sec:NetworkDynamics
   953+1+0 (1/0/26/2) Subsection: Rigidity} \label{sec:Rigidity
   300+3+0 (1/0/13/1) Subsection: Fracturing the network} \label{sec:Fracture
   0+2+0 (1/0/0/0) Subsection: Athermal Fracture
@@ -54,13 +55,13 @@ Subcounts:
 
 Included file: chapters/DoubleNetworkFracture/chapter.tex
 Encoding: ascii
-Words in text: 1140
+Words in text: 1452
 Words in headers: 24
 Words outside text (captions, etc.): 589
 Number of headers: 7
 Number of floats/tables/figures: 7
-Number of math inlines: 64
-Number of math displayed: 0
+Number of math inlines: 88
+Number of math displayed: 3
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
   0+11+0 (1/0/0/0) Chapter: Toughness of double network hydrogels: the role of reduced stress propagation} \label{sec:DoubleNetworks
@@ -68,7 +69,7 @@ Subcounts:
   316+1+0 (1/0/8/0) Section: Methodology
   289+4+72 (1/1/4/0) Subsection: Double Lattice Based Networks
   259+3+117 (1/1/16/0) Subsection: Jamming-Based Double Networks
-  136+2+0 (1/0/11/0) Section: Rheological Protocol
+  448+2+0 (1/0/35/3) Section: Rheological Protocol
   109+2+400 (1/5/25/0) Section: Paper Images
 
 Included file: references/ref.tex
@@ -83,18 +84,18 @@ Number of math displayed: 0
 
 Sum of files: thesis.tex
 File(s) total: thesis.tex
-Words in text: 6669
-Words in headers: 90
+Words in text: 7159
+Words in headers: 91
 Words outside text (captions, etc.): 677
-Number of headers: 37
+Number of headers: 38
 Number of floats/tables/figures: 11
-Number of math inlines: 352
-Number of math displayed: 38
+Number of math inlines: 382
+Number of math displayed: 42
 Files: 5
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
   1+7+0 (1/0/0/0) File: thesis.tex
   217+5+0 (3/0/15/2) Included file: chapters/1-Introduction/chapter.tex
-  5311+54+88 (26/4/273/36) Included file: chapters/2-Background/chapter.tex
-  1140+24+589 (7/7/64/0) Included file: chapters/DoubleNetworkFracture/chapter.tex
+  5489+55+88 (27/4/279/37) Included file: chapters/2-Background/chapter.tex
+  1452+24+589 (7/7/88/3) Included file: chapters/DoubleNetworkFracture/chapter.tex
 
