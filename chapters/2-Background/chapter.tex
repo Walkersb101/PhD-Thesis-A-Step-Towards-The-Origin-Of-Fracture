@@ -244,14 +244,21 @@ For short or stiff polymers where $l_p \ll l_c$, the polymer acts like a rigid r
 
 The standard model for polymers is the extensible worm-like chain, where each polymer is treated as a homogeneous cylindrical elastic rod with radius $r$ and Young's modulus $E$ \cite{doi_theory_1988}. As such, the stretching rigidity of the rod can be expressed in terms of the product of its Young's modulus and cross-sectional area $\mu = E \pi r^2$ and its bending rigidity in terms of its Young's modulus and moment of inertia $\kappa = E I = E \pi r^4 / 4$. The Hamiltonian of a single filament can therefore be written as the sum of two integrals 
 \begin{equation}
-    \mathcal{H}_f = \frac{\mu}{2} \int ds \left( \frac{dl}{ds} \right)^2 + \frac{\kappa}{2} \int ds \left| \frac{\partial \vec{t}}{\partial s} \right|^2
+    \mathcal{H} = \frac{\mu}{2} \int ds \left( \frac{dl}{ds} \right)^2 + \frac{\kappa}{2} \int ds \left| \frac{\partial \vec{t}}{\partial s} \right|^2
 \end{equation}
 where $s$ is the arc length coordinate, $dl/ds$ is the relative strain of the polymer at point $s$ and $\vec{t}$ is the tangent vector to the polymer. We neglect any energy contributions from the polymers twisting along their axis. Numerically, we discretise each filament into a series of segments \cite{mackintosh_elasticity_1995} for which the Hamiltonian of each filament can be expressed as
 \begin{equation}
-    \mathcal{H}_f = \frac{\mu}{2} \sum_{ij} \frac{( l_{ij} - l_{ij,0} )^2}{l_{ij,0}} + \frac{\kappa}{2} \sum_{ijk} \frac{( \theta_{ijk} - \theta_{ijk,0} )^2}{l_{ijk,0}}
+    \mathcal{H} = \frac{\mu}{2} \sum_{ij} \frac{( l_{ij} - l_{ij,0} )^2}{l_{ij,0}} + \frac{\kappa}{2} \sum_{ijk} \frac{( \theta_{ijk} - \theta_{ijk,0} )^2}{l_{ijk,0}}
     \label{eq:NetworkHamiltonian}
 \end{equation}
 where the first sum is taken over all pairs $ij$ and triplets $ijk$ along the polymer length. We define $l_{ij}$ and $l_{ij,0}$ as the instantaneous and natural length between nodes $i$ and $j$ respectively, $\theta_{ijk}$ and $\theta_{ijk,0}$ to be the instances and natural angle between nodes  $i$, $j$ and $k$, respectively, and $l_{ijk,0} = (l_{ij,0} + l_{jk,0})/2$. In all cases, we consider a central force model only where bending rigidity is neglected; this can be thought of as the polymers having a small cross-sectional area relative to their length, such that their moment of inertia is negligible compared to their cross-sectional area.
+
+\subsection{Dynamics} \label{sec:NetworkDynamics}
+To resolve the dynamics of the networks in this work, we will consider the system to remain in force balance with a background solvent such that the force on each node of the network as a result of the bond $\bm{f}_{n,i}=\partial \mathcal{H} / \partial \mathbf{r}_i$ is opposed by a drag force from the solvent $\bm{f}_{d,i}$ such that $\bm{f}_{d,i} + \bm{f}_{n,i}=\bm{0}$. For the drag term we make the assumption that there are no long-range hydrodynamic interactions due to hydrodynamic screening, which occurs within the densely packed system \cite{shankar_theory_2002, visscher_dynamic_1994}. Instead, we consider a background Newtonian fluid with velocity field $\mathbf{v}_f(\mathbf{r}_i)$ which exerts a force on the node 
+\begin{equation*}
+    \mathbf{f}_{d, i} = -\zeta(\mathbf{\dot{r}_i} - \mathbf{v}_f(\mathbf{r}_i))
+\end{equation*}
+where $\zeta$ is a drag coefficient, which we will choose $\zeta=1$ to define our units of time. It should be noted that this drag term violates Galilean invariance. However, this form is commonly used in literature \todo{what literature} and still provides similar results when compared to the more accurate form used in dissipative particle dynamics \cite{groot_dissipative_1997}. Deformation in the system can then be considered to be applied through the widely-used \quotes{affine solvent model} \cite{durian_foam_1995,lerner_simulations_2013} which assumes the background fluid affinely deforms in response to the macroscopically applied strain.
 
 \subsection{Rigidity} \label{sec:Rigidity}
 \todo[inline]{This is a copy of my first year report and needs paraphrasing and adapting to context}

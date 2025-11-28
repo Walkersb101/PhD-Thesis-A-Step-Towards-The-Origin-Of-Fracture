@@ -34,9 +34,32 @@ For jamming-based double networks, we generate the sacrificial network as in the
 \end{figure}
     
 \section{Rheological Protocol}
-Unlike the previous chapter, where we considered systems deformed under simple shear, we consider the system to be subjected to pure shear, with the principal extension axis aligned with the $y$-direction (vertical axis). We deform the square unit cell with initial dimensions $L_{x,0} = L_{x,0}$ along the y-axis and periodic boundary conditions in both axes, preserving the area $L_0^2$ through an effective compression in the $x$-direction. The deformation in the system will be measured by the global engineering strain in the system along the $y$-axis $\epsilon = L_{y}/L_{y,0} - 1$, with the strain rate $\dot{\epsilon}$ considered to be quasi-static, that is $\dot{\epsilon} \to 0$ and the system to be a constant thermodynamic equilibrium. Computationally, this is done by considering steps in the deformation of size $\Delta\epsilon$, which by default are of size $\Delta\epsilon = 10^{-3}$, and for the system to equilibrate with a root mean square (r.m.s.) force on the nodes of magnitude $< 10^{-6}$. 
+Unlike the previous chapter, where we considered systems deformed under simple shear, we consider the system to be subjected to pure shear, with the principal extension axis aligned with the $y$-direction (vertical axis). We deform the square unit cell with initial dimensions $L_{x,0} = L_{x,0}$ along the y-axis and periodic boundary conditions in both axes, preserving the area $L_0^2$ of the unit cell through an effective compression in the $x$-direction. The deformation in the system will be measured by the global engineering strain in the system along the $y$-axis $\epsilon = L_{y}/L_{y,0} - 1$, with the strain rate $\dot{\epsilon}$ considered to be quasi-static, that is $\dot{\epsilon} \to 0$ and the system to be a constant thermodynamic equilibrium.
 
+Numerically, this is done by considering steps in the deformation of size $\Delta\epsilon$, which by default are of size $\Delta\epsilon = 10^{-3}$, and for the system to equilibrate with a root mean square (r.m.s.) force on the nodes of magnitude $< 10^{-6}$. When no breakages occur and $\Delta\epsilon$ is small enough this process approximates the true quasi-static path of the system. 
 
+However taking a step of size $\Delta\epsilon$ may be large enough to overstep the precise strain at which a singular bond fails, obscuring the true ordering of failures and thereby modifying the resulting fracture of the system from the true quasi-static response. To avoid this we treat each deformation step as a \textit{trial} step consisting of an affine deformation of size $\Delta\epsilon$, followed by relaxing the system while suppressing any bond breakages. If the relaxed configuration contains no bonds with strains greater than their threshold, the trail step is accepted and the process continues.
+
+If, instead, the relaxed configuration contains bonds that exceed their failure thresholds, the trial identifies that the step was too large and a smaller step need to be considered. To do this we define a function $f(x)$ as  
+\begin{equation*}
+    f(\Delta\epsilon) = \max_{i\in B} \left[ \frac{l_i(\Delta\epsilon)-l_{i,0}}{l_{i,0}} - \lambda_i \right],
+\end{equation*}
+where $B$ denotes the set of all bonds, $l_i(\Delta\epsilon)$ is the relaxed length of bond $i$ after a trial step of size $\Delta\epsilon$, $l_{i,0}$ its natural length, and $\lambda_i$ its failure threshold. 
+
+The sign of $f(\Delta\epsilon)$ therefore determines weather a step is acceptable:
+\begin{align*}
+    f(\Delta\epsilon) < 0 &\iff \text{no bond exceeds its threshold (Step is too small)}, \\
+    f(\Delta\epsilon) = 0 &\iff \text{at least one bond is exactly at threshold (Critcal step size)}, \\
+    f(\Delta\epsilon) > 0 &\iff \text{at least one bond exceeds its threshold (Step is too large)},
+\end{align*}
+Thus identifying the correct step size reduces to finding the smallest $\Delta\epsilon >0$ such that $f(\Delta\epsilon) = 0$ which can be achieved by bisection on the range $(0,\Delta\epsilon_{Max}]$ where $\Delta\epsilon_{Max}=10^{-3}$ the default step size.
+
+Once a suitable step size is found the we resolve the dynamics of the fracture under the overdamped dynamics described in \cref{sec:NetworkDynamics} where $\bm{v}_f=\bm{0}$ in our quasi-static regime. The resultant equation of motion of a node $i$ is therefore 
+\begin{equation}
+    \dot{\bm{r}}_i = \sum_{j}\mu_{ij} \frac{l_{ij}-l_{ij,0}}{l_{ij,0}}\frac{\bm{r}_{ij}}{\left\lVert \bm{r}_{ij} \right\rVert}, \text{ for all neighbours $j$ of $i$.}
+    \label{eq:DoubleMotion}
+\end{equation}
+The spring modulus $\mu_{ij}$ takes either $\mu_s$ or $\mu_m$, and time units are set by the drag coefficient $\zeta=1$. We integrate \cref{eq:DoubleMotion} with an adaptive Euler-Heun algorithm \cite{sammullerAdaptiveBrownianDynamics2021} with an absolute error tolerance of $10^{-2}$. Bond breakages are evaluated at the start of each timestep, and the timestep $\delta t$ is reset to its minimum value of $10^{-8}$ to account for the discontinuity resulting from the removed bond.
 
 \section{Paper Images}
 
