@@ -55,7 +55,7 @@ Subcounts:
 
 Included file: chapters/DoubleNetworkFracture/chapter.tex
 Encoding: ascii
-Words in text: 1834
+Words in text: 1838
 Words in headers: 26
 Words outside text (captions, etc.): 428
 Number of headers: 9
@@ -70,7 +70,7 @@ Subcounts:
   399+4+72 (1/1/12/0) Subsection: Double Lattice Based Networks
   253+3+120 (1/1/16/0) Subsection: Jamming-based Double Networks
   595+2+0 (1/0/45/3) Section: Rheological Protocol
-  244+3+236 (1/5/10/0) Section: Stress Strain Response
+  248+3+236 (1/5/10/0) Section: Stress Strain Response
   0+5+0 (1/3/0/0) Section: Damage in the Sacrificial Network
   0+2+0 (1/3/0/0) Section: Stress Propogation
 
@@ -86,7 +86,7 @@ Number of math displayed: 0
 
 Sum of files: thesis.tex
 File(s) total: thesis.tex
-Words in text: 7540
+Words in text: 7544
 Words in headers: 95
 Words outside text (captions, etc.): 550
 Number of headers: 41
@@ -99,5 +99,5 @@ Subcounts:
   8+7+0 (1/0/0/0) File: thesis.tex
   212+5+0 (3/0/15/2) Included file: chapters/1-Introduction/chapter.tex
   5486+57+122 (28/5/283/37) Included file: chapters/2-Background/chapter.tex
-  1834+26+428 (9/13/91/3) Included file: chapters/DoubleNetworkFracture/chapter.tex
+  1838+26+428 (9/13/91/3) Included file: chapters/DoubleNetworkFracture/chapter.tex
 
