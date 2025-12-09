@@ -1,5 +1,5 @@
 \setcounter{equation}{0}
-\chapter{Toughness of double network hydrogels: the role of reduced stress propagation} \label{sec:DoubleNetworks}
+\chapter{Toughness of Double Network Hydrogels} \label{sec:DoubleNetworks}
 
 \section{Introduction}
 
@@ -7,110 +7,163 @@ While other models have been used to simulate double networks, such as the Multi
 
 
 \section{Methodology}
-To capture the salient physics of double network materials, we must extend the network model defined in \cref{sec:NetworkStructure} and used in the previous chapters to model both a sacrificial network and a matrix network and how they interact with each other. As a starting point for our model, we again consider a worm-like chain model with Hamiltonian \cref{eq:NetworkHamiltonian}, again only considering the central forces acting on the nodes. We will take each network to evolve almost independently under \cref{eq:NetworkHamiltonian} as in the single network case, again ignoring the volume exclusion principle, both within each network, but also in interactions between the two networks. To connect the two networks, we will consider a subset of nodes in each network to be shared between the two networks, allowing for the two networks to interact via these inter-network connections. These inter-network connections may correspond to either chemically bonded interactions or physical entanglement points between the two networks, and in either case, they enable load sharing, which has been observed experimentally \cite{ahmedBrittleDuctileTransition2014}. Each bond in our system can then be given a modulus $\mu_s$ and $\mu_m$, and a breakage threshold $\lambda_s$ and $\lambda_m$ for the sacrificial and matrix networks, respectively. We will consider a bond to break immediately when its own strain $l/l_0 - 1$ exceeds its corresponding threshold: $\lambda_s$ for sacrificial bonds or $\lambda_m$ for matrix bonds.
+To capture the salient physics of double network materials, we must extend the network model defined in \cref{sec:NetworkStructure} and used in the previous chapters to model both a sacrificial network and a matrix network and how they interact with each other. As a starting point for our model, we again consider a worm-like chain model with Hamiltonian \cref{eq:NetworkHamiltonian}, again only considering the central forces acting on the nodes. We will take each network to evolve almost independently under \cref{eq:NetworkHamiltonian} as in the single network case, again ignoring the volume exclusion principle, both within each network, but also in interactions between the two networks. To connect the two networks, we will consider a subset of nodes in each network to be shared, allowing for the two networks to interact via these inter-network connections. These inter-network connections may correspond to either chemically bonded interactions or physical entanglement points between the two networks, and in either case, they enable load sharing, which has been observed experimentally \cite{ahmedBrittleDuctileTransition2014}. Each bond in our system can then be given a modulus $\mu_s$ and $\mu_m$, and a breakage threshold $\lambda_s$ and $\lambda_m$ for the sacrificial and matrix networks, respectively. We will consider a bond to break immediately when its own strain $l/l_0 - 1$ exceeds its corresponding threshold: $\lambda_s$ for sacrificial bonds or $\lambda_m$ for matrix bonds.
 
 In the following work, we consider two forms of network structure, one based on a square lattice (described in \cref{sec:LatticeBasedNetworks} and the other based on Jammed Packing derived networks (described in \cref{sec:PackingBasedNetworks}). The two methods define two ways to construct double network geometries by defining how each network is constructed and how the subset of nodes shared between the two networks is defined. Importantly, they allow us to define a relative length scale difference $M$ between the two networks, which will allow us to capture both the relevant microphysics as well as the macroscopic physics of bulk failure. 
 
 \subsection{Double Lattice Based Networks}
-The simplest form of a single network structure is that of a lattice-based network. The Sacrificial network is constructed as described in \cref{sec:LatticeBasedNetworks} by defining a set of lattice vectors and rules for connecting them. The Matrix network can also be generated in the same way, however, with a scaled set of lattice vectors. For simplicity, we choose $M\in\mathbb{Z}$, such that the sacrificial and matrix lattices are commensurate: the matrix lattice vectors are integer multiples of the sacrificial ones. This ensures that the nodes of the Matrix lattice lie exactly on a subset of the nodes of the fine sacrificial lattice. The natural length of each bond $l_0$ is then set in this configuration. The same problems detailed in \cref{sec:LatticeBasedNetworks} occur in double networks, so pruning and perturbing the natural position of each network's nodes. 
+The simplest form of a single network structure is that of a lattice-based network. The sacrificial network is constructed as described in \cref{sec:LatticeBasedNetworks} by defining a set of lattice vectors and rules for connecting them. The matrix network can also be generated in the same way, however, with a scaled set of lattice vectors. For simplicity, we choose $M\in\mathbb{Z}$, such that the sacrificial and matrix lattices are commensurate: the matrix lattice vectors are integer multiples of the sacrificial ones. This ensures that the nodes of the matrix lattice lie exactly on a subset of the nodes of the fine sacrificial lattice. The natural length of each bond $l_0$ is then set in this configuration.  
 
-While we choose to ignore the volume exclusion principle during the dynamics of the simulation to simplify the forces in our system, only to consider central forces, we can optionally decide to respect this in the network generation steps. This gives us the choice of whether we allow both a matrix and a sacrificial bond to perfectly lie on top of each other in the networks during the network's natural configuration. It's also possible to add further to subdivide the sacrificial bonds such that they connect at every lattice point of the Matrix they pass over. While this would normally give four combinations of lattice network geometries, the case where we do not allow overlaps and do not subdivide the sacrificial bonds decouples the matrix and sacrificial networks, and therefore cannot be considered a double network. An example of the three remaining cases can be seen in \cref{fig:DoubleSquareTypes} for a square lattice with $M=4$.
+While we choose to ignore the volume exclusion principle during the dynamics of the simulation to simplify the forces in our system, only to consider central forces, we can optionally decide to respect this in the network generation steps. This gives us the choice of whether we allow both a matrix and a sacrificial bond to perfectly lie on top of each other in the networks during the network's natural configuration. It's also possible to add further to subdivide the sacrificial bonds such that they connect at every lattice point of the matrix they pass over. While this would normally give four combinations of lattice network geometries, the case where we do not allow overlaps and do not subdivide the sacrificial bonds decouples the matrix and sacrificial networks, and therefore cannot be considered a double network. An example of the three remaining cases can be seen in \cref{fig:DoubleSquareTypes} for a square lattice with $M=4$.
 
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=0.75\linewidth]{chapters/DoubleNetworkFracture/NetworkGeneration/SquareTypes-4.pdf}
-    \caption{Figure detailing the types of network constructions for a square lattice double network with $M=4$. Each type differs in the choice of nodes which can interact with both the Sacrificial and Matrix networks. In the overlapping network, we ignore the volume exclusion principle and allow both a matrix and a sacrificial bond to co-exist. Networks with Subdivisions subdivide their sacrificial bonds into smaller sections to connect to the Matrix nodes they pass over.}
+    \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/NetworkGeneration/SquareTypes-4.pdf}
+    \caption{Figure detailing the types of network constructions for a square lattice double network with $M=4$. Each type differs in the choice of nodes which can interact with both the sacrificial and matrix networks. In the overlapping network, we ignore the volume exclusion principle and allow both a matrix and a sacrificial bond to co-exist. Networks with Subdivisions subdivide their sacrificial bonds into smaller sections to connect to the matrix nodes they pass over.}
     \label{fig:DoubleSquareTypes}
 \end{figure}
 
-\subsection{Jamming-Based Double Networks}
-For jamming-based double networks, we generate the sacrificial network as in the single network case described in \cref{sec:PackingBasedNetworks} through the minimisation of an ensemble of $N_s$ disks of bidispersed radii $R_s$ and $1.4R_s$ in equal numbers at a packing fraction of $\phi = 1.0$. We set the typical length scale of a sacrificial bond by defining the size of our periodic unit cell to be $L_{x0}=L_{y0}=\sqrt{N_s}$ as is done previously. Overlapping pairs of nodes are then connected by a bond with its natural length $l_0$ being set to the distance between the centres of the two disks. The matrix network is constructed similarly, but now starting with an ensemble of $N_m$ disks $R_s$ and $1.4R_s$ in equal numbers at a packing fraction of $\phi = 1.0$, where $R_m \leq R_s$. The ratio of $R_s$ to $R_m$ defines $M = R_s / R_m \in \mathbb{R}_{>0}$, which now takes any positive real value, as by construction the networks do not need to be commensurate to define the internetwork connections. To define the internetwork connections between the sacrificial and matrix networks, we take the existing nodes used to generate the sacrificial network and scale them by a factor of $1/M$ and then pin them to their corresponding node in the sacrificial network, with the remaining $N_m - N_s$ disks randomly initialised. The matrix ensemble is then equilibrated, taking care to ensure that a homogeneous disk distribution is reached despite the inclusions introduced by the pinioned sacrificial disks, with matrix bonds formed in the same manner as in the sacrificial network. The double network can be formed by overlaying the unit cells of the two networks and introducing inter-network connections at all shared nodes, which correspond to all sacrificial nodes by construction.
+In this chapter, we will consider square-lattice-based double networks whose intra-network connections have connectivity $z=z_c=4.0$. These networks sit on the isostatic point $z_c$ and are therefore only rigid in their initial state; any bond failures which occur during deformation will consequently locally become floppy. As discussed in \cref{sec:Rigidity}, the network may strain-stiffen during its deformation and behave as if it has a $z > z_c$ even after bond failures. To ensure that the network remains in the strain-stiffened regime throughout its entire deformation, we pre-stress each bond by reducing its natural length $l_0$ such that its initial local bond strain $\epsilon_{b}$ is sampled from a normal distribution $\mathcal{N}(\epsilon_p, \sigma_p)$ with mean $\epsilon_p$ and width $\sigma_p$. By varying each bond's local strain, we address the problems described in \cref{sec:LatticeBasedNetworks}, usually solved by pruning and perturbing the natural positions of each network's nodes. 
+
+\subsection{Jamming-based Double Networks}
+For Jamming-based double networks, we generate the sacrificial network as in the single network case described in \cref{sec:PackingBasedNetworks} by minimising an ensemble of $N_s$ disks with bidispersed radii $R_s$ and $1.4R_s$, each in equal numbers at a packing fraction of $\phi = 1.0$. We set the typical length scale of a sacrificial bond by defining the size of our periodic unit cell to be $L_{x0} = L_{y0} = \sqrt{N_s}$ as previously done. Overlapping pairs of nodes are then connected by a bond with its natural length $l_0$ being set to the distance between the centres of the two disks. 
+
+The matrix network is constructed similarly, but now starting with an ensemble of $N_m$ disks $R_s$ and $1.4R_s$ in equal numbers at a packing fraction of $\phi = 1.0$, where $R_m \leq R_s$. The ratio of $R_s$ to $R_m$ defines $M = R_s / R_m \in \mathbb{R}_{>0}$, which now takes any positive real value, since by construction the networks do not need to be commensurate to define the internetwork connections. To define the internetwork connections between the sacrificial and matrix networks, we take the existing nodes used to generate the sacrificial network, scale them by a factor of $1/M$ and pin them to their corresponding nodes in the sacrificial network, with the remaining $N_m - N_s$ disks randomly initialised. 
+
+The matrix ensemble is then equilibrated, taking care to ensure a homogeneous distribution of disks despite the inclusions introduced by the pinioned sacrificial disks, with matrix bonds formed in the same manner as in the sacrificial network. The double network can be formed by overlaying the unit cells of the two networks and introducing inter-network connections at all shared nodes, which correspond to all sacrificial nodes by construction.
 
 \begin{figure}[hbt]
 \centering
 \resizebox{0.9\textwidth}{!}{\input{chapters/DoubleNetworkFracture/NetworkGeneration/Lattice.tikz}}
-\caption{Figure detailing how a Jamming-Based Double Network is constructed. The top row illustrates the initial construction of a jammed network as described in \cref{sec:PackingBasedNetworks} through the minimisation of an ensemble of soft disks of two different radii. This gives us the sacrificial network, with bonds shown in red. The bottom row illustrates the construction of the second matrix network again through the minimisation of an ensemble of soft disks of two different radii, however, with pinioned shared disks but rescaled disks from the sacrificial network. This gives a second network with bonds illustrated in blue. These two networks can be combined to form the double network on the right, with inter-network connections at all sacrificial nodes.}
+\caption{Figure detailing how a Jamming-based double network is constructed. The top row illustrates the initial construction of a Jamming-based network as described in \cref{sec:PackingBasedNetworks} through the minimisation of an ensemble of soft disks of two different radii. This gives us the sacrificial network, with bonds shown in red. The bottom row illustrates the construction of the second matrix network again through the minimisation of an ensemble of soft disks of two different radii; however, with pinioned rescaled disks from the sacrificial network, which are shared across both networks. This gives a second network with bonds illustrated in blue. These two networks can be combined to form the double network on the right, with inter-network connections at all sacrificial nodes.}
 \label{fig:DoubleJammedNetwork}
 \end{figure}
     
 \section{Rheological Protocol}
 Unlike the previous chapter, where we considered systems deformed under simple shear, we consider the system to be subjected to pure shear, with the principal extension axis aligned with the $y$-direction (vertical axis). We deform the square unit cell with initial dimensions $L_{x,0} = L_{x,0}$ along the y-axis and periodic boundary conditions in both axes, preserving the area $L_0^2$ of the unit cell through an effective compression in the $x$-direction. The deformation in the system will be measured by the global engineering strain in the system along the $y$-axis $\epsilon = L_{y}/L_{y,0} - 1$, with the strain rate $\dot{\epsilon}$ considered to be quasi-static, that is $\dot{\epsilon} \to 0$ and the system to be a constant thermodynamic equilibrium.
 
-Numerically, this is done by considering steps in the deformation of size $\Delta\epsilon$, which by default are of size $\Delta\epsilon = 10^{-3}$, and for the system to equilibrate with a root mean square (r.m.s.) force on the nodes of magnitude $< 10^{-6}$. When no breakages occur and $\Delta\epsilon$ is small enough this process approximates the true quasi-static path of the system. 
+Numerically, this is done by considering steps in the deformation of size $\Delta\epsilon$, which by default are of size $\Delta\epsilon = 10^{-3}$, and for the system to equilibrate with a root mean square (r.m.s.) force on the nodes of magnitude $< 10^{-6}$. When no breakages occur, and $\Delta\epsilon$ is small enough, this process approximates the system's true quasi-static path. 
 
-However taking a step of size $\Delta\epsilon$ may be large enough to overstep the precise strain at which a singular bond fails, obscuring the true ordering of failures and thereby modifying the resulting fracture of the system from the true quasi-static response. To avoid this we treat each deformation step as a \textit{trial} step consisting of an affine deformation of size $\Delta\epsilon$, followed by relaxing the system while suppressing any bond breakages. If the relaxed configuration contains no bonds with strains greater than their threshold, the trail step is accepted and the process continues.
+However, taking a step of size $\Delta\epsilon$ may be large enough to overstep the precise strain $\epsilon$ at which a singular bond fails, obscuring the true ordering of failures and thereby modifying the resulting fracture of the system from the true quasi-static response. To avoid this, we treat each deformation step as a \textit{trial} step consisting of an affine deformation of size $\Delta\epsilon$, followed by relaxing the system while suppressing any bond breakages. If the relaxed configuration contains no bonds with strains greater than their threshold, the \textit{trial} step is accepted, and the process continues.
 
-If, instead, the relaxed configuration contains bonds that exceed their failure thresholds, the trial identifies that the step was too large and a smaller step need to be considered. To do this we define a function $f(x)$ as  
+If, instead, the relaxed configuration contains bonds that exceed their failure thresholds, the \textit{trial} identifies that the step was too large and a smaller step needs to be considered. To do this, we define a function $f(x)$ as  
 \begin{equation*}
     f(\Delta\epsilon) = \max_{i\in B} \left[ \frac{l_i(\Delta\epsilon)-l_{i,0}}{l_{i,0}} - \lambda_i \right],
 \end{equation*}
-where $B$ denotes the set of all bonds, $l_i(\Delta\epsilon)$ is the relaxed length of bond $i$ after a trial step of size $\Delta\epsilon$, $l_{i,0}$ its natural length, and $\lambda_i$ its failure threshold. 
-
-The sign of $f(\Delta\epsilon)$ therefore determines weather a step is acceptable:
+where $B$ denotes the set of all remaining bonds, $l_i(\Delta\epsilon)$ is the relaxed length of bond $i$ after a trial step of size $\Delta\epsilon$, $l_{i,0}$ its natural length, and $\lambda_i$ its failure threshold. This tracks the bond which is closest to failure to failure. The sign of $f(\Delta\epsilon)$ therefore determines whether a step is acceptable:
 \begin{align*}
-    f(\Delta\epsilon) < 0 &\iff \text{no bond exceeds its threshold (Step is too small)}, \\
-    f(\Delta\epsilon) = 0 &\iff \text{at least one bond is exactly at threshold (Critcal step size)}, \\
-    f(\Delta\epsilon) > 0 &\iff \text{at least one bond exceeds its threshold (Step is too large)},
+    f(\Delta\epsilon) < 0 &\iff \text{no bond exceeds its threshold (\textit{trial} step is too small)}, \\
+    f(\Delta\epsilon) = 0 &\iff \text{at least one bond is exactly at threshold (Critical \textit{trial} step size)}, \\
+    f(\Delta\epsilon) > 0 &\iff \text{at least one bond exceeds its threshold (\textit{trial} step is too large)},
 \end{align*}
-Thus identifying the correct step size reduces to finding the smallest $\Delta\epsilon >0$ such that $f(\Delta\epsilon) = 0$ which can be achieved by bisection on the range $(0,\Delta\epsilon_{Max}]$ where $\Delta\epsilon_{Max}=10^{-3}$ the default step size.
+Thus, identifying the correct step size reduces to finding the smallest $\Delta\epsilon >0$ such that $f(\Delta\epsilon) = 0$, which can be achieved by bisection on the range $(0,\Delta\epsilon_{Max}]$ where $\Delta\epsilon_{Max}=10^{-3}$ is the default \textit{trial} step size.
 
-Once a suitable step size is found the we resolve the dynamics of the fracture under the overdamped dynamics described in \cref{sec:NetworkDynamics} where $\bm{v}_f=\bm{0}$ in our quasi-static regime. The resultant equation of motion of a node $i$ is therefore 
+Once a suitable step size is found, the dynamics of the fracture are resolved under an overdamped dynamics described in \cref{sec:NetworkDynamics} where $\bm{v}_f=\bm{0}$ in our quasi-static regime while resolving the fracture. The resultant equation of motion of a node $i$ is therefore 
 \begin{equation}
     \dot{\bm{r}}_i = \sum_{j}\mu_{ij} \frac{l_{ij}-l_{ij,0}}{l_{ij,0}}\frac{\bm{r}_{ij}}{\left\lVert \bm{r}_{ij} \right\rVert}, \text{ for all neighbours $j$ of $i$.}
     \label{eq:DoubleMotion}
 \end{equation}
-The spring modulus $\mu_{ij}$ takes either $\mu_s$ or $\mu_m$, and time units are set by the drag coefficient $\zeta=1$. We integrate \cref{eq:DoubleMotion} with an adaptive Euler-Heun algorithm \cite{sammullerAdaptiveBrownianDynamics2021} with an absolute error tolerance of $10^{-2}$. Bond breakages are evaluated at the start of each timestep, and the timestep $\delta t$ is reset to its minimum value of $10^{-8}$ to account for the discontinuity resulting from the removed bond.
+The spring modulus $\mu_{ij}$ takes either $\mu_s$ or $\mu_m$, and time units are set by the drag coefficient $\zeta=1$. We integrate \cref{eq:DoubleMotion} with an adaptive Euler-Heun algorithm (described in \cref{sec:EulerHeun}) with an absolute error tolerance of $10^{-2}$. Bond breakages are evaluated at the start of each time step, and the time step $\delta t$ is reset to its minimum value of $10^{-8}$ to account for the discontinuity resulting from the removed bond. The system dynamics evolves in this manner until the root-mean-square (r.m.s.) force at the nodes again falls below $10^{-6}$, where another trial step of size $\Delta\epsilon=10^{-3}$ is attempted.
 
-\section{Paper Images}
+In all cases, we choose units of stress such that $\mu_s = 1.0$ and the characteristic length of our sacrificial bonds is set by our network structure, but in both cases considered, it is such that the size of our unit cell $L_{x,0} = L_{x,0} = \sqrt{N_s}$. The length scale of our matrix bonds is then set by $M$, the typical number of matrix-bond lengths per sacrificial-bond length. For notational convenience, we will define $M=0$ to denote a system with only a sacrificial network. In line with the experimental literature discussed previously, we will consider cases where the sacrificial network is comparatively sparse ($M>1.0$), stiffer than the matrix ($\mu_m < 1.0$), and more brittle ($\lambda_m > 0.5$).
 
-\begin{figure}[hbt]
+\section{Stress Strain Response}
+
+The aim of this work is to explore how the simple mesoscopic model described above can be used to explore how the effect of differing length scales affects the fracture and behaviour of double networks, particularly focusing on how stress is redistributed across the networks following a plastic event, as is explored in \cite{tauber_microscopic_2020,tauber_microscopic_2020}. We will discuss the results of this model under the above-discussed Jamming-based and Square Lattice-Based double network topologies, with a focus on the Jamming-based double network. The fundamental results of this work are in \cref{fig:JammedStressStrain} and \cref{fig:SquareStressStrain}, where we compare the stress-strain response of a double network material with its sacrificial and matrix components individually for both a Jamming-based double network and a square lattice-based double network respectively. In both cases, we see that the double network retains most of the toughness of the matrix network while still retaining the stiffness of the sacrificial network, particularly during the early elastic regime of deformation, compared to the components individually. 
+
+The stress-strain response of the single matrix network (blue curve in \cref{Figure}a) and single sacrificial network (red curve in \cref{Figure}a) shows a non-linear elastic stretching response, often found in the network materials \cite{feng_nonlinear_2016,licup_nonlinear_2016,storm_nonlinear_2005}, followed by abrupt brittle or quasi-brittle failure \cite{dussi_athermal_2020, tauber_stretchy_2022}. The double network responses mirror those of its components, with an initial non-linear elastic response, again commonly found in elastomers\cite{millereauMechanicsElastomericMolecular2018, ducrot_toughening_2014}, hydrogels\cite{gong_why_2010} and macroscopic composites\cite{kingMacroscaleDoubleNetworks2019, takahashiCreatingStiffTough2018} up until the first sacrificial bond break at a strain close to where the single sacrificial network fails. 
+
+
+
+
+\begin{figure}[hbt!]
     \centering
-    \includegraphics[width=0.7\linewidth]{chapters/DoubleNetworkFracture/Paper Images/Figure1.png}
-\caption{Portion of an {\bf a)} single and {\bf b)}  double network, with sacrificial bonds in red and matrix bonds  blue. {\bf c)} Stretched single network at a location on the stress-strain curve shown by the triangle in Fig.~\ref{fig:paperFig2}a). A Macroscopic crack has propagated across the network, causing catastrophic material failure. {\bf d)} Stretched double network at a location on the stress-strain curve shown by the circle in Fig.~\ref{fig:paperFig2}b). Damage has arisen diffusely via many microcracks in the sacrificial network, which do not propagate macroscopically. This allows the double network to stretch much further than the single network without failing.}
-\label{fig:paperFig1}
+    \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/Result Figures/StressStrainCurves.pdf}
+    \caption{Stress-strain curves of a Jamming-Based network. {\bf a)} Single sacrificial network (red solid line) and single matrix network (blue solid line). {\bf b)} Composite double network (black solid line), with the contributions of the component sacrificial network (red dashed line) and matrix network (blue dotted line) shown separately. Inset: modulus $G = d\Sigma / d\epsilon$ at small strain. Parameters: $M=3.0, \mu_m=0.2, \lambda_m=3.0$.}
+    \label{fig:JammedStressStrain}
 \end{figure}
 
-\begin{itemize}
-  \item Is this ok a a whole page figure? Could probably format it to be horizontal, such that it fits nicely along the top and bottom of the page
-  \item Do we also generate this for the $z_m=3.5$ case, might be able to make a really nice full page figure if I do this
-\end{itemize}
-
-\begin{figure}[hbt]
+\begin{figure}[hbt!]
     \centering
-    \includegraphics[width=0.5\linewidth]{chapters/DoubleNetworkFracture/Paper Images/Figure2.pdf}
-    \caption{Stress-strain curves. {\bf a)} Single sacrificial network (red solid  line) and  single matrix network (blue solid line). {\bf b)} Composite double network (black solid line), with the contributions of the component sacrificial network (red dashed line) and matrix network (blue dotted line) shown separately.  Inset: modulus $G=d\Sigma/d\epsilon$ at small strain. Triangle and circle show the location of the snapshots in Fig.~\ref{fig:network}. Parameters:  $M=3.0,  \mu_m=0.2, \lambda_m=3.0$. {\bf c)} and {\bf d)} show the effect of reducing the matrix network connectivity to $z_{\rm m}=3.5$, as discussed in the penultimate paragraph of the main text.
+    \missingfigure{Stress-strain curves of a prestressed Square Lattice Network}
+    \caption{Stress-strain curves of a prestressed square lattice network. {\bf a)} Single sacrificial network (red solid line) and single matrix network (blue solid line). {\bf b)} Composite double network (black solid line), with the contributions of the component sacrificial network (red dashed line) and matrix network (blue dotted line) shown separately. Parameters: $?????$.}
+    \label{fig:SquareStressStrain}
+\end{figure}
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/Result Figures/StressStrainExtract.pdf}
+    \caption{{
+    Failure Strains $\epsilon^*$, Stress $\Sigma^*$ and normalised modulus of jam
+    \bf Top panels:} The failure strain of the double network (black solid curves) is plotted as a function of (a) the matrix content $M$ and (b) the matrix bond stiffness $\mu_m$. In each case, we show results for matrix bond failure thresholds $\lambda_m = 1.0,\; 2.0,\; 3.0$, displayed from the lowest to highest curve (circles, triangles and squares, respectively). For comparison, the failure strains of the corresponding single sacrificial network and single matrix network are indicated by dashed and dotted curves, respectively.
+    {\bf Middle panels:} Analogous to (a) and (b), but now presenting the failure stress.
+    {\bf Bottom panels:} The modulus of the sacrificial network, normalised by the modulus of the full double network. Panels (a), (c), and (e) use a fixed matrix bond stiffness $\mu_m = 0.2$, whereas panels (b), (d), and (f) fix the relative length cales at $M = 3.0$.
     }
-    \label{fig:paperFig2}
+    \label{fig:JammedStrainExtract}
 \end{figure}
 
-\begin{itemize}
-    \item can definatly make this better formatted for the space
-\end{itemize}
-
-\begin{figure}
+\begin{figure}[hbt!]
     \centering
-    \includegraphics[width=0.5\linewidth]{chapters/DoubleNetworkFracture/Paper Images/Figure3.pdf}
-    \caption{Stress propagation to neighbouring sacrificial bonds from the breakage of a sacrificial bond at the origin: (a+c) in a single sacrificial network  and (b+d) in a double network with $M=5.0, \mu_m=0.2$.  Colourscales show the change due to stress propagation of (a+b)  the $yy$ component  of the Kirkwood stress  $\delta\Sigma_{yy}$; and (c+d)  the sacrificial bond stress  $\delta\sigma_{\rm sb}$, with $\sigma_{\rm sb}\equiv \mu_s(l-l_0)/l_0$. Each quantity is averaged over all bonds at each grid square. e+f) show the change in bond stress as a function of distance along $x$  at $y=0$ for e) several $M$ at fixed $\mu_m=0.2$, and f) several $\mu_m$ at fixed $M=3.0$.  
-Lengths are expressed in units such that $\Delta x=1$ corresponds to the typical sacrificial bond length. The propagator of a single sacrificial network is recovered for $M=0$ or $\mu_m = 0$. }
-    \label{fig:paperFig3}
-\end{figure}
-
-\begin{itemize}
-    \item really like this figure, in particular the top 4
-    \item seperate into two figure, top 4 and bottom four
-    \item We may be able to show more cases, with a change in $M$
-    \item Do we do the same as a fn of $\mu_m$, i.e have a grid for each of e) and f)
-\end{itemize}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.5\linewidth]{chapters/DoubleNetworkFracture/Paper Images/Figure4.pdf}
-    \caption{{\bf Top:} failure strain of double network (black solid lines) as a function of a) the amount of matrix $M$  and b) matrix bond stiffness $\mu_m$, shown in each case for matrix bond breakage thresholds $\lambda_m=1.0, 2.0, 3.0$ in curves bottom to top, marked by circles, triangles and squares respectively.  Failure strains of the corresponding single sacrificial network and single matrix network are shown by red dashed and blue dotted lines respectively. {\bf Middle:} as in a+b) but now showing failure stresses. {\bf Bottom:} modulus of the sacrificial network relative to that of the double network. Matrix bond stiffness $\mu_m=0.2$ in a,c,e). Amount of matrix $M=3.0$ in b,d,f).}
-\end{figure}
-
-\begin{figure}
-    \centering
-    \includegraphics[width=0.45\linewidth]{chapters/DoubleNetworkFracture/Extra Images/StiffnessRatio.png}
     \includegraphics[width=0.45\linewidth]{chapters/DoubleNetworkFracture/Extra Images/Fail.png}
-    \caption{Caption}
+    \includegraphics[width=0.45\linewidth]{chapters/DoubleNetworkFracture/Extra Images/StiffnessRatio.png}
+    \caption{
+    }
+    \label{fig:JammedPhaseDiagrams}
+\end{figure}
+
+
+
+\begin{figure}[hbt!]
+    \centering
+    \missingfigure{Square Strain Extract}
+    \caption{}
+    \label{fig:SquareStrainExtract}
+\end{figure}
+
+\section{Damage in the Sacrificial Network}
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/Result Figures/BrokenStrainCurves.pdf}
+    \caption{}
+    \label{fig:JammedBrokenStrain}
+\end{figure}
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/Result Figures/BrokenStrainExtract.pdf}
+    \caption{}
+    \label{fig:JammedBrokenExtract}
+\end{figure}
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.45\linewidth]{chapters/DoubleNetworkFracture/Result Figures/Sacrifical.pdf}
+    \includegraphics[width=0.45\linewidth]{chapters/DoubleNetworkFracture/Result Figures/Double.pdf}
+    \caption{}
+    \label{fig:JammedImages}
+\end{figure}
+
+\section{Stress Propogation}
+
+\begin{figure}[hbt!]
+    \centering
+    %\missingfigure{Propogator M =0, 2, 5 + contour}
+    \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/Result Figures/Propogators.pdf}
+    \caption{}
+    \label{fig:JammedPropogators}
+\end{figure}
+
+\begin{figure}[hbt!]
+    \centering
+    \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/Result Figures/Lines.pdf}
+    \caption{}
+    \label{fig:JammedPropogatorsLines}
+\end{figure}
+
+\begin{figure}[hbt!]
+    \centering
+    \missingfigure{Square Propogator}
+    \caption{}
+    \label{fig:SquarePropogators}
 \end{figure}
