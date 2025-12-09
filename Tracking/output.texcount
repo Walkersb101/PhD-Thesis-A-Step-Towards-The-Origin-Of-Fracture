@@ -1,6 +1,6 @@
 File: thesis.tex
 Encoding: ascii
-Words in text: 1
+Words in text: 8
 Words in headers: 7
 Words outside text (captions, etc.): 0
 Number of headers: 1
@@ -10,7 +10,7 @@ Number of math displayed: 0
 
 Included file: chapters/1-Introduction/chapter.tex
 Encoding: ascii
-Words in text: 217
+Words in text: 212
 Words in headers: 5
 Words outside text (captions, etc.): 0
 Number of headers: 3
@@ -19,18 +19,18 @@ Number of math inlines: 15
 Number of math displayed: 2
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
-  106+1+0 (1/0/0/0) Chapter: Introduction
+  101+1+0 (1/0/0/0) Chapter: Introduction
   0+3+0 (1/0/0/0) Section: Layout of thesis
   111+1+0 (1/0/15/2) Section: Notation
 
 Included file: chapters/2-Background/chapter.tex
 Encoding: utf8
-Words in text: 5489
-Words in headers: 55
-Words outside text (captions, etc.): 88
-Number of headers: 27
-Number of floats/tables/figures: 4
-Number of math inlines: 279
+Words in text: 5486
+Words in headers: 57
+Words outside text (captions, etc.): 122
+Number of headers: 28
+Number of floats/tables/figures: 5
+Number of math inlines: 283
 Number of math displayed: 37
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
@@ -39,38 +39,40 @@ Subcounts:
   647+7+12 (3/2/60/14) Subsection: Stress and Strain
   0+10+0 (4/0/0/0) Subsection: Rheological protocol
   34+1+0 (1/0/0/0) Subsection: Experiments
-  0+3+0 (1/0/0/0) Subsection: Rate dependence / quasistatic
+  0+3+0 (1/0/0/0) Subsection: Rate dependence / Quasistatic
   340+1+0 (1/0/34/2) Section: Hydrodynamics
-  560+4+0 (2/0/36/11) Subsection: Oseen/Stokeslet Tensor
+  557+4+34 (2/1/40/11) Subsection: Oseen/Stokeslet Tensor
   0+1+0 (1/0/0/0) Section: Networks
-  449+2+0 (1/0/29/2) Subsection: Semi-Flexible filaments
-  178+1+0 (1/0/6/1) Subsection: Dynamics} \label{sec:NetworkDynamics
+  449+2+0 (1/0/29/2) Subsection: Semi-Flexible Filaments
+  198+3+0 (2/0/6/1) Subsection: Dynamics} \label{sec:NetworkDynamics
   953+1+0 (1/0/26/2) Subsection: Rigidity} \label{sec:Rigidity
-  300+3+0 (1/0/13/1) Subsection: Fracturing the network} \label{sec:Fracture
+  300+3+0 (1/0/13/1) Subsection: Fracturing the Network} \label{sec:Fracture
   0+2+0 (1/0/0/0) Subsection: Athermal Fracture
   0+2+0 (1/0/0/0) Subsection: Thermal Fracture
-  901+9+52 (4/1/33/1) Subsection: Disordered network models} \label{sec:NetworkStructure
+  901+9+52 (4/1/33/1) Subsection: Disordered Network Models} \label{sec:NetworkStructure
   439+2+0 (1/0/42/3) Subsection: Calculating Stress
-  373+4+24 (1/1/0/0) Subsection: Generalised Lees-Edwards Boundary conditions
+  353+4+24 (1/1/0/0) Subsection: Generalised Lees-Edwards Boundary Conditions
 
 Included file: chapters/DoubleNetworkFracture/chapter.tex
 Encoding: ascii
-Words in text: 1452
-Words in headers: 24
-Words outside text (captions, etc.): 589
-Number of headers: 7
-Number of floats/tables/figures: 7
-Number of math inlines: 88
+Words in text: 1834
+Words in headers: 26
+Words outside text (captions, etc.): 428
+Number of headers: 9
+Number of floats/tables/figures: 13
+Number of math inlines: 91
 Number of math displayed: 3
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
-  0+11+0 (1/0/0/0) Chapter: Toughness of double network hydrogels: the role of reduced stress propagation} \label{sec:DoubleNetworks
+  0+5+0 (1/0/0/0) Chapter: Toughness of Double Network Hydrogels} \label{sec:DoubleNetworks
   31+1+0 (1/0/0/0) Section: Introduction
-  316+1+0 (1/0/8/0) Section: Methodology
-  289+4+72 (1/1/4/0) Subsection: Double Lattice Based Networks
-  259+3+117 (1/1/16/0) Subsection: Jamming-Based Double Networks
-  448+2+0 (1/0/35/3) Section: Rheological Protocol
-  109+2+400 (1/5/25/0) Section: Paper Images
+  312+1+0 (1/0/8/0) Section: Methodology
+  399+4+72 (1/1/12/0) Subsection: Double Lattice Based Networks
+  253+3+120 (1/1/16/0) Subsection: Jamming-based Double Networks
+  595+2+0 (1/0/45/3) Section: Rheological Protocol
+  244+3+236 (1/5/10/0) Section: Stress Strain Response
+  0+5+0 (1/3/0/0) Section: Damage in the Sacrificial Network
+  0+2+0 (1/3/0/0) Section: Stress Propogation
 
 Included file: references/ref.tex
 Encoding: ascii
@@ -84,18 +86,18 @@ Number of math displayed: 0
 
 Sum of files: thesis.tex
 File(s) total: thesis.tex
-Words in text: 7159
-Words in headers: 91
-Words outside text (captions, etc.): 677
-Number of headers: 38
-Number of floats/tables/figures: 11
-Number of math inlines: 382
+Words in text: 7540
+Words in headers: 95
+Words outside text (captions, etc.): 550
+Number of headers: 41
+Number of floats/tables/figures: 18
+Number of math inlines: 389
 Number of math displayed: 42
 Files: 5
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
-  1+7+0 (1/0/0/0) File: thesis.tex
-  217+5+0 (3/0/15/2) Included file: chapters/1-Introduction/chapter.tex
-  5489+55+88 (27/4/279/37) Included file: chapters/2-Background/chapter.tex
-  1452+24+589 (7/7/88/3) Included file: chapters/DoubleNetworkFracture/chapter.tex
+  8+7+0 (1/0/0/0) File: thesis.tex
+  212+5+0 (3/0/15/2) Included file: chapters/1-Introduction/chapter.tex
+  5486+57+122 (28/5/283/37) Included file: chapters/2-Background/chapter.tex
+  1834+26+428 (9/13/91/3) Included file: chapters/DoubleNetworkFracture/chapter.tex
 
