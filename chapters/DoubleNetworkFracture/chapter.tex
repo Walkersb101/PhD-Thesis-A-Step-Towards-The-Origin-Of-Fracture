@@ -65,6 +65,9 @@ In all cases, we choose units of stress such that $\mu_s = 1.0$ and the characte
 
 The aim of this work is to explore how the simple mesoscopic model described above can be used to explore how the effect of differing length scales affects the fracture and behaviour of double networks, particularly focusing on how stress is redistributed across the networks following a plastic event, as is explored in \cite{tauber_microscopic_2020,tauber_microscopic_2020}. We will discuss the results of this model under the above-discussed Jamming-based and Square Lattice-Based double network topologies, with a focus on the Jamming-based double network. The fundamental results of this work are shown in \cref{fig:JammedStressStrain}, where we compare the stress-strain response of a double network material with its sacrificial and matrix components individually for both a Jamming-based double network and a square lattice-based double network respectively. In both cases, we see that the double network retains most of the toughness of the matrix network while still retaining the stiffness of the sacrificial network, particularly during the early elastic regime of deformation, compared to the components individually. 
 
+
+The stress-strain response of the single matrix network (blue curve in \cref{fig:JammedStressStrain}a) and single sacrificial network (red curve in \cref{fig:JammedStressStrain}a) shows a non-linear elastic stretching response, often found in the network materials\cite{feng_nonlinear_2016,licup_nonlinear_2016,storm_nonlinear_2005}, followed by abrupt brittle or quasi-brittle failure \cite{dussi_athermal_2020, tauber_stretchy_2022}. The double network responses mirror those of its components, with an initial non-linear elastic response, again commonly found in elastomers\cite{millereauMechanicsElastomericMolecular2018, ducrot_toughening_2014}, hydrogels\cite{gong_why_2010} and macroscopic composites\cite{kingMacroscaleDoubleNetworks2019, takahashiCreatingStiffTough2018} up until the first sacrificial bond break at a strain close to where the single sacrificial network fails. The double network, then, undergoes an irreversible softening response as the sacrificial bonds fail diffusely and its contribution to the response plateaus, which can be seen in both our model and experiments \cite{vernereyStatisticalDamageMechanics2018,millereauMechanicsElastomericMolecular2018}. The Double network then ultimately goes on to break catastrophically through the same macroscopic failure observed in the single network components.
+
 \begin{figure}
     \centering
     \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/Result Figures/StressStrainCurves.pdf}
@@ -72,18 +75,37 @@ The aim of this work is to explore how the simple mesoscopic model described abo
     \label{fig:JammedStressStrain}
 \end{figure}
 
-The stress-strain response of the single matrix network (blue curve in \cref{fig:JammedStressStrain}a) and single sacrificial network (red curve in \cref{fig:JammedStressStrain}a) shows a non-linear elastic stretching response, often found in the network materials\cite{feng_nonlinear_2016,licup_nonlinear_2016,storm_nonlinear_2005}, followed by abrupt brittle or quasi-brittle failure \cite{dussi_athermal_2020, tauber_stretchy_2022}. The double network responses mirror those of its components, with an initial non-linear elastic response, again commonly found in elastomers\cite{millereauMechanicsElastomericMolecular2018, ducrot_toughening_2014}, hydrogels\cite{gong_why_2010} and macroscopic composites\cite{kingMacroscaleDoubleNetworks2019, takahashiCreatingStiffTough2018} up until the first sacrificial bond break at a strain close to where the single sacrificial network fails. The double network, then, undergoes an irreversible softening response as the sacrificial bonds fail diffusely and its contribution to the response plateaus, which can be seen in both our model and experiments \cite{vernereyStatisticalDamageMechanics2018,millereauMechanicsElastomericMolecular2018}. The Double network then ultimately goes on to break catastrophically through the same macroscopic failure observed in the single network components.
-
-For each double network, we characterise its mechanical response by extracting its failure strain $\epsilon^*_d$, its failure stress $\Sigma^*_d$ (defined in \cref{fig:JammedStressStrain}) and initial modulus $G_s$, $G_m$ and $G_d$ of the sacrificial component, matrix component and combined double network, respectively (defined via the initial stress-strain slopes in \cref{fig:JammedStressStrain}). For a single network, we quantify the response in the same way, denoted then with the relevant subscript. However, in this case, one modulus, either $G_s$ or $G_m$, is obtained, depending on which network is considered. 
+For each double network, we characterise its mechanical response by extracting its failure strain $\epsilon^*_d$, its failure stress $\Sigma^*_d$ (defined in \cref{fig:JammedStressStrain}) and initial modulus $G_s$, $G_m$ and $G_d$ of the sacrificial component, matrix component and combined double network, respectively (defined via the initial stress-strain slopes in \cref{fig:JammedStressStrain}). For a single network, we quantify the response in the same way, denoted then with the relevant subscript. However, in this case, one modulus, either $G_s$ or $G_m$, is obtained, depending on which network is considered.
 
 As discussed previously, a well-designed tough double network has two key properties:
 \begin{enumerate}[I]
-    \item It inherits the stiffness of its stiff but brittle sacrificial component, with modulus $G_d \approx G_s \gg G_m$.
+    \renewcommand{\theenumi}{\Roman{enumi}}
+    \renewcommand{\labelenumi}{\theenumi)}
     \item It inherits the toughness of soft and ductile matrix components, with a failure strain $\epsilon^*_D \approx \epsilon^*_m \gg \epsilon^*_s$.
+    \item It inherits the stiffness of its stiff but brittle sacrificial component, with modulus $G_d \approx G_s \gg G_m$.
 \end{enumerate}
-We illustrate property i) in \cref{fig:JammedStrainExtract}a-b and \cref{fig:JammedPhaseDiagramsFail} and where we show how the failure strain $\epsilon^*$ changes as a function of our control parameters $M$, $\mu_m$ and $\lambda_m$. In \cref{fig:JammedPhaseDiagramsFail} we plot a phase space diagram of $M$ against $\mu_m$ for $\lambda_m=3.0$. 
 
+We illustrate property I) in \cref{fig:JammedStrainExtract}a-b and \cref{fig:JammedPhaseDiagramsFail} and where we show how the failure strain $\epsilon^*$ changes as a function of our control parameters $M$, $\mu_m$ and $\lambda_m$. In \cref{fig:JammedPhaseDiagramsFail} we plot a phase space diagram of $M$ against $\mu_m$ for $\lambda_m=3.0$ showing an increased failure toughness as either increasing $M$ or $\mu_m$. This trend is shown more clearly in the upper solid line of \cref{fig:JammedStrainExtract}a which represents a horizontal slice of \cref{fig:JammedPhaseDiagramsFail} at $\mu_m=0.2$. For all values of $\lambda_m$ in \cref{fig:JammedStrainExtract}a we observe a constant pattern: as $M \to \infty$ the networks toughness transitions from being close to the sacrificial failure point $\epsilon^*_d \approx \epsilon^*_s$ towards the toughness of the matrix, with $\epsilon_d^* \to \epsilon_m^*$. We do note a less pronounced upwards trend for $\lambda_m=1.0$ where the two matrix and sacrificial have similar breakage threshold; in this case early failures in the sacrificial networks propagate enough stress to result in premature failures in the matrix. 
 
+\begin{figure}
+    \centering
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{chapters/DoubleNetworkFracture/Result Figures/Fail.pdf}
+        %\caption{Phase diagram of the double-network failure strain $\epsilon^*_d$.}
+        \label{fig:JammedPhaseDiagramsFail}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.45\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{chapters/DoubleNetworkFracture/Result Figures/StiffnessRatio.pdf}
+        %\caption{Phase diagram of the relative sacrificial contribution $G_s$ to the overall network stiffness $G_s$.}
+        \label{fig:JammedPhaseDiagramsMod}
+    \end{subfigure}
+    \caption{Phase diagrams of double-network failure strain $\epsilon^*_d$ and relative sacrificial contribution $G_s/G_d$ as a function of $M$ and $\mu_m$}
+    \label{fig:JammedPhaseDiagrams}
+\end{figure}
+
+Property II) is considered in \cref{fig:JammedPhaseDiagramsMod} we observe the matrix contribution to the overall stiffness increasing (shown as a decrease in $G_s/G_d$) increased with $M$ and $\mu_m$ as would be expected. This again shows the trivial limit: the double network effectively just becomes a single matrix network, inheriting also its softness, so failing to achieve II).
 
 \begin{figure}
     \centering
@@ -97,22 +119,6 @@ We illustrate property i) in \cref{fig:JammedStrainExtract}a-b and \cref{fig:Jam
     \label{fig:JammedStrainExtract}
 \end{figure}
 
-\begin{figure}
-    \centering
-    \begin{subfigure}[t]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{chapters/DoubleNetworkFracture/Result Figures/Fail.pdf}
-        \caption{}
-        \label{fig:JammedPhaseDiagramsFail}
-    \end{subfigure}
-    \begin{subfigure}[t]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\linewidth]{chapters/DoubleNetworkFracture/Result Figures/StiffnessRatio.pdf}
-        \caption{}
-        \label{fig:JammedPhaseDiagramsMod}
-    \end{subfigure}
-    \label{fig:JammedPhaseDiagrams}
-\end{figure}
 
 \section{Damage in the Sacrificial Network}
 
@@ -192,7 +198,10 @@ In this chapter, we will consider square-lattice-based double networks whose int
 \begin{figure}[hbt!]
     \centering
     \missingfigure{Stress-strain curves of a prestressed Square Lattice Network}
-    \caption{Stress-strain curves of a prestressed square lattice network. {\bf a)} Single sacrificial network (red solid line) and single matrix network (blue solid line). {\bf b)} Composite double network (black solid line), with the contributions of the component sacrificial network (red dashed line) and matrix network (blue dotted line) shown separately. Parameters: $?????$.}
+    \caption[Stress-strain curves of a prestressed square lattice network.]{Stress-strain curves of a prestressed square lattice network. \newline 
+    {\bf a)} Single sacrificial network (red solid line) and single matrix network (blue solid line). \newline
+    {\bf b)} Composite double network (black solid line), with the contributions of the component sacrificial network (red dashed line) and matrix network (blue dotted line) shown separately. \newline
+    { \bf Parameters:} $?????$.}
     \label{fig:SquareStressStrain}
 \end{figure}
 
