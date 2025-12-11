@@ -26,7 +26,10 @@ The matrix ensemble is then equilibrated, taking care to ensure a homogeneous di
 \begin{figure}[hbt]
 \centering
 \resizebox{0.9\textwidth}{!}{\input{chapters/DoubleNetworkFracture/NetworkGeneration/Lattice.tikz}}
-\caption{Figure detailing how a Jamming-based double network is constructed. The top row illustrates the initial construction of a Jamming-based network as described in \cref{sec:PackingBasedNetworks} through the minimisation of an ensemble of soft disks of two different radii. This gives us the sacrificial network, with bonds shown in red. The bottom row illustrates the construction of the second matrix network again through the minimisation of an ensemble of soft disks of two different radii; however, with pinioned rescaled disks from the sacrificial network, which are shared across both networks. This gives a second network with bonds illustrated in blue. These two networks can be combined to form the double network on the right, with inter-network connections at all sacrificial nodes.}
+\caption[Figure detailing how a Jamming-based double network is constructed]{Figure detailing how a Jamming-based double network is constructed. 
+{\bf Top row:} Illustrates the initial construction of a Jamming-based network as described in \cref{sec:PackingBasedNetworks} through the minimisation of an ensemble of soft disks of two different radii. This gives us the sacrificial network, with bonds shown in red. \newline
+{\bf Bottom row:} Illustrates the construction of the second matrix network again through the minimisation of an ensemble of soft disks of two different radii; however, with pinioned rescaled disks from the sacrificial network, which are shared across both networks. This gives a second network with bonds illustrated in blue. \newline
+{\bf Right:} These two networks can be combined to form the double network on the right, with inter-network connections at all sacrificial nodes.}
 \label{fig:DoubleJammedNetwork}
 \end{figure}
     
@@ -65,7 +68,7 @@ The aim of this work is to explore how the simple mesoscopic model described abo
 \begin{figure}
     \centering
     \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/Result Figures/StressStrainCurves.pdf}
-    \caption{Stress-strain curves of a Jamming-Based network. {\bf a)} Single sacrificial network (red solid line) and single matrix network (blue solid line). {\bf b)} Composite double network (black solid line), with the contributions of the component sacrificial network (red dashed line) and matrix network (blue dotted line) shown separately. Inset: modulus $G = d\Sigma / d\epsilon$ at small strain. Parameters: $M=3.0, \mu_m=0.2, \lambda_m=3.0$.}
+    \caption[Stress-strain curves of a Jamming-Based network.]{Stress-strain curves of a Jamming-Based network. {\bf a)} Single sacrificial network (red solid line) and single matrix network (blue solid line). {\bf b)} Composite double network (black solid line), with the contributions of the component sacrificial network (red dashed line) and matrix network (blue dotted line) shown separately. Inset: modulus $G = d\Sigma / d\epsilon$ at small strain. Parameters: $M=3.0, \mu_m=0.2, \lambda_m=3.0$.}
     \label{fig:JammedStressStrain}
 \end{figure}
 
@@ -85,7 +88,7 @@ We illustrate property i) in \cref{fig:JammedStrainExtract}a-b and \cref{fig:Jam
 \begin{figure}
     \centering
     \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/Result Figures/StressStrainExtract.pdf}
-    \caption{
+    \caption[Failure strains $\epsilon^*$, stress $\Sigma^*$ and normalised modulus of Jamming-based double networks.]{
     Failure strains $\epsilon^*$, stress $\Sigma^*$ and normalised modulus of Jamming-based double networks.\newline
     {\bf Top panels:} The failure strain $\epsilon^*$ of the double network (solid curves) is plotted as a function of (a) the matrix content $M$ and (b) the matrix bond stiffness $\mu_m$. In each case, we show results for matrix bond failure thresholds $\lambda_m = 1.0,\; 2.0,\; 3.0$, displayed from the lowest to highest curve (circles, triangles and squares, respectively). For comparison, the failure strains of the corresponding single sacrificial network and single matrix network are indicated by dashed and dotted curves, respectively.\newline
     {\bf Middle panels:} Analogous to (a) and (b), but now presenting the failure stress $\Sigma^*$.\newline
@@ -126,7 +129,7 @@ We illustrate property i) in \cref{fig:JammedStrainExtract}a-b and \cref{fig:Jam
         \caption{Stretched double network showing many diffuse microcracks in the sacrificial network at a large strain.}
         \label{fig:JammedDouble}
     \end{subfigure}
-    \caption{Portions of stretched sacrificial and double network whose stress-strain response is shown in \cref{fig:JammedStressStrain}. The point on the stress-strain curve for the sacrificial and double network is illustrated by a triangle and a circle, respectively in \cref{fig:JammedStressStrain}.}
+    \caption[Portions of stretched sacrificial and double network whose stress-strain response is shown in \cref{fig:JammedStressStrain}.]{Portions of stretched sacrificial and double network whose stress-strain response is shown in \cref{fig:JammedStressStrain}. The point on the stress-strain curve for the sacrificial and double network is illustrated by a triangle and a circle, respectively in \cref{fig:JammedStressStrain}.}
     \label{fig:JammedImages}
 \end{figure}
 
@@ -180,7 +183,7 @@ While we choose to ignore the volume exclusion principle during the dynamics of 
 \begin{figure}[hbt]
     \centering
     \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/NetworkGeneration/SquareTypes-4.pdf}
-    \caption{Figure detailing the types of network constructions for a square lattice double network with $M=4$. Each type differs in the choice of nodes which can interact with both the sacrificial and matrix networks. In the overlapping network, we ignore the volume exclusion principle and allow both a matrix and a sacrificial bond to co-exist. Networks with Subdivisions subdivide their sacrificial bonds into smaller sections to connect to the matrix nodes they pass over.}
+    \caption[Figure detailing the types of network constructions for a square lattice double network with $M=4$.]{Figure detailing the types of network constructions for a square lattice double network with $M=4$. Each type differs in the choice of nodes which can interact with both the sacrificial and matrix networks. In the overlapping network, we ignore the volume exclusion principle and allow both a matrix and a sacrificial bond to co-exist. Networks with Subdivisions subdivide their sacrificial bonds into smaller sections to connect to the matrix nodes they pass over.}
     \label{fig:DoubleSquareTypes}
 \end{figure}
 
@@ -207,7 +210,7 @@ In the main text, we carried out simulations in the quasi-static limit $\dot{\ep
 \begin{figure}[hbt!]
     \centering
     \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/Result Figures/DoubleRateDependency.pdf}
-    \caption{Stress-strain curves for a double network stretched at a finite rate $\dot{\epsilon}  > 0$, showing the approach to the quasi-static limit $\dot{\epsilon} \to 0$ explored in the main text. Parameters used are the same as in \cref{fig:JammedStressStrain}}
+    \caption[Stress-strain curves for a double network stretched at a finite rate.]{Stress-strain curves for a double network stretched at a finite rate $\dot{\epsilon}  > 0$, showing the approach to the quasi-static limit $\dot{\epsilon} \to 0$ explored in the main text. Parameters used are the same as in \cref{fig:JammedStressStrain}}
     \label{fig:DoubleRate}
 \end{figure}
 
