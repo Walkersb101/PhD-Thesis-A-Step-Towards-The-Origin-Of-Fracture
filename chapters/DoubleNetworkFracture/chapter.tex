@@ -11,7 +11,7 @@ what makes a good tough double network
 \section{Methodology}
 To capture the salient physics of double network materials, we must extend the network model defined in \cref{sec:NetworkStructure} and used in the previous chapters to model both a sacrificial network and a matrix network and how they interact with each other. As a starting point for our model, we again consider a worm-like chain model with Hamiltonian \cref{eq:NetworkHamiltonian}, again only considering the central forces acting on the nodes. We will take each network to evolve almost independently under \cref{eq:NetworkHamiltonian} as in the single network case, again ignoring the volume exclusion principle, both within each network, but also in interactions between the two networks. To connect the two networks, we will consider a subset of nodes in each network to be shared, allowing for the two networks to interact via these inter-network connections. These inter-network connections may correspond to either chemically bonded interactions or physical entanglement points between the two networks, and in either case, they enable load sharing, which has been observed experimentally \cite{ahmedBrittleDuctileTransition2014}. Each bond in our system can then be given a modulus $\mu_s$ and $\mu_m$, and a breakage threshold $\lambda_s$ and $\lambda_m$ for the sacrificial and matrix networks, respectively. We will consider a bond to break immediately when its own strain $l/l_0 - 1$ exceeds its corresponding threshold: $\lambda_s$ for sacrificial bonds or $\lambda_m$ for matrix bonds.
 
-In the following work, we focus on Jammed Packing derived networks (described in \cref{sec:PackingBasedNetworks}); square lattice networks (described in \cref{sec:LatticeBasedNetworks}) will be discussed in \cref{sec:SquareAppendix}. These two constructions provide distinct approaches for generating double network geometries, by defining how each constituent network is constructed relative to the other and how the subset of nodes shared between the two networks is defined. Crucially, both methods define a relative length scale difference $M$ between the two networks (sacrificial and matrix), which will allow us to capture both the relevant microphysics as well as the macroscopic physics of bulk failure. 
+In the following work, we focus on Jammed Packing derived networks (described in \cref{sec:PackingBasedNetworks}); square lattice-based networks (described in \cref{sec:LatticeBasedNetworks}) will be discussed in \cref{sec:SquareAppendix}. These two constructions provide distinct approaches for generating double network geometries, by defining how each constituent network is constructed relative to the other and how the subset of nodes shared between the two networks is defined. Crucially, both methods define a relative length scale difference $M$ between the two networks (sacrificial and matrix), which will allow us to capture both the relevant microphysics as well as the macroscopic physics of bulk failure. 
 
 \subsection{Jamming-based Double Networks}
 For Jamming-based double networks, we generate the sacrificial network as in the single network case described in \cref{sec:PackingBasedNetworks} by minimising an ensemble of $N_s$ disks with bidispersed radii $R_s$ and $1.4R_s$, each in equal numbers at a packing fraction of $\phi = 1.0$. We set the typical length scale of a sacrificial bond by defining the size of our periodic unit cell to be $L_{x0} = L_{y0} = \sqrt{N_s}$ as previously done. Overlapping pairs of nodes are then connected by a bond with its natural length $l_0$ being set to the distance between the centres of the two disks. 
@@ -60,12 +60,15 @@ In all cases, we choose units of stress such that $\mu_s = 1.0$ and the characte
 
 \section{Stress-Strain Response}
 
-This work aims to explore how the simple mesoscopic model described above can be used to explore how the effect of differing length scales affects the fracture and behaviour of double networks, particularly focusing on how stress is redistributed across the networks following a plastic event, as is explored in \cite{tauber_microscopic_2020,tauber_microscopic_2020}. We will discuss the results of this model under the above-discussed Jamming-based and Square Lattice-Based double network topologies, with a focus on the Jamming-based double network. The fundamental results of this work are shown in \cref{fig:JammedStressStrain}, where we compare the stress-strain response of a double network material with its sacrificial and matrix components individually for both a Jamming-based double network and a square lattice-based double network respectively. In both cases, we see that the double network retains most of the toughness of the matrix network while still retaining the stiffness of the sacrificial network, particularly during the early elastic regime of deformation, compared to the components individually. 
+This work aims to explore how the simple mesoscopic model described above can be used to explore how the effect of differing length scales affects the fracture and behaviour of double networks, particularly focusing on how stress is redistributed across the networks following a plastic event, as is explored in \cite{tauber_microscopic_2020,tauber_microscopic_2020}. We will discuss the results of this model under the above-discussed Jamming-based and square lattice-based double network topologies, with a focus on the Jamming-based double network. The fundamental results of this work are shown in \cref{fig:JammedStressStrain}, where we compare the stress-strain response of a double network material with its sacrificial and matrix components individually for both a Jamming-based double network and a square lattice-based double network respectively. In both cases, we see that the double network retains most of the toughness of the matrix network while still retaining the stiffness of the sacrificial network, particularly during the early elastic regime of deformation, compared to the components individually. 
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/Result Figures/StressStrainCurves.pdf}
-    \caption[Stress-strain curves of a Jamming-Based network.]{Stress-strain curves of a Jamming-Based network. {\bf a)} Single sacrificial network (red solid line) and single matrix network (blue solid line). {\bf b)} Composite double network (black solid line), with the contributions of the component sacrificial network (red dashed line) and matrix network (blue dotted line) shown separately. Inset: modulus $G = d\Sigma / d\epsilon$ at small strain. Parameters: $M=3.0, \mu_m=0.2, \lambda_m=3.0$.}
+    \caption[Stress-strain curves of a Jamming-Based network.]{Stress-strain curves of a Jamming-Based network.\newline 
+    {\bf a)} Single sacrificial network (red solid line) and single matrix network (blue solid line). {\bf b)} Composite double network (black solid line), with the contributions of the component sacrificial network (red dashed line) and matrix network (blue dotted line) shown separately.\newline
+    {\bf Inset:} modulus $G = d\Sigma / d\epsilon$ at small strain.\newline 
+    Parameters: $M=3.0, \mu_m=0.2, \lambda_m=3.0$.}
     \label{fig:JammedStressStrain}
 \end{figure}
 
@@ -98,7 +101,7 @@ We illustrate property I) in \cref{fig:JammedStrainExtract}a-b and \cref{fig:Jam
         %\caption{Phase diagram of the relative sacrificial contribution $G_s$ to the overall network stiffness $G_s$.} 
         \label{fig:JammedPhaseDiagramsMod}
     \end{subfigure}
-    \caption{Phase diagrams of double-network failure strain $\epsilon^*_d$ and relative sacrificial contribution $G_s/G_d$ as a function of $M$ and $\mu_m$}
+    \caption[Phase diagrams of double-network failure strain $\epsilon^*_d$ and relative sacrificial contribution $G_s/G_d$ for jamming-based networks]{Phase diagrams of double-network representing a) the failure strain  $\epsilon^*_d$ and b) the relative sacrificial contribution $G_s/G_d$ as a function of $M$ and $\mu_m$}
     \label{fig:JammedPhaseDiagrams}
 \end{figure}
 
@@ -171,7 +174,7 @@ In each plot, we show results for $\lambda_m=1.0$ , $2.0$, and $3,0$, which conv
 
 \section{Stress Propogation}
 
-Previously we have mentioned that the results have hinted at the 
+Previously we mentioned that the results show above have hinted at the 
 
 \begin{figure}
     \centering
@@ -196,39 +199,57 @@ Previously we have mentioned that the results have hinted at the
 \section{Conclusion}
 
 \begin{subappendices}
-\section{Square Lattice Network} \label{sec:SquareAppendix}
+\section{Square Lattice-Based Network} \label{sec:SquareAppendix}
 
-\subsection{Lattice Based Double Networks}
+\subsection{Lattice-Based Double Networks}
 The simplest form of a single network structure is that of a lattice-based network. The sacrificial network is constructed as described in \cref{sec:LatticeBasedNetworks} by defining a set of lattice vectors and rules for connecting them. The matrix network can also be generated in the same way, however, with a scaled set of lattice vectors. For simplicity, we choose $M\in\mathbb{Z}$, such that the sacrificial and matrix lattices are commensurate: the matrix lattice vectors are integer multiples of the sacrificial ones. This ensures that the nodes of the matrix lattice lie exactly on a subset of the nodes of the fine sacrificial lattice. The natural length of each bond $l_0$ is then set in this configuration.  
 
-While we choose to ignore the volume exclusion principle during the dynamics of the simulation to simplify the forces in our system, only to consider central forces, we can optionally decide to respect this in the network generation steps. This gives us the choice of whether we allow both a matrix and a sacrificial bond to perfectly lie on top of each other in the networks during the network's natural configuration. It's also possible to add further to subdivide the sacrificial bonds such that they connect at every lattice point of the matrix they pass over. While this would normally give four combinations of lattice network geometries, the case where we do not allow overlaps and do not subdivide the sacrificial bonds decouples the matrix and sacrificial networks, and therefore cannot be considered a double network. An example of the three remaining cases can be seen in \cref{fig:DoubleSquareTypes} for a square lattice with $M=4$.
+While we choose to ignore the volume exclusion principle during the dynamics of the simulation to simplify the forces in our system, only to consider central forces, we can optionally decide to respect this in the network generation steps. This gives us the choice of whether we allow both a matrix and a sacrificial bond to perfectly lie on top of each other in the networks during the network's natural configuration. It's also possible to add further to subdivide the sacrificial bonds such that they connect at every lattice point of the matrix they pass over. While this would normally give four combinations of lattice-based network geometries, the case where we do not allow overlaps and do not subdivide the sacrificial bonds decouples the matrix and sacrificial networks, and therefore cannot be considered a double network. An example of the three remaining cases can be seen in \cref{fig:DoubleSquareTypes} for a square lattice with $M=4$.
 
 \begin{figure}[hbt]
     \centering
     \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/NetworkGeneration/SquareTypes-4.pdf}
-    \caption[Figure detailing the types of network constructions for a square lattice double network with $M=4$.]{Figure detailing the types of network constructions for a square lattice double network with $M=4$. Each type differs in the choice of nodes which can interact with both the sacrificial and matrix networks. In the overlapping network, we ignore the volume exclusion principle and allow both a matrix and a sacrificial bond to co-exist. Networks with Subdivisions subdivide their sacrificial bonds into smaller sections to connect to the matrix nodes they pass over.}
+    \caption[Figure detailing the types of network constructions for a square lattice-based double network with $M=4$.]{Figure detailing the types of network constructions for a square lattice-based double network with $M=4$. Each type differs in the choice of nodes which can interact with both the sacrificial and matrix networks. In the overlapping network, we ignore the volume exclusion principle and allow both a matrix and a sacrificial bond to co-exist. Networks with Subdivisions subdivide their sacrificial bonds into smaller sections to connect to the matrix nodes they pass over.}
     \label{fig:DoubleSquareTypes}
 \end{figure}
 
-In this chapter, we will consider square-lattice-based double networks whose intra-network connections have connectivity $z=z_c=4.0$. These networks sit on the isostatic point $z_c$ and are therefore only rigid in their initial state; any bond failures which occur during deformation will consequently locally become floppy. As discussed in \cref{sec:Rigidity}, the network may strain-stiffen during its deformation and behave as if it has a $z > z_c$ even after bond failures. To ensure that the network remains in the strain-stiffened regime throughout its entire deformation, we pre-stress each bond by reducing its natural length $l_0$ such that its initial local bond strain $\epsilon_{b}$ is sampled from a normal distribution $\mathcal{N}(\epsilon_p, \sigma_p)$ with mean $\epsilon_p$ and width $\sigma_p$. By varying each bond's local strain, we address the problems described in \cref{sec:LatticeBasedNetworks}, usually solved by pruning and perturbing the natural positions of each network's nodes. 
+In this section, we will consider square lattice-based double networks whose intra-network connections have connectivity $z=z_c=4.0$. These networks sit on the isostatic point $z_c$ and are therefore only rigid in their initial state; any bond failures which occur during deformation will consequently locally become floppy. As discussed in \cref{sec:Rigidity}, the network may strain-stiffen during its deformation and behave as if it has a $z > z_c$ even after bond failures. To ensure that the network remains in the strain-stiffened regime throughout its entire deformation, we pre-stress each bond by reducing its natural length $l_0$ such that its initial local bond strain $\epsilon_{b}$ is sampled from a normal distribution $\mathcal{N}(\epsilon_p, \sigma_p)$ with mean $\epsilon_p$ and width $\sigma_p$. By varying each bond's local strain, we address the problems described in \cref{sec:LatticeBasedNetworks}, usually solved by pruning and perturbing the natural positions of each network's nodes. 
 
 \subsection{Stress-Strain Response}
 
-\begin{figure}[hbt!]
+$\mu_s = 1.0, \lambda_s=0.5, \lambda_m=3.0, \epsilon_p=0.75, \sigma_p=0.1$
+
+\begin{figure}
     \centering
-    \missingfigure{Stress-strain curves of a prestressed Square Lattice Network}
-    \caption[Stress-strain curves of a prestressed square lattice network.]{Stress-strain curves of a prestressed square lattice network. \newline 
-    {\bf a)} Single sacrificial network (red solid line) and single matrix network (blue solid line). \newline
-    {\bf b)} Composite double network (black solid line), with the contributions of the component sacrificial network (red dashed line) and matrix network (blue dotted line) shown separately. \newline
-    { \bf Parameters:} $?????$.}
+    %\missingfigure{Stress-strain curves of a prestressed Square Lattice Network}
+    \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/SquareFigures/StressStrain.pdf}
+    \caption[Stress-strain curves of a prestressed square lattice-based network.]{Stress-strain curves of a prestressed square lattice-based network. 
+    We plot the three network constructions discussed in \cref{fig:DoubleSquareTypes} with \quotes{Overlap With Subdivisions}, \quotes{Overlap Without Subdivisions} and \quotes{No Overlap With Subdivisions} in blue, green and red, respectively.\newline 
+    {\bf a)} Single sacrificial networks (dashed lines) and single matrix networks (dotted lines). {\bf b)} Composite double network (solid lines), with the contributions of the component sacrificial network (dashed line) and matrix network (dotted line) shown separately. \newline
+    Parameters: $M=4.0, \mu_m=0.4$.}
     \label{fig:SquareStressStrain}
 \end{figure}
 
-\begin{figure}[hbt!]
+\begin{figure}
     \centering
-    \missingfigure{Square Strain Extract}
-    \caption{}
+    %\missingfigure{Square Strain Extract}
+    \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/SquareFigures/SquareStrainExtract.pdf}
+    \caption[Failure strains of square lattice-based double networks]{
+    Failure strains $\epsilon^*$ square lattice-based double networks. The three network constructions discussed in \cref{fig:DoubleSquareTypes} with \quotes{Overlap With Subdivisions}, \quotes{Overlap Without Subdivisions} and \quotes{No Overlap With Subdivisions} in blue, green and red, respectively.\newline
+    The failure strain $\epsilon^*$ of the double network (solid curves) is plotted as a function of (a) the matrix content $M$ and (b) the matrix bond stiffness $\mu_m$. For comparison, the failure strains of the corresponding single sacrificial network and single matrix network are indicated by dashed and dotted curves, respectively.\newline
+    }
     \label{fig:SquareStrainExtract}
+\end{figure}
+
+\begin{figure}
+    \centering
+    %\missingfigure{Square Strain Extract}
+    \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/SquareFigures/HeatMaps.pdf}
+    \caption[Phase diagrams of double-network failure strain $\epsilon^*_d$ and relative sacrificial contribution $G_s/G_d$ for square lattice-based networks]{Phase diagrams representing the  square lattice-based networks. For each quantity, we plot the three network constructions discussed in \cref{fig:DoubleSquareTypes} separately. Colour scales show the change of: \newline
+    {\bf Top panels:} the failure strain $\epsilon^*_d$. \newline
+    {\bf Bottom panels:} the relative sacrificial contribution $G_s/G_d$.
+    }
+    \label{fig:SquareHeatMaps}
 \end{figure}
 
 \subsection{Effective Propagator}
@@ -241,7 +262,7 @@ In this chapter, we will consider square-lattice-based double networks whose int
 \end{figure}
 
 
-\section{Rate Dependency}
+\section{Rate Dependency} \label{sec:DoubleRate}
 
 In the main text, we carried out simulations in the quasi-static limit $\dot{\epsilon} \to 0$ using the algorithm described in \cref{sec:NetworkQuasistatic}. Here we instead consider a finite shear rate $\dot{\epsilon} > 0$ where $\bm{v}_f \neq \bm{0}$. The results of this are shown in \cref{fig:DoubleRate} and demonstrate that introducing a finite shear rate does not qualitatively alter our central result: a substantial enhancement of toughness in materials with a double-network structure.
 
