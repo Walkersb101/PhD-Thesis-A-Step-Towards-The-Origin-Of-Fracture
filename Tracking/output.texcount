@@ -55,12 +55,12 @@ Subcounts:
 
 Included file: chapters/DoubleNetworkFracture/chapter.tex
 Encoding: utf8
-Words in text: 3338
-Words in headers: 35
-Words outside text (captions, etc.): 817
+Words in text: 3340
+Words in headers: 34
+Words outside text (captions, etc.): 963
 Number of headers: 14
-Number of floats/tables/figures: 14
-Number of math inlines: 202
+Number of floats/tables/figures: 15
+Number of math inlines: 209
 Number of math displayed: 3
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
@@ -69,15 +69,15 @@ Subcounts:
   312+1+0 (1/0/8/0) Section: Methodology
   253+3+119 (1/1/16/0) Subsection: Jamming-based Double Networks
   627+2+0 (1/0/46/3) Section: Rheological Protocol} \label{sec:NetworkQuasistatic
-  964+2+203 (1/3/68/0) Section: Stress-Strain Response
+  964+2+208 (1/3/68/0) Section: Stress-Strain Response
   671+5+241 (1/3/38/0) Section: Damage in the Sacrificial Network
-  11+2+101 (1/2/8/0) Section: Stress Propogation
+  12+2+101 (1/2/8/0) Section: Stress Propogation
   0+1+0 (1/0/0/0) Section: Conclusion
-  0+3+0 (1/0/0/0) Section: Square Lattice Network} \label{sec:SquareAppendix
-  399+4+72 (1/1/12/0) Subsection: Lattice Based Double Networks
-  0+2+49 (1/2/1/0) Subsection: Stress-Strain Response
+  0+3+0 (1/0/0/0) Section: Square Lattice-Based Network} \label{sec:SquareAppendix
+  400+3+72 (1/1/12/0) Subsection: Lattice-Based Double Networks
+  0+2+190 (1/3/8/0) Subsection: Stress-Strain Response
   0+2+0 (1/1/0/0) Subsection: Effective Propagator
-  63+2+32 (1/1/5/0) Section: Rate Dependency
+  63+2+32 (1/1/5/0) Section: Rate Dependency} \label{sec:DoubleRate
 
 Included file: references/ref.tex
 Encoding: ascii
@@ -91,12 +91,12 @@ Number of math displayed: 0
 
 Sum of files: thesis.tex
 File(s) total: thesis.tex
-Words in text: 9276
-Words in headers: 104
-Words outside text (captions, etc.): 938
+Words in text: 9278
+Words in headers: 103
+Words outside text (captions, etc.): 1084
 Number of headers: 46
-Number of floats/tables/figures: 19
-Number of math inlines: 524
+Number of floats/tables/figures: 20
+Number of math inlines: 531
 Number of math displayed: 49
 Files: 5
 Subcounts:
@@ -104,5 +104,5 @@ Subcounts:
   8+7+0 (1/0/0/0) File: thesis.tex
   212+5+0 (3/0/15/2) Included file: chapters/1-Introduction/chapter.tex
   5718+57+121 (28/5/307/44) Included file: chapters/2-Background/chapter.tex
-  3338+35+817 (14/14/202/3) Included file: chapters/DoubleNetworkFracture/chapter.tex
+  3340+34+963 (14/15/209/3) Included file: chapters/DoubleNetworkFracture/chapter.tex
 
