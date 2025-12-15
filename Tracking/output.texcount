@@ -55,12 +55,12 @@ Subcounts:
 
 Included file: chapters/DoubleNetworkFracture/chapter.tex
 Encoding: utf8
-Words in text: 3340
+Words in text: 3671
 Words in headers: 34
-Words outside text (captions, etc.): 963
+Words outside text (captions, etc.): 1026
 Number of headers: 14
 Number of floats/tables/figures: 15
-Number of math inlines: 209
+Number of math inlines: 223
 Number of math displayed: 3
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
@@ -71,10 +71,10 @@ Subcounts:
   627+2+0 (1/0/46/3) Section: Rheological Protocol} \label{sec:NetworkQuasistatic
   964+2+208 (1/3/68/0) Section: Stress-Strain Response
   671+5+241 (1/3/38/0) Section: Damage in the Sacrificial Network
-  12+2+101 (1/2/8/0) Section: Stress Propogation
+  314+2+164 (1/2/22/0) Section: Stress Propogation
   0+1+0 (1/0/0/0) Section: Conclusion
-  0+3+0 (1/0/0/0) Section: Square Lattice-Based Network} \label{sec:SquareAppendix
-  400+3+72 (1/1/12/0) Subsection: Lattice-Based Double Networks
+  35+3+0 (1/0/0/0) Section: Square Lattice-Based Network} \label{sec:SquareAppendix
+  394+3+72 (1/1/12/0) Subsection: Lattice-Based Double Networks
   0+2+190 (1/3/8/0) Subsection: Stress-Strain Response
   0+2+0 (1/1/0/0) Subsection: Effective Propagator
   63+2+32 (1/1/5/0) Section: Rate Dependency} \label{sec:DoubleRate
@@ -91,12 +91,12 @@ Number of math displayed: 0
 
 Sum of files: thesis.tex
 File(s) total: thesis.tex
-Words in text: 9278
+Words in text: 9609
 Words in headers: 103
-Words outside text (captions, etc.): 1084
+Words outside text (captions, etc.): 1147
 Number of headers: 46
 Number of floats/tables/figures: 20
-Number of math inlines: 531
+Number of math inlines: 545
 Number of math displayed: 49
 Files: 5
 Subcounts:
@@ -104,5 +104,5 @@ Subcounts:
   8+7+0 (1/0/0/0) File: thesis.tex
   212+5+0 (3/0/15/2) Included file: chapters/1-Introduction/chapter.tex
   5718+57+121 (28/5/307/44) Included file: chapters/2-Background/chapter.tex
-  3340+34+963 (14/15/209/3) Included file: chapters/DoubleNetworkFracture/chapter.tex
+  3671+34+1026 (14/15/223/3) Included file: chapters/DoubleNetworkFracture/chapter.tex
 
