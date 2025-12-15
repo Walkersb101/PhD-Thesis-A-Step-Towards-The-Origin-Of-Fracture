@@ -174,13 +174,13 @@ In each plot, we show results for $\lambda_m=1.0$ , $2.0$, and $3,0$, which conv
 
 \section{Stress Propogation}
 
-Previously we mentioned that the results show above have hinted at the 
+The fundamental mechanism that underpins the increased toughness of the double networks and the delocalisation of stress in the sacrificial network, shown above, can be understood by considering the following. In a single sacrificial network, deformed along the $y$ axis until a single bond failure occurs. This breakage causes non-affine local rearrangements of surrounding nodes as the system returns to its minimum energy state and results in an increase in the local stresses of bonds along the $x$ axis (and a decrease along the $y$ axis) as seen in the left column of \cref{fig:JammedPropogators}. Unless otherwise stopped, these neighbouring bonds may then also break, or are more likely to break after continued deformation, further propagating stress to their neighbours. In turn, this may lead to an avalanche of failures, which spread macroscopically along the $x$ axis, resulting in material failure as shown in \cref{fig:JammedSacrifical}.
 
 \begin{figure}
     \centering
     %\missingfigure{Propogator M =0, 2, 5 + contour}
     \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/Result Figures/Propogators.pdf}
-    \caption[Stress propagation to neighbouring sacrificial bonds from the breakage of a sacrificial bond at the origin]{Stress propagation to neighbouring sacrificial bonds from the breakage of a sacrificial bond at the origin. We display each quantity for the case of a single sacrificial network in the left column, $M=3$ in the middle column and $M=5$ in the right column. In the double network cases, we take $\mu_m = 0.2$. Each quantity is averaged over all sacrificial bonds at each grid square. \newline
+    \caption[Stress propagation to neighbouring sacrificial bonds from the breakage of a sacrificial bond at the origin]{Stress propagation to neighbouring sacrificial bonds from the breakage of a sacrificial bond at the origin. We display each quantity for the case of a single sacrificial network in the left column and $M=5$ in the right column. In the double network cases, we take $\mu_m = 0.2$. Each quantity is averaged over all sacrificial bonds at each grid square. \newline
     Colour scales show the change due to stress propagation of: \newline
     {\bf Top panels:} the change in the $yy$ component of the Kirkwood stress $\delta\Sigma_{yy}$. \newline
     {\bf Middle panels:} the change in the $xx$ component of the Kirkwood stress $\delta\Sigma_{xx}$. \newline
@@ -189,20 +189,30 @@ Previously we mentioned that the results show above have hinted at the
     \label{fig:JammedPropogators}
 \end{figure}
 
+Instead, in a double network where we have a matrix network, when a sacrificial bond is broken, some of its stress is absorbed through the matrix, which, assuming $\lambda_m$ is large enough, is tough enough to resist failure. The amount of stress the neighbouring sacrificial bonds have to absorb is therefore less, leading them to be less prone to failing. Optimally, to satisfy properties I) and II) discussed earlier, we need the matrix to be stiff and tough enough such that the reduction is sufficient to avoid those neighbours, then also breaking, but flexible enough to not dominate $G_d$.  
+
+In \cref{fig:JammedPropogators}, we show the resulting changes in stress as a result of the first sacrifical bond failure in a deformation. Each system is strained as described in \cref{sec:NetworkQuasistatic} until the failure of the first sacrificial bond. At this point, we diverge from the method described in \cref{sec:NetworkQuasistatic}. We are still resolving the dynamics in the same way, but disallowing any bonds instead of allowing for the system to simply minimise itself.
+
 \begin{figure}
     \centering
     \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/Result Figures/Lines.pdf}
-    \caption{}
+    \caption{
+    Stress propagation to neighbouring sacrificial bonds from the breakage of a sacrificial bond at the origin. We show the change in bond stress as a function of distance along $x$ at $y=0$ for (left panel) several $M$ at fixed $\mu_m = 0.2$, and (right panel) several $\mu_m$ at fixed $M=3.0$. Lengths are expressed in units such that $\Delta x$ corresponds to the typical sacrificial bond length. The propagator of a single sacrificial network is recovered for $M=0$ or $\mu_m = 0$.
+    }
     \label{fig:JammedPropogatorsLines}
 \end{figure}
+
+
+
 
 \section{Conclusion}
 
 \begin{subappendices}
 \section{Square Lattice-Based Network} \label{sec:SquareAppendix}
+The simplest form of a single network structure is that of a lattice-based network. We extend this trivially to a double network by constructing commensurate lattices with different length scales connected where lattice sites overlap.  
 
 \subsection{Lattice-Based Double Networks}
-The simplest form of a single network structure is that of a lattice-based network. The sacrificial network is constructed as described in \cref{sec:LatticeBasedNetworks} by defining a set of lattice vectors and rules for connecting them. The matrix network can also be generated in the same way, however, with a scaled set of lattice vectors. For simplicity, we choose $M\in\mathbb{Z}$, such that the sacrificial and matrix lattices are commensurate: the matrix lattice vectors are integer multiples of the sacrificial ones. This ensures that the nodes of the matrix lattice lie exactly on a subset of the nodes of the fine sacrificial lattice. The natural length of each bond $l_0$ is then set in this configuration.  
+ For our lattice-based double network, the sacrificial network is constructed using the same method described in \cref{sec:LatticeBasedNetworks} by defining a set of lattice vectors and rules for connecting them. The matrix network can also be generated in the same way, however, with a scaled set of lattice vectors. For simplicity, we choose $M\in\mathbb{Z}$, such that the sacrificial and matrix lattices are commensurate: the matrix lattice vectors are integer multiples of the sacrificial ones. This ensures that the nodes of the matrix lattice lie exactly on a subset of the nodes of the fine sacrificial lattice. The natural length of each bond $l_0$ is then set in this configuration.  
 
 While we choose to ignore the volume exclusion principle during the dynamics of the simulation to simplify the forces in our system, only to consider central forces, we can optionally decide to respect this in the network generation steps. This gives us the choice of whether we allow both a matrix and a sacrificial bond to perfectly lie on top of each other in the networks during the network's natural configuration. It's also possible to add further to subdivide the sacrificial bonds such that they connect at every lattice point of the matrix they pass over. While this would normally give four combinations of lattice-based network geometries, the case where we do not allow overlaps and do not subdivide the sacrificial bonds decouples the matrix and sacrificial networks, and therefore cannot be considered a double network. An example of the three remaining cases can be seen in \cref{fig:DoubleSquareTypes} for a square lattice with $M=4$.
 
@@ -256,7 +266,7 @@ $\mu_s = 1.0, \lambda_s=0.5, \lambda_m=3.0, \epsilon_p=0.75, \sigma_p=0.1$
 
 \begin{figure}
     \centering
-    \missingfigure{Square Propagator}
+    \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/SquareFigures/AboveThreshold.pdf}
     \caption{}
     \label{fig:SquarePropogators}
 \end{figure}
