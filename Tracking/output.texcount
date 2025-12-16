@@ -26,9 +26,9 @@ Subcounts:
 Included file: chapters/2-Background/chapter.tex
 Encoding: utf8
 Words in text: 5718
-Words in headers: 57
+Words in headers: 60
 Words outside text (captions, etc.): 121
-Number of headers: 28
+Number of headers: 29
 Number of floats/tables/figures: 5
 Number of math inlines: 307
 Number of math displayed: 44
@@ -41,7 +41,8 @@ Subcounts:
   34+1+0 (1/0/0/0) Subsection: Experiments
   0+3+0 (1/0/0/0) Subsection: Rate dependence / Quasistatic
   340+1+0 (1/0/34/2) Section: Hydrodynamics
-  557+4+34 (2/1/40/11) Subsection: Oseen/Stokeslet Tensor
+  318+4+0 (2/0/25/7) Subsection: Oseen/Stokeslet Tensor
+  239+3+34 (1/1/15/4) Subsection: Eshelby Stress Propagator} \label{sec:EshelbyPropogator
   0+1+0 (1/0/0/0) Section: Networks
   449+2+0 (1/0/29/2) Subsection: Semi-Flexible Filaments
   431+3+0 (2/0/29/8) Subsection: Dynamics} \label{sec:NetworkDynamics
@@ -50,31 +51,31 @@ Subcounts:
   0+2+0 (1/0/0/0) Subsection: Athermal Fracture
   0+2+0 (1/0/0/0) Subsection: Thermal Fracture
   900+9+51 (4/1/34/1) Subsection: Disordered Network Models} \label{sec:NetworkStructure
-  439+2+0 (1/0/42/3) Subsection: Calculating Stress
+  439+2+0 (1/0/42/3) Subsection: Calculating Stress} \label{sec:viralStress
   353+4+24 (1/1/0/0) Subsection: Generalised Lees-Edwards Boundary Conditions
 
 Included file: chapters/DoubleNetworkFracture/chapter.tex
 Encoding: utf8
-Words in text: 3671
+Words in text: 4151
 Words in headers: 34
-Words outside text (captions, etc.): 1026
+Words outside text (captions, etc.): 1069
 Number of headers: 14
 Number of floats/tables/figures: 15
-Number of math inlines: 223
+Number of math inlines: 251
 Number of math displayed: 3
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
   0+5+0 (1/0/0/0) Chapter: Toughness of Double Network Hydrogels} \label{sec:DoubleNetworks
-  38+1+0 (1/0/0/0) Section: Introduction
+  88+1+0 (1/0/0/0) Section: Introduction
   312+1+0 (1/0/8/0) Section: Methodology
   253+3+119 (1/1/16/0) Subsection: Jamming-based Double Networks
-  627+2+0 (1/0/46/3) Section: Rheological Protocol} \label{sec:NetworkQuasistatic
-  964+2+208 (1/3/68/0) Section: Stress-Strain Response
+  626+2+0 (1/0/45/3) Section: Rheological Protocol} \label{sec:NetworkQuasistatic
+  1012+2+227 (1/3/74/0) Section: Stress-Strain Response
   671+5+241 (1/3/38/0) Section: Damage in the Sacrificial Network
-  314+2+164 (1/2/22/0) Section: Stress Propogation
-  0+1+0 (1/0/0/0) Section: Conclusion
+  664+2+164 (1/2/45/0) Section: Stress Propagation
+  33+1+0 (1/0/0/0) Section: Conclusion
   35+3+0 (1/0/0/0) Section: Square Lattice-Based Network} \label{sec:SquareAppendix
-  394+3+72 (1/1/12/0) Subsection: Lattice-Based Double Networks
+  394+3+96 (1/1/12/0) Subsection: Lattice-Based Double Networks
   0+2+190 (1/3/8/0) Subsection: Stress-Strain Response
   0+2+0 (1/1/0/0) Subsection: Effective Propagator
   63+2+32 (1/1/5/0) Section: Rate Dependency} \label{sec:DoubleRate
@@ -91,18 +92,18 @@ Number of math displayed: 0
 
 Sum of files: thesis.tex
 File(s) total: thesis.tex
-Words in text: 9609
-Words in headers: 103
-Words outside text (captions, etc.): 1147
-Number of headers: 46
+Words in text: 10089
+Words in headers: 106
+Words outside text (captions, etc.): 1190
+Number of headers: 47
 Number of floats/tables/figures: 20
-Number of math inlines: 545
+Number of math inlines: 573
 Number of math displayed: 49
 Files: 5
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
   8+7+0 (1/0/0/0) File: thesis.tex
   212+5+0 (3/0/15/2) Included file: chapters/1-Introduction/chapter.tex
-  5718+57+121 (28/5/307/44) Included file: chapters/2-Background/chapter.tex
-  3671+34+1026 (14/15/223/3) Included file: chapters/DoubleNetworkFracture/chapter.tex
+  5718+60+121 (29/5/307/44) Included file: chapters/2-Background/chapter.tex
+  4151+34+1069 (14/15/251/3) Included file: chapters/DoubleNetworkFracture/chapter.tex
 
