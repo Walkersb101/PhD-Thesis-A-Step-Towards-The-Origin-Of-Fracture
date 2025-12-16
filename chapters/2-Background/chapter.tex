@@ -212,6 +212,8 @@ by taking the partial derivative ($\partial_l$) of $\hat{u}_i $ which is equival
 \end{equation}
 Both \cref{eq:fourierDeformation,eq:fourierDeformationGradient} naturally describe the deformation and gradient fields for a periodic system up to an arbitrary constant $\bm{u}_0$, due to the singularity at $\bm{k}=\bm{0}$. 
 
+\subsection{Eshelby Stress Propagator} \label{sec:EshelbyPropogator}
+
 The associated stress and strain fields are then obtained by substituting this result for $\partial_l u_i$ into \cref{eq:decompositionAndDeformation,eq:elasticStress} in fourier space, giving the resultant Shear stress correction in
 \begin{equation}
     \hat{\sigma}_{x y}^1=2 \mu^2\left(q_y^2 \hat{\mathbb{O}}_{x x}+q_x^2 \hat{\mathbb{O}}_{y y}+2 q_x q_y \hat{\mathbb{O}}_{x y}-1 / \mu\right) \hat{\epsilon}_{x y}^{\mathrm{pl1}} = 2\mu \hat{\mathbb{ G }}_{ xy } \hat{\epsilon}_{x y}^{\mathrm{pl1}}.
@@ -227,19 +229,21 @@ where,
 \end{equation}
 in two ($D=2$) and three ($D=3$) dimensions respectively.
 Expressing both of these equations along the $xy$ plane in $\mathbb{R}^2$ we find that 
-\begin{equation*}
+\begin{equation}
     \mathbb{G}_{xy} \sim \frac{1}{\pi r^{D}}\cos{4\theta}
-\end{equation*}as described by Eshelby in Ref. \cite{eshelby_determination_1997} for an elliptical inclusion. The Eshelby Stress propagator defined in \cref{eq:StressPropogator}, is only defined up to a constant due to the singularity at $\bm{k}=\bm{0}$. In practice, this constant is defined by the boundary conditions of the system, where, in a strain-controlled regime, we want to conserve the elastic strain in the system, and as such, we resolve the singularity at $\bm{k}=\bm{0}$ by setting $\hat{\mathbb{G}}_{xy}(\bm{0}) = -1$ such that the total stress lost in the system due to plastic events is $2\mu\int d\bm{r}^\prime \epsilon_{x}^{\mathrm{pl1}}(\bm{r}^\prime)$. In a stress control regime, it is common to instead take $\hat{\mathbb{G}}_{xy}(\bm{0}) = 0$ where no total stress is lost due to the event and instead the lost plastic stress is converted to elastic stress by the system elasticity straining\cite{nicolas_deformation_2018, martens_spontaneous_2012, jocteur_protocol_2025, lin_scaling_2014}.  
+    \label{eq:eshelbyReal}
+\end{equation}
+as described by Eshelby in Ref. \cite{eshelby_determination_1997} for an elliptical inclusion. The Eshelby Stress propagator defined in \cref{eq:StressPropogator}, is only defined up to a constant due to the singularity at $\bm{k}=\bm{0}$. In practice, this constant is defined by the boundary conditions of the system, where, in a strain-controlled regime, we want to conserve the elastic strain in the system, and as such, we resolve the singularity at $\bm{k}=\bm{0}$ by setting $\hat{\mathbb{G}}_{xy}(\bm{0}) = -1$ such that the total stress lost in the system due to plastic events is $2\mu\int d\bm{r}^\prime \epsilon_{x}^{\mathrm{pl1}}(\bm{r}^\prime)$. In a stress control regime, it is common to instead take $\hat{\mathbb{G}}_{xy}(\bm{0}) = 0$ where no total stress is lost due to the event and instead the lost plastic stress is converted to elastic stress by the system elasticity straining\cite{nicolas_deformation_2018, martens_spontaneous_2012, jocteur_protocol_2025, lin_scaling_2014}.  
 
-For a non-periodic system, the method of images may be used to simulate solid walls with a non-slip boundary condition in order to derive an equivalent to \cref{eq:Oseen} \cite{blake_note_1971} and also the stress propagator \cite{picard_elastic_2004}. However, for 2-dimensional it is often easier numerically to take the equivalent stream-function formalism \cite{acheson_elementary_1990}.
-
-\begin{figure}[hbt]
+\begin{figure}
     \centering
     %\includegraphics[width=0.5\linewidth]{}
     \missingfigure{Plot of Propagator}
     \caption[The quadrupolar redistribution of the elastoplastic shear stress]{The quadrupolar redistribution of the elastoplastic shear stress  $\sigma_{xy}$ following a single local event imposed in a system with $\mu=1$. All elements are initialised to $\sigma_{xy}=0$ prior to yielding a single element to $\sigma_{xy}=-1$ and enforcing force balance.}
     \label{fig:Propogator}
 \end{figure}
+
+For a non-periodic system, the method of images may be used to simulate solid walls with a non-slip boundary condition in order to derive an equivalent to \cref{eq:Oseen} \cite{blake_note_1971} and also the stress propagator \cite{picard_elastic_2004}. However, for 2-dimensional it is often easier numerically to take the equivalent stream-function formalism \cite{acheson_elementary_1990}.
 
 \section{Networks}
 
@@ -389,7 +393,7 @@ While it is possible to generate a lower connectivity network, still above the i
 During this process, we remove dangling ends and clusters, such that all bonds actively contribute to the reported mechanical response.
 \missingfigure{Diagram of dangling ends and clusters}
 
-\subsection{Calculating Stress}
+\subsection{Calculating Stress} \label{sec:viralStress}
 
 In molecular dynamics simulations, defining stress precisely can be challenging or computationally demanding. While methods such as the principle of virtual work allow for the system's stress to be found by taking a numerical derivative of the Hamiltonian of the system. However, these methods are computationally expensive as evaluating the Hamiltonian requires the relaxation of the system after the small strain step $\delta\gamma$/$\delta\epsilon$ and possibly averaging over several incremental shear strain steps to compute the derivative accurately. Instead, stresses reported by molecular dynamical systems report the viral stress of the system. While there are many formulations of the viral stress tensor \cite{walton_pressure_1983,erpenbeck_einstein-kubo-helfand_1995,tsai_virial_1979}, we will present a brief derivation of the viral stress tensor derived by Irving and Kirkwood in Ref. \cite{irving_statistical_1950} in two dimensions.
 
