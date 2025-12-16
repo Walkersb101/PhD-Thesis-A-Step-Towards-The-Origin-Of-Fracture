@@ -125,11 +125,32 @@ Conversely, decreasing $M$ or $\mu_m$ enhances the contribution of the sacrifici
 
 \section{Stress Propagation}
 
-To understand the trends described above, and in particular, the enhanced toughness of the double networks, we first consider the effect of single bond breaking in a single network material. When such a network is deformed along the $y$ axis until a single bond failure, the failure of a single bond forces the non-affine local rearrangements of surrounding nodes as the system tries to return to its new minimum energy state. As the network does this, it redistributes some of the stress which was contained in the now broken bond. This results in an increase in the local stresses of bonds horizontally aligned along the $x$ axis (and a decrease in bonds along the $y$ axis) as seen in the left column of \cref{fig:JammedPropogators}. Unless otherwise stopped, these neighbouring bonds may then also break, or are more likely to break after continued deformation, further propagating stress to their neighbours. 
+To understand the trends described above, and in particular, the enhanced toughness of the double networks, we first consider the effect of single bond breaking in a single network material. When such a network is deformed along the $y$ axis until a single bond fails, the failure of a single bond forces the non-affine local rearrangement of surrounding nodes as the system tries to relax to its new minimum energy state. As the network does this, it redistributes some of the stress which was contained in the now broken bond. This results in an increase in the local stresses of bonds aligned along the $x$ axis (and a decrease in bonds along the $y$ axis) as seen in the left column of \cref{fig:JammedPropogators}. Unless otherwise stopped, these neighbouring bonds may then also break, or are more likely to break after continued deformation, further propagating stress to their neighbours. 
 
-Unless otherwise stopped, this stress redistribution makes these neigbouring bonds more sucptible to failure  
+Unless otherwise stopped, this stress redistribution makes these neighbouring bonds more susceptible to failure. This could result in these bonds failing during the continued deformation of the network, or more importantly, being immediately taken above their threshold. In either case, these subsequent breakages result in further rearrangements and increased stress on neighbouring bonds. This process will ultimately, unless stopped, result in an avalanche that propagates macroscopically along the $x$ axis, ultimately resulting in catastrophic material failure, as illustrated in \cref{fig:JammedSacrifical}.
 
-In turn, this may lead to an avalanche of failures, which spread macroscopically along the $x$ axis, resulting in material failure as shown in \cref{fig:JammedSacrifical}.
+\begin{figure}
+    \centering
+    \begin{subfigure}[t]{0.45\textwidth}
+         \centering
+         \includegraphics[width=\textwidth]{chapters/DoubleNetworkFracture/Result Figures/Sacrifical.pdf}
+         \caption{Beginning of a macroscopic crack in a stretched single sacrificial network, which will result in a catastrophic material failure.}
+         \label{fig:JammedSacrifical}
+     \end{subfigure}
+     ~
+     \begin{subfigure}[t]{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{chapters/DoubleNetworkFracture/Result Figures/Double.pdf}
+        \caption{Stretched double network showing many diffuse microcracks in the sacrificial network at a large strain.}
+        \label{fig:JammedDouble}
+    \end{subfigure}
+    \caption[Portions of stretched sacrificial and double network whose stress-strain response is shown in \cref{fig:JammedStressStrain}.]{Portions of stretched sacrificial and double network whose stress-strain response is shown in \cref{fig:JammedStressStrain}. The point on the stress-strain curve for the sacrificial and double network is illustrated by a triangle and a circle, respectively in \cref{fig:JammedStressStrain}.}
+    \label{fig:JammedImages}
+\end{figure}
+
+Instead, in a double network where we have a matrix network, when a sacrificial bond is broken, some of its stress is absorbed through the matrix, which, assuming $\lambda_m$ is large enough, is tough enough to resist failure. Consequently, the amount of stress the neighbouring sacrificial bonds have to absorb is reduced, leading them to be less prone to failing. 
+
+Optimally, to satisfy properties I) and II) discussed earlier, the matrix must be sufficiently stiff and tough to absorb enough stress to arrest the chain of sacrificial bond failures, while remaining compliant enough that it does not dominate the initial modulus $G_d$. This reduction in local stresses on neighbouring sacrificial bonds allows for other sacrificial bonds elsewhere in the material to fail instead, resulting in ductile failure of the sacrificial component. 
 
 \begin{figure}
     \centering
@@ -144,9 +165,9 @@ In turn, this may lead to an avalanche of failures, which spread macroscopically
     \label{fig:JammedPropogators}
 \end{figure}
 
-Instead, in a double network where we have a matrix network, when a sacrificial bond is broken, some of its stress is absorbed through the matrix, which, assuming $\lambda_m$ is large enough, is tough enough to resist failure. The amount of stress the neighbouring sacrificial bonds have to absorb is therefore less, leading them to be less prone to failing. Optimally, to satisfy properties I) and II) discussed earlier, we need the matrix to be stiff and tough enough such that the reduction is sufficient to avoid those neighbours, then also breaking, but flexible enough to not dominate $G_d$.  
+%%I got to here
 
-In \cref{fig:JammedPropogators}, we show the changes in stress resulting from the failure of the first sacrificial bond during deformation. Each system is strained as described in \cref{sec:NetworkQuasistatic} until the failure of the first sacrificial bond. At this point, we diverge from the method outlined in \cref{sec:NetworkQuasistatic}. The dynamics are resolved in the same manner using an overdamped equation, but now we disallow any further bond failures, instead allowing the system to simply minimise itself. Each network is then rotated such that the two nodes of the broken bonds lie vertically aligned along the $y$ axis. Each bond is then assigned a cell based on the position of its centre relative to the centre of the broken bond, which is defined to be at $(0,0)$. Each panel in \cref{fig:JammedPropogators} is constructed by binning $100$ such network realisations and averaging over the relevant quantities in each cell. 
+To quantify the reduction in the stress propagated to the neighbouring bonds caused by the matrix, we plot the average change in stress resulting from the failure of the first sacrificial bond during deformation in \cref{fig:JammedPropogators}. To construct a detailed enough map, we plot the binned averages taken over an ensemble of $100$ network realisations. Each system is strained as described in \cref{sec:NetworkQuasistatic} until the failure of the first sacrificial bond. To capture the resultant propagation of a single failure, we now slightly diverge from the method outlined in \cref{sec:NetworkQuasistatic}. The dynamics are resolved in the same manner using an overdamped equation, but now we disallow any further bond failures, instead allowing the system to simply minimise itself. Each network is then rotated such that the two nodes of the broken bonds lie vertically aligned along the $y$ axis. Each bond is then assigned a cell based on the position of its centre relative to the centre of the broken bond, which is defined to be at $(0,0)$, and the reported quantities are taken as the average value over all bonds in each cell. 
 
 \begin{figure}
     \centering
@@ -174,25 +195,6 @@ To explore these results further, we will look at how the double networks fail a
 \end{figure}
 
 At small strains $\epsilon \approx \epsilon_s^d$, the number of breakages in the sacrificial network tracks (red dashed line in \cref{fig:JammedBrokenStrain}b) closely with the single network failure, indicating that the presence of the matrix does not significantly alter the onset of failure in the sacrificial network. However, as shown earlier, the double network ultimately survives higher strains due to the matrix network. Correspondingly, we observe an extension of the curve that begins to plateau at higher strains, reaching $B \approx 0.41$. The double network eventually fails in the same way as the matrix network, via an abrupt and brittle failure of the matrix network. This is illustrated in \cref{fig:JammedDouble}, where the state of the strained network is displayed at a deformation well above $\epsilon^*_s$. We note that most of the sacrificial network remains intact and continues to percolate vertically. Consequently, it still contributes, with diminishing contributions, to the double network materials, leading to a material which still performs better than the single matrix network. 
-
-\begin{figure}
-    \centering
-    \begin{subfigure}[t]{0.45\textwidth}
-         \centering
-         \includegraphics[width=\textwidth]{chapters/DoubleNetworkFracture/Result Figures/Sacrifical.pdf}
-         \caption{Beginning of a macroscopic crack in a stretched single sacrificial network, which will result in a catastrophic material failure.}
-         \label{fig:JammedSacrifical}
-     \end{subfigure}
-     ~
-     \begin{subfigure}[t]{0.45\textwidth}
-        \centering
-        \includegraphics[width=\textwidth]{chapters/DoubleNetworkFracture/Result Figures/Double.pdf}
-        \caption{Stretched double network showing many diffuse microcracks in the sacrificial network at a large strain.}
-        \label{fig:JammedDouble}
-    \end{subfigure}
-    \caption[Portions of stretched sacrificial and double network whose stress-strain response is shown in \cref{fig:JammedStressStrain}.]{Portions of stretched sacrificial and double network whose stress-strain response is shown in \cref{fig:JammedStressStrain}. The point on the stress-strain curve for the sacrificial and double network is illustrated by a triangle and a circle, respectively in \cref{fig:JammedStressStrain}.}
-    \label{fig:JammedImages}
-\end{figure}
 
 To see how this effect evolves under increasing $M$ and $\mu_m$, we plot the fraction of broken bonds at the point of failure $B^*$ in \cref{fig:JammedBrokenExtract}. The top panels a) and b) are equivalent \cref{fig:JammedStrainExtract}a-d and show $B^*$ for the double network (solid curves) as a function of a) $M$ and $\mu_m$ relative to their corresponding single sacrificial network and single matrix network shown by red dashed and blue dotted curves, respectively. The bottom panels c) and d) show, for the same parameters, the fraction of broken sacrificial and matrix bonds in the double network, indicated by dashed and dotted curves, respectively. In each panel, we again plot the response under different values of the matrix bond failure threshold, $\lambda_m=1.0$ , $2.0$, and $3,0$. 
 
