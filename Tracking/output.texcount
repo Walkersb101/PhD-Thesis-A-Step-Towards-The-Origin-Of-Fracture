@@ -76,12 +76,12 @@ Number of math displayed: 0
 
 Included file: chapters/DoubleNetworkFracture/chapter.tex
 Encoding: utf8
-Words in text: 4790
-Words in headers: 35
-Words outside text (captions, etc.): 1080
+Words in text: 5052
+Words in headers: 38
+Words outside text (captions, etc.): 1097
 Number of headers: 15
 Number of floats/tables/figures: 16
-Number of math inlines: 287
+Number of math inlines: 293
 Number of math displayed: 3
 Subcounts:
   text+headers+captions (#headers/#floats/#inlines/#displayed)
@@ -92,14 +92,14 @@ Subcounts:
   647+2+0 (1/0/46/3) Section: Rheological Protocol} \label{sec:NetworkQuasistatic
   1145+2+227 (1/3/84/0) Section: Stress-Strain Response
   828+2+237 (1/3/46/0) Section: Stress Propagation
-  726+5+168 (1/2/37/0) Section: Damage in the Sacrificial Network
+  730+5+168 (1/2/37/0) Section: Damage in the Sacrificial Network
   33+1+0 (1/0/0/0) Section: Conclusion
-  35+3+0 (1/0/0/0) Section: Square Lattice-Based Network} \label{sec:SquareAppendix
+  64+3+0 (1/0/0/0) Section: Square Lattice-Based Network} \label{sec:SquareAppendix
   394+3+96 (1/1/12/0) Subsection: Lattice-Based Double Networks
-  0+2+190 (1/3/8/0) Subsection: Stress-Strain Response
+  229+2+207 (1/3/15/0) Subsection: Stress-Strain Response
   0+2+0 (1/1/0/0) Subsection: Effective Propagator
   63+2+32 (1/1/5/0) Section: Rate Dependency} \label{sec:DoubleRate
-  266+1+11 (1/1/25/0) Section: $\lambda_m$ dependency} \label{sec:JammedlambdaDependecy
+  266+4+11 (1/1/24/0) Section: Dependency on matrix threshold} \label{sec:JammedlambdaDependecy
 
 Included file: references/ref.tex
 Encoding: ascii
@@ -113,12 +113,12 @@ Number of math displayed: 0
 
 Sum of files: thesis.tex
 File(s) total: thesis.tex
-Words in text: 10727
-Words in headers: 118
-Words outside text (captions, etc.): 1201
+Words in text: 10989
+Words in headers: 121
+Words outside text (captions, etc.): 1218
 Number of headers: 50
 Number of floats/tables/figures: 21
-Number of math inlines: 609
+Number of math inlines: 615
 Number of math displayed: 49
 Files: 7
 Subcounts:
@@ -128,5 +128,5 @@ Subcounts:
   5718+60+121 (29/5/307/44) Included file: chapters/2-Background/chapter.tex
   0+1+0 (1/0/0/0) Included file: chapters/Fatigue/chapter.tex
   0+10+0 (1/0/0/0) Included file: chapters/UltraDelayedFracture/chapter.tex
-  4790+35+1080 (15/16/287/3) Included file: chapters/DoubleNetworkFracture/chapter.tex
+  5052+38+1097 (15/16/293/3) Included file: chapters/DoubleNetworkFracture/chapter.tex
 
