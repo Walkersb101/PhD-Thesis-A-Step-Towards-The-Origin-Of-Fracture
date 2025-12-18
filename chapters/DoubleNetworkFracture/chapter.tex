@@ -110,7 +110,8 @@ We illustrate property I) in \cref{fig:JammedStrainExtract}a-b and \cref{fig:Jam
     Failure strains $\epsilon^*$, stress $\Sigma^*$ and normalised modulus of Jamming-based double networks.\newline
     {\bf Top panels:} The failure strain $\epsilon^*$ of the double network (solid curves) is plotted as a function of a) the matrix content $M$ and b) the matrix bond stiffness $\mu_m$. In each case, we show results for matrix bond failure thresholds $\lambda_m = 1.0,\; 2.0,\; 3.0$, displayed from the lowest to highest curve (circles, triangles and squares, respectively). For comparison, the failure strains of the corresponding single sacrificial network and single matrix network are indicated by dashed and dotted curves, respectively.\newline
     {\bf Middle panels:} Analogous to a) and b), but now presenting the failure stress $\Sigma^*$.\newline
-    {\bf Bottom panels:} The modulus of the sacrificial network, normalised by the modulus of the full double network. Panels a), c), and e) use a fixed matrix bond stiffness $\mu_m = 0.2$, whereas panels b), d), and f) fix the relative length scales at $M = 3.0$.
+    {\bf Bottom panels:} The modulus of the sacrificial network, normalised by the modulus of the full double network. \newline
+    Panels a), c), and e) use a fixed matrix bond stiffness $\mu_m = 0.2$, whereas panels b), d), and f) fix the relative length scales at $M = 3.0$.
     }
     \label{fig:JammedStrainExtract}
 \end{figure}
@@ -184,7 +185,7 @@ By plotting slices along the $x$ axis of $\delta \sigma_{sb}$ in \cref{fig:Jamme
 
 \section{Damage in the Sacrificial Network}
 
-If our hypothesis is correct, the underlying physics, driven by a reduction in the Eshelby stress propagator, allows for diffuse rather than concentrated damage in the sacrificial component. This behaviour should be observable by examining the fraction of bonds broken in each component. We begin again with the specific set of networks shown in \cref{fig:JammedStressStrain}. In \cref{fig:JammedBrokenStrain}, the fraction of bonds broken $B^*$ is shown for the single matrix and single sacrificial networks in panel a), and for the double network and its individual components in panel b). 
+If our understanding is correct, the underlying physics, driven by a reduction in the Eshelby stress propagator, allows for diffuse rather than concentrated damage in the sacrificial component. This behaviour should be observable by examining the fraction of bonds broken in each component. We begin again by considering the specific set of networks shown in \cref{fig:JammedStressStrain} and plot in \cref{fig:JammedBrokenStrain}, the fraction of bonds broken $B^*$ is shown for the single matrix and single sacrificial networks in panel a), and for the double network and its individual components in panel b). 
 
 \begin{figure}
     \centering
@@ -194,25 +195,25 @@ If our hypothesis is correct, the underlying physics, driven by a reduction in t
     \label{fig:JammedBrokenStrain}
 \end{figure}
 
-Considering the single network systems in \cref{fig:JammedBrokenStrain}a, the single matrix (solid blue line) shows a simple, highly brittle response with a dramatic increase in bond failures at the failure strain $\epsilon_m^*$. A similar but slightly more ductile response is observed in the sacrificial network (solid red line), where we see a small number of failures prior to the network's ultimate brittle failure, illustrated in \cref{fig:JammedSacrifical}. This behaviour is consistent with previous observations reported in Ref. \cite{dussi_athermal_2020}.
+Considering the single network systems shown in \cref{fig:JammedBrokenStrain}a, the single matrix (solid blue line) shows a simple, highly brittle response with an abrupt increase in bond failures at the failure strain $\epsilon_m^*$. A similar but slightly more ductile response is observed in the sacrificial network (solid red line), where we see a small number of failures prior to the network's ultimate brittle failure, illustrated in \cref{fig:JammedSacrifical}. This behaviour is consistent with previous observations reported in Ref. \cite{dussi_athermal_2020}.
 
 In contrast, the double network curve (solid black line) in \cref{fig:JammedBrokenStrain}b demonstrates the markedly more ductile response of the double network. This behaviour has been discussed previously and is illustrated in \cref{fig:JammedDouble}, which shows the state of the strained network at a deformation well above $\epsilon^*_s$. At small strains $\epsilon \approx \epsilon_s^*$, the number of breakages in the sacrificial network (red dashed line) tracks closely with the single network curves, indicating that the presence of the matrix does not significantly alter the onset of failure in the sacrificial network. 
 
 However, as shown earlier, the sacrificial component ultimately survives higher strains in a double network as a result of the matrix component. Correspondingly, we observe an extension of the curve that begins to plateau at higher strains, reaching $B^* \approx 0.41$. The double network eventually fails in the same way as the matrix network, via an abrupt and brittle failure of the matrix component (blue dotted line). We note that most of the sacrificial network remains intact and continues to percolate vertically. Consequently, it still contributes, with diminishing contributions, to the double network materials, leading to a material which still performs better than the single matrix network. 
 
-To see how this effect evolves under increasing $M$ and $\mu_m$, we plot the fraction of broken bonds at the point of failure $B^*$ in \cref{fig:JammedBrokenExtract}. The top panels a) and b) are equivalent \cref{fig:JammedStrainExtract}a-d and show $B^*$ for the double network (solid curves) as a function of a) $M$ and $\mu_m$ relative to their corresponding single sacrificial network and single matrix network shown by red dashed and blue dotted curves, respectively. The bottom panels c) and d) show, for the same parameters, the fraction of broken sacrificial and matrix bonds in the double network, indicated by dashed and dotted curves, respectively. In each panel, we again plot the response under different values of the matrix bond failure threshold, $\lambda_m=1.0$ , $2.0$, and $3,0$. 
-
-The dependence on $M$ shows in \cref{fig:JammedBrokenExtract}a for the double network system is a consequence of the construction of our networks: as $M$ increases, the fraction of sacrificial bonds relative to the total number of bonds decreases. This dilution causes the total fraction of bonds $ B^* \to 0.0$ as $M\to\infty$. The non-monotonic behaviour at $M=2$, however, is a consequence of the sacrificial component itself. As shown in \cref{fig:JammedBrokenExtract}b, the fraction of broken sacrificial bonds at failure increases, showing an increase in the amount of diffuse microcracks in the sacrificial network.
-
-\begin{figure}
+\begin{figure}[hbt!]
     \centering
-    \includegraphics[width=0.8\linewidth]{chapters/DoubleNetworkFracture/Result Figures/BrokenStrainExtract.pdf}
+    \includegraphics[width=0.75\linewidth]{chapters/DoubleNetworkFracture/Result Figures/BrokenStrainExtract.pdf}
     \caption[Fraction of bonds broken $B^*$ at failure.]{
     {\bf Top panels:} The fraction of broken bonds $B^*$ of the double network (solid curves) is plotted as a function of a) the matrix content $M$ and b) the matrix bond stiffness $\mu_m$. In each case, we show results for matrix bond failure thresholds $\lambda_m = 1.0,\; 2.0,\; 3.0$, displayed from the lowest to highest curve (circles, triangles and squares, respectively). For comparison, the fraction of broken bonds of the corresponding single sacrificial network and single matrix network is indicated by dashed and dotted curves, respectively.\newline
     {\bf Bottom panels:} For the solid lines shown in the corresponding plot above, we show the fraction of sacrificial and matrix bonds broken, indicated by dashed and dotted curves, respectively.
     }
     \label{fig:JammedBrokenExtract}
 \end{figure}
+
+To see how this effect evolves under increasing $M$ and $\mu_m$, we plot the fraction of broken bonds at the point of failure $B^*$ in \cref{fig:JammedBrokenExtract}. The top panels a) and b) are equivalent \cref{fig:JammedStrainExtract}a-d and show $B^*$ for the double network (solid curves) as a function of a) $M$ and $\mu_m$ relative to their corresponding single sacrificial network and single matrix network shown by red dashed and blue dotted curves, respectively. The bottom panels c) and d) show, for the same parameters, the fraction of broken sacrificial and matrix bonds in the double network, indicated by dashed and dotted curves, respectively. In each panel, we again plot the response under different values of the matrix bond failure threshold, $\lambda_m=1.0$ , $2.0$, and $3,0$. 
+
+The dependence on $M$ shows in \cref{fig:JammedBrokenExtract}a for the double network system is a consequence of the construction of our networks: as $M$ increases, the fraction of sacrificial bonds relative to the total number of bonds decreases. This dilution causes the total fraction of bonds $ B^* \to 0.0$ as $M\to\infty$. The non-monotonic behaviour at $M=2$, however, is a consequence of the sacrificial component itself. As shown in \cref{fig:JammedBrokenExtract}b, the fraction of broken sacrificial bonds at failure increases, showing an increase in the amount of diffuse microcracks in the sacrificial network.
 
 Panels \cref{fig:JammedBrokenExtract}b and d show the corresponding dependence on $\mu_m$. In panel b, the total fraction of broken bonds in the double network increases monotonically, for $\lambda_m = 2.0, \; 3.0$. This again shows an implied trend of stress de-localisation, where we see an increase in the allowed sacrificial failure before the matrix ruptures. For $\lambda_m =1.0$ we see a small decrease in the $B^*$ before the expected monotonic increase. This does correspond with an increase in the standard deviation of our results over samples and may correspond to slight under-convergence in our athermal quasi-static algorithm (convergence was checked for major reported quantities $\epsilon^*$, $\Sigma^*$, and moduli).
 
@@ -223,7 +224,7 @@ In this chapter, we studied both the macroscopic and microscopic fracture behavi
 
 \begin{subappendices}
 \section{Square Lattice-Based Network} \label{sec:SquareAppendix}
-The simplest form of a single network structure is that of a lattice-based network. We extend this trivially to a double network by constructing commensurate lattices with different length scales connected where lattice sites overlap.  
+The simplest form of a single network structure is that of a lattice-based network. We extend this trivially to a double network by constructing commensurate lattices with different length scales connected where lattice sites overlap. We hope that, under this alternative method of network construction, to reinforce the ideas presented in the main text and confirm that the physics we observe holds more generally. 
 
 \subsection{Lattice-Based Double Networks}
  For our lattice-based double network, the sacrificial network is constructed using the same method described in \cref{sec:LatticeBasedNetworks} by defining a set of lattice vectors and rules for connecting them. The matrix network can also be generated in the same way, however, with a scaled set of lattice vectors. For simplicity, we choose $M\in\mathbb{Z}$, such that the sacrificial and matrix lattices are commensurate: the matrix lattice vectors are integer multiples of the sacrificial ones. This ensures that the nodes of the matrix lattice lie exactly on a subset of the nodes of the fine sacrificial lattice. The natural length of each bond $l_0$ is then set in this configuration.  
@@ -245,7 +246,7 @@ In this section, we will consider square lattice-based double networks whose int
 
 \subsection{Stress-Strain Response}
 
-$\mu_s = 1.0, \lambda_s=0.5, \lambda_m=3.0, \epsilon_p=0.75, \sigma_p=0.1$
+We present the stress-strain response of 3 networks in \cref{fig:SquareStressStrain}, one for each type of construction described above, analogous to \cref{fig:JammedStressStrain} we plot in a) the corresponding single sacrificial and matrix responses and in b) the response of the combined double network. We will use a consistent set of colours to denote the relevant constructions with \quotes{Overlap With Subdivisions}, \quotes{Overlap Without Subdivisions} and \quotes{No Overlap With Subdivisions} denoted in blue, green and red, respectively. In \cref{fig:JammedStressStrain}a it appears we only plot curves for the case of \quotes{Overlap Without Subdivisions} and \quotes{No Overlap With Subdivisions}. This is due to the sacrificial component of \quotes{Overlap With Subdivisions} being equivalent to the sacrificial component of \quotes{No Overlap With Subdivisions} and the matrix component equivalent to the matrix component of \quotes{Overlap Without Subdivisions}.
 
 \begin{figure}
     \centering
@@ -254,17 +255,20 @@ $\mu_s = 1.0, \lambda_s=0.5, \lambda_m=3.0, \epsilon_p=0.75, \sigma_p=0.1$
     \caption[Stress-strain curves of a prestressed square lattice-based network.]{Stress-strain curves of a prestressed square lattice-based network. 
     We plot the three network constructions discussed in \cref{fig:DoubleSquareTypes} with \quotes{Overlap With Subdivisions}, \quotes{Overlap Without Subdivisions} and \quotes{No Overlap With Subdivisions} in blue, green and red, respectively.\newline 
     {\bf a)} Single sacrificial networks (dashed lines) and single matrix networks (dotted lines). {\bf b)} Composite double network (solid lines), with the contributions of the component sacrificial network (dashed line) and matrix network (dotted line) shown separately. \newline
-    Parameters: $M=4.0, \mu_m=0.4$.}
+    Parameters: $M=4, \mu_m=0.4$.}
     \label{fig:SquareStressStrain}
 \end{figure}
+
+Compared to the Jamming-based networks discussed above, we will consider a slightly different set of units now with $\lambda_s=1.0$. For simplicity, we will only consider the case of $\lambda_m=3.0$ and set the two disorder parameters discussed above to be $\epsilon_p=0.75$ and $\sigma_p=0.1$ unless otherwise stated. In \cref{fig:SquareStressStrain}, the sacrificial and matrix curves display the same behaviour as the single jammed networks in \cref{fig:JammedStressStrain}, with a non-linear stress-strain response followed by brittle failure. All curves presented show a non-zero strain at $\epsilon=0.0$ due to the initial pre-stress in the system $\epsilon_p$, with a small deviation due to the allowed initial relaxation. 
+
 
 \begin{figure}
     \centering
     %\missingfigure{Square Strain Extract}
     \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/SquareFigures/SquareStrainExtract.pdf}
     \caption[Failure strains of square lattice-based double networks]{
-    Failure strains $\epsilon^*$ square lattice-based double networks. The three network constructions discussed in \cref{fig:DoubleSquareTypes} with \quotes{Overlap With Subdivisions}, \quotes{Overlap Without Subdivisions} and \quotes{No Overlap With Subdivisions} in blue, green and red, respectively.\newline
-    The failure strain $\epsilon^*$ of the double network (solid curves) is plotted as a function of a) the matrix content $M$ and b) the matrix bond stiffness $\mu_m$. For comparison, the failure strains of the corresponding single sacrificial network and single matrix network are indicated by dashed and dotted curves, respectively.\newline
+    Failure strains $\epsilon^*$ square lattice-based double networks. The three network constructions discussed in \cref{fig:DoubleSquareTypes} with \quotes{Overlap With Subdivisions}, \quotes{Overlap Without Subdivisions} and \quotes{No Overlap With Subdivisions} in blue, green and red, respectively. The failure strain $\epsilon^*$ of the double network (solid curves) is plotted as a function of a) the matrix content $M$ and b) the matrix bond stiffness $\mu_m$. For comparison, the failure strains of the corresponding single sacrificial network and single matrix network are indicated by dashed and dotted curves, respectively.\newline
+    Panel a) uses a fixed matrix bond stiffness $\mu_m = 0.4$, whereas panel b) fixes the relative length scales at $M = 4$.
     }
     \label{fig:SquareStrainExtract}
 \end{figure}
@@ -301,7 +305,7 @@ In the main text, we carried out simulations in the quasi-static limit $\dot{\ep
     \label{fig:DoubleRate}
 \end{figure}
 
-\section{$\lambda_m$ dependency} \label{sec:JammedlambdaDependecy}
+\section{Dependency on matrix threshold} \label{sec:JammedlambdaDependecy}
 
 In \cref{fig:JammedStrainExtract,fig:JammedBrokenExtract} we briefly explore the effect of $\lambda_m$ by plotting the behaviour at distinct values $\lambda_m = 1.0,\; 2.0,\; 3.0$. We extend this analysis by plotting intermediate values of $\lambda_m$ for the case of a double network with parameters $M=3$, $\mu_m=0.2$, $\lambda_s=0.5$ for characteristic quantities $\epsilon^*$ and $B^*$. 
 
