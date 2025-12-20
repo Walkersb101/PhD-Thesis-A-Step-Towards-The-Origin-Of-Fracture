@@ -169,7 +169,7 @@ def insert_run_and_stats(conn, files_metrics):
     # Single transaction to keep runs/file_stats consistent.
     with conn:
         with conn.cursor() as c:
-            timestamp = datetime.now(timezone.utc).isoformat()
+            timestamp = datetime.now(timezone.utc)
             c.execute(
                 "INSERT INTO runs (run_timestamp) VALUES (%s) RETURNING id",
                 (timestamp,),
