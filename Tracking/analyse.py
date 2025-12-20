@@ -2,24 +2,27 @@
 parse_texcount.py
 
 Parse a TeXcount output and store per-file and overall summary statistics
-into an SQLite database for progress tracking.
+into a PostgreSQL database for progress tracking.
 """
 
-import re
-import sqlite3
 import argparse
+import os
+import re
+import subprocess
 from datetime import datetime, timezone
 
+import psycopg2
+
 # -----------------------------------------------------------------------------
-# SCHEMA:
+# SCHEMA (PostgreSQL):
 #
 #   runs
-#     id            INTEGER PRIMARY KEY
-#     run_timestamp TEXT
+#     id            SERIAL PRIMARY KEY
+#     run_timestamp TIMESTAMPTZ
 #
 #   file_stats
-#     id               INTEGER PRIMARY KEY
-#     run_id           INTEGER    REFERENCES runs(id)
+#     id               SERIAL PRIMARY KEY
+#     run_id           INTEGER REFERENCES runs(id)
 #     filename         TEXT
 #     encoding         TEXT
 #     words_text       INTEGER
@@ -32,7 +35,8 @@ from datetime import datetime, timezone
 #     is_summary       INTEGER    -- 1 if this row is the overall summary
 #
 # Usage:
-#   python parse_texcount.py --input mycount.txt --db texcount.db
+#   python parse_texcount.py --input mycount.txt [--dsn postgresql://...]
+#   # or rely on PGHOST, PGPORT, PGDATABASE, PGUSER, PGPASSWORD
 # -----------------------------------------------------------------------------
 
 FILE_BLOCK_RE = re.compile(
@@ -60,31 +64,74 @@ SUMMARY_RE = re.compile(
     re.MULTILINE
 )
 
+
+def get_connection(dsn=None):
+    if dsn:
+        return psycopg2.connect(dsn)
+
+    # Secrets are sourced from environment; fail fast if anything is missing.
+    env = {
+        'host': os.getenv('PGHOST'),
+        'port': os.getenv('PGPORT', '5432'),
+        'dbname': os.getenv('PGDATABASE'),
+        'user': os.getenv('PGUSER'),
+        'password': os.getenv('PGPASSWORD'),
+    }
+    missing = [k for k, v in env.items() if not v and k != 'port']
+    if missing:
+        raise RuntimeError(f"Missing PostgreSQL environment variables: {', '.join(missing)}")
+
+    return psycopg2.connect(**env)
+
+
+def run_texcount(tex_root, texcount_path, extra_args=None, workdir=None):
+    """Execute texcount and return its stdout."""
+    extra_args = extra_args or []
+    cmd = ["perl", texcount_path, "-dir", "-inc", tex_root, *extra_args]
+    try:
+        completed = subprocess.run(
+            cmd,
+            cwd=workdir,
+            check=True,
+            text=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+        )
+    except subprocess.CalledProcessError as exc:
+        raise RuntimeError(
+            f"texcount failed with exit code {exc.returncode}: {exc.stderr}"
+        ) from exc
+    return completed.stdout
+
 def init_db(conn):
-    c = conn.cursor()
-    c.execute("""
-      CREATE TABLE IF NOT EXISTS runs (
-        id            INTEGER PRIMARY KEY,
-        run_timestamp TEXT NOT NULL
-      )
-    """)
-    c.execute("""
-      CREATE TABLE IF NOT EXISTS file_stats (
-        id               INTEGER PRIMARY KEY,
-        run_id           INTEGER NOT NULL REFERENCES runs(id),
-        filename         TEXT NOT NULL,
-        encoding         TEXT,
-        words_text       INTEGER,
-        words_headers    INTEGER,
-        words_outside    INTEGER,
-        num_headers      INTEGER,
-        num_floats       INTEGER,
-        math_inlines     INTEGER,
-        math_displayed   INTEGER,
-        is_summary       INTEGER NOT NULL DEFAULT 0
-      )
-    """)
-    conn.commit()
+        # Ensure tables exist; keep the schema aligned with the original SQLite layout.
+        with conn, conn.cursor() as c:
+                c.execute(
+                        """
+                        CREATE TABLE IF NOT EXISTS runs (
+                            id            SERIAL PRIMARY KEY,
+                            run_timestamp TIMESTAMPTZ NOT NULL DEFAULT NOW()
+                        )
+                        """
+                )
+                c.execute(
+                        """
+                        CREATE TABLE IF NOT EXISTS file_stats (
+                            id               SERIAL PRIMARY KEY,
+                            run_id           INTEGER NOT NULL REFERENCES runs(id) ON DELETE CASCADE,
+                            filename         TEXT NOT NULL,
+                            encoding         TEXT,
+                            words_text       INTEGER,
+                            words_headers    INTEGER,
+                            words_outside    INTEGER,
+                            num_headers      INTEGER,
+                            num_floats       INTEGER,
+                            math_inlines     INTEGER,
+                            math_displayed   INTEGER,
+                            is_summary       INTEGER NOT NULL DEFAULT 0
+                        )
+                        """
+                )
 
 def parse_texcount(text):
     files = []
@@ -119,52 +166,76 @@ def parse_texcount(text):
     return files
 
 def insert_run_and_stats(conn, files_metrics):
-    c = conn.cursor()
-    timestamp = datetime.now(timezone.utc).isoformat()
-    c.execute("INSERT INTO runs (run_timestamp) VALUES (?)", (timestamp,))
-    run_id = c.lastrowid
-    for f in files_metrics:
-        c.execute("""
-          INSERT INTO file_stats
-            (run_id, filename, encoding, words_text, words_headers,
-             words_outside, num_headers, num_floats,
-             math_inlines, math_displayed, is_summary)
-          VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-        """, (
-          run_id,
-          f['filename'],
-          f['encoding'],
-          f['words_text'],
-          f['words_headers'],
-          f['words_outside'],
-          f['num_headers'],
-          f['num_floats'],
-          f['math_inlines'],
-          f['math_displayed'],
-          f['is_summary']
-        ))
-    conn.commit()
+    # Single transaction to keep runs/file_stats consistent.
+    with conn:
+        with conn.cursor() as c:
+            timestamp = datetime.now(timezone.utc).isoformat()
+            c.execute(
+                "INSERT INTO runs (run_timestamp) VALUES (%s) RETURNING id",
+                (timestamp,),
+            )
+            run_id = c.fetchone()[0]
+            for f in files_metrics:
+                c.execute(
+                    """
+                    INSERT INTO file_stats
+                      (run_id, filename, encoding, words_text, words_headers,
+                       words_outside, num_headers, num_floats,
+                       math_inlines, math_displayed, is_summary)
+                    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                    """,
+                    (
+                        run_id,
+                        f['filename'],
+                        f['encoding'],
+                        f['words_text'],
+                        f['words_headers'],
+                        f['words_outside'],
+                        f['num_headers'],
+                        f['num_floats'],
+                        f['math_inlines'],
+                        f['math_displayed'],
+                        f['is_summary'],
+                    ),
+                )
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('--input', '-i', required=True,
-                   help="path to the texcount output text file")
-    p.add_argument('--db', '-d', default='texcount_progress.db',
-                   help="SQLite database file (will be created if missing)")
+    source = p.add_mutually_exclusive_group(required=True)
+    source.add_argument('--input', '-i', dest='input_file',
+                        help="path to a precomputed texcount output text file")
+    source.add_argument('--tex-root', dest='tex_root',
+                        help="root LaTeX file to pass to texcount (runs texcount internally)")
+    p.add_argument('--texcount-path', default='Tracking/texcount.pl',
+                   help="path to the texcount.pl script")
+    p.add_argument('--texcount-extra-args', nargs='*', default=[],
+                   help="additional arguments forwarded to texcount")
+    p.add_argument('--dsn', default=None,
+                   help="optional PostgreSQL DSN; if omitted, PG* env vars are used")
+    # Backward-compatible alias for callers that still pass --db
+    p.add_argument('--db', dest='dsn', help=argparse.SUPPRESS)
     args = p.parse_args()
 
-    with open(args.input, 'r', encoding='utf-8') as infile:
-        text = infile.read()
+    if args.tex_root:
+        text = run_texcount(
+            tex_root=args.tex_root,
+            texcount_path=args.texcount_path,
+            extra_args=args.texcount_extra_args,
+            workdir=os.getcwd(),
+        )
+    else:
+        with open(args.input_file, 'r', encoding='utf-8') as infile:
+            text = infile.read()
 
     files_metrics = parse_texcount(text)
     if not files_metrics:
         print("No file blocks found in input – is this a valid TeXcount output?")
         return
 
-    conn = sqlite3.connect(args.db)
+    conn = get_connection(args.dsn)
     init_db(conn)
     insert_run_and_stats(conn, files_metrics)
-    print(f"Imported {len(files_metrics)} items (including summary) into {args.db}")
+    print(f"Imported {len(files_metrics)} items (including summary) into PostgreSQL")
 
 if __name__ == '__main__':
     main()
