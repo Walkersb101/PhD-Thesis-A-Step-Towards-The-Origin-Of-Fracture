@@ -124,7 +124,7 @@ Considering the trends shown in \cref{fig:JammedPhaseDiagrams} and \cref{fig:Jam
 
 Conversely, decreasing $M$ or $\mu_m$ enhances the contribution of the sacrificial network to the overall stiffness but drives the material's failure strain towards that of the sacrificial network. An optimal set of parameters, therefore, requires a compromise: for a given $\lambda_m$ whose value is sufficiently large to stop an immediate failure of the matrix, a pair of parameters $M$, $\mu_m$ should be chosen such that the failure strain $\epsilon^*_d \approx \epsilon^*_m$ is large, while the sacrificial network still dominates $G_d$. In practice, we found that the region of parameter space exemplified by the values $M = 3.0$, $\mu_m = 0.2$, $\lambda_m = 3.0$ shown in \cref{fig:JammedStressStrain} to be a sensible compromise.
 
-\section{Stress Propagation}
+\section{Stress Propagation} \label{sec:doubleStressProp}
 
 To understand the trends described above, and in particular, the enhanced toughness of the double networks, we first consider the effect of single bond breaking in a single network material. When such a network is deformed along the $y$ axis until a single bond fails, the failure of a single bond forces the non-affine local rearrangement of surrounding nodes as the system tries to relax to its new minimum energy state. As the network does this, it redistributes some of the stress which was contained in the now broken bond. This results in an increase in the local stresses of bonds aligned along the $x$ axis (and a decrease in bonds along the $y$ axis) as seen in the left column of \cref{fig:JammedPropogators}. Unless otherwise stopped, these neighbouring bonds may then also break, or are more likely to break after continued deformation, further propagating stress to their neighbours. 
 
@@ -220,7 +220,21 @@ Panels \cref{fig:JammedBrokenExtract}b and d show the corresponding dependence o
 In each plot, we show results for $\lambda_m=1.0$ , $2.0$, and $3,0$, which converge to different values of $B^*$ under both increasing $M \to \infty$ and $\mu_m \to 1$, this is consistent with the work done by \textit{Tauber et al} \cite{tauber_microscopic_2020} in a simple multi-spring model with $M=1$. While a theoretical extension of this model to include $M > 1$ would provide a useful analytical framework for interpreting these trends, constructing such a model lies beyond the scope of the present thesis. 
 
 \section{Conclusion}
-In this chapter, we studied both the macroscopic and microscopic fracture behaviour of double networks in a simple mesoscopic model. This simple model has allowed us to explore the role of stiffness and 
+In this chapter, we studied both the macroscopic and microscopic fracture behaviour of double networks in a simple mesoscopic model. This simple model has allowed us to explore the role of stiffness and length scales in controlling the response of double network materials. We have illustrated that by using a simple model, it's possible to capture the complex physics of double network materials, and show my numerical simulation that these results capture the key features shown in experiments. 
+
+The key result of this work is to further the understanding of the role of stress delocalisation in the sacrificial component of the double networks, allowing for the double network to inherit both the stiffness of its stiff and brittle sacrificial component and the ductility of its soft and ductile matrix component. We prove that this effect is a consequence of a reduction in the Eshelby stress propagator between neighbouring sacrificial bonds, which arrests the avalanche failures which lead to brittle failure of single networks. 
+
+The model we present here is clearly a simplification when compared to real double network hydrogel systems. In this work, we have only considered the case of two-dimensional systems in a central force model, without any bending modulus $\kappa$. For the bulk of this work, we have considered networks above the isostatic point with an average network coordination $z \geq 4=2d$ and with no pre-stress (a Brief exploration can be seen in \cref{sec:SquareAppendix}). This clearly simplifies the physics when compared to real systems, which have connectivity well below the isostatic point of $z=6=2d$.
+
+In the experimental system, the sacrificial network is synthesised first, as is naturally prestressed in the double network's natural condition. In our current construction, we do not consider this apart from the constraint that $\mu_s > \mu_m$. This is trivial to add to our model, though the method described for square double networks in \cref{sec:SquareAppendix}. Further adding disorder in this pre-stress may allow for more complex behaviour as the components transition from pro to sub-isostatic during fracture. 
+
+A topic of much interest to the wider community has been how this work can be extended to understand double network materials under cyclic shear. Experimental works \cite{zhang_fatigue_2018, chen_improvement_2016, chen_novel_2015} have shown that, under cyclic shear loading, double-network hydrogels can endure many loading cycles with little loss of stiffness, because sacrificial bonds in the first network repeatedly break while the second network continues to carry the load. 
+
+This result follows very closely with the results shown in our work a one of the many driving contributors to tough networks in shear start-up, therefore a thorough exploration of our model, which should be simple enough to explore the \quotes{timescales} necessary, may be able to provide a deep insight into these results. Further, recent experimental work done by \quotes{you et al}\cite{you_damage_2025} has been able to establish a simple connection between monotonic and cyclic loading behaviours through damage modelling, which we may be able to explore more extensively. 
+
+\todo[inline]{Put a put a bit here on healing}
+
+While it would be great to extend the model further, considering further parametrisation, alternative potentials such as a rope-like potential \cite{arzashStressstabilizedSubisostaticFiber2019a}, or through generating more accurate network geometries\cite{mugnaiInterspeciesInteractionsDual2025,rijns_synthetic_2024}. This simplified approach has enabled us to identify the key physics at play with minimal ingredients and will hopefully allow for further understanding when considering more complex systems. 
 
 \begin{subappendices}
 \section{Square Lattice-Based Network} \label{sec:SquareAppendix}
@@ -273,26 +287,47 @@ Compared to the Jamming-based networks discussed above, we will consider a sligh
     \label{fig:SquareStrainExtract}
 \end{figure}
 
+We plot curves analogous to those presented in \cref{fig:JammedStrainExtract}a-b in \cref{fig:SquareStrainExtract}, extracting the failure strain $\epsilon^*$ as a function of a) $M$ and b) $\mu_m$. The square network cases follow the overall trends explored in the Jammed-based systems, with systems diverging from the sacrificial cases at low $M$ or $\mu_m$ to failure strains closer to that of the matrix with increasing $M$ or $\mu_m$. For the chosen parameters, we note that we do not see failures strain reach that of the matrix when increasing $M$ at $\mu_m=0.4$, instead, we see $\epsilon^*$ plateaus to a value lower depending on its construction. 
+
+Overall, we see the blue network performs the worst; we expect, based on our exploration in the jammed case this is due to the lack of variation in length scales between the two components, forcing sacrificial bonds to rearrange alongside the matrix bonds they lie on top of, resulting in early failures. The red and green curves follow almost identical trends, plateauing at $M \approx 4$. Both other constructions allow their sacrificial components to deform almost independently of their matrix components. Either through constraining only each bond's endpoints, as in the Jammed-based networks, or by only weakly constraining each node. Importantly, they both appear to allow for the necessary separation between the dynamics of the two components. 
+
 \begin{figure}
     \centering
     %\missingfigure{Square Strain Extract}
     \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/SquareFigures/HeatMaps.pdf}
     \caption[Phase diagrams of double-network failure strain $\epsilon^*_d$ and relative sacrificial contribution $G_s/G_d$ for square lattice-based networks]{Phase diagrams representing the  square lattice-based networks. For each quantity, we plot the three network constructions discussed in \cref{fig:DoubleSquareTypes} separately. Colour scales show the change of: \newline
     {\bf Top panels:} the failure strain $\epsilon^*_d$. \newline
-    {\bf Bottom panels:} the relative sacrificial contribution $G_s/G_d$.
+    {\bf Bottom panels:} the relative sacrificial contribution $G_s/G_d$. \newline
+    Parameters: $\lambda_s=1.0,\; \lambda_m=3.0,\; \mu_s=1.0, \; \epsilon_p=0.75$ 
     }
     \label{fig:SquareHeatMaps}
 \end{figure}
 
+Panel b) explores much the same again, illustrating the trend from sacrificial to matrix physics with curves diverging from the sacrificial cases at $\mu_m \gtrapprox 0.15$, where the matrix network becomes stiff enough to arrest the failure of sacrificial bonds and allow an increase in the system toughness. Most curves again plateau before reaching the matrix case; we expect that this early plateau may be driven by a loss of local rigidity as the system breaks and the effect of the pre-stress decreases, allowing for increased deformation and early failure. This hypothesis remains untested, but it may be the reason that the \quotes{Overlap Without Subdivisions} constructions can obtain higher failure strains $\epsilon^*$, illustrated in \cref{fig:SquareHeatMaps}a-c, as their construction, which is closest to that of the Jammed-based networks, can retain their local structure at higher $\epsilon$.  
+
+The role of stiffness is briefly explored in \cref{fig:SquareHeatMaps}d-f, which all show almost identical behaviour between construction and the Jamming-based networks in \cref{fig:JammedPhaseDiagrams}b. We observe that the rate of drop in sacrificial contribution to $G_d$ with increasing $M$ and $\mu_m$ is consistent with that of the Jamming-based networks. However, as explored earlier, $\epsilon^*$ plateaus later showing a tighter window of parameters which satisfy both properties I) and II).
+
 \subsection{Effective Propagator}
+
+To explore the same physics discussed in \cref{sec:doubleStressProp}, but at a significantly reduced computational cost, we introduce an equivalent approach. For each set of parameters, we evolve a single network using the method described in \cref{sec:doubleStressProp} and record the number of bonds whose strain increases by more than a threshold of $10^{-2}$. As noted in \cref{sec:doubleStressProp}, this is not a direct correlation to the number of bonds which will break in a disordered system; it does provide a useful insight into the magnitude of a single plastic event. 
 
 \begin{figure}
     \centering
     \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/SquareFigures/AboveThreshold.pdf}
-    \caption{}
+    \caption[Phase space diagrams showing the change in bond strains under changing $M$ and $\mu_m$]{Phase space diagrams showing the number of bonds whose strain has increased by at least $10^{-2}$ as a result of single bond failure. For networks with Subdivisions in the sacrificial bonds, we normalise by $M$. Each data point is taken from a single network realisation with:
+    \newline
+    {\bf Top panels:} network disorder parameter $\sigma_p=0.1$. \newline
+    {\bf Bottom panels:} network disorder parameter $\sigma_p=0.0$. \newline
+    Parameters: $\lambda_s=1.0,\; \lambda_m=3.0,\; \mu_s=1.0, \; \epsilon_p=0.75$ 
+    }
     \label{fig:SquarePropogators}
 \end{figure}
 
+Along the top row of \cref{fig:SquarePropogators}, we show results for a single network realisation with disorder parameter $\sigma_p=0.1$. These show a much more chaotic structure compared to the bottom row with $\sigma_p=0.0$ (Here, all vertical bonds fail simultaneously, but only one is chosen to fail). When comparing the top row to the bottom row, we see an order of magnitude decrease in the number of bonds above the threshold, indicating a decrease in the stress propagated as a result of this disorder. In both sigma's, the construction without \quotes{Subdivisions} demonstrates the lowest amount of stress propagation with minimal bonds passing over the threshold, even at low $M$ and $\mu_m$. 
+
+We will not directly compare network construction here due to \quote{Subdivisions} dividing each sacrificial bond into multiple segments, and we have not yet fully considered or quantified the effect of losing a segment of a sacrificial bond compared to the whole bond; therefore cannot comment the results in \cref{fig:SquarePropogators} and how they map to the physics in \cref{fig:SquareHeatMaps} when comparing constructions. 
+
+In summary, the square lattice-based double network reproduces the key qualitative features which we observe in the Jamming-based networks. Under the parameters presented here, they show constant behaviours for their stress-strain response, failure-strain trend under $M$ and $\mu_m$ and stress propagation. They continue to illustrate the important role of controlling stress propagation between the two networks in the increased toughness of double networks. Network constructions that constrain sacrificial bonds too strongly to the matrix suppress this separation and fail prematurely, diverging from the expected physics compared to constructions that allow more independent deformation. A deeper exploration into the role of $\epsilon_p$ and $\sigma_p$, along with other lattice constructions (such as a triangular lattice), may help deepen the understanding of the double network more generally. However, the agreement already demonstrated in the work between lattice-based and Jamming-based networks therefore suggests that the underlying physics appears to be robust to the details of network generation, reinforcing the generality of the conclusions drawn in the main text.
 
 \section{Rate Dependency} \label{sec:DoubleRate}
 
@@ -311,7 +346,7 @@ In \cref{fig:JammedStrainExtract,fig:JammedBrokenExtract} we briefly explore the
 
 In \cref{fig:DoubleLambda}a we plot the failure strain $\epsilon^*$, which show the expected increase with $\lambda_m$ for both the single matrix networks and double networks. For the single matrix networks, $\epsilon^*$ increase linearly with $\lambda_m$. However with an increase in variance across samples, we attribute this the the growing magnitude of non-affine rearrangements which allows for matrix bonds to break earlier or later than a linear model would predict. The double networks exhibit a similar, approximately linear relation dependence on $\lambda_m$ for $\lambda_m \gtrsim 1.5$, where we do not observe any early matrix failures. 
 
-In \cref{fig:DoubleLambda}b-c, we plot the anologue of \cref{fig:JammedBrokenExtract}. Specifically \cref{fig:DoubleLambda}b indicates the number of failed bonds at $\epsilon^*$ in the single sacrificial (red) and single matrix (blue) networks. In both case, we observe little or no dependence on $\lambda_m$, either trivially for the sacrificial network or due to abrupt brittle failures found in the matrix network discussed in the main text.
+In \cref{fig:DoubleLambda}b-c, we plot the analogue of \cref{fig:JammedBrokenExtract}. Specifically \cref{fig:DoubleLambda}b indicates the number of failed bonds at $\epsilon^*$ in the single sacrificial (red) and single matrix (blue) networks. In both case, we observe little or no dependence on $\lambda_m$, either trivially for the sacrificial network or due to abrupt brittle failures found in the matrix network discussed in the main text.
 
 The double network material exhibits a non-monotonic response for $\lambda_m < 1.5$, which can be understood as follows. for $\lambda_m \approx \lambda_s=0.5$ bond breakages occur uniformly across the components and each undergo the slightly ductile response as shown in sacrificial network in \cref{fig:JammedBrokenStrain}a and therefore $\epsilon_d^* \approx \epsilon_s^*$. At $\lambda_m=1.0$ only the sacrificial network breaks diffusely. However, the stress propagated by the broken sacrificial bonds is sufficient to fracture the matrix once enough spatially local damage has accumulated, leading to premature matrix failure.
 
