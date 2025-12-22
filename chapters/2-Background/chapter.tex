@@ -247,8 +247,15 @@ For a non-periodic system, the method of images may be used to simulate solid wa
 
 \section{Networks}
 
+\subsection{Types of Network}
+\subsubsection{Elastomers}
+\subsubsection{Hydrogels}
+\subsubsection{Fibre networks}
+\subsubsection{Macroscopic networks}
+
+
 \subsection{Semi-Flexible Filaments}
-Biopolymers can be separated into three categories by the ratio of their persistence length $l_p$ to their relevant contour length $l_c$ (in the case of networks, the relevant length is the average length between crosslinks). The persistence length is a measure of the rigidity of the polymer and defines the length at which the polymer's orientation remains correlated. Therefore, the persistence length of a polymer can be intuitively thought of as the length at which thermal energy, $k_{B}T$, is large enough to have an effect on the direction of the polymer (formally defined as the length at which the correlation between the two tangent equals $1/e$) and can be defined by $l_p = \kappa / (k_{B}T)$.
+Polymer fibres can be separated into three categories by the ratio of their persistence length $l_p$ to their relevant contour length $l_c$ (in the case of networks, the relevant length is the average length between crosslinks). The persistence length is a measure of the rigidity of the polymer and defines the length at which the polymer's orientation remains correlated. Therefore, the persistence length of a polymer can be intuitively thought of as the length at which thermal energy, $k_{B}T$, is large enough to have an effect on the direction of the polymer (formally defined as the length at which the correlation between the two tangent equals $1/e$) and can be defined by $l_p = \kappa / (k_{B}T)$.
 
 For short or stiff polymers where $l_p \ll l_c$, the polymer acts like a rigid rod with its mechanical response governed by the polymer's stretching of molecular bonds. Polymers where $l_p \gg l_c$ take a naturally folded state as the thermal energy is sufficient to bend the filament significantly, these polymers have mechanical responses driven by entropy where the initial response is governed by the reduction of accessible conformations as the polymer unfolds, followed by a regime governed by the stretching of molecular bonds as in the stiff case. Semi-flexible polymers, therefore, constitute an intermediate state between the two, where their persistence length $l_p$ is large enough relative to their contour length $l_c$ to avoid collapsing into a random coil but large enough that thermally induced bending remains relevant. 
 
@@ -311,8 +318,6 @@ In both cases, the time step is adapted afterwards via $\delta t \gets q \delta 
 
 \subsection{Rigidity} \label{sec:Rigidity}
 \todo[inline]{This is a copy of my first year report and needs paraphrasing and adapting to context}
-
-
 
 
 One of the most fundamental properties of these interconnected fibre networks is the rigidity of the network, both on a local and global scale. Consider first frameworks where each connection in our network has a fixed length and is allowed to freely hinge around the connecting nodes. (The limit as $\mu \to \infty$ and $\kappa \to 0$.) Defining $\bm{r_i(t)}$ to be the position of the $i$th node of the system then we can define our network through the set of equations $|\bm{r}_i(t) - \bm{r}_j(t)|^2 = l_{ij,0}^2$ for all connected pairs $ij$. By differentiating with respect to $t$, a set of constraints can be generated,
