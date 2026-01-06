@@ -144,6 +144,11 @@ This assumption assumes that the stress of a material is solely determined by th
 where $p$ is the pressure.
 
 \subsection{Rheological protocol}
+There are many methods and protocols in which we can apply flow to a material. For the work done in this, we will consider the control parameter of our deformation to be strain. That is, at any point during our simulation, there will be a defined bulk deformation, and the resulting stress response is measured. Alternately, a fixed stress can be applied and the material allow to deform accordantly. 
+
+During the systems elastic regime, both of these methods are equivalent as stress and strain are uniquely related through the elastic moduli. Beyond the onset of plasticity different response behaviour emerges. In stress controlled protocol, yielding can result in unbounded deformation, and as such are useful for exploring behaviours such as creep. Consequently, strain-controlled protocols by definition remain bounded in strain, with stress decreasing to zero with plastic yielding.  Hence they strain controlled regimes are often used to study yielding and stress redistribution as we will explore in this these. 
+
+We will conciser two forms of deformation in this thesis; Simple shear is used in \cref{sec:Fatigue, sec:Ultradelayed} and Pure shear in \cref{sec:DoubleNetworks}. Further each chapter will use a different protocol to apply their relevant deformation. 
 
 \subsubsection{Types of deformation}
 Within this thesis, we will consider two types of deformation: simple shear and pure shear. Simple shear is a volume-preserving deformation where parallel planes slide past one another without changing their separation.
