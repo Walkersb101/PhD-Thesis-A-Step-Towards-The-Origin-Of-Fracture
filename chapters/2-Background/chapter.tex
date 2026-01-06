@@ -96,7 +96,7 @@ where $\bm{s}$ is now a vector and denotes a local quantity. If, now, the area o
     \bm{s} = \lim_{A \to 0} \frac{\bm{F}}{A}.
 \end{equation*}
 
-To generalise this to any point $P$ in a material can consider making a free-body cut, passing through the point $P$ as shown in \cref{fig:StressFreebody}. The stress vector $\bm{s}_1$ now denotes the stress acting on the left-hand side of the cut body at $P$. If instead we take an alternative cut, then at the same point $P$ we obtain an alternative stress vector $\bm{s}_2$. In fact there are an infinite set of cuts we can take through $P$ each with a corresponding stress vector $\bm{s}_i$. This means that each such cut gives only partial information about the {\textit state of stress} at $P$. 
+To generalise this to any point $P$ in a material can consider making a free-body cut, passing through the point $P$ as shown in \cref{fig:StressFreebody}. The stress vector $\bm{s}_1$ now denotes the stress acting on the left-hand side of the cut body at $P$. If instead we take an alternative cut, then at the same point $P$ we obtain an alternative stress vector $\bm{s}_2$. In fact, thereise an infinite set of cuts we can take through $P$, each with a corresponding stress vector $\bm{s}_i$. This means that each such cut gives only partial information about the {\textit state of stress} at $P$. 
 
 \begin{figure}
     \centering
@@ -121,11 +121,11 @@ where $\bm{n}_i$ denotes the normal to each plane. By considering the limit as t
 \end{equation}
 The stress vector $\bm{s}^{(\bm{n}_n)}$ at the point $P$ is therefore realised by the stress on the inclined plane. Thus, we conclude that, in general, in three dimensions, the state of stress at a point is described by three stress vectors. 
 
-While for simplicity we have taken these three vectors to be resolved relative to the coordinate axis, this state of stress can be resolved relative to any three distinct planes (which intersect at a point $P$) equivalently. It is then trivial to construct the rank 2-tensor Cauchy stress tensor $\sigma_{ij}$ by decomposing each stress vector relative to the normal of the defining planes, such that
+While for simplicity we have taken these three vectors to be resolved relative to the coordinate axis, and equivalent description of the stress can be obtained by resolving relative to any three distinct planes which intersect at a point $P$. The rank 2-tensor Cauchy stress tensor $\sigma_{ij}$ can then be constructed by decomposing each stress vector relative to the normal of the defining planes, such that
 \begin{equation}
     s^{(\bm{n}_k)}_i = \sigma_{ij}{n_{k,j}}.
 \end{equation}
-where $\bm{s}^{(\bm{n}_k)}$ denotes the stress vector $\bm{s}$ for the plane with normal $\bm{n}_k$.
+where $\bm{s}^{(\bm{n}_k)}$ denotes the stress vector $\bm{s}$ acting on the plane with normal $\bm{n}_k$. A particularly important choice of planes defines the principle directions of stress: a set of three three mutually orthogonal normals for which the stress tensor $\sigma_{ij}$ is diagonal. For any state of stress, it can be shown that such a principle basis always exists.
 
 If we wish to relate the stress tensor $\epsilon_{ij}$ to the stress tensor $\sigma_{ij}$ then we can consider a linear relation (Hooke's Law) between stress and strain,
 \begin{equation}
@@ -144,16 +144,17 @@ This assumption assumes that the stress of a material is solely determined by th
 where $p$ is the pressure.
 
 \subsection{Rheological protocol}
-There are many methods and protocols in which we can apply flow to a material. For the work done in this, we will consider the control parameter of our deformation to be strain. That is, at any point during our simulation, there will be a defined bulk deformation, and the resulting stress response is measured. Alternately, a fixed stress can be applied and the material allow to deform accordantly. 
+There are many methods and protocols in which we can apply flow to a material. In this work, we adopt a set of strain-controlled deformation protocols. That is, at any point during our simulation, a prescribed bulk deformation is imposed, and the resulting stress response is measured. Alternatively, a stress-controlled protocol imposes a fixed stress (but can vary), and the material is allowed to deform accordingly. 
 
-During the systems elastic regime, both of these methods are equivalent as stress and strain are uniquely related through the elastic moduli. Beyond the onset of plasticity different response behaviour emerges. In stress controlled protocol, yielding can result in unbounded deformation, and as such are useful for exploring behaviours such as creep. Consequently, strain-controlled protocols by definition remain bounded in strain, with stress decreasing to zero with plastic yielding.  Hence they strain controlled regimes are often used to study yielding and stress redistribution as we will explore in this these. 
+Within the system's elastic regime, these two approaches are equivalent, as stress and strain are uniquely related through the elastic moduli. Beyond the onset of plasticity, however, their responses differ. In a stress-controlled protocol, yielding can result in unbounded deformation, and as such, is useful for exploring behaviours such as creep. Consequently, strain-controlled protocols by definition remain bounded in strain; upon yielding, the magnitude of stress strictly decreases towards 0.  Hence they strain strain-controlled regimes are often used to study yielding and stress redistribution, which is the focus of this thesis.
 
-We will conciser two forms of deformation in this thesis; Simple shear is used in \cref{sec:Fatigue, sec:Ultradelayed} and Pure shear in \cref{sec:DoubleNetworks}. Further each chapter will use a different protocol to apply their relevant deformation. 
+We will consider two forms of deformation in this thesis: Simple shear is used in \cref{sec:Fatigue,sec:Ultradelayed} and Pure shear in \cref{sec:DoubleNetworks}. Further, each chapter will use a different protocol to apply its relevant deformation. 
 
 \subsubsection{Types of deformation}
-Within this thesis, we will consider two types of deformation: simple shear and pure shear. Simple shear is a volume-preserving deformation where parallel planes slide past one another without changing their separation.
+The two forms of deformation we will consider in this thesis are: simple shear and pure shear. Simple shear is a volume-preserving deformation where parallel planes slide past one another without changing their separation. By contrast, pure shear is characterised by a simultaneous extension along one axis and compression along the orthogonal axis, such that the total area (in two dimensions) is conserved. These two deformation modes are illustrated in \cref{fig:simpleAndPureShear}.
 
-\todo[inline]{define simple and pure shear}
+Both deformation modes preserve the overall area of the material; they do so by inducing contrasting forms of deformation. Simple shear is characterised by non-zero off-diagonal components of the stress tensor $\bm{\sigma}$, which induce a rotation of principal stress axes of the material. In fact, simple shear can be decomposed into a combination of pure shear and a rigid-body rotation. Pure shear therefore contains no such rotational component, and the principal directions of stress remain fixed to the axes of deformation. 
+
 \begin{figure}[h]
     \centering
     \missingfigure[]{}
