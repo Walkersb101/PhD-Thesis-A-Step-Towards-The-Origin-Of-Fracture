@@ -3,11 +3,11 @@
 
 In this thesis, we will consider several rheological constitutive models which explore a range of soft matter systems. In order to explore these models, we will consider a range of deformation protocols which are rheologically reinvent to each model and the material they represent. The overarching theme of this thesis and the main focus of each chapter is that we analyse the yielding (or fracture) behaviour of the material, and hopefully provide a small step to understand the origins of these behaviours. 
 
-In this chapter, we will discuss the underlying theories of these models and provide further context and definitions for the phenomena that we will explore. We will start by introducing some basic rheology concepts which appear throughout this thesis. We secondly approach the problem of viscoelastic flows from a Newtonian perspective by introducing the generalised continuum equations for incompressible fluid flow, which include arbitrary stresses, and derive an approach for solving them for the case of Stokesian (i.e., zero Re) hydrodynamics. The bulk of the work done later in this thesis, explores these concepts from a Hookean perspective, so we will introducing a model for semi-flexible filaments, exploring how non-linearity manifests in these systems and how we introduce plasticity in these models. Throughout this discussion we will introduce some fundamental numerical techniques used in this thesis to perform the studies undertaken, as they become relevant.
+In this chapter, we will discuss the underlying theories of these models and provide further context and definitions for the phenomena that we will explore. We will start by introducing some basic rheology concepts which appear throughout this thesis. We secondly approach the problem of viscoelastic flows from a Newtonian perspective by introducing the generalised continuum equations for incompressible fluid flow, which include arbitrary stresses, and derive an approach for solving them for the case of Stokesian (i.e., zero Re) hydrodynamics. The bulk of the work done later in this thesis explores these concepts from a Hookean perspective, so we will introduce a model for semi-flexible filaments, exploring how non-linearity manifests in these systems and how we introduce plasticity in these models. Throughout this discussion, we will introduce some fundamental numerical techniques used in this thesis to perform the studies undertaken, as they become relevant.
 
-\section{Rheology}
+\section{Introduction to Rheology}
 
-Rheology is the study of the response of a material to an applied flow deformation/stress  \cite{larson_structure_1999,chenRheologySoftMaterials2010,tannerEngineeringRheology2000,barnes_introduction_1989}. The term originates from the early 20th century and comes from the combination of the Greek words rheo, meaning “to flow,” and logos, meaning “study”\cite{barnes_introduction_1989}.  While very early work by Hooke \cite{hooke_lectures_1678} and Newton \cite{newton_philosophiae_1687} laid the foundation of simple linear rheological cases, stating respectively “the power of any spring is in the same proportion with the tension thereof” and “if you double the force, you double the velocity gradient”. Modern rheology is more interested in the cases where these simple rules do not hold, and non-linear behaviours dominate the physics. 
+Rheology is the study of the response of a material to an applied flow deformation/stress  \cite{larson_structure_1999,chenRheologySoftMaterials2010,tannerEngineeringRheology2000,barnes_introduction_1989}. The term originates from the early 20th century and comes from the combination of the Greek words \quotes{rheo}, meaning \quotes{to flow} and logos, meaning \quotes{study} \cite{barnes_introduction_1989}. While very early work by Hooke \cite{hooke_lectures_1678} and Newton \cite{newton_philosophiae_1687} laid the foundation of simple linear rheological cases, stating respectively \quotes{the power of any spring is in the same proportion with the tension thereof} and \quotes{if you double the force, you double the velocity gradient} respectively. Modern rheology is more interested in the cases where these simple rules do not hold, and non-linear behaviours dominate the physics. To motivate the rheological results we present later in this work, we first introduce an intuitive and mathematical description of stress and strain. These descriptions do not intend to be a full and rigorous description, for which the reader is referred to one of the many textbooks I cite along the way, but rather to provide a clear and sufficient foundation for interpreting the results we present later in the thesis.
 
 \subsection{Stress and Strain}
 The concepts of stress and strain constitute the fundamental building blocks of rheology. In considering the flow of a material, strain is defined as a measure of the deformation resulting from the flow, and stress is a measure of the internal forces that result. The simplest definition of strain, therefore, is 
@@ -20,9 +20,9 @@ where $\Delta x$ is a measure of the deformation and $L$ the systems size \cite{
     \Sigma = \frac{F}{A}
     \label{eq:simpleStress}
 \end{equation}
-where $F$ is a measure of the internal forces and $A$ the cross sectional area \cite{lubliner2008plasticity}. As both stress and strain are dependent on direction in which they are measure compared to the axis/basis on which they are expressed, i.e. the direction of the $\Delta x$ relative to $L$ or the direction of $F$ relative to the normal of $A$, we express them as rank-2 tensors $\bm{\sigma}$ and $\bm{\epsilon}$ respectively. For the strain tensor $\bm{\epsilon}$, we refer to the diagonal elements $i = j$ of $\epsilon_{ij}$ as extensional strains, as $\Delta x$ is measured parallel to $L$ and the off-diagonal $i \neq j$ as shear strains where $\Delta x$ is perpendicular to $L$. Respectively, when $F$ is measured parallel to the normal vector of $A$ ($\bm{\sigma}$ for $i = j$), it is a normal stress; otherwise, if it acts along the plane, it is a shear stress. While a brief further exploration into both $\bm{\sigma}$ and $\bm{\epsilon}$ is provided below, a more detailed treatment can be found in Refs. \cite{tannerEngineeringRheology2000, chandrasekharaiahContinuumMechanics2014}. 
+where $F$ is a measure of the internal forces and $A$ the cross sectional area \cite{lubliner2008plasticity}. As both stress and strain are dependent on direction in which they are measure compared to the axis/basis on which they are expressed, i.e. the direction of the $\Delta x$ relative to $L$ or the direction of $F$ relative to the normal of $A$, we express them as rank-2 tensors $\bm{\sigma}$ and $\bm{\epsilon}$ respectively. For the strain tensor $\bm{\epsilon}$, we refer to the diagonal elements $i = j$ of $\epsilon_{ij}$ as extensional strains, as $\Delta x$ is measured parallel to $L$, and the off-diagonal $i \neq j$ as shear strains where $\Delta x$ is perpendicular to $L$. Respectively, when $F$ is measured parallel to the normal vector of $A$ ($\bm{\sigma}$ for $i = j$), it is a normal stress; otherwise, if it acts along the plane, it is a shear stress. While a brief further exploration into both $\bm{\sigma}$ and $\bm{\epsilon}$ is provided below, a more detailed treatment can be found in Refs. \cite{tannerEngineeringRheology2000, chandrasekharaiahContinuumMechanics2014}. 
 
-\subsubsection{Strain Tensor}
+\subsection{Strain Tensor}
 For simplicity, we will consider the strain tensor $\bm{\epsilon}$ to take the form of Cauchy's linear strain tensor \cite{lubliner2008plasticity}, which will hold throughout this thesis. If we consider a point $P$ which at time $t$ is at $\bm{x}$, which is displaced to a new position $\bm{X}$ at a time $t^\prime$, such that
 \begin{equation}
     \bm{X}(t^\prime) = \bm{X}(\bm{x},t).
@@ -76,14 +76,13 @@ In the context of continuum mechanics, the off-diagonal components of the strain
 \end{equation*}
 would correspond to $\epsilon_{xy} = \epsilon_{yx} = \gamma / 2$.
 
-\subsubsection{Stress Tensor}
-
+\subsection{Stress Tensor}
 Considering instead a body then the total force acting upon the body $\bm{\mathcal{F}}$ can be decomposed into two parts $\bm{\mathcal{F}} = \bm{b} + \bm{F}$, where $\bm{b}$ is the body force and $\bm{F}$ the surface force \cite{chandrasekharaiahContinuumMechanics2014}. Assuming that the stress tensor takes the form of the Cauchy stress tensor, which only considers surface force $\bm{F}$, as the body forces are assumed to be uniform across the body's volume and therefore do not contribute to the deformation of the body \cite{macoskoRheologyPrinciplesMeasurements1994}. 
 
 \begin{figure}
     \centering
-    \missingfigure{Free body diagram}
-    \caption{Caption}
+    \missingfigure{Free body diagram. As in Vreeland Fig 1.4}
+    %\caption{{\bf a} An arbitrary body. {\bf a} An arbitrary cut through the point $P$.}
     \label{fig:StressFreebody}
 \end{figure}
 
@@ -96,12 +95,12 @@ where $\bm{s}$ is now a vector and denotes a local quantity. If, now, the area o
     \bm{s} = \lim_{A \to 0} \frac{\bm{F}}{A}.
 \end{equation*}
 
-To generalise this to any point $P$ in a material can consider making a free-body cut, passing through the point $P$ as shown in \cref{fig:StressFreebody}. The stress vector $\bm{s}_1$ now denotes the stress acting on the left-hand side of the cut body at $P$. If instead we take an alternative cut, then at the same point $P$ we obtain an alternative stress vector $\bm{s}_2$. In fact, thereise an infinite set of cuts we can take through $P$, each with a corresponding stress vector $\bm{s}_i$. This means that each such cut gives only partial information about the {\textit state of stress} at $P$. 
+To generalise this to any point $P$ in a material can consider making a free-body cut, passing through the point $P$ as shown in \cref{fig:StressFreebody}b. The stress vector $\bm{s}_1$ now denotes the stress acting on the left-hand side of the cut body at $P$. If instead we take an alternative cut, then at the same point $P$ we obtain an alternative stress vector $\bm{s}_2$ (see \cref{fig:StressFreebody}c). In fact, there is an infinite set of cuts we can take through $P$, each with a corresponding stress vector $\bm{s}_i$. This means that each such cut gives only partial information about the {\textit state of stress} at $P$. 
 
 \begin{figure}
     \centering
-    \missingfigure{Cauchy Tetrahedron}
-    \caption{Caption}
+    \missingfigure{Cauchy Tetrahedron. As in Vreeland Fig 1.5b}
+    %\caption{Caption}
     \label{fig:CauchyTetrahedron}
 \end{figure}
 
@@ -121,13 +120,13 @@ where $\bm{n}_i$ denotes the normal to each plane. By considering the limit as t
 \end{equation}
 The stress vector $\bm{s}^{(\bm{n}_n)}$ at the point $P$ is therefore realised by the stress on the inclined plane. Thus, we conclude that, in general, in three dimensions, the state of stress at a point is described by three stress vectors. 
 
-While for simplicity we have taken these three vectors to be resolved relative to the coordinate axis, and equivalent description of the stress can be obtained by resolving relative to any three distinct planes which intersect at a point $P$. The rank 2-tensor Cauchy stress tensor $\sigma_{ij}$ can then be constructed by decomposing each stress vector relative to the normal of the defining planes, such that
+While for simplicity we have taken these three vectors to be resolved relative to the coordinate axis, an equivalent description of the stress can be obtained by resolving relative to any three distinct planes which intersect at a point $P$. The rank 2-tensor Cauchy stress tensor $\sigma_{ij}$ can then be constructed by decomposing each stress vector relative to the normal of the defining planes, such that
 \begin{equation}
     s^{(\bm{n}_k)}_i = \sigma_{ij}{n_{k,j}}.
 \end{equation}
-where $\bm{s}^{(\bm{n}_k)}$ denotes the stress vector $\bm{s}$ acting on the plane with normal $\bm{n}_k$. A particularly important choice of planes defines the principle directions of stress: a set of three three mutually orthogonal normals for which the stress tensor $\sigma_{ij}$ is diagonal. For any state of stress, it can be shown that such a principle basis always exists.
+where $\bm{s}^{(\bm{n}_k)}$ denotes the stress vector $\bm{s}$ acting on the plane with normal $\bm{n}_k$. A significant choice of planes defines the principal directions of stress: a set of three mutually orthogonal normals for which the stress tensor $\sigma_{ij}$ is diagonal. For any state of stress, it can be shown that such a principle basis always exists.
 
-If we wish to relate the stress tensor $\epsilon_{ij}$ to the stress tensor $\sigma_{ij}$ then we can consider a linear relation (Hooke's Law) between stress and strain,
+If we wish to relate the stress tensor $\epsilon_{ij}$ to the stress tensor $\sigma_{ij}$, then we can consider a linear relation (Hooke's Law) between stress and strain,
 \begin{equation}
     \sigma_{ij} = C_{ijkm}\epsilon_{ij}.
 \end{equation}
@@ -141,30 +140,43 @@ This assumption assumes that the stress of a material is solely determined by th
     \sigma_{ij} + p\delta_{ij} = 2G\epsilon_{ij},
     \label{eq:incompressableStress}
 \end{equation}
-where $p$ is the pressure.
+where $p$ is the pressure. This equation will form the foundation of most of the analytical results and models we will present.
 
-\subsection{Rheological protocol}
-There are many methods and protocols in which we can apply flow to a material. In this work, we adopt a set of strain-controlled deformation protocols. That is, at any point during our simulation, a prescribed bulk deformation is imposed, and the resulting stress response is measured. Alternatively, a stress-controlled protocol imposes a fixed stress (but can vary), and the material is allowed to deform accordingly. 
+\subsection{Plasticity and fracture}
+The description of stress and strain introduced above implicitly assumes an elastic response, such that the stress is a single-valued function of only the instantaneous strain. However in many materials, this assumption breaks down once the deformation exceeds a characteristic elastic limit. Beyond this point, irreversible microscopic rearrangement occur, which manifest macroscopically as plastic deformation or fracture and introduces dissipation and history dependence in the systems response.
 
-Within the system's elastic regime, these two approaches are equivalent, as stress and strain are uniquely related through the elastic moduli. Beyond the onset of plasticity, however, their responses differ. In a stress-controlled protocol, yielding can result in unbounded deformation, and as such, is useful for exploring behaviours such as creep. Consequently, strain-controlled protocols by definition remain bounded in strain; upon yielding, the magnitude of stress strictly decreases towards 0.  Hence they strain strain-controlled regimes are often used to study yielding and stress redistribution, which is the focus of this thesis.
+In contrast to elastic deformation, where upon unloading all strain is recovered and the material returns to its initial configuration, plastic deformation causes a permanent irreversible change in the material's configuration. Now upon unloading the unloading the strain does not restore the material to its original state and the material retains a memory of its deformation history in its new configuration. Microscopically theses deformation my correspond to particle rearrangements \cite{falk_dynamics_1998,maloney_amorphous_2006,tanguy_plastic_2006,gartner_nonlinear_2016}, dislocation \cite{shiba_plastic_2010, ispanovity_avalanches_2014,ben-zion_earthquake_1993}, or bond rupture \cite{tauber_stretchy_2022,ducrot_toughening_2014,Creton50th2017,vernereyStatisticalDamageMechanics2018,gong_why_2010} which all reduce the total stored elastic energy.  Rheologically the sum of these microscopic deformation manifest as stress relaxation, yielding, and flow under sustained loading. 
 
-We will consider two forms of deformation in this thesis: Simple shear is used in \cref{sec:Fatigue,sec:Ultradelayed} and Pure shear in \cref{sec:DoubleNetworks}. Further, each chapter will use a different protocol to apply its relevant deformation. 
+In \cref{sec:Ultradelayed,sec:DoubleNetworks} the role of yielding in network materials is examined. In this context the term \quotes{fracture} and \quotes{yielding} are often used interchangeably to describe a the irreversible failure of a bond. A key distinction is that \quotes{fracture} carries the additional implication of a loss in structural connectivity or load-bearing capacity.
+
+\subsection{Shear Banding}
+
+\section{Rheological protocol}
+There are many methods and protocols by which flow can be induced in a material. In this work, we adopt a set of strain-controlled deformation protocols. That is, at any point during our simulation, a prescribed bulk deformation is imposed, and the resulting stress response is measured. Alternatively, in a stress-controlled protocol, a fixed (though potentially time-dependent) stress is imposed, and the material is allowed to deform accordingly. 
+
+Within the system's elastic regime, these two approaches are equivalent, as stress and strain are uniquely related through the elastic moduli. Beyond the onset of plasticity, however, their responses differ. In a stress-controlled protocol, yielding can result in unbounded deformation, and as such, is therefore useful for exploring behaviours such as creep. Consequently, strain-controlled protocols by definition remain bounded in strain; upon yielding, the magnitude of stress strictly decreases towards 0. Consequently, strain-controlled regimes are often used to study yielding and stress redistribution, which is the focus of this thesis.
+
+We will consider two forms of deformation in this thesis: Simple shear is used in \cref{sec:Fatigue,sec:Ultradelayed} and Pure shear in \cref{sec:DoubleNetworks}. Further, each chapter will use a different strain-controlled protocol to apply its relevant deformation. 
 
 \subsubsection{Types of deformation}
 The two forms of deformation we will consider in this thesis are: simple shear and pure shear. Simple shear is a volume-preserving deformation where parallel planes slide past one another without changing their separation. By contrast, pure shear is characterised by a simultaneous extension along one axis and compression along the orthogonal axis, such that the total area (in two dimensions) is conserved. These two deformation modes are illustrated in \cref{fig:simpleAndPureShear}.
 
-Both deformation modes preserve the overall area of the material; they do so by inducing contrasting forms of deformation. Simple shear is characterised by non-zero off-diagonal components of the stress tensor $\bm{\sigma}$, which induce a rotation of principal stress axes of the material. In fact, simple shear can be decomposed into a combination of pure shear and a rigid-body rotation. Pure shear therefore contains no such rotational component, and the principal directions of stress remain fixed to the axes of deformation. 
-
 \begin{figure}[h]
     \centering
-    \missingfigure[]{}
-    \caption{Figure showing Pure and simple shear}
+    \missingfigure[]{Figure illustrating Pure and simple shear}
+    \caption{Figure illustrating Pure and simple shear. {\bf a)} Illustration of simple shear applied along the $xy$ plane. {\bf b)} Illustration of pure shear with elongational axis along the $y$-axis.}
     \label{fig:simpleAndPureShear}
 \end{figure}
 
-\subsubsection{Shear Startup}
-\subsubsection{Step Strain}
-\subsubsection{Large Amplitude Oscillatory shear}
+Both deformation modes preserve the overall area of the material; they do so by inducing contrasting forms of deformation. Simple shear is characterised by non-zero off-diagonal components of the stress tensor $\bm{\sigma}$, which induce a rotation of principal stress axes of the material. In fact, simple shear can be decomposed into a combination of pure shear and a rigid-body rotation. Pure shear, therefore, contains no such rotational component, and the principal directions of stress remain fixed to the axes of deformation. 
+\subsubsection{Protocols}
+
+\begin{figure}[h]
+    \centering
+    \missingfigure[]{Protocol Figures}
+    \caption{Figure illustrating Pure and simple shear. {\bf a)} Illustration of simple shear applied along the $xy$ plane. {\bf b)} Illustration of pure shear with elongational axis along the $y$-axis.}
+    \label{fig:simpleAndPureShear}
+\end{figure}
 
 \subsection{Experiments}
 
@@ -173,7 +185,7 @@ In order to understand these nonlinear effects, which are often controlled by th
 
 \subsection{Rate dependence / Quasistatic}
 
-\section{Hydrodynamics}
+\section{Hydrodynamics} \label{sec:Hydrodynamics}
 
 By considering the conservation of mass and momentum, the Navier-Stokes equations for a generalised incompressible flow can be expressed as,
 
@@ -294,7 +306,7 @@ as described by Eshelby in Ref. \cite{eshelby_determination_1997} for an ellipti
     \centering
     %\includegraphics[width=0.5\linewidth]{}
     \missingfigure{Plot of Propagator}
-    \caption[The quadrupolar redistribution of the elastoplastic shear stress]{The quadrupolar redistribution of the elastoplastic shear stress  $\sigma_{xy}$ following a single local event imposed in a system with $\mu=1$. All elements are initialised to $\sigma_{xy}=0$ prior to yielding a single element to $\sigma_{xy}=-1$ and enforcing force balance.}
+    \caption[The quadrupolar redistribution of the elastoplastic shear stress]{The quadrupolar redistribution of the elastoplastic shear stress  $\sigma_{xy}$ following a single local event imposed in a system with $\mu=1$. All elements are initialised to $\sigma_{xy}=0$ before yielding a single element to $\sigma_{xy}=-1$ and enforcing force balance.}
     \label{fig:Propogator}
 \end{figure}
 
@@ -407,7 +419,7 @@ For systems in which the thermal energy is of the same order as the depth of the
 \todo[inline]{Is it really thermal vs athermal? Where does Brownian sit in this? Do I want to define thermal in the results chapter? Look at Tauber's work}
 
 \subsection{Disordered Network Models} \label{sec:NetworkStructure}
-Through the literature, a wide range of network geometries has been considered. The simplest are Affine isotropic models, which consider the response of a single filament to an applied deformation, averaging over all possible initial filament orientations, such as those studied in \cite{mackintosh_elasticity_1995, storm_nonlinear_2005}. While these models can be used to provide a baseline understanding for networks in the high $z$ or $\kappa$ limits, they fail to capture the important physics which arises from the non-affine rearrangements and orientational disorder found in real-world networks. "To consider these effects, we must prescribe a network topology which specifies how the bonds connect the nodes of the network.
+Through the literature, a wide range of network geometries has been considered. The simplest are Affine isotropic models, which consider the response of a single filament to an applied deformation, averaging over all possible initial filament orientations, such as those studied in \cite{mackintosh_elasticity_1995, storm_nonlinear_2005}. While these models can be used to provide a baseline understanding for networks in the high $z$ or $\kappa$ limits, they fail to capture the important physics which arises from the non-affine rearrangements and orientational disorder found in real-world networks. To consider these effects, we must prescribe a network topology which specifies how the bonds connect the nodes of the network.
 
 \subsubsection{Lattice-based networks} \label{sec:LatticeBasedNetworks}
 Lattice-based networks are the simplest type of network structures that are commonly used in studies of mechanical properties \cite{jacobs_generic_1995, feng_percolation_1984, shivers_scaling_2019, sharma_strain-controlled_2016}. Frequently considered examples of lattice-based networks including two-dimensional square \cite{mao_soft_2010}, triangular \cite{broedersz_criticality_2011, feng_percolation_1984}, and honeycomb \cite{rens_nonlinear_2016} lattices. Often used for their simplicity to constructed when compared to more disordered network types, and their relative numerical stability due to the uniform lattice spacing $l_0$, they provide a convenient and well-controlled framework for analysing the mechanical response of fibre networks. 
@@ -525,4 +537,4 @@ When studying rheology, we typically wish to apply a macroscopic strain to a mat
 
 In computational simulations, macroscopic stresses are instead applied by deforming the lattice vectors, which define the relationship between the unit cell and its periodic images. Applying simple stresses to the system can be trivially done simply by updating the unit cell and lattice vectors of the system and affinely transforming the system's coordinates to the new unit cell coordinates. While theoretically, this also works for applying shear stresses, where we deform the unit cell and lattice vectors to a triclinic (non-orthogonal) box as shown in \cref{fig:Tri-Clinic}, computationally, this has problems at large strains where the unit cell is heavily deformed. Alternatively, a set of suitably modified periodic boundaries was proposed by Lees and Edwards in \cite{lees_computer_1972} and is illustrated in \cref{fig:Lees-Edwards}. 
 
-Assuming that the shear occurs in the x-direction, which is always possible by rotating the system such that one of the lattice vectors lies along the x-axis, involves affinely deforming the particles in the unit cell along the x-axis and "sliding" the periodic images in the adjacent rows as shown in \cref{fig:Lees-Edwards}. This proves more computationally efficient as the unit cell remains orthogonal. The computation details for implementing these can be found in Ref. \cite{allen_computer_2017}.
+Assuming that the shear occurs in the x-direction, which is always possible by rotating the system such that one of the lattice vectors lies along the x-axis, involves affinely deforming the particles in the unit cell along the x-axis and \quotes{sliding} the periodic images in the adjacent rows as shown in \cref{fig:Lees-Edwards}. This proves more computationally efficient as the unit cell remains orthogonal. The computation details for implementing these can be found in Ref. \cite{allen_computer_2017}.
