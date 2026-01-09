@@ -7,7 +7,7 @@ In this chapter, we will discuss the underlying theories of these models and pro
 
 \section{Introduction to Rheology}
 
-Rheology is the study of the response of a material to an applied flow deformation/stress  \cite{larson_structure_1999,chenRheologySoftMaterials2010,tannerEngineeringRheology2000,barnes_introduction_1989}. The term originates from the early 20th century and comes from the combination of the Greek words \quotes{rheo}, meaning \quotes{to flow} and logos, meaning \quotes{study} \cite{barnes_introduction_1989}. While very early work by Hooke \cite{hooke_lectures_1678} and Newton \cite{newton_philosophiae_1687} laid the foundation of simple linear rheological cases, stating respectively \quotes{the power of any spring is in the same proportion with the tension thereof} and \quotes{if you double the force, you double the velocity gradient} respectively. Modern rheology is more interested in the cases where these simple rules do not hold, and non-linear behaviours dominate the physics. To motivate the rheological results we present later in this work, we first introduce an intuitive and mathematical description of stress and strain. These descriptions do not intend to be a full and rigorous description, for which the reader is referred to one of the many textbooks I cite along the way, but rather to provide a clear and sufficient foundation for interpreting the results we present later in the thesis.
+Rheology is the study of the response of a material to an applied flow deformation/stress  \cite{larson_structure_1999,chenRheologySoftMaterials2010,tannerEngineeringRheology2000,barnes_introduction_1989}. The term originates from the early 20th century and comes from the combination of the Greek words \quotes{rheo}, meaning \quotes{to flow} and logos, meaning to \quotes{study} \cite{barnes_introduction_1989}. While very early work by Hooke \cite{hooke_lectures_1678} and Newton \cite{newton_philosophiae_1687} laid the foundation of simple linear rheological cases, stating respectively \quotes{the power of any spring is in the same proportion with the tension thereof} and \quotes{if you double the force, you double the velocity gradient}. Modern rheology is more interested in the cases where these simple rules do not hold, and non-linear behaviours dominate the physics. To motivate the rheological results we present later in this work, we first introduce an intuitive and mathematical description of stress and strain. These descriptions do not intend to be a full and rigorous description, for which the reader is referred to one of the many textbooks I cite along the way, but rather to provide a clear and sufficient foundation for interpreting the results we present later in the thesis.
 
 \subsection{Stress and Strain}
 The concepts of stress and strain constitute the fundamental building blocks of rheology. In considering the flow of a material, strain is defined as a measure of the deformation resulting from the flow, and stress is a measure of the internal forces that result. The simplest definition of strain, therefore, is 
@@ -20,9 +20,9 @@ where $\Delta x$ is a measure of the deformation and $L$ the systems size \cite{
     \Sigma = \frac{F}{A}
     \label{eq:simpleStress}
 \end{equation}
-where $F$ is a measure of the internal forces and $A$ the cross sectional area \cite{lubliner2008plasticity}. As both stress and strain are dependent on direction in which they are measure compared to the axis/basis on which they are expressed, i.e. the direction of the $\Delta x$ relative to $L$ or the direction of $F$ relative to the normal of $A$, we express them as rank-2 tensors $\bm{\sigma}$ and $\bm{\epsilon}$ respectively. For the strain tensor $\bm{\epsilon}$, we refer to the diagonal elements $i = j$ of $\epsilon_{ij}$ as extensional strains, as $\Delta x$ is measured parallel to $L$, and the off-diagonal $i \neq j$ as shear strains where $\Delta x$ is perpendicular to $L$. Respectively, when $F$ is measured parallel to the normal vector of $A$ ($\bm{\sigma}$ for $i = j$), it is a normal stress; otherwise, if it acts along the plane, it is a shear stress. While a brief further exploration into both $\bm{\sigma}$ and $\bm{\epsilon}$ is provided below, a more detailed treatment can be found in Refs. \cite{tannerEngineeringRheology2000, chandrasekharaiahContinuumMechanics2014}. 
+where $F$ is a measure of the internal forces and $A$ the cross sectional area \cite{lubliner2008plasticity}. As both stress and strain are dependent on direction in which they are measure compared to the axis/basis on which they are expressed, i.e. the direction of the $\Delta x$ relative to $L$ or the direction of $F$ relative to the normal of $A$, we express them as rank-2 tensors $\bm{\sigma}$ and $\bm{\epsilon}$ respectively. For the strain tensor $\bm{\epsilon}$, we refer to the diagonal elements $i = j$ of $\epsilon_{ij}$ as extensional strains, as $\Delta x$ is measured parallel to $L$, and the off-diagonal $i \neq j$ as shear strains where $\Delta x$ is perpendicular to $L$. Respectively, when $F$ is measured parallel to the normal vector of $A$ ($\sigma_{ij}$ for $i = j$), it is a normal stress; otherwise, if it acts along the plane, it is a shear stress. In \cref{sec:StrainTensor,sec:StressTensor}, we provide a more mathematical construction of both $\bm{\epsilon}$ and $\bm{\sigma}$ respectively, but we refer to Refs. \cite{tannerEngineeringRheology2000, chandrasekharaiahContinuumMechanics2014} for a more detailed treatment.
 
-\subsection{Strain Tensor}
+\subsection{Strain Tensor} \label{sec:StrainTensor}
 For simplicity, we will consider the strain tensor $\bm{\epsilon}$ to take the form of Cauchy's linear strain tensor \cite{lubliner2008plasticity}, which will hold throughout this thesis. If we consider a point $P$ which at time $t$ is at $\bm{x}$, which is displaced to a new position $\bm{X}$ at a time $t^\prime$, such that
 \begin{equation}
     \bm{X}(t^\prime) = \bm{X}(\bm{x},t).
@@ -76,21 +76,21 @@ In the context of continuum mechanics, the off-diagonal components of the strain
 \end{equation*}
 would correspond to $\epsilon_{xy} = \epsilon_{yx} = \gamma / 2$.
 
-\subsection{Stress Tensor}
-Considering instead a body then the total force acting upon the body $\bm{\mathcal{F}}$ can be decomposed into two parts $\bm{\mathcal{F}} = \bm{b} + \bm{F}$, where $\bm{b}$ is the body force and $\bm{F}$ the surface force \cite{chandrasekharaiahContinuumMechanics2014}. Assuming that the stress tensor takes the form of the Cauchy stress tensor, which only considers surface force $\bm{F}$, as the body forces are assumed to be uniform across the body's volume and therefore do not contribute to the deformation of the body \cite{macoskoRheologyPrinciplesMeasurements1994}. 
+\subsection{Stress Tensor} \label{sec:StressTensor}
+To motivate the definition of the stress tensor $\bm{\sigma}$, we consider a body subjected to a total force $\bm{\mathcal{F}}$. This force may be decomposed into two parts, a body force $\bm{b}$ which acts constantly throughout the volume and a surface force $\bm{F}$ which varies across the material, such that $\bm{\mathcal{F}} = \bm{b} + \bm{F}$ \cite{chandrasekharaiahContinuumMechanics2014}. In the Cauchy formulation of stress, only these surface forces are considered, as the body forces are assumed to cancel across the material \cite{macoskoRheologyPrinciplesMeasurements1994}. Under this assumption, the internal state of the material is defined by the distribution of these surface forces that act on arbitrary cuts through the body. 
 
 \begin{figure}
     \centering
     \missingfigure{Free body diagram. As in Vreeland Fig 1.4}
-    %\caption{{\bf a} An arbitrary body. {\bf a} An arbitrary cut through the point $P$.}
+    \caption{}
     \label{fig:StressFreebody}
 \end{figure}
 
-To define the stress on a surface, we begin with the definition defined in \cref{eq:simpleStress}, where $\Sigma$ is more precisely the average stress on an area $A$. We will move temporarily to an alternative notation
+We therefore begin by defining the stress acting on an arbitrary surface element. In \cref{eq:simpleStress}, $\Sigma$ represents the average stress acting on an area $A$; however, we wish to define a local quantity $\bm{\sigma}$ and consider the spatial direction of the stress. To do so, we consider the average force vector $\bm{F}$ acting on $A$ to define,
 \begin{equation*}
     \bm{s}_{avg} = \frac{\bm{F}}{A},
 \end{equation*}
-where $\bm{s}$ is now a vector and denotes a local quantity. If, now, the area of $A$ is reduced to a point, then the stress at this point on the surface can be considered to be
+where $\bm{s}$ denotes the average stress vector acting on $A$. If, now, the area of $A$ is reduced to a point, then the stress at this point on the surface can be considered to be
 \begin{equation*}
     \bm{s} = \lim_{A \to 0} \frac{\bm{F}}{A}.
 \end{equation*}
@@ -100,11 +100,11 @@ To generalise this to any point $P$ in a material can consider making a free-bod
 \begin{figure}
     \centering
     \missingfigure{Cauchy Tetrahedron. As in Vreeland Fig 1.5b}
-    %\caption{Caption}
+    \caption{}
     \label{fig:CauchyTetrahedron}
 \end{figure}
 
-We consider the tetrahedron shown in \cref{fig:CauchyTetrahedron}, made up of three planes parallel to the coordinate axis and a 4\textsuperscript{th} incline plane \cite{housner1966analysis}. We will denote the planes using their normal vectors $\bm{n}_i$, and the corresponding stress vectors $\bm{s}^{(\bm{n}_i)}$, where $i$ can take the value $x,\;y,\;z$ or $n$ as denoted in \cref{fig:CauchyTetrahedron}. The stress vectors $\bm{s}^{(\bm{n}_x)}$, $\bm{s}^{(\bm{n}_y)}$, $\bm{s}^{(\bm{n}_z)}$, and $\bm{s}^{(\bm{n}_n)}$ do not necessarily point parallel to their corresponding planes' normal vector. If we consider the tetrahedron to be infinitesimally small, then the sum of the forces on the tetrahedron must be $\bm{0}$, from Newton's second law. That is 
+To resolve this, we consider the tetrahedron shown in \cref{fig:CauchyTetrahedron}, made up of three planes parallel to the coordinate axis and a 4\textsuperscript{th} incline plane which connects them \cite{housner1966analysis}. We will denote the planes using their normal vectors $\bm{n}_i$, and the corresponding stress vectors $\bm{s}^{(\bm{n}_i)}$, where $i$ can take the value $x,\;y,\;z$ or $n$ as denoted in \cref{fig:CauchyTetrahedron}. The stress vectors $\bm{s}^{(\bm{n}_x)}$, $\bm{s}^{(\bm{n}_y)}$, $\bm{s}^{(\bm{n}_z)}$, and $\bm{s}^{(\bm{n}_n)}$ do not necessarily point parallel to their corresponding planes' normal vector. If we consider the tetrahedron to be infinitesimally small, then the sum of the forces on the tetrahedron must be $\bm{0}$, from Newton's second law. That is 
 \begin{equation*}
     \bm{s}^{(\bm{n}_n)} dA_n + \bm{s}^{(\bm{n}_x)} dA_x + \bm{s}^{(\bm{n}_y)} dA_y + \bm{s}^{(\bm{n}_z)} dA_y = \bm{0}.
 \end{equation*}
@@ -140,21 +140,26 @@ This assumption assumes that the stress of a material is solely determined by th
     \sigma_{ij} + p\delta_{ij} = 2G\epsilon_{ij},
     \label{eq:incompressableStress}
 \end{equation}
-where $p$ is the pressure. This equation will form the foundation of most of the analytical results and models we will present.
+where $p$ is the pressure.
 
 \subsection{Plasticity and fracture}
-The description of stress and strain introduced above implicitly assumes an elastic response, such that the stress is a single-valued function of only the instantaneous strain. However in many materials, this assumption breaks down once the deformation exceeds a characteristic elastic limit. Beyond this point, irreversible microscopic rearrangement occur, which manifest macroscopically as plastic deformation or fracture and introduces dissipation and history dependence in the systems response.
+\todo[inline]{This bit doesn't feel done but I don't know what it needs}
 
-In contrast to elastic deformation, where upon unloading all strain is recovered and the material returns to its initial configuration, plastic deformation causes a permanent irreversible change in the material's configuration. Now upon unloading the unloading the strain does not restore the material to its original state and the material retains a memory of its deformation history in its new configuration. Microscopically theses deformation my correspond to particle rearrangements \cite{falk_dynamics_1998,maloney_amorphous_2006,tanguy_plastic_2006,gartner_nonlinear_2016}, dislocation \cite{shiba_plastic_2010, ispanovity_avalanches_2014,ben-zion_earthquake_1993}, or bond rupture \cite{tauber_stretchy_2022,ducrot_toughening_2014,Creton50th2017,vernereyStatisticalDamageMechanics2018,gong_why_2010} which all reduce the total stored elastic energy.  Rheologically the sum of these microscopic deformation manifest as stress relaxation, yielding, and flow under sustained loading. 
+The description of stress and strain introduced above implicitly assumes an elastic response, such that the stress is a single-valued function of only the instantaneous strain. However, in many materials, this assumption breaks down once the deformation exceeds a characteristic elastic limit. Beyond this point, irreversible microscopic rearrangements occur, which manifest macroscopically as plastic deformation or fracture, introducing dissipation and history dependence in the system's response.
 
-In \cref{sec:Ultradelayed,sec:DoubleNetworks} the role of yielding in network materials is examined. In this context the term \quotes{fracture} and \quotes{yielding} are often used interchangeably to describe a the irreversible failure of a bond. A key distinction is that \quotes{fracture} carries the additional implication of a loss in structural connectivity or load-bearing capacity.
+In contrast to elastic deformation, where, upon unloading, all strain is recovered and the material returns to its initial configuration, plastic deformation causes a permanent, irreversible change in the material's configuration. Consequently, upon unloading, the material does not return to its original state, and the material retains a memory of its deformation history in its new configuration. Microscopically theses deformation may correspond to particle rearrangements \cite{falk_dynamics_1998,maloney_amorphous_2006,tanguy_plastic_2006,gartner_nonlinear_2016}, dislocation \cite{shiba_plastic_2010, ispanovity_avalanches_2014,ben-zion_earthquake_1993}, or bond rupture \cite{tauber_stretchy_2022,ducrot_toughening_2014,Creton50th2017,vernereyStatisticalDamageMechanics2018,gong_why_2010} which all reduce the total stored elastic energy.  Rheologically, the sum of these microscopic deformations manifests as stress relaxation, yielding, and flow under sustained loading. 
+
+
+
+In \cref{sec:Ultradelayed,sec:DoubleNetworks} the role of yielding in network materials is examined. In this context, the terms \quotes{fracture} and \quotes{yielding} are often used interchangeably to describe the irreversible failure of a bond. A key distinction is that \quotes{fracture} often carries the additional implication of a loss in structural connectivity or load-bearing capacity.
 
 \subsection{Shear Banding}
 
-\section{Rheological protocol}
-There are many methods and protocols by which flow can be induced in a material. In this work, we adopt a set of strain-controlled deformation protocols. That is, at any point during our simulation, a prescribed bulk deformation is imposed, and the resulting stress response is measured. Alternatively, in a stress-controlled protocol, a fixed (though potentially time-dependent) stress is imposed, and the material is allowed to deform accordingly. 
 
-Within the system's elastic regime, these two approaches are equivalent, as stress and strain are uniquely related through the elastic moduli. Beyond the onset of plasticity, however, their responses differ. In a stress-controlled protocol, yielding can result in unbounded deformation, and as such, is therefore useful for exploring behaviours such as creep. Consequently, strain-controlled protocols by definition remain bounded in strain; upon yielding, the magnitude of stress strictly decreases towards 0. Consequently, strain-controlled regimes are often used to study yielding and stress redistribution, which is the focus of this thesis.
+\section{Rheological protocol}
+There are many methods and protocols by which flow can be induced in a material. In this work, we adopt a set of strain-controlled deformation protocols. That is, at any point during our simulation, a prescribed bulk deformation is imposed, and the resulting stress response is measured. Alternatively, in a stress-controlled protocol, a fixed (though potentially time-dependent) stress is imposed, and the material is allowed to deform accordingly \cite{macoskoRheologyPrinciplesMeasurements1994}. 
+
+Within the system's elastic regime, these two approaches are equivalent, as stress and strain are uniquely related through the elastic moduli. Beyond the onset of plasticity, however, their responses differ. In a stress-controlled protocol, yielding can result in unbounded deformation, and as such, is therefore useful for exploring behaviours such as creep. Consequently, strain-controlled protocols, by definition, remain bounded in strain; upon yielding, the magnitude of stress strictly decreases toward 0. Consequently, strain-controlled regimes are often used to study yielding and stress redistribution, which is the focus of this thesis.
 
 We will consider two forms of deformation in this thesis: Simple shear is used in \cref{sec:Fatigue,sec:Ultradelayed} and Pure shear in \cref{sec:DoubleNetworks}. Further, each chapter will use a different strain-controlled protocol to apply its relevant deformation. 
 
@@ -175,7 +180,7 @@ Both deformation modes preserve the overall area of the material; they do so by 
     \centering
     \missingfigure[]{Protocol Figures}
     \caption{Figure illustrating Pure and simple shear. {\bf a)} Illustration of simple shear applied along the $xy$ plane. {\bf b)} Illustration of pure shear with elongational axis along the $y$-axis.}
-    \label{fig:simpleAndPureShear}
+    %\label{fig:simpleAndPureShear}
 \end{figure}
 
 \subsection{Experiments}
@@ -239,7 +244,7 @@ The solution to \cref{eq:plasticStokes} is well known and has been studied in a 
 \nabla \cdot \bm{u} &= 0. \label{eq:Stokes2}
 \end{align}
 \end{subequations}
-where the solution to the deformation field can be expressed as convolution of the point force with the Green's function $\mathbb{O}_{ij}(\bm{r},\bm{r^\prime})$ of the system, 
+where the solution to the deformation field can be expressed as a convolution of the point force with the Green's function $\mathbb{O}_{ij}(\bm{r},\bm{r^\prime})$ of the system, 
 \begin{equation}
     \bm{u}(\bm{r}) = \int \bm{\mathbb{O}}(\bm{r},\bm{r^\prime}) \bm{F} \delta(\bm{r^\prime}).
 \end{equation}
