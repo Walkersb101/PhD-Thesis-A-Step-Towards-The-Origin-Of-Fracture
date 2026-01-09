@@ -142,18 +142,23 @@ This assumption assumes that the stress of a material is solely determined by th
 \end{equation}
 where $p$ is the pressure.
 
-\subsection{Plasticity and fracture}
-\todo[inline]{This bit doesn't feel done but I don't know what it needs}
+Finally, when analysing the response of the materials in this thesis, we discuss the bulk stress $\bm{\Sigma}$ and strain $\bm{\epsilon}$. Although this distinction can be a source of confusion, we keep the same notation for the local and bulk strain tensors $\bm{\epsilon}$, under the assumption that the material deforms homogenously. In the cases where this assumption breaks down, the implications of this will be discussed. By contrast, we distinguish between local and bulk measures of stress. The bulk stress tensor is denoted by $\Sigma$ to emphasise that it represents a spatially averaged quantity, which may differ from the local stress tensor $\sigma$ due to non-linear effects such as plasticity, which we discuss next.
 
-The description of stress and strain introduced above implicitly assumes an elastic response, such that the stress is a single-valued function of only the instantaneous strain. However, in many materials, this assumption breaks down once the deformation exceeds a characteristic elastic limit. Beyond this point, irreversible microscopic rearrangements occur, which manifest macroscopically as plastic deformation or fracture, introducing dissipation and history dependence in the system's response.
+\subsection{Plasticity} \label{sec:Plasticity}
+
+The description of stress and strain introduced above implicitly assumes an elastic response, such that the stress is a single-valued function of only the instantaneous strain. However, for many soft materials, this assumption breaks down once the deformation exceeds a characteristic elastic limit. Beyond this point, irreversible microscopic rearrangements occur, which manifest macroscopically as plastic deformation or fracture, introducing dissipation and history dependence in the system's response.
 
 In contrast to elastic deformation, where, upon unloading, all strain is recovered and the material returns to its initial configuration, plastic deformation causes a permanent, irreversible change in the material's configuration. Consequently, upon unloading, the material does not return to its original state, and the material retains a memory of its deformation history in its new configuration. Microscopically theses deformation may correspond to particle rearrangements \cite{falk_dynamics_1998,maloney_amorphous_2006,tanguy_plastic_2006,gartner_nonlinear_2016}, dislocation \cite{shiba_plastic_2010, ispanovity_avalanches_2014,ben-zion_earthquake_1993}, or bond rupture \cite{tauber_stretchy_2022,ducrot_toughening_2014,Creton50th2017,vernereyStatisticalDamageMechanics2018,gong_why_2010} which all reduce the total stored elastic energy.  Rheologically, the sum of these microscopic deformations manifests as stress relaxation, yielding, and flow under sustained loading. 
 
+\subsubsection{Shear Banding}
+An emergent phenomenon of many of these soft elastoplastic materials is the formation of \quotes{shear banding}, whereby the materials' flow profile separates into multiple co-existing macroscopic regions with different strain rates \cite{divoux_stress_2011,divouxTransientShearBanding2010,divoux_yielding_2012,grenard_timescales_2014,gibaud_heterogeneous_2010,kurokawa_avalanche-like_2015}. Such banding has been extensively observed experimentally in a range of amorphous solids \cite{berretNonlinearRheologyTelechelic2001,berretTransientRheologyWormlike1997,besselingShearBandingFlowConcentration2010,diatEffectShearLyotropic1993,divouxShearBandingComplex2016,divouxTransientShearBanding2010,goyonSpatialCooperativitySoft2008,rogersAgingYieldingShear2008,tapadiaBandingEntangledPolymer2006}. 
 
 
-In \cref{sec:Ultradelayed,sec:DoubleNetworks} the role of yielding in network materials is examined. In this context, the terms \quotes{fracture} and \quotes{yielding} are often used interchangeably to describe the irreversible failure of a bond. A key distinction is that \quotes{fracture} often carries the additional implication of a loss in structural connectivity or load-bearing capacity.
 
-\subsection{Shear Banding}
+and shown to result in catastrophic material failure \cite{falk_deformation_2011,bonn_yield_2017,larson_instabilities_1992,OlmstedShearBanding2008}. Alternatively, in harder materials such as polymeric and metallic glasses, they exhibit a similar phenomenological behaviour, yielding through strain localisation and shear banding \cite{greer_shear_2013,hufnagel_deformation_2016,boyce_large_1988,anand_large-deformation_2012,chen_mechanical_2008}.
+
+Shear banding is a form of stress localisation which results from build of plastic events within the materials which causes a 
+
 
 
 \section{Rheological protocol}
@@ -408,6 +413,12 @@ All these considerations only describe a system's \quotes{structural} or \quotes
 where $\bm{\dot{r}_i(t)}$ is the acceleration of the node $i$ at time $t$. This allows for rigidity to occur when there are non-trivial solutions to \cref{eq:FrameworkRigidity} due to force balances in the material. This provides a weaker form of rigidity but still allows for the network to hold regions of self-stress. These configurations are much harder to predict \cite{holmes-cerfon_almost-rigidity_2021} as they arise from non-linear effects which have been highlighted in the context of the frameworks and tensegrities \cite{connelly_frameworks_2022, connelly_second-order_1996, calladine_first-order_1991}. In fact, determining whether a planar network of springs is rigid is NP-hard \cite{abbott_generalizations_2008}, and as such, there is no simple theory that can determine if the system is truly rigid.
 
 For a system of semi-flexible fibres where each fibre can naturally extend, both first and second-order rigidity provide a reasonable proxy for the rigidity of the system \cite{van_hecke_jamming_2010}. However, they are unable to fully capture the complexity of the network. A more recent and intuitive idea of \quotes{energetic rigidity} \cite{damavandi_energetic_2022} has provided a more relevant idea to the rigidity of fibre networks. Energetic rigidity defines a rigid state to be one where any small deformation increases the elastic energy of the structure, or, more simply, where the network resides in a local energy minimum This idea has provided valuable insights into the rigidity of spring networks, vertex models, and jammed packings of soft particles \cite{damavandi_energetic_2022-1}, especially in the context of prestressed systems. However, this still does not provide a comprehensive framework to predict the rigidity of the system.
+
+
+\subsection{Fracture in networks}
+in \cref{sec:Plasticity} the idea of plasticity in elastoplastic materials is discussed.
+
+In \cref{sec:Ultradelayed,sec:DoubleNetworks} the role of yielding in network materials is examined. In this context, the terms \quotes{fracture} and \quotes{yielding} are often used interchangeably to describe the irreversible failure of a bond. A key distinction is that \quotes{fracture} often carries the additional implication of a loss in structural connectivity or load-bearing capacity.
 
 \subsection{Fracturing the Network} \label{sec:Fracture}
 \todo[inline]{This needs splitting into two sections and expanding on. Write this more as a literature review, and don't state the specific form used in my work. This can be done in each chapter to keep relevant information much closer to the chapter.}
