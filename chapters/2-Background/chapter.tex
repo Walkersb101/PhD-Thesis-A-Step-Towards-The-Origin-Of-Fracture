@@ -151,14 +151,12 @@ The description of stress and strain introduced above implicitly assumes an elas
 In contrast to elastic deformation, where, upon unloading, all strain is recovered and the material returns to its initial configuration, plastic deformation causes a permanent, irreversible change in the material's configuration. Consequently, upon unloading, the material does not return to its original state, and the material retains a memory of its deformation history in its new configuration. Microscopically theses deformation may correspond to particle rearrangements \cite{falk_dynamics_1998,maloney_amorphous_2006,tanguy_plastic_2006,gartner_nonlinear_2016}, dislocation \cite{shiba_plastic_2010, ispanovity_avalanches_2014,ben-zion_earthquake_1993}, or bond rupture \cite{tauber_stretchy_2022,ducrot_toughening_2014,Creton50th2017,vernereyStatisticalDamageMechanics2018,gong_why_2010} which all reduce the total stored elastic energy.  Rheologically, the sum of these microscopic deformations manifests as stress relaxation, yielding, and flow under sustained loading. 
 
 \subsubsection{Shear Banding}
-An emergent phenomenon of many of these soft elastoplastic materials is the formation of \quotes{shear banding}, whereby the materials' flow profile separates into multiple co-existing macroscopic regions with different strain rates \cite{divoux_stress_2011,divouxTransientShearBanding2010,divoux_yielding_2012,grenard_timescales_2014,gibaud_heterogeneous_2010,kurokawa_avalanche-like_2015}. Such banding has been extensively observed experimentally in a range of amorphous solids \cite{berretNonlinearRheologyTelechelic2001,berretTransientRheologyWormlike1997,besselingShearBandingFlowConcentration2010,diatEffectShearLyotropic1993,divouxShearBandingComplex2016,divouxTransientShearBanding2010,goyonSpatialCooperativitySoft2008,rogersAgingYieldingShear2008,tapadiaBandingEntangledPolymer2006}. 
+An emergent phenomenon of many of these soft elastoplastic materials is the formation of \quotes{shear banding}, whereby the materials' flow profile separates into multiple co-existing macroscopic regions with different strain rates \cite{divoux_stress_2011,divouxTransientShearBanding2010,divoux_yielding_2012,grenard_timescales_2014,gibaud_heterogeneous_2010,kurokawa_avalanche-like_2015}. Such banding has been extensively observed experimentally in a range of amorphous solids \cite{berretNonlinearRheologyTelechelic2001,berretTransientRheologyWormlike1997,besselingShearBandingFlowConcentration2010,diatEffectShearLyotropic1993,divouxShearBandingComplex2016,divouxTransientShearBanding2010,goyonSpatialCooperativitySoft2008,rogersAgingYieldingShear2008,tapadiaBandingEntangledPolymer2006}. In many cases the bands heal over time, leaving a homogeneously fluidised state; however, in some materials shear banding is implicated in catastrophic failure \cite{falk_deformation_2011,bonn_yield_2017,larson_instabilities_1992,OlmstedShearBanding2008,bonnDelayedFractureInhomogeneous1998,tabuteauMicroscopicMechanismsBrittleness2009}. Harder materials, such as polymeric and metallic glasses, show similar phenomenology, yielding via strain localisation and shear banding \cite{greer_shear_2013,hufnagel_deformation_2016,boyce_large_1988,anand_large-deformation_2012,chen_mechanical_2008}. Here the formation of shear bands is typically associated with brittle yielding catastrophic failure, as the material rapidly fractures along the band. 
+
+While the resultant steady state flow of these materials has been widely studied, with a unifying picture of locally correlated plastic events form avalanches of activity across the system \cite{liuDrivingRateDependence2016,puosi_time-dependent_2014,linDensityShearTransformations2014,tanguyPlasticResponse2D2006,lin_scaling_2014,maloney_amorphous_2006}, the onset of these bands remains debated. This initial onset has been widely studied with approaches such as a replica field theory \cite{jaiswalMechanicalYieldAmorphous2016}, as a critical point in an elastoplastic model \cite{linCriticalityApproachFailure2015,liuCreepDynamicsAthermal2018}, as a percolation transition \cite{shrivastavYieldingGlassShear2016}, within artificially seeded particle simulations \cite{ozawaRareEventsDisorder2022}, and experimentally \cite{aimeMicroscopicDynamicsFailure2018,aimeStresscontrolledShearCell2016,knowltonMicroscopicViewYielding2014}.
 
 
-
-and shown to result in catastrophic material failure \cite{falk_deformation_2011,bonn_yield_2017,larson_instabilities_1992,OlmstedShearBanding2008}. Alternatively, in harder materials such as polymeric and metallic glasses, they exhibit a similar phenomenological behaviour, yielding through strain localisation and shear banding \cite{greer_shear_2013,hufnagel_deformation_2016,boyce_large_1988,anand_large-deformation_2012,chen_mechanical_2008}.
-
-Shear banding is a form of stress localisation which results from build of plastic events within the materials which causes a 
-
+As most of the work in this thesis concerns the fracture of networks, we will generally use \quotes{shear banding} to denote localised bands of high deformation, as is done in metallic glasses. In places where it is important to distinguish between these localised bands and the macroscopic regions of different strain rate, and it is not clear from context, we will do so.
 
 
 \section{Rheological protocol}
@@ -179,6 +177,7 @@ The two forms of deformation we will consider in this thesis are: simple shear a
 \end{figure}
 
 Both deformation modes preserve the overall area of the material; they do so by inducing contrasting forms of deformation. Simple shear is characterised by non-zero off-diagonal components of the stress tensor $\bm{\sigma}$, which induce a rotation of principal stress axes of the material. In fact, simple shear can be decomposed into a combination of pure shear and a rigid-body rotation. Pure shear, therefore, contains no such rotational component, and the principal directions of stress remain fixed to the axes of deformation. 
+
 \subsubsection{Protocols}
 
 \begin{figure}[h]
@@ -192,8 +191,6 @@ Both deformation modes preserve the overall area of the material; they do so by 
 
 In order to understand these nonlinear effects, which are often controlled by the dynamics of internal microstructure, experimental rheologists use a number of experimental techniques which often involve shearing a material between two plates.
 
-
-\subsection{Rate dependence / Quasistatic}
 
 \section{Hydrodynamics} \label{sec:Hydrodynamics}
 
@@ -322,13 +319,23 @@ as described by Eshelby in Ref. \cite{eshelby_determination_1997} for an ellipti
 
 For a non-periodic system, the method of images may be used to simulate solid walls with a non-slip boundary condition in order to derive an equivalent to \cref{eq:Oseen} \cite{blake_note_1971} and also the stress propagator \cite{picard_elastic_2004}. However, for 2-dimensional it is often easier numerically to take the equivalent stream-function formalism \cite{acheson_elementary_1990}.
 
-\section{Networks}
+\section{Soft Networks}
 
-\subsection{Types of Network}
-\subsubsection{Elastomers}
-\subsubsection{Hydrogels}
-\subsubsection{Fibre networks}
-\subsubsection{Macroscopic networks}
+\subsection{Types of Network} \label{sec:TypesOfNetworks}
+With the term \quotes{soft networks}, we describe a whole class of materials. These materials all share the common feature of being composed of a network of interconnected filaments; however, their mechanical properties vary widely. While we endeavoured to make our models as general as possible, it is important to understand the differences between these materials and how these differences may affect the applicability of our results. Below, we briefly describe some of the most common types of soft networks.
+
+\paragraph{Elastomers}
+Composed of long flexible polymer chains cross-linked into a network, elastomers are perhaps the most well-known class of soft networks, found in thermosetting rubbers and plastic. Existing above the glass transition temperature $T_g$ of polymer networks, their mechanical behaviour is largely governed by entropic elasticity: deformation reduces the configurational entropy of polymer chains, generating a restoring force \cite{treloarElasticityRelatedProperties1973}. As a result, elastomers typically exhibit large reversible deformations until bond or cross-linker failure occurs, with pronounced strain stiffening prior to failure \cite{kimMeasurementNonlinearMechanical2011}.
+
+\paragraph{Hydrogels}
+As the name implies Hydrogels are a type of polymer gel embedded in water, which can form up to $90\%$ of the material volume. This tends to leave them softer and weaker than elastomer due to there lower polymer density. This means that there is a significant reduction in interaction between the polymers below the network level, meaning there properties are highly dependent on the network structure. However, the presence of solvent also introduces new physical phenomena such as the swelling of polymer chains and a coupling between network deformation and fluid flow referred to as poroelasticity \cite{biotTheoryFiniteDeformations1972}. Due to their high solvent content, hydrogels are often used in biomedical applications \cite{yasudaNovelDoubleNetworkHydrogel2009,yinSelfHealingHydrogelsSynthesis2023,hoHydrogelsPropertiesApplications2022}.
+
+\paragraph{Fibre networks}
+Mainly biological networks these networks are composed of semi-flexible fibres such as actin and collagen. As a result these networks tend to have a length scale much larger than elastomers and hydrogels, with mesh sizes on the order of $1 \mu m$ to $10 \mu m$ \cite{mackintosh_elasticity_1995}. Much like hydrogels, these networks are highly porous, with a large fraction of their volume being occupied by solvent, however, due to their larger mesh size they do not exhibit significant poroelastic effects \cite{burlaMechanicalResilienceActive2019}. 
+
+Due to the nature of these networks, the type of the crosslinks in fibre networks can vary widely from linkages via flexible proteins to intricate branching and interweaving of fibre bundles.
+
+\paragraph{Macroscopic networks}
 
 
 \subsection{Semi-Flexible Filaments}
