@@ -5,11 +5,11 @@ In this thesis, we will consider several rheological constitutive models which e
 
 In this chapter, we will discuss the underlying theories of these models and provide further context and definitions for the phenomena that we will explore. We will start by introducing some basic rheology concepts which appear throughout this thesis. We secondly approach the problem of viscoelastic flows from a Newtonian perspective by introducing the generalised continuum equations for incompressible fluid flow, which include arbitrary stresses, and derive an approach for solving them for the case of Stokesian (i.e., zero Re) hydrodynamics. The bulk of the work done later in this thesis explores these concepts from a Hookean perspective, so we will introduce a model for semi-flexible filaments, exploring how non-linearity manifests in these systems and how we introduce plasticity in these models. Throughout this discussion, we will introduce some fundamental numerical techniques used in this thesis to perform the studies undertaken, as they become relevant.
 
-\section{Introduction to Rheology}
+\section{Introduction to Rheology} \label{sec:IntroRheology}
 
 Rheology is the study of the response of a material to an applied flow deformation/stress  \cite{larson_structure_1999,chenRheologySoftMaterials2010,tannerEngineeringRheology2000,barnes_introduction_1989}. The term originates from the early 20th century and comes from the combination of the Greek words \quotes{rheo}, meaning \quotes{to flow} and logos, meaning to \quotes{study} \cite{barnes_introduction_1989}. While very early work by Hooke \cite{hooke_lectures_1678} and Newton \cite{newton_philosophiae_1687} laid the foundation of simple linear rheological cases, stating respectively \quotes{the power of any spring is in the same proportion with the tension thereof} and \quotes{if you double the force, you double the velocity gradient}. Modern rheology is more interested in the cases where these simple rules do not hold, and non-linear behaviours dominate the physics. To motivate the rheological results we present later in this work, we first introduce an intuitive and mathematical description of stress and strain. These descriptions do not intend to be a full and rigorous description, for which the reader is referred to one of the many textbooks I cite along the way, but rather to provide a clear and sufficient foundation for interpreting the results we present later in the thesis.
 
-\subsection{Stress and Strain}
+\subsection{Stress and Strain} \label{sec:StressAndStrain}
 The concepts of stress and strain constitute the fundamental building blocks of rheology. In considering the flow of a material, strain is defined as a measure of the deformation resulting from the flow, and stress is a measure of the internal forces that result. The simplest definition of strain, therefore, is 
 \begin{equation}
     \epsilon = \frac{\Delta x}{L}
@@ -150,7 +150,7 @@ The description of stress and strain introduced above implicitly assumes an elas
 
 In contrast to elastic deformation, where, upon unloading, all strain is recovered and the material returns to its initial configuration, plastic deformation causes a permanent, irreversible change in the material's configuration. Consequently, upon unloading, the material does not return to its original state, and the material retains a memory of its deformation history in its new configuration. Microscopically theses deformation may correspond to particle rearrangements \cite{falk_dynamics_1998,maloney_amorphous_2006,tanguy_plastic_2006,gartner_nonlinear_2016}, dislocation \cite{shiba_plastic_2010, ispanovity_avalanches_2014,ben-zion_earthquake_1993}, or bond rupture \cite{tauber_stretchy_2022,ducrot_toughening_2014,Creton50th2017,vernereyStatisticalDamageMechanics2018,gong_why_2010} which all reduce the total stored elastic energy.  Rheologically, the sum of these microscopic deformations manifests as stress relaxation, yielding, and flow under sustained loading. 
 
-\subsubsection{Shear Banding}
+\subsubsection{Shear Banding} \label{sec:ShearBanding}
 An emergent phenomenon of many of these soft elastoplastic materials is the formation of \quotes{shear banding}, whereby the materials' flow profile separates into multiple co-existing macroscopic regions with different strain rates \cite{divoux_stress_2011,divouxTransientShearBanding2010,divoux_yielding_2012,grenard_timescales_2014,gibaud_heterogeneous_2010,kurokawa_avalanche-like_2015}. Such banding has been extensively observed experimentally in a range of amorphous solids \cite{berretNonlinearRheologyTelechelic2001,berretTransientRheologyWormlike1997,besselingShearBandingFlowConcentration2010,diatEffectShearLyotropic1993,divouxShearBandingComplex2016,divouxTransientShearBanding2010,goyonSpatialCooperativitySoft2008,rogersAgingYieldingShear2008,tapadiaBandingEntangledPolymer2006}. In many cases the bands heal over time, leaving a homogeneously fluidised state; however, in some materials shear banding is implicated in catastrophic failure \cite{falk_deformation_2011,bonn_yield_2017,larson_instabilities_1992,OlmstedShearBanding2008,bonnDelayedFractureInhomogeneous1998,tabuteauMicroscopicMechanismsBrittleness2009}. Harder materials, such as polymeric and metallic glasses, show similar phenomenology, yielding via strain localisation and shear banding \cite{greer_shear_2013,hufnagel_deformation_2016,boyce_large_1988,anand_large-deformation_2012,chen_mechanical_2008}. Here the formation of shear bands is typically associated with brittle yielding catastrophic failure, as the material rapidly fractures along the band. 
 
 While the resultant steady state flow of these materials has been widely studied, with a unifying picture of locally correlated plastic events form avalanches of activity across the system \cite{liuDrivingRateDependence2016,puosi_time-dependent_2014,linDensityShearTransformations2014,tanguyPlasticResponse2D2006,lin_scaling_2014,maloney_amorphous_2006}, the onset of these bands remains debated. This initial onset has been widely studied with approaches such as a replica field theory \cite{jaiswalMechanicalYieldAmorphous2016}, as a critical point in an elastoplastic model \cite{linCriticalityApproachFailure2015,liuCreepDynamicsAthermal2018}, as a percolation transition \cite{shrivastavYieldingGlassShear2016}, within artificially seeded particle simulations \cite{ozawaRareEventsDisorder2022}, and experimentally \cite{aimeMicroscopicDynamicsFailure2018,aimeStresscontrolledShearCell2016,knowltonMicroscopicViewYielding2014}.
@@ -159,14 +159,14 @@ While the resultant steady state flow of these materials has been widely studied
 As most of the work in this thesis concerns the fracture of networks, we will generally use \quotes{shear banding} to denote localised bands of high deformation, as is done in metallic glasses. In places where it is important to distinguish between these localised bands and the macroscopic regions of different strain rate, and it is not clear from context, we will do so.
 
 
-\section{Rheological protocol}
+\section{Rheological protocol} \label{sec:Protocols}
 There are many methods and protocols by which flow can be induced in a material. In this work, we adopt a set of strain-controlled deformation protocols. That is, at any point during our simulation, a prescribed bulk deformation is imposed, and the resulting stress response is measured. Alternatively, in a stress-controlled protocol, a fixed (though potentially time-dependent) stress is imposed, and the material is allowed to deform accordingly \cite{macoskoRheologyPrinciplesMeasurements1994}. 
 
 Within the system's elastic regime, these two approaches are equivalent, as stress and strain are uniquely related through the elastic moduli. Beyond the onset of plasticity, however, their responses differ. In a stress-controlled protocol, yielding can result in unbounded deformation, and as such, is therefore useful for exploring behaviours such as creep. Consequently, strain-controlled protocols, by definition, remain bounded in strain; upon yielding, the magnitude of stress strictly decreases toward 0. Consequently, strain-controlled regimes are often used to study yielding and stress redistribution, which is the focus of this thesis.
 
 We will consider two forms of deformation in this thesis: Simple shear is used in \cref{sec:Fatigue,sec:Ultradelayed} and Pure shear in \cref{sec:DoubleNetworks}. Further, each chapter will use a different strain-controlled protocol to apply its relevant deformation. 
 
-\subsubsection{Types of deformation}
+\subsubsection{Types of deformation} \label{sec:TypesDeformation}
 The two forms of deformation we will consider in this thesis are: simple shear and pure shear. Simple shear is a volume-preserving deformation where parallel planes slide past one another without changing their separation. By contrast, pure shear is characterised by a simultaneous extension along one axis and compression along the orthogonal axis, such that the total area (in two dimensions) is conserved. These two deformation modes are illustrated in \cref{fig:simpleAndPureShear}.
 
 \begin{figure}[h]
@@ -178,7 +178,7 @@ The two forms of deformation we will consider in this thesis are: simple shear a
 
 Both deformation modes preserve the overall area of the material; they do so by inducing contrasting forms of deformation. Simple shear is characterised by non-zero off-diagonal components of the stress tensor $\bm{\sigma}$, which induce a rotation of principal stress axes of the material. In fact, simple shear can be decomposed into a combination of pure shear and a rigid-body rotation. Pure shear, therefore, contains no such rotational component, and the principal directions of stress remain fixed to the axes of deformation. 
 
-\subsubsection{Protocols}
+\subsubsection{Protocols} \label{sec:DeformationProtocols}
 
 \begin{figure}[h]
     \centering
@@ -187,7 +187,7 @@ Both deformation modes preserve the overall area of the material; they do so by 
     %\label{fig:simpleAndPureShear}
 \end{figure}
 
-\subsection{Experiments}
+\subsection{Experiments} \label{sec:Experements}
 
 In order to understand these nonlinear effects, which are often controlled by the dynamics of internal microstructure, experimental rheologists use a number of experimental techniques which often involve shearing a material between two plates.
 
@@ -237,7 +237,7 @@ Considering a single localised plastic event induced by elastic loading, the str
 \end{subequations}
 Under the assumption that the deformation is isotropic and $\nabla \cdot \bm{\epsilon} = \bm{0}$ for any deformation at rest, we can express the right hand side of \cref{eq:plasticStokes1} as $\nabla \cdot \left( 2 \mu \bm{\epsilon}^{el1} - p^1 \bm{I} \right) = -\nabla p^1 + \mu \nabla^2 \bm{u}^1$
 
-\subsection{Oseen/Stokeslet Tensor}
+\subsection{Oseen/Stokeslet Tensor} \label{sec:Oseen}
 The solution to \cref{eq:plasticStokes} is well known and has been studied in a wide range of systems. The most common way to approach the problem is to consider the response to a point force $F$ applied at $\bm{r^\prime}$ in a periodic system,
 \begin{subequations}
 \label{eq:Stokes}
@@ -319,7 +319,7 @@ as described by Eshelby in Ref. \cite{eshelby_determination_1997} for an ellipti
 
 For a non-periodic system, the method of images may be used to simulate solid walls with a non-slip boundary condition in order to derive an equivalent to \cref{eq:Oseen} \cite{blake_note_1971} and also the stress propagator \cite{picard_elastic_2004}. However, for 2-dimensional it is often easier numerically to take the equivalent stream-function formalism \cite{acheson_elementary_1990}.
 
-\section{Soft Networks}
+\section{Soft Networks} \label{sec:Networks}
 
 \subsection{Types of Network} \label{sec:TypesOfNetworks}
 With the term \quotes{soft networks}, we describe a whole class of materials. These materials all share the common feature of being composed of a network of interconnected filaments; however, their mechanical properties vary widely. While we endeavoured to make our models as general as possible, it is important to understand the differences between these materials and how these differences may affect the applicability of our results. Below, we briefly describe some of the most common types of soft networks.
@@ -338,7 +338,7 @@ Due to the nature of these networks, the type of the crosslinks in fibre network
 \paragraph{Macroscopic networks}
 
 
-\subsection{Semi-Flexible Filaments}
+\subsection{Semi-Flexible Filaments} \label{sec:SemiFlexible}
 Polymer fibres can be separated into three categories by the ratio of their persistence length $l_p$ to their relevant contour length $l_c$ (in the case of networks, the relevant length is the average length between crosslinks). The persistence length is a measure of the rigidity of the polymer and defines the length at which the polymer's orientation remains correlated. Therefore, the persistence length of a polymer can be intuitively thought of as the length at which thermal energy, $k_{B}T$, is large enough to have an effect on the direction of the polymer (formally defined as the length at which the correlation between the two tangent equals $1/e$) and can be defined by $l_p = \kappa / (k_{B}T)$.
 
 For short or stiff polymers where $l_p \ll l_c$, the polymer acts like a rigid rod with its mechanical response governed by the polymer's stretching of molecular bonds. Polymers where $l_p \gg l_c$ take a naturally folded state as the thermal energy is sufficient to bend the filament significantly, these polymers have mechanical responses driven by entropy where the initial response is governed by the reduction of accessible conformations as the polymer unfolds, followed by a regime governed by the stretching of molecular bonds as in the stiff case. Semi-flexible polymers, therefore, constitute an intermediate state between the two, where their persistence length $l_p$ is large enough relative to their contour length $l_c$ to avoid collapsing into a random coil but large enough that thermally induced bending remains relevant. 
@@ -422,12 +422,11 @@ where $\bm{\dot{r}_i(t)}$ is the acceleration of the node $i$ at time $t$. This 
 For a system of semi-flexible fibres where each fibre can naturally extend, both first and second-order rigidity provide a reasonable proxy for the rigidity of the system \cite{van_hecke_jamming_2010}. However, they are unable to fully capture the complexity of the network. A more recent and intuitive idea of \quotes{energetic rigidity} \cite{damavandi_energetic_2022} has provided a more relevant idea to the rigidity of fibre networks. Energetic rigidity defines a rigid state to be one where any small deformation increases the elastic energy of the structure, or, more simply, where the network resides in a local energy minimum This idea has provided valuable insights into the rigidity of spring networks, vertex models, and jammed packings of soft particles \cite{damavandi_energetic_2022-1}, especially in the context of prestressed systems. However, this still does not provide a comprehensive framework to predict the rigidity of the system.
 
 
-\subsection{Fracture in networks}
+\subsection{Fracture in networks}\label{sec:Fracture}
 in \cref{sec:Plasticity} the idea of plasticity in elastoplastic materials is discussed.
 
 In \cref{sec:Ultradelayed,sec:DoubleNetworks} the role of yielding in network materials is examined. In this context, the terms \quotes{fracture} and \quotes{yielding} are often used interchangeably to describe the irreversible failure of a bond. A key distinction is that \quotes{fracture} often carries the additional implication of a loss in structural connectivity or load-bearing capacity.
 
-\subsection{Fracturing the Network} \label{sec:Fracture}
 \todo[inline]{This needs splitting into two sections and expanding on. Write this more as a literature review, and don't state the specific form used in my work. This can be done in each chapter to keep relevant information much closer to the chapter.}
 
 
@@ -445,7 +444,7 @@ For systems in which the thermal energy is of the same order as the depth of the
 Through the literature, a wide range of network geometries has been considered. The simplest are Affine isotropic models, which consider the response of a single filament to an applied deformation, averaging over all possible initial filament orientations, such as those studied in \cite{mackintosh_elasticity_1995, storm_nonlinear_2005}. While these models can be used to provide a baseline understanding for networks in the high $z$ or $\kappa$ limits, they fail to capture the important physics which arises from the non-affine rearrangements and orientational disorder found in real-world networks. To consider these effects, we must prescribe a network topology which specifies how the bonds connect the nodes of the network.
 
 \subsubsection{Lattice-based networks} \label{sec:LatticeBasedNetworks}
-Lattice-based networks are the simplest type of network structures that are commonly used in studies of mechanical properties \cite{jacobs_generic_1995, feng_percolation_1984, shivers_scaling_2019, sharma_strain-controlled_2016}. Frequently considered examples of lattice-based networks including two-dimensional square \cite{mao_soft_2010}, triangular \cite{broedersz_criticality_2011, feng_percolation_1984}, and honeycomb \cite{rens_nonlinear_2016} lattices. Often used for their simplicity to constructed when compared to more disordered network types, and their relative numerical stability due to the uniform lattice spacing $l_0$, they provide a convenient and well-controlled framework for analysing the mechanical response of fibre networks. 
+Lattice-based networks are the simplest type of network structures that are commonly used in studies of mechanical properties \cite{jacobs_generic_1995, feng_percolation_1984, shivers_scaling_2019, sharma_strain-controlled_2016}. Frequently considered examples of lattice-based networks include two-dimensional square \cite{mao_soft_2010}, triangular \cite{broedersz_criticality_2011, feng_percolation_1984}, and honeycomb \cite{rens_nonlinear_2016} lattices. Often used for their simplicity to construct when compared to more disordered network types, and their relative numerical stability due to the uniform lattice spacing $l_0$, they provide a convenient and well-controlled framework for analysing the mechanical response of fibre networks. 
 
 Such networks are constructed by placing nodes on a regularly defined grid defined by a set of lattice vectors 
 and then subsequently connecting these nodes according to a prescribed set of rules. For instance, in a 2-dimensional square lattice, the node positions can be defined by the lattice vectors $(1,0)$ and $(0,1)$, and by connecting nearest-neighbour nodes vertically and horizontally, respecting boundary conditions as needed. Other simple lattices, such as the triangular lattice, can be generated analogously, with more complicated lattices may be derived from these fundamental cases. As an example, a hexagonal lattice can be derived from a triangular lattice by imposing an added constraint that each node has a connectivity $z = 3$. Owing to their natural structure, such lattices exhibit highly predictable behaviour, characterised by discrete values in their the connectivity and bond lengths. 
@@ -534,7 +533,7 @@ where $\bm{r}_{mn} = \bm{r}_{n}-\bm{r}_{m}$. We note that $\Theta$ in \cref{eq:v
 
 The derivation above extends trivially to three dimensions, where we instead consider the force contribution from above and below an arbitrary plane perpendicular to the $j$-axis. Calculating the stress by this approach eliminates the computation of numerical derivatives and is more computationally efficient, as both $\bm{r}_{ij}$ and $\bm{f}_{ij}$ are already calculated at each timestep when evaluating the system's dynamics. A more thorough derivation of the viral stress tensor, including fluid effects, can be found in Ref. \cite{yang_generalized_2012}.
 
-\subsection{Generalised Lees-Edwards Boundary Conditions}
+\subsection{Generalised Lees-Edwards Boundary Conditions} \label{sec:Lees-Edwards}
 
 When studying rheology, we typically wish to apply a macroscopic strain to a material and study the resulting macroscopic stress. In an experimental setup, this involves placing a sample of the material of interest into a rheometer and applying a macroscopic strain by moving one or more of the sample's boundaries. To measure the material's bulk properties, the samples often need to be large to avoid edge effects dominating the physics. This proves a challenge in simulations where achieving these scales is computationally expensive or impossible. A common way to avoid these issues is to use periodic boundary conditions, where an object passing through one side of the unit cell reappears on the opposite side with the same velocity. This, by definition, removes the edges of the computational systems; therefore, macroscopic strains must be applied through an alternative method, rather than being applied the conventional way, i.e. by applying a stress along one of the edges.
 
