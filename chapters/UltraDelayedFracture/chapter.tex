@@ -31,13 +31,21 @@ As the step strain protocol is less commonly studied compared to others, little 
 Contrastingly, the step strain protocol has been well explored in the context of unbreaking fibre networks by Shivers \textit{et al.} in Ref.\cite{shivers_strain-controlled_2023}. We replicate key figures in \cref{fig:networkRelaxation}
 
 \section{Methodology}
-To explore the ultra delayed failure of networks, we extend the network model defined in \cref{sec:Networks}, in particular, taking the Jamming-based networks defined in \cref{sec:PackingBasedNetworks}, evolving them under the dynamics discussed in \cref{sec:NetworkDynamics} and introducing a thermal component to these models. 
+To explore the ultra delayed failure of networks, we extend the network model defined in \cref{sec:Networks}, in particular, taking the Jamming-based networks defined in \cref{sec:PackingBasedNetworks}, evolving them under the dynamics discussed in \cref{sec:NetworkDynamics} and introducing a thermal component to these models. To replicate the work done by Lockwood \textit{et al.}, we impose a step strain protocol as defined in \cref{sec:DeformationProtocols}, where at time $t=0$ we rapidly deform the system to a fixed shear strain $\gamma_0$, where this deformation is held constant thereafter. We then observe the stress relaxation and the internal structure field of the network over long timescales to explore the failure time $t^*$ of the material with varying $T$ and $\gamma_0$. We will consider two forms of adding thermal effects to the network, first through Brownian dynamics as outlined in \cref{sec:UltraDelayedBrownian}, and second through considering a fracture rate based on a Boltzmann like distribution as outlined in \cref{sec:BoltzmanFracture}.
+
+In both models apply shear through an affine transformation of the particle positions, where for a shear strain $\gamma$ the particle positions $\mathbf{r}_i = (x_i,y_i)$ are transformed as
+\begin{equation}
+    \begin{pmatrix}x_i \\ y_i
+    \end{pmatrix} \to 
+    \begin{pmatrix}x_i + \gamma y_i \\ y_i
+    \end{pmatrix}
+\end{equation}
+and Lees-Edwards boundary conditions (outlined in \cref{sec:Lees-Edwards}) are applied. The jamming-based networks used in this chapter are generated as outlined in \cref{sec:PackingBasedNetworks}, with $\phi = 1.0$ and the box size $L_x=L_y = \sqrt{N}$ determining the length scale of the system. We also take units where $\mu_m=1.0$
 
 
-\section{Brownian Dynamics}
-As discussed in \cref{sec:Fracture}, the fracture of bonds in the network plays a large role in determining the material's response and properties. 
+\section{Brownian Dynamics} \label{sec:UltraDelayedBrownian}
 
-\section{Boltzman Fracture}
+\section{Boltzman rate Fracture} \label{sec:BoltzmanFracture}
 \section{Stress Decay and Strain Response}
 \section{Banding Time $t^*$ and the Imposed Step Strain $\gamma_0$}
 \section{Banding Time $t^*$ and Temperature $x$}
