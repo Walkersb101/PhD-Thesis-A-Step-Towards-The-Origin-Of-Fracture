@@ -1,9 +1,34 @@
 \chapter{Ultradelayed Material Failure via Shear Banding After Straining in Networks} \label{sec:Ultradelayed}
 
 \section{Introduction}
-This chapter will study the behaviour of network materials under the step strain protocol outlined in \cref{sec:DeformationProtocols}. In particular, we will be exploring the same physics explored by Lockwood \textit{et al} in Ref. \cite{lockwood_ultradelayed_2025}. Using a variety of constitutive models, this work explored the formation of delayed dramatic shear banding instabilities long after the initial imposition of the strain. We hope that by introducing thermal effects to the simple network models described in \cref{sec:Networks}, we can find and explore how this effect is presented in a more realistic model. 
+This chapter will study the behaviour of network materials under the step strain protocol outlined in \cref{sec:DeformationProtocols}. In particular, we will be exploring the same physics explored by Lockwood \textit{et al.} in Ref.\cite{lockwood_ultradelayed_2025}. Using a variety of constitutive models, this work explored the formation of delayed dramatic shear banding instabilities long after the initial imposition of the strain. We hope that by introducing thermal effects to the simple network models described in \cref{sec:Networks}, we can find and explore how this effect is presented in a more realistic model. 
 
-Shear banding and failure have been widely explored both experimentally and theoretically, as discussed in \cref{sec:ShearBanding}, and have shown to show failure in a range of protocols. Typically, protocols such as shear startup, outlined in \cref{sec:DeformationProtocols}, where at some time $t=0$ the system is started to be sheared with a rate $\dot{\gamma}$ have been used to study the formation of these bands \cite{nicolas_deformation_2018,moorcroft_shear_2014,moorcroft_criteria_2013}. 
+Shear banding and failure have been widely explored both experimentally and theoretically, as discussed in \cref{sec:ShearBanding}, and have shown to show failure in a range of protocols. Typically, protocols such as shear startup, outlined in \cref{sec:DeformationProtocols}, where at some time $t=0$ the system is started to be sheared with a rate $\dot{\gamma}$ have been used to study the formation of these bands \cite{moorcroft_shear_2014,moorcroft_criteria_2013,pollard_yielding_2022,moorcroft_age-dependent_2011,divouxTransientShearBanding2010,divoux_stress_2011,kurokawa_avalanche-like_2015}. Here shear stress $\Sigma_{xy}$ accumulates roughly linearly with the applied strain $\gamma = \dot{\gamma}t$, until it reaches a maximum value where yielding initiates and the stress decays to a flowing steady state. Alternatively, the material is often subjected to a fixed stress of amplitude $\Sigma$ for $t \geq 0$ (a stress-controlled regime). Here, the material relaxes slowly with the material's strain $\gamma$ creeping forward with a rate that decays as $\dot{\gamma} \sim t^{-\alpha}$, with $\alpha \in \left( 0,1 \right)$, before suddenly failing as the material yield \cite{miguel_dislocation_2002,gibaud_heterogeneous_2010,leocmach_creep_2014,ballesta_creep_2016,liuCreepDynamicsAthermal2018,cabriolu_precursors_2019,siebenburger_creep_2012}.
+
+In both cases, damage in the material accumulates over time either by increasing strain triggering yielding events or through stress propagation originating from a previous yielding event. Although during the initial stages of deformation, the shear response of the material is often macroscopically uniform, as this damage accumulates, this homogeneous state typically breaks down, and deformation becomes spatially heterogeneous. This shear localisation eventually passes a critical point, and the flow reorganises into shear bands with contrasting strain rates, separated by interfaces aligned along the shear gradient direction. This effect has been shown theoretically within a minimal set of continuum rheological constitutive assumptions \cite{fielding_shear_2014,moorcroft_age-dependent_2011,moorcroft_shear_2014,moorcroft_criteria_2013,adams_transient_2011,fielding_triggers_2016}
+
+\begin{figure}
+    \centering
+    %\includegraphics[width=0.5\linewidth]{}
+    \missingfigure{Diagram of two trivial cases of stress drop after straining}
+    \caption{Caption}
+    \label{fig:trivialRelaxation}
+\end{figure}
+
+Instead, we consider a step strain protocol where at time $t=0$ we rapidly deform the material to a finite fixed shear strain $\gamma_0$, where this deformation is held constant thereafter. Unlike the previous two deformation where the strain is unbounded and as such can support a final fluidised state, it has been assumed that the relaxation process of these materials is trivial, with the material stress either decaying to a constant value, or catastrophically decreasing as the material fails, depending on the magnitude of the imposed strain $\gamma_0$. A schematic illustration of these two responses is plotted in \cref{fig:trivialRelaxation}. Instead, in the work done by Lockwood, it is shown that the material may suffer a dramatic internal shear
+banding instability long after the imposed deformation\cite{lockwood_ultradelayed_2025}. Importantly, this delay time can be delayed arbitrarily with little to no change to the macroscopic observables in the material. Therefore, an observer who lacks any knowledge on the materials' history could be caught entirely unawares by the instability.
+
+As the step strain protocol is less commonly studied compared to others, little work exists before the work by Lockwood \textit{et al.}. Some alternative theoretical studies looked at the formation of banding over short timescales as the material fails immediately \cite{moorcroft_shear_2014,moorcroft_criteria_2013,adams_nonmonotonic_2009}. And experimentally in polymer melts, the same short timescale failures have been observed \cite{boukany_exploring_2009,boukany_step_2009,barroso_evaluation_2002,einaga_stress_1973}. Experiments looking at the longer timescale dynamics after the system appears to have reached an equilibrium are even less explored, although some studies have shown signs of delayed yielding similar to what is presented in Ref.\cite{lockwood_ultradelayed_2025} and to the results we present later \cite{boukany_step_2009,jacob_rheological_2019,}.
+
+\begin{figure}
+    \centering
+    %\includegraphics[width=0.5\linewidth]{}
+    \missingfigure{Stress relaxation figure}
+    \caption{Caption}
+    \label{fig:networkRelaxation}
+\end{figure}
+
+Contrastingly, the step strain protocol has been well explored in the context of unbreaking fibre networks by Shivers \textit{et al.} in Ref.\cite{shivers_strain-controlled_2023}. We replicate key figures in \cref{fig:networkRelaxation}
 
 \section{Methodology}
 To explore the ultra delayed failure of networks, we extend the network model defined in \cref{sec:Networks}, in particular, taking the Jamming-based networks defined in \cref{sec:PackingBasedNetworks}, evolving them under the dynamics discussed in \cref{sec:NetworkDynamics} and introducing a thermal component to these models. 
