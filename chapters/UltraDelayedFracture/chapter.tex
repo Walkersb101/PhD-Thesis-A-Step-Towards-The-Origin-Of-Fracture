@@ -30,15 +30,14 @@ As the step strain protocol is less commonly studied compared to others, little 
 
 Contrastingly, the step strain protocol has been well explored in the context of unbreakable fibre networks by Shivers \textit{et al.} in Ref.\cite{shivers_strain-controlled_2023}. We replicate the relevant physics in \cref{fig:networkRelaxation}, although a more detailed investigation of the relaxation timescales and dynamics is considered in the paper, but is not relevant to the work done in this chapter. Important to this work is the strain stiffening point, which exists for networks with connectivities $z<4$. Below this point, the network is naturally floppy with many zero-energy modes. After a critical point $\gamma_c(z_c)$, these modes vanish, and the network can hold stress similar to that of the network above the isostatic point $z>4$. We consider the origins of this transition more thoroughly in \cref{sec:Rigidity}.
 
-To explore the ultra-delayed failure of networks, we extend the network model outlined in \cref{sec:Networks}, specifically focusing on the Jamming-based networks defined in \cref{sec:PackingBasedNetworks}. We will introduce temperature through two methods, a Brownian simulation where node positions are randomly \quotes{kicked}, and a Boltzmann-like breakage rate for the network bonds inspired by the soft glassy rheology model\cite{sollich_rheology_1997,sollich_soft_2006}. The bulk of the results in this work will use the latter method, which we introduced for its computational simplicity and ability to reach long time scales. 
-In both models apply shear through an affine transformation of the particle positions, where for a shear strain $\gamma$ the particle positions $\mathbf{r}_i = (x_i,y_i)$ are transformed as
+To explore the ultra-delayed failure of networks, we extend the network model outlined in \cref{sec:Networks}, specifically focusing on the Jamming-based networks defined in \cref{sec:PackingBasedNetworks}. We will introduce temperature through two methods, a Brownian simulation where node positions are randomly \quotes{kicked}, and a Boltzmann-like breakage rate for the network bonds inspired by the soft glassy rheology model\cite{sollich_rheology_1997,sollich_soft_2006}. The bulk of the results in this work will use the latter method, which we introduced for its computational simplicity and ability to reach long time scales. In both models apply shear is applied through an affine transformation of the particle positions, where for a shear strain $\gamma$ the particle positions $\mathbf{r}_i = (x_i,y_i)$ are transformed as
 \begin{equation}
     \begin{pmatrix}x_i \\ y_i
     \end{pmatrix} \to 
     \begin{pmatrix}x_i + \gamma y_i \\ y_i
     \end{pmatrix}
 \end{equation}
-and Lees-Edwards boundary conditions (outlined in \cref{sec:Lees-Edwards}) are applied. The jamming-based networks used in this chapter are generated as outlined in \cref{sec:PackingBasedNetworks}, with $\phi = 1.0$ and the box size $L_x=L_y = \sqrt{N}$ determining the length scale of the system. We also take units where $\mu_m=1.0$
+and Lees-Edwards boundary conditions (outlined in \cref{sec:Lees-Edwards}) are applied. The jamming-based networks used in this chapter are generated as outlined in \cref{sec:PackingBasedNetworks}, with $\phi = 1.0$ and the box size $L_x=L_y = \sqrt{N}$ determining the length scale of the system. We also take units where $\mu_m=1.0$.
 
 \section{Brownian Dynamics} \label{sec:UltraDelayedBrownian}
 The simplest model, which introduces a temperature $T$ is Brownian dynamics.
