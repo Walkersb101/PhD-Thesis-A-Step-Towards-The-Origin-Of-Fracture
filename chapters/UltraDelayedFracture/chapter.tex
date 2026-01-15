@@ -30,20 +30,38 @@ As the step strain protocol is less commonly studied compared to others, little 
 
 Contrastingly, the step strain protocol has been well explored in the context of unbreakable fibre networks by Shivers \textit{et al.} in Ref.\cite{shivers_strain-controlled_2023}. We replicate the relevant physics in \cref{fig:networkRelaxation}, although a more detailed investigation of the relaxation timescales and dynamics is considered in the paper, but is not relevant to the work done in this chapter. Important to this work is the strain stiffening point, which exists for networks with connectivities $z<4$. Below this point, the network is naturally floppy with many zero-energy modes. After a critical point $\gamma_c(z_c)$, these modes vanish, and the network can hold stress similar to that of the network above the isostatic point $z>4$. We consider the origins of this transition more thoroughly in \cref{sec:Rigidity}.
 
-To explore the ultra-delayed failure of networks, we extend the network model outlined in \cref{sec:Networks}, specifically focusing on the Jamming-based networks defined in \cref{sec:PackingBasedNetworks}. We will introduce temperature through two methods, a Brownian simulation where node positions are randomly \quotes{kicked}, and a Boltzmann-like breakage rate for the network bonds inspired by the soft glassy rheology model\cite{sollich_rheology_1997,sollich_soft_2006}. The bulk of the results in this work will use the latter method, which we introduced for its computational simplicity and ability to reach long time scales. In both models apply shear is applied through an affine transformation of the particle positions, where for a shear strain $\gamma$ the particle positions $\mathbf{r}_i = (x_i,y_i)$ are transformed as
-\begin{equation}
-    \begin{pmatrix}x_i \\ y_i
-    \end{pmatrix} \to 
-    \begin{pmatrix}x_i + \gamma y_i \\ y_i
-    \end{pmatrix}
-\end{equation}
-and Lees-Edwards boundary conditions (outlined in \cref{sec:Lees-Edwards}) are applied. The jamming-based networks used in this chapter are generated as outlined in \cref{sec:PackingBasedNetworks}, with $\phi = 1.0$ and the box size $L_x=L_y = \sqrt{N}$ determining the length scale of the system. We also take units where $\mu_m=1.0$.
+To explore the ultra-delayed failure of networks, we extend the network model outlined in \cref{sec:Networks}, specifically focusing on the Jamming-based networks defined in \cref{sec:PackingBasedNetworks}. We will introduce temperature through two methods, a Brownian simulation where node positions are randomly \quotes{kicked}, and a Boltzmann-like breakage rate for the network bonds inspired by the soft glassy rheology model\cite{sollich_rheology_1997,sollich_soft_2006}. 
+
+The bulk of the results in this work will use the latter method, which we introduced for its computational simplicity and ability to reach long time scales. In both models, shear is applied through applying Lees-Edwards boundary conditions (outlined in \cref{sec:Lees-Edwards}). This imposes effective periodic boundary conditions in all directions and enforces a simple shear in the $xy$ plane. The jamming-based networks used in this chapter are generated as outlined in \cref{sec:PackingBasedNetworks}, with $\phi = 1.0$ and the box size $L_x=L_y = \sqrt{N}$ determining the length scale of the system. Unless otherwise states this gives networks with connectivities of $z \approx 5.4$. Further, we also take units where $\mu_m=1.0$. 
 
 \section{Brownian Dynamics} \label{sec:UltraDelayedBrownian}
-The simplest model, which introduces a temperature $T$ is Brownian dynamics.
+The simplest model, which introduces a temperature $T$ is Brownian dynamics. We amend the dynamics defined in \cref{sec:NetworkDynamics} to be of the following form
+\begin{equation}
+    \dot{\bm{r}_i} = \frac{1}{\zeta}\bm{F}_{n,i} + \bm{v}_f(\bm{r}_i) + \sqrt{\frac{2k_BT}{\zeta}}R(t). \label{eq:Brownian}
+\end{equation}
+We work in unit where drag coefficient $\zeta = 1$, Boltzmann constant $k_B=1$ and $R(t)$ is a Gaussian white noise term with $\langle R(t)\rangle = 0$ and $\langle R(t) R(t^\prime) \rangle = \delta(t-t^\prime)$. This is equivalent to the limiting cases of the dynamics explored in Ref.\cite{tauber_role_2020}. We integrate \cref{eq:Brownian} using a simple Euler algorithm with time-step $\delta t = 10^{-3}$. During the simulation, we will take bonds to break irreversibly when their strain $\epsilon_b = (l-l_0)/l_0$ exceeds a threshold $\lambda$, which is evaluated after each dynamics step.
+
+
+\begin{figure}
+    \centering
+    %\includegraphics[width=0.5\linewidth]{}
+    \missingfigure{Left time series / Right $t^*$ extracted}
+    \caption{Caption}
+    \label{fig:placeholder}
+\end{figure}
 
 \section{Boltzman rate Fracture} \label{sec:BoltzmanFracture}
-\section{Stress Decay and Strain Response}
+To reduce the computation time of the model, we need an alternative method of thermal fracture which allows for an increased time step while remaining numerically stable. With this aim, we will consider an alternative fracture condition inspired by the Soft Glassy Rheology (SGR) model \cite{sollich_rheological_1998,sollich_thermodynamic_2012}.
+
+where each bond sits in a local energy well, defined by a global breaking energy $E$, local elastic strain energy ${\mu}{(l-l_0)^2}/{2l_0^2}$ and an effective noise temperature $x$. Each bond then has the ability to hop out of its energy well and break at a rate $\Gamma$ given by
+\begin{equation} \label{eq:SGRRate}
+    \Gamma = \Gamma_0 \min \left\{ \exp \left[ \frac{E - \frac{\mu}{2}\frac{(l-l_0)^2}{l_0^2}}{x} \right], 1 \right\}
+\end{equation}
+where $\Gamma_0$ is a microscopic breaking rate. We work in units of time where $\Gamma_0 = 1$ and the rate is given a maximum value of $1$ in order to ensure the model remains thermodynamically consistent \cite{sollich_thermodynamic_2012}.
+
+For systems in which the thermal energy is of the same order as the depth of the energy well the temperature parameter can be interpreted as the true thermodynamic temperature, with $x = k_B T$ \cite{sollich_thermodynamic_2012}. However, in our network system, where the energy depths are much larger than the thermal contributions, the effective noise temperature is related to how stress would propagate across the microscopic structure of the bond. 
+
+%\section{Stress Decay and Strain Response}
 \section{Banding Time $t^*$ and the Imposed Step Strain $\gamma_0$}
 \section{Banding Time $t^*$ and Temperature $x$}
 

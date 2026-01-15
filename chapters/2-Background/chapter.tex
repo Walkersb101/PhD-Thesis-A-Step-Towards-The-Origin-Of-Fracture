@@ -430,13 +430,10 @@ In \cref{sec:Ultradelayed,sec:DoubleNetworks} the role of yielding in network ma
 \todo[inline]{This needs splitting into two sections and expanding on. Write this more as a literature review, and don't state the specific form used in my work. This can be done in each chapter to keep relevant information much closer to the chapter.}
 
 
-To study fractures in these network materials, it is common to define a local rupture threshold at which any bond between nodes will break. Typically, this is done by breaking bonds whose length exceeds their natural length by a threshold fraction $\lambda = (l_{\rm break} - l_0) / l_0$ \cite{tauber_role_2020,dussi_athermal_2020}. These models then introduce temperature through a stochastic term, which represents random kicks from the molecules in the implicit solvent defined by $\sqrt{2k_B T} R(t)$ where $k_B$ is Boltzmann’s constant, $T$ the thermodynamic temperature and $R(t)$ a standard Wiener process. We, however, propose a different model of fracture inspired by the soft glassy rheology model (SGR) \cite{sollich_rheological_1998,mfielding_shear_2009,sollich_thermodynamic_2012} where each bond sits in a local energy well, defined by a global breaking energy $E$, local elastic strain energy ${\mu}{(l-l_0)^2}/{2l_0^2}$ and an effective noise temperature $x$. Each bond then has the ability to hop out of its energy well and break at a rate $\Gamma$ given by
-\begin{equation} \label{eq:SGRRate}
-    \Gamma = \Gamma_0 \min \left\{ \exp \left[ \frac{E - \frac{\mu}{2}\frac{(l-l_0)^2}{l_0^2}}{x} \right], 1 \right\}
-\end{equation}
-where $\Gamma_0$ is a microscopic breaking rate. We work in units of time where $\Gamma_0 = 1$ and the rate is given a maximum value of $1$ in order to ensure the model remains thermodynamically consistent \cite{sollich_thermodynamic_2012}.
+To study fractures in these network materials, it is common to define a local rupture threshold at which any bond between nodes will break. Typically, this is done by breaking bonds whose length exceeds their natural length by a threshold fraction $\lambda = (l_{\rm break} - l_0) / l_0$ \cite{tauber_role_2020,dussi_athermal_2020}.
 
-For systems in which the thermal energy is of the same order as the depth of the energy well the temperature parameter can be interpreted as the true thermodynamic temperature, with $x = k_B T$ \cite{sollich_thermodynamic_2012}. However, in our network system, where the energy depths are much larger than the thermal contributions, the effective noise temperature is related to how stress would propagate across the microscopic structure of the bond. 
+
+
 
 \todo[inline]{Is it really thermal vs athermal? Where does Brownian sit in this? Do I want to define thermal in the results chapter? Look at Tauber's work}
 
@@ -557,6 +554,11 @@ When studying rheology, we typically wish to apply a macroscopic strain to a mat
     \label{fig:BoundaryConditions}
 \end{figure}
 
-In computational simulations, macroscopic stresses are instead applied by deforming the lattice vectors, which define the relationship between the unit cell and its periodic images. Applying simple stresses to the system can be trivially done simply by updating the unit cell and lattice vectors of the system and affinely transforming the system's coordinates to the new unit cell coordinates. While theoretically, this also works for applying shear stresses, where we deform the unit cell and lattice vectors to a triclinic (non-orthogonal) box as shown in \cref{fig:Tri-Clinic}, computationally, this has problems at large strains where the unit cell is heavily deformed. Alternatively, a set of suitably modified periodic boundaries was proposed by Lees and Edwards in \cite{lees_computer_1972} and is illustrated in \cref{fig:Lees-Edwards}. 
-
-Assuming that the shear occurs in the x-direction, which is always possible by rotating the system such that one of the lattice vectors lies along the x-axis, involves affinely deforming the particles in the unit cell along the x-axis and \quotes{sliding} the periodic images in the adjacent rows as shown in \cref{fig:Lees-Edwards}. This proves more computationally efficient as the unit cell remains orthogonal. The computation details for implementing these can be found in Ref. \cite{allen_computer_2017}.
+Theoretically, macroscopic stresses are instead applied by deforming the lattice vectors, which define the relationship between the unit cell and its periodic images. Applying simple stresses to the system can therefore be trivially applied simply by deforming the unit cell and lattice vectors of the system, as shown in \cref{fig:Tri-Clinic}. Deforming the box in this manner is often referred to as triclinic boundary conditions, with the name derived from triclinic crystal structure. While this method allows for arbitrary deformation to be applied, it can be computationally expensive to apply due to the need to convert between bases when calculating minimum images and struggles at large strains where the unit cell is heavily deformed. Instead, a set of suitably modified periodic boundaries was proposed by Lees and Edwards in \cite{lees_computer_1972} to be computationally similar. To apply shear in the x-direction using Lees-Edwards boundary conditions, the particles' positions $\mathbf{r}_i = (x_i,y_i)$ are affinely transformed as 
+\begin{equation}
+    \begin{pmatrix}x_i \\ y_i
+    \end{pmatrix} \to 
+    \begin{pmatrix}x_i + \gamma y_i \\ y_i
+    \end{pmatrix}
+\end{equation}
+and \quotes{sliding} the periodic images by a distance $\delta\gamma L_y$ in the adjacent rows as shown in \cref{fig:Lees-Edwards}. This proves more computationally efficient as the unit cell remains orthogonal. The computation details for implementing these can be found in Ref.\cite{allen_computer_2017}.
