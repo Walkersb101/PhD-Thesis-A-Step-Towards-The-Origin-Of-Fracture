@@ -1,0 +1,26 @@
+\begin{tikzpicture}
+\begin{axis}[
+    axis lines=middle,
+    domain=-2:2, % range of epsilon_b
+    samples=200,
+    xlabel={$\epsilon_b$},
+    ylabel={$\Gamma(\epsilon_b)$},
+    ymin=0, 
+    ymax=1.2,
+    width=8cm,
+    height=4cm,
+    %ylabel style={rotate=-90},
+]
+
+% Parameters
+\def\GammaZero{1}  % \Gamma_0
+\def\E{1}          % E
+\def\mu{1}         % mu
+\def\xparam{0.1}   % x (renamed to avoid conflict)
+
+% Rate function
+\addplot [blue, thick] 
+    { ((0.5*\mu*x*x) < \E) ? \GammaZero*exp(-( \E - 0.5*\mu*x*x)/\xparam) : \GammaZero };
+
+\end{axis}
+\end{tikzpicture}
