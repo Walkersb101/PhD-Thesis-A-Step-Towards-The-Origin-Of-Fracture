@@ -9,9 +9,8 @@ In both cases, damage in the material accumulates over time either by increasing
 
 \begin{figure}
     \centering
-    %\includegraphics[width=0.5\linewidth]{}
-    \missingfigure{Diagram of two trivial cases of stress drop after straining}
-    \caption{Caption}
+    \includegraphics[width=.9\linewidth]{chapters/UltraDelayedFracture/Figures/TrivialRelax.tikz}
+    \caption[Illustration of trivial response curves under a step strain]{Illustration of trivial response curves under a step strain. In blue, we plot the expected response when little to no damage occurs. The network initially loses some stress as the network elastically deforms before plateauing at a finite non-zero state of self-stress. Alternatively, shown in red,  when the deformation is large enough, and enough damage accrues,s the material fails immediately.}
     \label{fig:trivialRelaxation}
 \end{figure}
 
@@ -22,9 +21,10 @@ As the step strain protocol is less commonly studied compared to others, little 
 
 \begin{figure}
     \centering
-    %\includegraphics[width=0.5\linewidth]{}
-    \missingfigure{Stress relaxation figure}
-    \caption{Caption}
+    \includegraphics[width=0.95\linewidth]{chapters/UltraDelayedFracture/Figures/Relax.pdf}
+    \caption[Stress relation of networks after a step strain of amplitude $\gamma_0$]{Stress relation of networks after a step strain of amplitude $\gamma_0$. \newline
+    {\bf left:} Stress relation of curves under different amplitudes $\gamma_0$ at $z=3.5$. \newline
+    {\bf right:} Phase space of steady state stress $\sigma_\infty$ under changing $z$ and $\gamma_0$. We note in particular a critical point $z_c=4.0$, where for $z \geq z_c$ all networks can hold a state of self-stress and below which we see the introduction of a strain stiffening transition.}
     \label{fig:networkRelaxation}
 \end{figure}
 
@@ -51,7 +51,7 @@ We work in unit where drag coefficient $\zeta = 1$, Boltzmann constant $k_B=1$ a
 \end{figure}
 
 \section{Boltzman Fracture} \label{sec:BoltzmanFracture}
-To reduce the computation time of the model, we need an alternative method of thermal fracture which allows for an increased time step while remaining numerically stable. With this aim, we will consider an alternative fracture condition inspired by the Soft Glassy Rheology (SGR) model \cite{sollich_rheological_1998,sollich_thermodynamic_2012}. We will consider each bond to sit in its own local energy well of depth $E$. Each bond then has a local strain energy $E_b = \frac{\mu}{2}\epsilon_b^2$ where $\epsilon_b = (l-l_0)/l_0$ the axial strain on a bond. We then imagine that each bond is locally allowed to wander around in the energy well centred on its elastic minimum, due to thermal fluctuations.  These fluctuations can be thought of as thermal fluctuations arising from both the surrounding material and the bond's internal structure. Small fluctuation from the equilibrium point is therefore more common, while large excursions away from the equilibrium point are increasingly less common due to the higher energy costs.
+To reduce the computation time of the model, we need an alternative method of thermal fracture which allows for an increased time step while remaining numerically stable. With this aim, we will consider an alternative fracture condition inspired by the Soft Glassy Rheology (SGR) model \cite{sollich_rheological_1998,sollich_thermodynamic_2012}. We will consider each bond to sit in its own local energy well of depth $E$. Each bond then has a local strain energy $E_b = \frac{\mu}{2}\epsilon_b^2$ where $\epsilon_b = (l-l_0)/l_0$ is the axial strain on a bond. We then imagine that each bond is locally allowed to wander around in the energy well centred on its elastic minimum, due to thermal fluctuations.  These fluctuations can be thought of as thermal fluctuations arising from both the surrounding material and the bond's internal structure. Small fluctuation from the equilibrium point is therefore more common, while large excursions away from the equilibrium point are increasingly less common due to the higher energy costs.
 
 As the local strain energy $E_b$ increases towards $E$, the extra energy required from thermal fluctuation decreases exponentially and therefore the probability of escaping the well increases. This idea leads to a Boltzmann-like distribution for the rate of escape
 \begin{equation*}
@@ -81,7 +81,7 @@ The factor $\Gamma_0$ corresponds to the microscopic hopping rate of the bonds, 
     \centering
     \includegraphics[width=.9\linewidth]{chapters/UltraDelayedFracture/Figures/Rate.tikz}
     %\missingfigure{An illustration of the rate failure rate $\Gamma$ of a bond as a function of bond strain $\epsilon_b$}
-    \caption{An illustration of the rate failure rate $\Gamma$ of a bond as a function of bond strain $\epsilon_b$. Plotted for $E=1.0$ and $x=0.1$}
+    \caption[An illustration of the rate failure rate $\Gamma$ of a bond as a function of bond strain $\epsilon_b$.]{An illustration of the rate failure rate $\Gamma$ of a bond as a function of bond strain $\epsilon_b$. Plotted for $E=1.0$ and $x=0.1$}
     \label{fig:FailureRate}
 \end{figure}
 
@@ -91,21 +91,24 @@ Bond failure is assumed to occur as a Poisson process with rate $\Gamma(\epsilon
 \end{equation*}
 This construction preserves the correct continuous-time Poisson limit while remaining numerically stable for finite time steps. 
 
+This choice in breaking condition gives two free variables, $E$ and $x$, for each given $\gamma_0$. The parameters used in the following case studies were found through parameter sweeps of phase space, with starting points found using the method described in \cref{sec:approxEx}.
+
 %\section{Stress Decay and Strain Response}
 \section{Banding Time $t^*$ and the Imposed Step Strain $\gamma_0$}
+As a starting point, we consider the effect of changing the step strain amplitude $\gamma_0$ at small strains around $\gamma_0=10^{-2}$ with a variance of $\pm 10^{-3}$. We fix the the temperature of $x=1 \times 10^{-6}$ and fracture energy $E=5.025 \times 10^{-5}$. The responses are plotted in \cref{fig:LowGammaStrainResponse}. In the extremes of $\gamma_0$, we see 
 
 \begin{figure}
     \centering
     \includegraphics[width=0.95\linewidth]{chapters/UltraDelayedFracture/Figures/LowStrainGamma/Stress.pdf}
-    \caption{Caption}
-    \label{fig:placeholder}
+    \caption[Stress decay $\sigma$ as a function of time $t$ after imposing a step strain amplitude $\gamma_0$]{Stress decay $\sigma$ as a function of time $t$ after imposing a step strain amplitude $\gamma_0$ with breakage parameters $x=1 \times 10^{-6}$ and $E=5.025 \times 10^{-5}$.}
+    \label{fig:LowGammaStrainResponse}
 \end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.8\linewidth]{chapters/UltraDelayedFracture/Figures/LowStrainGamma/FailureTime.pdf}
     \caption{Caption}
-    \label{fig:placeholder}
+    \label{fig:LowGammaStrainFailure}
 \end{figure}
 
 \begin{figure}
@@ -148,3 +151,9 @@ This construction preserves the correct continuous-time Poisson limit while rema
 \section{Structure of cracks}
 
 \section{Conclusion}
+
+\newpage
+\begin{subappendices}
+\section{Calculating Approximate free parameters in Boltzmann distribution} \label{sec:approxEx}
+\todo[inline]{See Plotting files on work laptop for Python implementation, write this up mathematically}
+\end{subappendices}
