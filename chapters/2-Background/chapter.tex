@@ -204,8 +204,8 @@ By considering the conservation of mass and momentum, the Navier-Stokes equation
 \end{align}
 \end{subequations}
 
-where $\rho$ is the fluid's density, $\bm{u}$ the fluid's flow field and $\Sigma$ the total stress applied to the fluid. The total stress in the fluid can be decomposed into two components $\bm{\Sigma} = \bm{\sigma} - p\bm{I}$, where $p$ is the hydrostatic pressure and $\bm{\sigma}$ the deviatoric stress tensor. 
-The physics we wish to consider in this thesis is the slow flow of pasty materials where the internal viscous forces dominate over the inertial forces. To do this, we take the limit of \cref{eq:incompressibleNavier1} as $Re=\rho |\bm{v}| L / \mu -> 0$ where $L$ is the typical length scale for the fluid. In this limit, the right-hand side of the \cref{eq:incompressibleNavier1} vanishes and the Navier-Stokes equations reduce to,
+where $\rho$ is the fluid's density, $\bm{u}$ the fluid's flow field, and $\bm{\Sigma}$ is a tensor which characterises the total stress applied to the fluid. The total stress in the fluid can be decomposed into two components $\bm{\Sigma} = \bm{\sigma} - p\bm{I}$, where $p$ is the hydrostatic pressure and $\bm{\sigma}$ the deviatoric stress tensor. 
+The physics we wish to consider in this thesis is the slow flow of pasty materials where the internal viscous forces dominate over the inertial forces. To do this, we take the limit of \cref{eq:incompressibleNavier1} as $Re=\rho |\bm{v}| L / \mu -> 0$ where $L$ is the typical length scale for the fluid. In this limit, the right-hand side of the \cref{eq:incompressibleNavier1} vanishes, and the Navier-Stokes equations reduce to,
 \begin{subequations}
 \label{eq:StokesLimit}
 \begin{align}
@@ -213,7 +213,7 @@ The physics we wish to consider in this thesis is the slow flow of pasty materia
     \nabla \cdot \bm{u} &= 0.
 \end{align}
 \end{subequations}
-This can also be derived directly by considering the equilibrium state \cref{eq:incompressableStress}, that is, the net force in the system $\nabla \cdot 2G\bm{\epsilon} = \nabla \cdot \bm{\Sigma} = 0$.
+This can also be derived directly by considering the equilibrium state \cref{eq:incompressableStress}, that is, the net force in the system $\nabla \cdot \mu\bm{\epsilon} = \nabla \cdot \bm{\Sigma} = 0$.
 
 Following the arguments of Ref. \cite{picard_elastic_2004} we will assume that the strain $\bm{\epsilon}$ is as linear superposition of a plastic flow $\bm{\epsilon}^{pl}$ and elastic deformation $\bm{\epsilon^{el}}$ and that the fluid is homogeneous, isotropic, and linearly elastic. The strain $\bm{\epsilon}$ of the fluid can be therefore be expressed as 
 \begin{equation}
@@ -221,9 +221,9 @@ Following the arguments of Ref. \cite{picard_elastic_2004} we will assume that t
     \label{eq:decompositionAndDeformation}
 \end{equation} 
 where $\bm{u}(\bm{r})$ is the total displacement vector at a position $\bm{r}$.
-In addition, for simplicity, we will consider the case where the fluid is incompressible $\nabla \cdot \bm{u} = 0$ such that the stress $\bm{\sigma} = 2\mu$. The deviatoric stress tensor $\bm{\sigma}$ can therefore be expressed as 
+In addition, for simplicity, we will consider the case where the fluid is incompressible $\nabla \cdot \bm{u} = 0$ such that the stress $\bm{\sigma} = \mu$. The deviatoric stress tensor $\bm{\sigma}$ can therefore be expressed as 
 \begin{equation}
-    \bm{\sigma} = 2 \mu \bm{\epsilon^{el}} = 2\mu\bm{\epsilon} - 2\mu\bm{\epsilon}^{pl}.
+    \bm{\sigma} = \mu \bm{\epsilon^{el}} = \mu\bm{\epsilon} - \mu\bm{\epsilon}^{pl}.
     \label{eq:elasticStress}
 \end{equation}
 
@@ -231,11 +231,11 @@ Considering a single localised plastic event induced by elastic loading, the str
 \begin{subequations}
     \label{eq:plasticStokes}
     \begin{align}
-        \nabla \cdot \left( 2 \mu \bm{\epsilon}^{el1} - p^1 \bm{I} \right) &= 2 \mu \nabla \cdot \bm{\epsilon}^{pl1}, \label{eq:plasticStokes1}\\
+        \nabla \cdot \left( \mu \bm{\epsilon}^{el1} - p^1 \bm{I} \right) &= \mu \nabla \cdot \bm{\epsilon}^{pl1}, \label{eq:plasticStokes1}\\
         \nabla \cdot \bm{u}^1 &= 0.
     \end{align}
 \end{subequations}
-Under the assumption that the deformation is isotropic and $\nabla \cdot \bm{\epsilon} = \bm{0}$ for any deformation at rest, we can express the right hand side of \cref{eq:plasticStokes1} as $\nabla \cdot \left( 2 \mu \bm{\epsilon}^{el1} - p^1 \bm{I} \right) = -\nabla p^1 + \mu \nabla^2 \bm{u}^1$
+Under the assumption that the deformation is isotropic and $\nabla \cdot \bm{\epsilon} = \bm{0}$ for any deformation at rest, we can express the right hand side of \cref{eq:plasticStokes1} as $\nabla \cdot \left( \mu \bm{\epsilon}^{el1} - p^1 \bm{I} \right) = -\nabla p^1 + \mu \nabla^2 \bm{u}^1$
 
 \subsection{Oseen/Stokeslet Tensor} \label{sec:Oseen}
 The solution to \cref{eq:plasticStokes} is well known and has been studied in a wide range of systems. The most common way to approach the problem is to consider the response to a point force $F$ applied at $\bm{r^\prime}$ in a periodic system,
@@ -290,11 +290,11 @@ Both \cref{eq:fourierDeformation,eq:fourierDeformationGradient} naturally descri
 
 The associated stress and strain fields are then obtained by substituting this result for $\partial_l u_i$ into \cref{eq:decompositionAndDeformation,eq:elasticStress} in fourier space, giving the resultant Shear stress correction in
 \begin{equation}
-    \hat{\sigma}_{x y}^1=2 \mu^2\left(q_y^2 \hat{\mathbb{O}}_{x x}+q_x^2 \hat{\mathbb{O}}_{y y}+2 q_x q_y \hat{\mathbb{O}}_{x y}-1 / \mu\right) \hat{\epsilon}_{x y}^{\mathrm{pl1}} = 2\mu \hat{\mathbb{ G }}_{ xy } \hat{\epsilon}_{x y}^{\mathrm{pl1}}.
+    \hat{\sigma}_{x y}^1 = \mu^2\left(q_y^2 \hat{\mathbb{O}}_{x x}+q_x^2 \hat{\mathbb{O}}_{y y}+2 q_x q_y \hat{\mathbb{O}}_{x y}-1 / \mu\right) \hat{\epsilon}_{x y}^{\mathrm{pl1}} = \mu \hat{\mathbb{ G }}_{ xy } \hat{\epsilon}_{x y}^{\mathrm{pl1}}.
 \end{equation}
 By collecting terms, we can compute the shear stress propagator $\mathbb{G}_{xy}$, which expresses the consequences of a single plastic event in an infinite medium by,
 \begin{equation}
-    \sigma_{x y}^1(\bm{r}) = 2 \mu \int d\bm{r}^\prime \mathbb{G}_{xy} (\bm{r} - \bm{r}^\prime) \epsilon_{x y}^{\mathrm{pl1}}(\bm{r}^\prime)
+    \sigma_{x y}^1(\bm{r}) = \mu \int d\bm{r}^\prime \mathbb{G}_{xy} (\bm{r} - \bm{r}^\prime) \epsilon_{x y}^{\mathrm{pl1}}(\bm{r}^\prime)
 \end{equation}
 where, 
 \begin{equation}
@@ -307,7 +307,7 @@ Expressing both of these equations along the $xy$ plane in $\mathbb{R}^2$ we fin
     \mathbb{G}_{xy} \sim \frac{1}{\pi r^{D}}\cos{4\theta}
     \label{eq:eshelbyReal}
 \end{equation}
-as described by Eshelby in Ref. \cite{eshelby_determination_1997} for an elliptical inclusion. The Eshelby Stress propagator defined in \cref{eq:StressPropogator}, is only defined up to a constant due to the singularity at $\bm{k}=\bm{0}$. In practice, this constant is defined by the boundary conditions of the system, where, in a strain-controlled regime, we want to conserve the elastic strain in the system, and as such, we resolve the singularity at $\bm{k}=\bm{0}$ by setting $\hat{\mathbb{G}}_{xy}(\bm{0}) = -1$ such that the total stress lost in the system due to plastic events is $2\mu\int d\bm{r}^\prime \epsilon_{x}^{\mathrm{pl1}}(\bm{r}^\prime)$. In a stress control regime, it is common to instead take $\hat{\mathbb{G}}_{xy}(\bm{0}) = 0$ where no total stress is lost due to the event and instead the lost plastic stress is converted to elastic stress by the system elasticity straining\cite{nicolas_deformation_2018, martens_spontaneous_2012, jocteur_protocol_2025, lin_scaling_2014}.  
+as described by Eshelby in Ref. \cite{eshelby_determination_1997} for an elliptical inclusion. The Eshelby Stress propagator defined in \cref{eq:StressPropogator}, is only defined up to a constant due to the singularity at $\bm{k}=\bm{0}$. In practice, this constant is defined by the boundary conditions of the system, where, in a strain-controlled regime, the elastic strain in the system is conserved. As such, the singularity at $\bm{k}=\bm{0}$ is resolved by setting $\hat{\mathbb{G}}_{xy}(\bm{0}) = -1$ such that the total stress lost in the system due to plastic events is $\mu\int d\bm{r}^\prime \epsilon_{x}^{\mathrm{pl1}}(\bm{r}^\prime)$. In a stress control regime, it is common to instead take $\hat{\mathbb{G}}_{xy}(\bm{0}) = 0$ where no total stress is lost due to the event and instead the lost plastic stress is converted to elastic stress by the system elasticity straining\cite{nicolas_deformation_2018, martens_spontaneous_2012, jocteur_protocol_2025, lin_scaling_2014}.  
 
 \begin{figure}
     \centering
