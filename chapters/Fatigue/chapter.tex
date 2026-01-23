@@ -11,6 +11,7 @@
 \section{Introduction}
 For a system that oscillates for a long period of time $c^*$ before yielding or absorbing, we find that a large portion of that time is spent with a single oscillator oscillating backwards and forwards, yielding on every half cycle. 
 
+
 We will begin by defining some concepts which motivate the later discussion.
 
 \subsection{Concept 1 - Local strain}
@@ -18,7 +19,7 @@ Every element in our elastoplastic model has a local strain $l$. Following the i
 \begin{equation}
     \l = \epsilon^{el} + \epsilon^{pl} + \gamma.
 \end{equation}
-$\epsilon^{el}$ denotes the local elastic strain, $\epsilon^{pl}$ the local plastic strain, which covers the strain lost due to yielding, and $\gamma$, which is the globally applied macroscopic strain. At any step, we know the imposed $\gamma$ and can measure $\ltilde = \epsilon^{el} + \epsilon^{pl}$. Conceptually, $\ltilde$ is a measure of the deviation of an element strain $l$ from the global strain $\gamma$. From the initial configuration $\ltilde$ changes only due to yielding events, either by itself yielding or through the propagation of stress from another element yielding.
+$\epsilon^{el}$ denotes the local elastic strain, $\epsilon^{pl}$ the local plastic strain, which covers the strain lost due to yielding, and $\gamma$, which is the globally applied macroscopic strain. At any step, we know the imposed $\gamma$ and can measure $\ltilde = \epsilon^{el} + \epsilon^{pl}$. Conceptually, $\ltilde$ is a measure of the deviation of an element strain $l$ from the global strain $\gamma$. From the initial configuration, $\ltilde$ changes only due to yielding events, either by itself yielding or through the propagation of stress from another element yielding.
 
 \subsection{Concept 2 - Oscillatory shear}
 We are looking at fatigue quasi-static Oscillatory shear. This means the globally applied strain $\gamma$ osculates between $\gammaMax$ and $-\gammaMax$. We refer to a full cycle as $\gamma$ starting at $0$, increasing to $\gammaMax$, decreasing to $-\gammaMax$ and returning to $0$. Alternatively, $\gamma$ could first decrease to $-\gammaMax$, increase to $\gammaMax$ and return to $0$; however, by symmetry, we think all arguments will still hold. We plot an example cycle in \cref{fig:SineWave}. 
@@ -33,10 +34,12 @@ We are looking at fatigue quasi-static Oscillatory shear. This means the globall
 While our simulation does not involve time due to its quasi-static assumptions, we consider the evolution as a function of cycle $c$. Therefore, $c=1/4$ corresponds to the points where $\gamma=\gammaMax$, $c=1/2$ to $\gamma=0$ (on the way to $-\gammaMax$), $c=3/4$ to $\gamma=-\gammaMax$ and $c=1$ to $\gamma=0$ the starting point. We divide the cycle into four regions:
 \begin{enumerate}
     \item Starting at $\gamma=0$, the system is strained in the positive direction until it reaches $\gamma=\gammaMax$. Elements whose absolute local strain $|l|$ exceeds the yield threshold $l_y=1$.
-    \item With $\gamma=\gamma_0$ and all yielding occurred, the system starts globally straining back towards $0$. No yielding occurs during this region as all values of $l$ strictly decrease with $\gamma$. 
+    \item With $\gamma=\gamma_0$ and all yielding occurred, the system starts globally straining back towards $0$. Little yielding occurs during this region as all values of $l$ strictly decrease with $\gamma$. 
     \item Similarly to region 1, the system is strained towards $-\gammaMax$, with elements whose absolute local strain $|l|$ exceeds $l_y$ yielding towards $0$.
     \item Identical behaviour to region 2 with all strains, global and local, increasing until $\gamma=0$.
 \end{enumerate}
+
+In regions two and four, we make the statement that little to no yielding occurs, while it is possible that an element could have a value of $|\ltilde| \geq |l_y|$ large enough that it yields at a strain $\gamma$ of the opposite sign. This is highly unlikely and could only occur as a result of a significant amount of stress propagation (like that would occur in a shear band) or the rare event that a sample from the post hop distribution $\mathcal{N}(0, \lw)$ obtains a significantly large value from the origin $\sim 1/\Origin$.
 
 \subsection{Concept 3 - Yielding}
 When an element's stress, energy $\tfrac{\mu}{2}l^2$ becomes too large, the element is assumed to yield, propagating its stress to neighbouring elements. We will refer to the threshold energy as $E_y$. In our system, we will take units where $E_y=0.5$ and $\mu=1$. This corresponds to setting the yield threshold for the local strain $l$ to $\pm 1$, or as stated in Concept 2, $|l| \geq 1$. To be specific, elements yield if either their local strain is greater than $1$ or less than $-1$.
@@ -65,7 +68,7 @@ We show an example of the propagator in \cref{fig:Propogator}. Of particular imp
 The initial distribution of local strains $l$ in the system is drawn from a Gaussian distribution of mean $0$ and standard deviation $l_0$. This random seeding does not naturally obey force balance. Consequently, force balance is immediately imposed through the Eshelby propagator. This has the consequence of reducing the standard deviation of the initial by a factor of $\Norm$.
 
 \subsection{Concept 5 - End-states}
-We are going to classify the final state of our system into two major categories. These two states are mutually exclusive and can be defined as followed:
+We are going to classify the final state of our system into two major categories. These two states are mutually exclusive and can be defined as follows:
 \begin{itemize}
     \item {\bf Yielded –} We classify a system as yielded following the approach of Pollard \textit{et al.}\cite{pollard_yielding_2022}. Yielding is detected as a dramatic drop in the system's stress at a fixed $\gamma$, which corresponds to the formation of a shear band within the system.
     \item {\bf Absorbed –} Absorbed states correspond to unyielded configurations whose distribution $\rho(\tilde l)$ is sufficiently narrow around $0$ that the application of shear causes no further elements to yield. As a result, the distribution no longer evolves under subsequent oscillations.
@@ -75,53 +78,84 @@ The parameter of interest to this work is $c^*$, which corresponds to the number
 \section{A simple picture of the first cycle}
 
 To explore alternative approaches to modelling the system’s physics, we first consider a simplified version of the problem to build intuition for how the distribution of element strains evolves, both over a single cycle and across multiple cycles. In \cref{fig:SimpleFirstCycle} we plot the evolution of the strain distribution over the first cycle, from its initial distribution shown in panel {\bf a} to its state at the end of the cycle in panel {\bf f}. Each subplot shows an idealised point within the cycle, progressing from top to bottom. The distribution at each stage is described as follows:
+\begin{enumerate}[label=\textbf{\alph*)}]
+    \item $c=0$: The system begins with a narrow Gaussian distribution. As discussed in Concept 4, this distribution has a mean $\mu=0$ and standard deviation $\sigma=l_0\Norm$.
+    \item $c=0.083$: the system begins to strain, here in the positive direction, shown at $\gamma=\gammaMax/2$. Since all elements are strained uniformly by $\gamma$, this shifts the mean of the distribution to $\gamma$ without distorting its shape. For such a narrow distribution, few elements have strains $l$ that exceed the yield threshold $l_y$, and the distribution therefore remains essentially unchanged.
+    \item $c=0.25$: The system has reached its maximum positive strain $\gamma=\gammaMax$. At this point, a visible fraction of the elements have exceeded the yield threshold and have therefore yielded. This forces the right-hand side of the normal distribution, shown in blue, to translate independently of the bulk behaviour by a factor $-\Origin$. For simplicity, we assume that each element yields to $0$ (the post-hop distribution has the form $\mathcal{N}(0,0)$) before force balance is imposed, and elements do not redistribute this lost stress to neighbouring elements. Of course, this is not the real physics, and we will discuss the impact of these effects later; neglecting them simplifies the present discussion. 
+    \item $c=0.5$: After all yielding has occurred at $\gamma=\gammaMax$ all elements have strains $l<l_y$. The system globally strains back to $\gamma=0$, which again now shifts the whole distribution uniformly.
+    \item $c=0.75$: We plot the system at its maximum negative strain $\gamma=-\gammaMax$. Again as in {\bf c)}, a large portion of elements have passed the yield threshold, this time $-l_y$, this time shown in orange. These yielding elements include both elements whose initial $l$ value was sufficiently negative and some of the elements that have already yielded during the positive part of the cycle. We plot here with a dotted line the distribution of elements that had not yielded and coloured in yellow the part $\rho(l)$. 
+    \item $c=1$: The system is macroscopically strained back to $\gamma=0$. This reveals the now asymmetric distribution $\rho(l)$, which is strongly weighted to positive values and truncated on the right-hand side.  
+\end{enumerate}
 
 \begin{figure}[hbt]
     \centering
     \includegraphics[width=0.8\linewidth]{chapters/Fatigue/Figures/SimpleFirstCycle.pdf}
-    \caption{Illustration of how the distribution of $l$ changes in the the first cycle. We display the distribution for several key point in the cycle a)-f).}
+    \caption{Illustration of how the distribution of $l$ changes in the first cycle. We display the distribution for several key points in the cycle a)-f).}
     \label{fig:SimpleFirstCycle}
 \end{figure}
 
-\begin{enumerate}[label=\textbf{\alph*)}]
-    \item $c=0$: The system begins with a narrow Gaussian distribution. As discussed in Concept 4, this distribution has a mean $\mu=0$ and standard deviation $\sigma=l_0\Norm$.
-    \item $c=0.083$: the system begins to strain, here in the positive direction, shown at $\gamma=\gammaMax/2$. Since all elements are strained uniformly by $\gamma$, this shifts the mean of the distribution to $\gamma$ without distorting its shape. For such a narrow distribution, few elements have strains $l$ that exceed the yield threshold $l_y$, and the distribution therefore remains essentially unchanged.
-    \item $c=0.25$: The system has reached its maximum positive strain $\gamma=\gammaMax$. At this point, a visible fraction of the elements have exceeded the yield threshold and have thefore yielded. This forces the right-hand side of the normal distribution, shown in blue, to translate independently of the bulk behaviour by a factor $-\Origin$. For simplicity, we assume that each element yields to $0$ (the post-hop distribution has the form $\mathcal{N}(0,0)$) before force balance is imposed, and elements do not redistribute this lost stress to neighbouring elements. Of course this is not the real physics, and we will discuss the impact of these effects later, neglecting them simplifies the present discussion. 
-    \item $c=0.5$: After all yielding has occurred at $\gamma=\gammaMax$ all elements have strains $l<l_y$. The system globally strains back to $\gamma=0$, this again now shifts the whole distribution uniformly.
-    \item $c=0.75$: We plot the system at its maximum negative strain $\gamma=-\gammaMax$. Again as in {\bf c)} a large portion of elements have passed the yield threshold, this time $-l_y$, this time shown in orange. These yielding elements include both elements whose initial $l$ value were sufficiently negative and some of the elements who have already yielded during the positive part of the cycle. We plot here with a doted line the distribution if elements had not yielded and coloured in yellow the part $\rho(l)$. 
-    \item $c=1$: The system is macroscopically strained back to $\gamma=0$. This reveals the now asymmetric distribution $\rho(l)$, which is strongly weighted to positive values and truncated on the right-hand side.  
-\end{enumerate}
+Following the same assumptions, subsequent cycles follow the same principles, and the system oscillates every half cycle between the distributions presented in {\bf d} and {\bf f}. We make this statement stroboscopically, looking at the distribution only when $\gamma=n/2$ for $n=0,1,2,3,...$. During phases where the strain is increasing/decreasing towards $\gammaMax$/$-\gammaMax$ (regions 1 and 2 in \cref{fig:SineWave}), elements yield immediately when $|l| \geq l_y$. When an element yields, its strain is reduced by an amount $\Origin$, equal to the width of the truncated distribution (the origin of this is discussed later). Consequently, an element yielding at the rightmost edge of the distribution reappears at the leftmost edge, and vice versa for yielding in the negative direction.
 
-Following the same assumptions, subsequent cycles follow the same principles and the system oscillates every half cycle between the distributions presented in {\bf d} and {\bf f}. We make this statement stroboscopically, looking at the distribution only when $\gamma=n/2$ for $n=0,1,2,3,...$. During phases where the strain is increasing/decreasing towards $\gammaMax$/$-\gammaMax$ (regions 1 and 2 in \cref{fig:SineWave}), elements yield immediately when $|l| \geq l_y$. When an element yields, its strain is reduced by an amount $\Origin$, equal to the width of the truncated distribution (the origin of this is discussed later). Consequently, an element yielding at the rightmost edge of the distribution reappears at the leftmost edge, and vice versa for yielding in the negative direction.
-
-\begin{figure}
+\begin{figure}[hbt]
     \centering
     \includegraphics[width=0.95\linewidth]{chapters/Fatigue/Figures/YieldRegions.pdf}
-    \caption{A plot of distinct yielding regions for an arbitrary distribution $\rho{\ltilde}$. The green region highlights the absorbed elements which are unable to be strained enough to yield. The blue regions are able to yield and map to each other, an element yielding from the positive blue region will loses enough stress to appear in the negative blue region. Elements which yield from the yellow regions enter the green absorbed region.  Elements in the red region have sufficiently large $|\tilde l|$ to yield twice within a single half strain cycle; these elements continue yielding until they end up in a blue or red region.}
+    \caption{A plot of distinct yielding regions for an arbitrary distribution $\rho(\ltilde)$. The green region highlights the absorbed elements which are unable to be strained enough to yield. Elements in the blue regions can yield and map to each other; an element yielding from the positive blue region will lose enough stress to appear in the negative blue region. Elements which yield from the yellow regions enter the green absorbed region.  Elements in the red region have sufficiently large $|\tilde l|$ to yield twice within half a strain cycle; these elements continue yielding until they end up in a blue or red region.}
     \label{fig:YieldRegions}
 \end{figure}
 
-Since yielding alters only the element's local elastic strain $\epsilon^{el}$ and plastic strain $\epsilon^{pl}$, and not the global strain $\gamma$, for the simplified case being considered there exits a 1-1 mapping for $\ltilde$ pre yielding to $\ltilde$ post yielding. In \cref{fig:YieldRegions}, we highlight the regions of $\tilde l$ in which elements differ in their post-yield location. 
+Since yielding alters only the element's local elastic strain $\epsilon^{el}$ and plastic strain $\epsilon^{pl}$, and not the global strain $\gamma$, for the simplified case being considered, there exists a 1-1 mapping for $\ltilde$ pre yielding to $\ltilde$ post yielding. In \cref{fig:YieldRegions}, we highlight the regions of $\tilde l$ in which elements differ in their post-yield location. For the discussion that follows, we assume $|\gammaMax| < |l_y|$, so that a portion of the distribution (the green region in \cref{fig:YieldRegions}) contains elements that cannot yield. These elements have a $\ltilde$ close enough to $0$ that $|\ltilde + \gammaMax| < |l_y|$, and as such are unable to yield by elastic straining alone. If all elements enter this regime, no further yielding can occur, and we classify the end-state of the system as absorbed.
 
-For the discussion that follows, we assume $|\gammaMax| < |l_y|$, so that a portion of the distribution (the green region in \cref{fig:YieldRegions}) contains elements that cannot yield. These elements have a $\ltilde$ close enough to $0$ that $|\ltilde + \gammaMax| < |l_y|$, and as such are unable to yield by elastic straining alone. If all element enter this regime no further yielding can occur and we classify the end-state of the system as absorbed.
+When an element yield its strain $l$ decreases towards $0$ by a factor of $\Origin$. Elements whose $\ltilde$ lie in the blue regions when yielding will decay to the other blue region. These elements will go on to yield in the next half cycle and continue to oscillate between the two blue regions. Conversely, elements in the yellow regions that undergo a yielding event have a post-yield $\ltilde$ that lies in the green region and, as such, become absorbed for subsequent cycles.
 
+Elements which yield in the red regions have large enough $\ltilde$ to yield at least twice in a single strain cycle. These elements strain decay towards $0$ with each subsequent yielding event until their $\ltilde$ lies in either the blue or yellow region and follows the respective behaviour described above.  
+A natural consequence of this behaviour is that the truncated distribution, when measured stroboscopically at $\gamma=0$,  has a width equal to $\Origin$. After the first cycle, all elements must exist in either the blue or green region, as yielding in any other region decays to these regions. At each of these points, elements only exist in one of the two blue regions, the positive blue region at the start of each cycle and the negative blue region at the midpoint of each cycle. This gives the distribution at these points an overall width of $\Origin$.
 
+\section{The effect of $\lw$}
 
+In the discussions so far, we have considered a simple model whereby when an element yields, it resets its $l$ to 0, before force balance is reimposed, so all elements lose exactly $\Norm$ strain. This makes a trivial system, as an element exists in either the green or blue regions and remains there indefinitely, with the distribution returning to the same configuration at the start of each cycle. 
 
-
-
-
-
-
-A natural consequence of this is the truncated distribution, shown in black, has a width equal to $\Origin$. This can be explained by considering the last element to yield as the system strain to $-\gammaMax$. By definition, this element must have the largest $\ltilde$ (closest to $0$) of all element which yield. When this element yields its $l$ becomes $l+\Origin$. As this element was the last to yield (assumed to be at $-\gammaMax$), it sets the left boundary of $\rho(l)$. It new $l$ post yielding must also set the right boundary of $\rho(l)$, as it started with the smallest $|\ltilde|$ (closest to $0$)
-
-
-\begin{figure}
+\begin{figure}[hbt]
     \centering
     \includegraphics[width=0.95\linewidth]{chapters/Fatigue/Figures/OscillatorRegions.pdf}
-    \caption{}
+    \caption{An illustration of a single element yielding. In black we plot the trivial cases where each element yields to $0$, before restoring force balance. The blue line illustrates a case where, when an element yields, it instead resets its strain to a new local strain chosen at random from a Gaussian distribution $\lw$. {\bf a)} plots $\ltilde$ for a single element in both cases across the first five cycles. {\bf b)} extracts $\ltilde$ stroboscopically at the start of each cycle. Dotted lines are there to guide the eye and do not represent the actual trends in $\ltilde$.}
     \label{fig:OscillatorRegions}
 \end{figure}
 
-\section{Stuff}
-We will divide the time it takes for a system to yield or absorb $c^*$ into two components. This is the 
+However, as stated in Concept 3, when an element yields, it instead resets its strain to a new local strain chosen at random from a Gaussian distribution $\lw$. In \cref{fig:OscillatorRegions}, we illustrate the results of this. In {\bf a)} we plot $\ltilde$ through the cycle, each element yields twice, one in each half cycle, oscillating between positive and negative values. In black, we plot the trivial case where $\lw=0$, $\ltilde$ osculates between two values, returning to the same value at the start of each cycle as shown in {\bf b)}. Instead, when we introduce the post-hop distribution, each element instead loses $\pm (1+\mathcal{N}(0,\lw))\Origin$. As a result, when observed stroboscopically at the start of each cycle, the element appears to randomly walk.
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/Figures/RandomWalks.pdf}
+    \caption{Random walks observed in Elasto-plastic simulations. {\bf a)} Blue like plots a random walk observed for the last element in a system which ends up absorbing. {\bf b)} A pair of random walks in a yielding system. The blue element oscillates as a result of the post-hop yielding. This is coupled to the absorbed orange element through stress propagation, resulting in it leaving the absorbed region. {\bf c)} A collection of random walks across many systems. {\bf d)} The standard deviation of the displacement of each random walk.}
+    \label{fig:RandomWalks}
+\end{figure}
+
+When yielding from a positive value, an element's $\ltilde$ decreases by a factor $(1+\mathcal{N}(0,\lw))\Origin$, on the next half cycle, when yielding from a negative value, $\ltilde$ gains $(1+\mathcal{N}(0,\lw))\Origin$. The resulting change in $\ltilde$ after a full cycle is therefore $(\mathcal{N}(0,\lw) + \mathcal{N}(0,\lw))\Origin$. As each sample of $\mathcal{N}(0,\lw)$ is independent, this is equivalent to $\mathcal{N}(0,\sqrt{2}\lw)\Origin$ or $\mathcal{N}(0,\sqrt{2}\Origin\lw)$. We illustrate some examples of this random walk in blue in \cref{fig:RandomWalks}{\bf a)-b)} and grey in {\bf c)}. A common way to verify a random walk is to consider the variance of the displacement of each random walk $\Delta \ltilde(\tilde{c}) = \ltilde(\tilde{c}) - \ltilde(0)$ where $\tilde{c}$ tracked the number of cycles from the start of the random walk, over many such walks. We plot this \cref{fig:RandomWalks}d) where for small $\tilde{c}$, where we have enough samples, the variance tracks our analytical result.
+
+\section{Stress Propagation}
+The second concept introduced in Concept 3 is that of stress propagation. When an element yields and a force balance is imposed, it effectively redistributes some of its stress (we have taken units where $\mu=1$ so stress and strain are equivalent in this context) to neighbouring elements. Consequently, all neighbouring elements $\ltilde$ are affected by an element yielding. This phenomenon is illustrated in \cref{fig:RandomWalks}b) where the oscillating element, shown in blue, causes a scaled random walk with variance $\sqrt{2}\mathbb{G}_{xy}(\bm{r})\lw$ for a cell at position $\bm{r}$ relative to an element yielding at $\bm{0}$. We highlight this example because the orange element lies in the absorbed region and, due to oscillations of the blue element, can escape it, ultimately leading to material failure. The boundary between the green and blue regions is marked here in red. In addition to elements being able to leave the absorbed region, stress propagation can also push elements that lie on the boundary into the absorbed region.
+
+\section{A division of \quotes{timescales}}
+Motivated by the discussion above and the data presented in \cref{fig:1Osc}, we aim to divide the time it takes for a system to yield or absorb $c^*$ into two components. In \cref{fig:1Osc} we see that systems that have fewer oscillating elements towards the end of their lifespan take longer to reach their end state. We expect this simply comes from the lack of activity in the system, when there is only one element oscillating in the system, all elements do a trivial random walk proportional to $\lw$. When there are multiple elements oscillating, each element has more chances to change its $\ltilde$, and as a result are more likely to end up in the absorbed region or reach a configuration where a shear band forms. 
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/Figures/1Osc.pdf}
+    \caption{The final number of elements left in the oscillating just before the system reaches its end-state. We plot a sample of cases for when the system {\bf a)} yields or {\bf b)} absorbs. Data is plotted for $l_0=0.075$, $\lw=0.02$ and $N=1024$. }
+    \label{fig:1Osc}
+\end{figure}
+
+We therefore will divide $c^*$ into two timescales, the time it takes to reach a single oscillator in the system $c^* - \tilde{c}$ and the time the system exists with a single oscillator $\tilde{c}$. We make two observations. First, an element can be pulled out of the absorbed region and begin to oscillate; in almost all cases, this rapidly leads to the formation of a shear band. Second, we currently consider cases in which only a single element oscillates; in sufficiently large systems, however, multiple elements can oscillate \emph{almost} independently ($\mathbb{G}_{xy}(\bm{r}) \sim 0$). Based on the rate of convergence in \cref{fig:Propogator}b) this distance appears to be $\approx 256$. This implies that in our systems of size $N=1024$, approximately four such elements could exist independently. For simplicity, and so that we can use the data we have already collected, we consider cases where exactly one element is left.
+
+For the moment, we will ignore the time to reach a single oscillator in the system $c^* - \tilde{c}$ as this proves to be the more complicated problem of the two. Instead, we will first focus on solving the second problem, the number of cycles $\tilde{c}$ a single element randomly walks. We will also pose the problem only for absorbing states for the moment, as in this context, we only need to consider a single element. We hope that the insights into this case will allow us to gain insight into systems which ultimately yield.
+
+\section{Modelling $\tilde{c}$}
+
+Considering the random walks taken by a single osculating 
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/Figures/rho(l)_Examples.pdf}
+    \caption{Caption}
+    \label{fig:rho(l)_examples}
+\end{figure}
