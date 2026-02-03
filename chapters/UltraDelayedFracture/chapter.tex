@@ -113,9 +113,9 @@ The step‐strain protocol, in which a strain of amplitude $\gamma_0$ is instant
     \label{fig:LowGammaTempResponse}
 \end{figure}
 
-We measure the stress decay $\sigma(t)$ relative to the stress immediately after the imposed step strain, $\sigma_0$. At $t=0$, the stress is given by the linear elastic response $\sigma_0 = G_{xy}\gamma_0$, where $G_{xy}$ is the shear modulus of the network. This modulus depends on the network topology and the bond stiffness $\mu$, and has been extensively characterised by Shivers \textit{et al.} in Ref.~\cite{shivers_scaling_2019}. In what follows, we focus on the relaxation dynamics relative to this initial value $\sigma_0$.
+We measure the stress decay $\sigma(t)$ relative to the stress immediately after the imposed step strain, $\sigma_0$. At $t=0$, the stress is given by the linear elastic response $\sigma_0 = G_{xy}\gamma_0$, where $G_{xy}$ is the shear modulus of the network. This modulus depends on the network topology and the bond stiffness $\mu$, and has been extensively characterised by Shivers \textit{et al.} in Ref.~\cite{shivers_scaling_2019}. In what follows, we focus on the relaxation dynamics relative to this initial value $\sigma_0$ rather than the absolute value of $\sigma$.
 
-At short times, the stress relaxation is identical across all temperatures, reflecting the initial stage of non-affine network rearrangement. At later times, the relaxation curves begin to diverge, accompanied by a pronounced, temperature-dependent drop in stress.
+At short times, the stress relaxation is almost identical across all temperatures, reflecting the initial stage of non-affine network rearrangement. At later times, the relaxation curves begin to diverge, accompanied by a pronounced, temperature-dependent drop in stress.
 
 For low temperatures, the early-time relaxation closely resembles that shown in \cref{fig:networkRelaxation}, with the stress reaching an extended plateau at an approximately constant value. Although these networks ultimately fail in a brittle manner at times $t \gg 0$, we observe no detectable precursor in the stress response before failure. While the failure appears instantaneous in the main figure due to the scale of the plot, the inset resolves a smaller time window, revealing qualitatively similar failure behaviour across the failure regime, albeit still characterised by an abrupt onset.
 
@@ -126,7 +126,9 @@ For low temperatures, the early-time relaxation closely resembles that shown in 
     \label{fig:LowGammaTempBondResponse}
 \end{figure}
 
-In previous work on delayed failure in elastoplastic models \cite{lockwood_ultradelayed_2025}, it is common to look for precursors to shear banding through the displacement profile. Instead, we consider an analogous measure and consider the number of bonds broken in the network $B$. We plot the corresponding curves in \cref{fig:LowGammaTempBondResponse}, plotting the number of bonds which are broken during the corresponding strain responses. Correspondingly, we see equivalent responses to that shown in \cref{fig:LowGammaTempResponse} with curves diverging early in the simulation before a rapid increase in the failure of bonds corresponding to the rapid stress drops at the point of failure. 
+In previous work on delayed failure in elastoplastic models \cite{lockwood_ultradelayed_2025}, it is common to look for precursors to shear banding through the displacement profile. Instead, we consider an analogous measure and consider the number of bonds broken in the network $B$. This directly measures the amount of plasticity which has occurred in the system, although it directly lacks spatial information.
+
+We plot the corresponding break response curves in \cref{fig:LowGammaTempBondResponse}, plotting the number of bonds which are broken during the corresponding strain responses. Correspondingly, we see equivalent responses to that shown in \cref{fig:LowGammaTempResponse} with curves diverging very early in the simulation before a rapid increase in the failure of bonds corresponding to the rapid stress drops at the point of failure. 
 
 \begin{figure}
     \centering
@@ -135,35 +137,115 @@ In previous work on delayed failure in elastoplastic models \cite{lockwood_ultra
     \label{fig:LowGammaTempSnapShots}
 \end{figure}
 
-To understand the failure responses, we plot snapshots of the sample networks for various temperatures in \cref{fig:LowGammaTempSnapShots} with temperature increasing from right to left. Considering first the high-temperature cases, we see large amounts of diffuse damage, as many bonds can break independently, shown in \cref{fig:LowGammaTempSnapShots}b. Here we see a single uncorrelated breakage event across the whole system. The system quickly loses rigidity, and the stress drops correspondingly. Conversely, as the temperature increases, the networks fail in a single localised breakage event. Here, a single failure resulted in the loading of the surrounding bonds enough to prime that neighbouring bond to fail. 
+To understand the failure responses of each network, we plot snapshots of the sample networks at low and high temperature in \cref{fig:LowGammaTempSnapShots}. Considering first the high-temperature cases, shown in \cref{fig:LowGammaTempSnapShots}b, we see large amounts of diffuse damage, as many bonds can break independently. Here we see a single uncorrelated breakage event across the whole system. The system quickly loses rigidity, and the stress drops correspondingly. Conversely, as the temperature increases, the networks fail in a single localised breakage event. Here, a single failure resulted in the loading of the surrounding bonds enough to prime that neighbouring bond to fail. This leads to an avalanche of failure events, which results in the macroscopic failure of the network. 
 
-In this small strain regime, we see that these failures propagate vertically or horizontally with roughly equal probability. The prevailing hypothesis for this is that at these small strains, the network remains roughly homogenous. Therefore, the resulting stress propagation as a result of a single bond failure follows that predicted by the Eshelby propagator, discussed in \cref{sec:EshelbyPropogator}. This predicts that bonds both vertically and horizontally are loaded, whereas bonds diagonally adjacent contract. 
+In this small strain regime, we see that these macroscopic failures propagate vertically or horizontally with roughly equal probability when observed in the rest frame of the network. The prevailing hypothesis for this is that at these small strains, the network remains roughly homogenous. Therefore, the resulting stress propagation as a result of a single bond failure follows that predicted by the Eshelby propagator, discussed in \cref{sec:EshelbyPropogator}. This predicts that bonds both vertically and horizontally are loaded, whereas bonds diagonally adjacent contract. 
 
-\section{Banding Time $t^*$ and the Imposed Step Strain $\gamma_0$}
+\section{Banding Time $t^*$ and Temperature $x$} \label{sec:LowGammaStrain}
 
 In order to quantify the delay in fracture post-step-strain imposition, we track the failure time $t^*$ of the material. For simplicity, we take this value to be the point at which the stress has dropped below $75\%$ of the initial stress $\sigma_0$. In \cref{fig:LowGammaTempResponse} we illustrate this line in red. This threshold importantly lies below that of the stress plateau resulting from the initial step strain. As such, it requires the network to fail for the stress to cross this value. We plot the resulting failure times in \cref{fig:LowGammaTempFailure}a.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.9\linewidth]{chapters/UltraDelayedFracture/LowGammaTemp/FailureJoin.pdf}
-    \caption{Caption}
+    \caption{The failure time $t^*$ and failure count at $t^*$ $B^*$ as a function of temperature $x$ for a step strain of amplitude }
     \label{fig:LowGammaTempFailure}
 \end{figure}
 
-In \cref{fig:LowGammaTempFailure}a we see an initial regime where the failure time of the material increases rapidly with decreasing temperature. At these low temperatures, the timescale of stress decay becomes driven by the loss of bonds over, rather than the relaxation of the network resulting from non-affine rearrangements. This can be seen in \cref{fig:LowGammaTempFailure}b where the number of bonds at failure $B^*$, decays rapidly with increasing temperature. As each bond fails, the system loses some stress, which locally may be partially recovered as the system rearranges itself to restore force balance within the material. However, the rate at which bonds fail early in the response is high enough that the material is unable to recover. 
+In \cref{fig:LowGammaTempFailure}a we see an initial regime where the failure time of the material increases rapidly with decreasing temperature. At these low temperatures, the rate of stress decay is driven by a loss of bonds, rather than the relaxation of the network resulting from non-affine rearrangements. This can be seen in \cref{fig:LowGammaTempFailure}b where the number of bonds at failure $B^*$, decays rapidly with increasing temperature. As each bond fails, the system loses some stress, which locally may be partially recovered as the system rearranges itself to restore force balance within the material. However, the rate at which bonds fail early in the response is high enough that the material is unable to recover. 
 
-We consider a low enough temperature that these early bond failures do not occur, and as such the material is able to relax into an equilibrium state, then the resultant physics becomes dependent on the failure of the most strained bond. In this configuration, all bonds have reached their equilibrium position for the given set of boundary conditions. All bonds, therefore, have a well-defined and constant rate $\Gamma$ prescribed by their rest strain. At this point, the system remains in this state up until the next bond fails, forcing a local rearrangement of bonds. 
+If we consider a temperature low enough that the corresponding rates of failure $\Gamma(\epsilon_b)$, determined by \cref{eq:SGRRate}, are a lot greater than the characteristic relaxation time of the material. In this regime, bonds do not typically fail during the initial relaxation, stopping diffuse damage from occurring early in the response. As such, the network can relax into an equilibrium state, where the resultant physics becomes dependent on the failure of the most strained bond. 
 
-While at this point we are unable to pinpoint the exact cause, a failure of this bond may just lead to a small local deformation, which results in no other bonds failing or causes a brittle fracture resulting in a macroscopic crack, which results in a total loss of bulk stress. The signs of this phenomenon can be observed in the steps that occur in the corresponding $B$ curves shown in \cref{fig:LowGammaTempBondResponse}. Single or multiple bond failures may occur prior to the ultimate brittle fracture and persist for a long time before the next failure event. 
+In this configuration, all bonds have relaxed to their equilibrium positions under the imposed boundary conditions. Consequently, each bond has a well-defined and constant failure rate $\Gamma$ determined by its rest strain. The system remains in this state until the next bond failure occurs, which triggers a local rearrangement of the surrounding network.
 
-The result of this is an increased variance of failure times, as now the failure becomes more topologically driven, with some networks failing with the first bond failure and others being able to survive with multiple single failures. This is exaggerated in the error bars shown in \cref{fig:LowGammaTempFailure}a: on the log–log scale, a single error bar spans the entire region beneath the curve. 
+At present, we cannot definitively identify the mechanism controlling the outcome of an individual bond failure. In some cases, the failure of a single bond may lead only to a small, localised deformation that does not trigger further failures. In other cases, it can instead nucleate a brittle fracture that propagates into a macroscopic crack, leading to a near-complete loss of bulk stress. Signatures of this behaviour can be observed in the step-like features in the corresponding $B$ curves shown in \cref{fig:LowGammaTempBondResponse}. Prior to the final brittle fracture, single or multiple bond failures may occur and persist for extended periods before the next failure event.
 
-The lower bound of failure time of these systems is ultimately set by the rate defined \cref{eq:SGRRate}, for the given parameters $x$ and $E$. This prescribed the average time for when the first bond and subsequent uncorrelated bonds break. The network topology is then able to further delay this failure as the material waits for the bond to fail, which has the right local structure to promote brittle failure. As discussed in \cref{sec:Rigidity}, predicting the local deformation of the problem is provably very hard and as such, the prediction of these critical bonds from the rest configuration is not possible.  
+The consequence of this uncertainty is an increased variance in failure times: failure becomes more strongly influenced by network topology, with some networks failing after the first bond break while others withstand multiple isolated failures. This is exaggerated in the error bars shown in \cref{fig:LowGammaTempFailure}a: on the log–log scale, a single error bar spans the entire region beneath the curve.
+
+The lower bound on the failure time of these systems is ultimately set by the rate defined in \cref{eq:SGRRate} for the given parameters $x$ and $E$, which prescribes the average time for the first bond, and subsequent uncorrelated bonds, to break. Network topology can then further delay catastrophic failure, as the material must wait for a bond with the appropriate local structure to fail and nucleate brittle fracture. As discussed in \cref{sec:Rigidity}, predicting local deformations in this problem is provably very challenging; consequently, identifying these critical bonds from the initial configuration is not possible. As such, this leaves a system which is well defined at an ensemble level, which is highly unpredictable in the case of a single system. 
+
+\section{Banding Time and the Imposed Strain $\gamma_0$}
+Similar behaviour to that observed in \cref{sec:LowGammaStrain} is encountered when studying the resultant responses and banding times $t^*$ when varying the magnitude of the imposed step strain $\gamma_0$. The resulting failure times can corresponding number of breaks $B^*$, which can be seen in \cref{fig:LowGammaStrainValues}a-b respectively. 
+
+\begin{figure}[hbt]
+    \includegraphics[width=0.9\linewidth]{chapters/UltraDelayedFracture/LowGammaStrain/FailureValues.pdf}
+    \caption[]{}
+    \label{fig:LowGammaStrainValues}
+\end{figure}
+
+The failure time response of these materials follows a simpler pattern with consistent behaviour across the explored parameter range.  
+
+\begin{figure}[hbt]
+    \includegraphics[width=0.9\linewidth]{chapters/UltraDelayedFracture/LowGammaStrain/Responses.pdf}
+    \caption[]{}
+    \label{fig:LowGammaStrainResponse}
+\end{figure}
+
+\begin{figure}[hbt]
+    \includegraphics[width=0.9\linewidth]{chapters/UltraDelayedFracture/LowGammaStrain/LowGammaStrainSnapshots.png}
+    \caption[]{}
+    \label{fig:LowGammaStrainSnapshots}
+\end{figure}
 
 \section{Conclusion}
 
 \newpage
 \begin{subappendices}
-\section{Calculating Approximate free parameters in Boltzmann distribution} \label{sec:approxEx}
-\todo[inline]{See Plotting files on work laptop for Python implementation, write this up mathematically}
+\section{Calculating Approximate free parameters in Breakage Rate} \label{sec:approxEx}
+Predicting the relaxed post-strain configurations of disordered networks is inherently challenging. This problem has been extensively studied in the context of rigidity (see \cref{sec:Rigidity}). Recent work exploring the high-dimensional energy landscapes of such networks has demonstrated that predicting their evolution is computationally intractable without direct numerical simulation \cite{damavandi_energetic_2022,damavandi_energetic_2022-1}. These difficulties arise primarily from the large non-affine rearrangements characteristic of semi-flexible networks. As the final parameter ranges will ultimately be refined through systematic parameter space searches, we require only a reasonable starting point rather than an exact prediction.
+
+
+To obtain such an estimate, we first consider a single bond of rest length $l_0$ oriented at an angle $\theta$ to the horizontal axis, with one node fixed at the origin. Under a simple shear deformation characterised by the matrix
+\begin{equation*}
+    \left(\begin{matrix}
+        1 & \gamma_0 \\
+        0 & 1 \\
+    \end{matrix}\right)
+\end{equation*}
+the initially free end of the bond, which starts at $(l_0\cos\theta,\, l_0\sin\theta)$, is transformed to
+\begin{equation*}
+    \left(\begin{matrix}
+        1 & \gamma_0 \\
+        0 & 1 \\
+    \end{matrix}\right)
+    \left(\begin{matrix}
+        l_0\cos(\theta) \\
+        l_0\sin(\theta) \\
+    \end{matrix}\right)
+    =
+    \left(\begin{matrix}
+        l_0(\cos(\theta) + \gamma_0\sin(\theta)) \\
+        l_0\sin(\theta) \\
+    \end{matrix}\right).
+\end{equation*}
+The post-shear bond length is therefore
+\begin{equation}
+    l=l0\sqrt{(\cos(\theta) + \gamma_0\sin(\theta))^2 + \sin^2(\theta)}
+\end{equation}
+and the corresponding bond strain is
+\begin{align}
+     \epsilon_b(\theta| \gamma_0) &= \frac{l_0\sqrt{(\cos(\theta) + \gamma_0\sin(\theta))^2 + \sin^2(\theta)} -l_0}{l_0} \\
+     &= \sqrt{(\cos(\theta) + \gamma_0\sin(\theta))^2 + \sin^2(\theta)} - 1.
+\end{align}
+This expression for $\epsilon_b(\theta)$ neglects any non-affine rearrangements of the surrounding network and should therefore be interpreted as an approximate upper bound on the expected bond strains.
+
+
+For the large, disordered networks considered here, we assume that bond orientations are approximately uniformly distributed. We therefore consider the maximum value of $\epsilon_b(\theta|\gamma_0)$ over $\theta \in (0,\pi)$ and define
+\begin{equation}
+    \epsilon_{\max}(\gamma_0) = \max_{\theta \in (0,\pi)} \left\{ \epsilon_b(\theta|\gamma_0) \right\}.
+\end{equation}
+The corresponding maximum expected bond energy at strain $\gamma_0$ is then $\mu \epsilon_{\max}^2/2$.
+
+As the networks we consider are large, we will assume that bonds start in a roughly uniform distribution of angles. We therefore consider the maximum values of $\epsilon_b(\theta | \gamma_0)$ in the range $\theta \in (0,\pi)$. We will refer to this as $\epsilon_{max}(\gamma_0) = \max\left\{ \epsilon_b(\theta | \gamma_0) : \theta \in (0,\pi) \right\}$. The maximum expected strain energy for a given strain $\gamma_0$ is therefore $\mu\epsilon_{max}^2/2$. We then solve for this at the centre of the chosen strain range and introduce a safety factor of two to account for the neglected non-affine rearrangements, which provides a reasonable starting point.
+
+The corresponding maximum expected bond energy at strain $\gamma_0$ is then $\mu \epsilon_{\max}^2/2$. We estimate a suitable central value for the strain parameters by solving for this energy at the centre of the parameter range of interest and introducing a safety factor of approximately two to account for the neglected non-affine effects. This provides a practical starting point for our parameter exploration.
+
+
+We adopt a similar strategy to obtain an approximate starting value for the temperature-like parameter $x$. Here we consider the mean bond energy, defined as
+\begin{equation*}
+    \langle \epsilon_b \rangle = \int_0^{2\pi} \frac{\mu}{2} \epsilon_b(\theta | \gamma_0)^2 d\theta.
+\end{equation*}
+Substituting this average strain into the failure rate given in \cref{eq:SGRRate} yields an average bond failure rate $\langle \Gamma \rangle$ for a typical bond in the system. Assuming that bond failures follow a Poisson process, such that the mean lifetime equals $1/\langle \Gamma \rangle$, we choose $x$ such that the average bond survives for a time $\langle \Gamma \rangle \approx 10^{20}$ in simulation units.
+
+These estimates provide a reasonable initial parameter set. However, additional tuning is required to identify parameter combinations that best capture the relevant physics across the full range of behaviours studied in the main text.
 \end{subappendices}

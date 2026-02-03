@@ -534,7 +534,7 @@ The derivation above extends trivially to three dimensions, where we instead con
 
 When studying rheology, we typically wish to apply a macroscopic strain to a material and study the resulting macroscopic stress. In an experimental setup, this involves placing a sample of the material of interest into a rheometer and applying a macroscopic strain by moving one or more of the sample's boundaries. To measure the material's bulk properties, the samples often need to be large to avoid edge effects dominating the physics. This proves a challenge in simulations where achieving these scales is computationally expensive or impossible. A common way to avoid these issues is to use periodic boundary conditions, where an object passing through one side of the unit cell reappears on the opposite side with the same velocity. This, by definition, removes the edges of the computational systems; therefore, macroscopic strains must be applied through an alternative method, rather than being applied the conventional way, i.e. by applying a stress along one of the edges.
 
-\begin{figure}[hbt!]
+\begin{figure}[hbt]
     \centering
     \centering
     \begin{subfigure}[t]{0.5\linewidth}
