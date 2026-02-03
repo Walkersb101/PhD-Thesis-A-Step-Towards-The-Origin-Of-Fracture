@@ -1,20 +1,26 @@
 \chapter{Ultradelayed Material Failure via Shear Banding After Straining in Networks} \label{sec:Ultradelayed}
 
 \section{Introduction}
-This chapter will study the behaviour of network materials under the step strain protocol outlined in \cref{sec:DeformationProtocols}. In particular, we will be exploring the same physics explored by Lockwood \textit{et al.} in Ref.\cite{lockwood_ultradelayed_2025}. Using a variety of constitutive models, this work explored the formation of delayed dramatic shear banding instabilities long after the initial imposition of the strain. We hope that by introducing thermal effects to the simple network models described in \cref{sec:Networks}, we can find and explore how this effect is presented in a more realistic model. 
+In this chapter, we investigate the behaviour of network materials subjected to the step strain protocol outlined in \cref{sec:DeformationProtocols}. In particular, we focus on the occurrence of delayed failure, a long time after the initial imposition of strain. 
 
-Shear banding and failure have been widely explored both experimentally and theoretically, as discussed in \cref{sec:ShearBanding}, and have shown to show failure in a range of protocols. Typically, protocols such as shear startup, outlined in \cref{sec:DeformationProtocols}, where at some time $t=0$ the system is started to be sheared with a rate $\dot{\gamma}$ have been used to study the formation of these bands \cite{moorcroft_shear_2014,moorcroft_criteria_2013,pollard_yielding_2022,moorcroft_age-dependent_2011,divouxTransientShearBanding2010,divoux_stress_2011,kurokawa_avalanche-like_2015}. Here shear stress $\Sigma_{xy}$ accumulates roughly linearly with the applied strain $\gamma = \dot{\gamma}t$, until it reaches a maximum value where yielding initiates and the stress decays to a flowing steady state. Alternatively, the material is often subjected to a fixed stress of amplitude $\Sigma$ for $t \geq 0$ (a stress-controlled regime). Here, the material relaxes slowly with the material's strain $\gamma$ creeping forward with a rate that decays as $\dot{\gamma} \sim t^{-\alpha}$, with $\alpha \in \left( 0,1 \right)$, before suddenly failing as the material yield \cite{miguel_dislocation_2002,gibaud_heterogeneous_2010,leocmach_creep_2014,ballesta_creep_2016,liuCreepDynamicsAthermal2018,cabriolu_precursors_2019,siebenburger_creep_2012}.
+This work is motivated by previous studies of the same phenomenon by Lockwood \textit{et al.} \cite{lockwood_ultradelayed_2025}. Using a variety of constitutive models, this work explored the formation of delayed dramatic shear banding instabilities long after the initial imposition of the strain. By introducing thermal effects into the simple network models described in \cref{sec:Networks}, we demonstrate how this phenomenon can arise in a more realistic model.
+
+Shear banding and failure have been widely explored both experimentally and theoretically, as discussed in \cref{sec:ShearBanding}, and have been shown to show failure in a range of protocols. Typically, protocols such as shear startup, outlined in \cref{sec:DeformationProtocols}, where at some time $t=0$ the system is subjected to a constant shear rate $\dot{\gamma}$, have been used to study the formation of these bands \cite{moorcroft_shear_2014,moorcroft_criteria_2013,pollard_yielding_2022,moorcroft_age-dependent_2011,divouxTransientShearBanding2010,divoux_stress_2011,kurokawa_avalanche-like_2015}. Here shear stress $\Sigma_{xy}$ accumulates roughly linearly with the applied strain $\gamma = \dot{\gamma}t$, until it reaches a maximum value where yielding initiates and the stress decays to a flowing steady state. 
+
+Alternatively, the material is often subjected to a fixed stress of amplitude $\Sigma$ for $t \geq 0$ (a stress-controlled regime). Here, the material relaxes slowly with the material's strain $\gamma$ creeping forward with a rate that decays as $\dot{\gamma} \sim t^{-\alpha}$, with $\alpha \in \left( 0,1 \right)$, before suddenly failing as the material yield \cite{miguel_dislocation_2002,gibaud_heterogeneous_2010,leocmach_creep_2014,ballesta_creep_2016,liuCreepDynamicsAthermal2018,cabriolu_precursors_2019,siebenburger_creep_2012}.
 
 In both cases, damage in the material accumulates over time either by increasing strain triggering yielding events or through stress propagation originating from a previous yielding event. Although during the initial stages of deformation, the shear response of the material is often macroscopically uniform, as this damage accumulates, this homogeneous state typically breaks down, and deformation becomes spatially heterogeneous. This shear localisation eventually passes a critical point, and the flow reorganises into shear bands with contrasting strain rates, separated by interfaces aligned along the shear gradient direction. This effect has been shown theoretically within a minimal set of continuum rheological constitutive assumptions \cite{fielding_shear_2014,moorcroft_age-dependent_2011,moorcroft_shear_2014,moorcroft_criteria_2013,adams_transient_2011,fielding_triggers_2016}
 
 \begin{figure}
     \centering
     \includegraphics[width=.9\linewidth]{chapters/UltraDelayedFracture/Figures/TrivialRelax.tikz}
-    \caption[Illustration of trivial response curves under a step strain]{Illustration of trivial response curves under a step strain. In blue, we plot the expected response when little to no damage occurs. The network initially loses some stress as the network elastically deforms before plateauing at a finite non-zero state of self-stress. Alternatively, shown in red,  when the deformation is large enough, and enough damage accrues,s the material fails immediately.}
+    \caption[Illustration of response curves under a step strain]{Illustration of typical response curves under a step strain. In blue, we show the expected response when little to no damage occurs: the stress initially relaxes as the material elastically or plastically rearranges before plateauing at a finite, non-zero state of self-stress. Alternatively, shown in red, when the imposed deformation is sufficiently large and enough damage accumulates, the material fails catastrophically.}
     \label{fig:trivialRelaxation}
 \end{figure}
 
-Instead, we consider a step strain protocol where at time $t=0$ we rapidly deform the material to a finite fixed shear strain $\gamma_0$, where this deformation is held constant thereafter. Unlike the previous two deformations, where the strain is unbounded and as such can support a final fluidised state, it has been assumed that the relaxation process of these materials is trivial, with the material stress either decaying to a constant value, or catastrophically decreasing as the material fails, depending on the magnitude of the imposed strain $\gamma_0$. A schematic illustration of these two responses is plotted in \cref{fig:trivialRelaxation}. Instead, in the work done by Lockwood, it is shown that the material may suffer a dramatic internal shear
+Instead, we consider a step strain protocol in which, at time $t=0$, the material is rapidly deformed to a finite fixed shear strain $\gamma_0$, which is then held constant thereafter. Unlike the shear startup and creep protocols, in which the strain increases indefinitely and as such can support a final fluidised state, it has been assumed that the relaxation process of these materials is predictable. The material's stress is assumed to either decay to a constant value or catastrophically decrease as the material fails, depending on the magnitude of the imposed strain $\gamma_0$. A schematic illustration of these two responses is shown in \cref{fig:trivialRelaxation}. 
+
+Instead, in the work done by Lockwood, it is shown that the material may suffer a dramatic internal shear
 banding instability long after the imposed deformation\cite{lockwood_ultradelayed_2025}. Importantly, this delay time can be delayed arbitrarily with little to no change to the macroscopic observables in the material. Therefore, an observer who lacks any knowledge of the materials' history could be caught entirely unawares by the instability.
 
 As the step strain protocol is less commonly studied compared to others, little work exists before the work by Lockwood \textit{et al.}. Some alternative theoretical studies looked at the formation of banding over short timescales as the material fails immediately \cite{moorcroft_shear_2014,moorcroft_criteria_2013,adams_nonmonotonic_2009}. And experimentally in polymer melts, the same short timescale failures have been observed \cite{boukany_exploring_2009,boukany_step_2009,barroso_evaluation_2002,einaga_stress_1973}. Experiments examining the longer timescale dynamics after the system appears to have reached equilibrium are even less explored, although some studies have shown signs of delayed yielding similar to what is presented in Ref. \cite {lockwood_ultradelayed_2025} and to the results we present later \cite{boukany_step_2009,jacob_rheological_2019,van_der_kooij_laser_2018}.
@@ -30,34 +36,37 @@ As the step strain protocol is less commonly studied compared to others, little 
 
 Contrastingly, the step strain protocol has been well explored in the context of unbreakable fibre networks by Shivers \textit{et al.} in Ref.\cite{shivers_strain-controlled_2023}. We replicate the relevant physics in \cref{fig:networkRelaxation}, although a more detailed investigation of the relaxation timescales and dynamics is considered in the paper, but is not relevant to the work done in this chapter. Important to this work is the strain stiffening point, which exists for networks with connectivities $z<4$. Below this point, the network is naturally floppy with many zero-energy modes. After a critical point $\gamma_c(z_c)$, these modes vanish, and the network can hold stress similar to that of the network above the isostatic point $z>4$. We consider the origins of this transition more thoroughly in \cref{sec:Rigidity}.
 
-To explore the ultra-delayed failure of networks, we extend the network model outlined in \cref{sec:Networks}, specifically focusing on the Jamming-based networks defined in \cref{sec:PackingBasedNetworks}. We will introduce temperature through two methods, a Brownian simulation where node positions are randomly \quotes{kicked}, and a Boltzmann-like breakage rate for the network bonds inspired by the soft glassy rheology model\cite{sollich_rheology_1997,sollich_soft_2006}. 
 
-The bulk of the results in this work will use the latter method, which we introduced for its computational simplicity and ability to reach long time scales. In both models, shear is applied through applying Lees-Edwards boundary conditions (outlined in \cref{sec:Lees-Edwards}). This imposes effective periodic boundary conditions in all directions and enforces a simple shear in the $xy$ plane. The jamming-based networks used in this chapter are generated as outlined in \cref{sec:PackingBasedNetworks}, with $\phi = 1.0$ and the box size $L_x=L_y = \sqrt{N}$ determining the length scale of the system. Unless otherwise states this gives networks with connectivities of $z \approx 5.4$. Further, we also take units where $\mu_m=1.0$. 
+% To explore the ultra-delayed failure of networks, we extend the network model outlined in \cref{sec:Networks}, specifically focusing on the Jamming-based networks defined in \cref{sec:PackingBasedNetworks}. We will introduce temperature through two methods, a Brownian simulation where node positions are randomly \quotes{kicked}, and a Boltzmann-like breakage rate for the network bonds inspired by the soft glassy rheology model\cite{sollich_rheology_1997,sollich_soft_2006}. 
 
-\section{Brownian Dynamics} \label{sec:UltraDelayedBrownian}
-The simplest model, which introduces a temperature $T$ is Brownian dynamics. We amend the dynamics defined in \cref{sec:NetworkDynamics} to be of the following form
-\begin{equation}
-    \dot{\bm{r}_i} = \frac{1}{\zeta}\bm{F}_{n,i} + \bm{v}_f(\bm{r}_i) + \sqrt{\frac{2k_BT}{\zeta}}R(t). \label{eq:Brownian}
-\end{equation}
-We work in unit where drag coefficient $\zeta = 1$, Boltzmann constant $k_B=1$ and $R(t)$ is a Gaussian white noise term with $\langle R(t)\rangle = 0$ and $\langle R(t) R(t^\prime) \rangle = \delta(t-t^\prime)$. This is equivalent to the limiting cases of the dynamics explored in Ref.\cite{tauber_role_2020}. We integrate \cref{eq:Brownian} using a simple Euler algorithm with time-step $\delta t = 10^{-3}$. During the simulation, we will take bonds to break irreversibly when their strain $\epsilon_b = (l-l_0)/l_0$ exceeds a threshold $\lambda$, which is evaluated after each dynamics step.
+% The bulk of the results in this work will use the latter method, which we introduced for its computational simplicity and ability to reach long time scales. In both models, shear is applied through applying Lees-Edwards boundary conditions (outlined in \cref{sec:Lees-Edwards}). This imposes effective periodic boundary conditions in all directions and enforces a simple shear in the $xy$ plane. The jamming-based networks used in this chapter are generated as outlined in \cref{sec:PackingBasedNetworks}, with $\phi = 1.0$ and the box size $L_x=L_y = \sqrt{N}$ determining the length scale of the system. Unless otherwise states this gives networks with connectivities of $z \approx 5.4$. Further, we also take units where $\mu_m=1.0$. 
+
+% \section{Brownian Dynamics} \label{sec:UltraDelayedBrownian}
+% The simplest model, which introduces a temperature $T$ is Brownian dynamics. We amend the dynamics defined in \cref{sec:NetworkDynamics} to be of the following form
+% \begin{equation}
+%     \dot{\bm{r}_i} = \frac{1}{\zeta}\bm{F}_{n,i} + \bm{v}_f(\bm{r}_i) + \sqrt{\frac{2k_BT}{\zeta}}R(t). \label{eq:Brownian}
+% \end{equation}
+% We work in unit where drag coefficient $\zeta = 1$, Boltzmann constant $k_B=1$ and $R(t)$ is a Gaussian white noise term with $\langle R(t)\rangle = 0$ and $\langle R(t) R(t^\prime) \rangle = \delta(t-t^\prime)$. This is equivalent to the limiting cases of the dynamics explored in Ref.\cite{tauber_role_2020}. We integrate \cref{eq:Brownian} using a simple Euler algorithm with time-step $\delta t = 10^{-3}$. During the simulation, we will take bonds to break irreversibly when their strain $\epsilon_b = (l-l_0)/l_0$ exceeds a threshold $\lambda$, which is evaluated after each dynamics step.
 
 
-\begin{figure}
-    \centering
-    %\includegraphics[width=0.5\linewidth]{}
-    \missingfigure{Left time series / Right $t^*$ extracted}
-    \caption{Caption}
-    \label{fig:placeholder}
-\end{figure}
+% \begin{figure}
+%     \centering
+%     %\includegraphics[width=0.5\linewidth]{}
+%     \missingfigure{Left time series / Right $t^*$ extracted}
+%     \caption{Caption}
+%     \label{fig:placeholder}
+% \end{figure}
 
 \section{Rate Dependent Fracture} \label{sec:BoltzmanFracture}
-To reduce the computation time of the model, we need an alternative method of thermal fracture which allows for an increased time step while remaining numerically stable. With this aim, we will consider an alternative fracture condition inspired by the Soft Glassy Rheology (SGR) model \cite{sollich_rheological_1998,sollich_thermodynamic_2012}. We will consider each bond to sit in its own local energy well of depth $E$. Each bond then has a local strain energy $E_b = \frac{\mu}{2}\epsilon_b^2$ where $\epsilon_b = (l-l_0)/l_0$ is the axial strain on a bond. We then imagine that each bond is locally allowed to wander around in the energy well centred on its elastic minimum, due to thermal fluctuations.  These fluctuations can be thought of as thermal fluctuations arising from both the surrounding material and the bond's internal structure. Small fluctuation from the equilibrium point is therefore more common, while large excursions away from the equilibrium point are increasingly less common due to the higher energy costs.
+To explore the ultra-delayed failure of networks, we extend the network model outlined in \cref{sec:Networks}, specifically focusing on the packing-derived networks defined in \cref{sec:PackingBasedNetworks}. It is common when exploring fractures in mesoscopic network models to introduce a finite breakage strain $\lambda$, where bonds with axial strain $\epsilon_b=(l-l_0)/l_0 > \lambda$ fail. While this model could be used to understand a simple fracture in a step strain regime, it is unable to resolve the temperature dependence needed for delayed yielding. 
 
-As the local strain energy $E_b$ increases towards $E$, the extra energy required from thermal fluctuation decreases exponentially and therefore the probability of escaping the well increases. This idea leads to an Arrhenius-like distribution for the rate of escape
+Taking inspiration from the Soft Glassy Rheology (SGR) model \cite{sollich_rheological_1998,sollich_thermodynamic_2012}. We will consider each bond to sit in its own local energy well of depth $E$. Each bond then has a local strain energy $E_b = \frac{\mu}{2}\epsilon_b^2$ where $\epsilon_b = (l-l_0)/l_0$ is the axial strain on a bond. We then imagine that each bond is locally allowed to wander around in the energy well centred on its elastic minimum, due to thermal fluctuations.  These fluctuations can be thought of as thermal fluctuations arising from both the surrounding material and the bond's internal structure. Small fluctuation from the equilibrium point is therefore more common, while large excursions away from the equilibrium point are increasingly less common due to the higher energy costs.
+
+As the local strain energy $E_b$ increases towards $E$, the extra energy required from thermal fluctuation decreases exponentially and therefore the probability of escaping the well increases. This idea leads to an Arrhenius distribution for the rate of a bond failing
 \begin{equation*}
     \Gamma(\epsilon_b) \sim \exp \left[ -\dfrac{E - \frac{\mu}{2}\epsilon_b^2}{x} \right],
 \end{equation*}
-where $x$ is an effective temperature, controlling the amplitude of the strain fluctuations. In systems where the thermal energy is of the same order as the depth of the energy well the temperature parameter can be interpreted as the true thermodynamic temperature, with $x = k_B T$ \cite{sollich_thermodynamic_2012}. However, as in the SGR model, the energy depths in our network are much larger than the thermal contributions, the effective noise temperature is more closely related to how stress would propagate across the microscopic structure of the bond.
+where $x$ is an effective temperature, controlling the amplitude of the strain fluctuations. In systems where the thermal energy is of the same order as the depth of the energy well, the temperature parameter can be interpreted as the true thermodynamic temperature, with $x = k_B T$ \cite{sollich_thermodynamic_2012}. However, as in the SGR model, the energy depths in our network are much larger than the thermal contributions, the effective noise temperature is more closely related to how stress would propagate across the microscopic structure of the bond.
 
 We will also adopt a slight variation to this form, where an upper rate is placed on the rate of failing \cite{sollich_thermodynamic_2012},
 \begin{equation*}
@@ -66,7 +75,7 @@ We will also adopt a slight variation to this form, where an upper rate is place
         1 & \text{if } E_b \geq E.
     \end{cases}
 \end{equation*}
-This effectively decouples the rate of failing from the bond's strain after the bond has escaped the well with the probability remaining constant rather than rising indefinitely. This also has the additional benefit of increasing the numerical stability of the system, as an infinitely small time step is no longer required to accurately resolve the rate $\Gamma$ using the method described later. 
+This decouples the rate of failing from the bond's strain after the bond has escaped the well, with the probability remaining constant rather than rising indefinitely. This also has the additional benefit of increasing the numerical stability of the system, as an infinitely small time step is no longer required to accurately resolve the rate $\Gamma$. 
 
 To implement this explicitly, we introduce a microscopic rate $\Gamma_0$ that sets the characteristic attempt frequency for bond failure. The failure rate of an individual bond is then given by
 \begin{equation} \label{eq:SGRRate}
@@ -110,7 +119,7 @@ At short times, the stress relaxation is identical across all temperatures, refl
 
 For low temperatures, the early-time relaxation closely resembles that shown in \cref{fig:networkRelaxation}, with the stress reaching an extended plateau at an approximately constant value. Although these networks ultimately fail in a brittle manner at times $t \gg 0$, we observe no detectable precursor in the stress response before failure. While the failure appears instantaneous in the main figure due to the scale of the plot, the inset resolves a smaller time window, revealing qualitatively similar failure behaviour across the failure regime, albeit still characterised by an abrupt onset.
 
-\begin{figure}
+\begin{figure}[hbt]
     \centering
     \includegraphics[width=0.9\linewidth]{chapters/UltraDelayedFracture/LowGammaTemp/BondCount.pdf}
     \caption[]{}
@@ -126,17 +135,30 @@ In previous work on delayed failure in elastoplastic models \cite{lockwood_ultra
     \label{fig:LowGammaTempSnapShots}
 \end{figure}
 
-To understand the failure responses, we plot snapshots of the sample networks for various temperatures in \cref{fig:LowGammaTempSnapShots} with temperature increasing from right to left. Considering first the high-temperature cases, we see large amounts of diffuse damage, as many bonds can break independently, shown in \cref{fig:LowGammaTempSnapShots}b. Here we see a single uncorrelated breakage event across the whole system. 
+To understand the failure responses, we plot snapshots of the sample networks for various temperatures in \cref{fig:LowGammaTempSnapShots} with temperature increasing from right to left. Considering first the high-temperature cases, we see large amounts of diffuse damage, as many bonds can break independently, shown in \cref{fig:LowGammaTempSnapShots}b. Here we see a single uncorrelated breakage event across the whole system. The system quickly loses rigidity, and the stress drops correspondingly. Conversely, as the temperature increases, the networks fail in a single localised breakage event. Here, a single failure resulted in the loading of the surrounding bonds enough to prime that neighbouring bond to fail. 
 
-
-As the temperature $x$ increase this diffusive behaviour 
-
-At low temperatures, for example, the failure shown in \cref{fig:LowGammaTempSnapShots}a, we see the opposite, where a small localised breakage event propagates vertically forming a single macroscopic crack. Here, a single failure resulted in the loading of the surrounding bonds enough that a neighbouring bond was primed to fail.
-
+In this small strain regime, we see that these failures propagate vertically or horizontally with roughly equal probability. The prevailing hypothesis for this is that at these small strains, the network remains roughly homogenous. Therefore, the resulting stress propagation as a result of a single bond failure follows that predicted by the Eshelby propagator, discussed in \cref{sec:EshelbyPropogator}. This predicts that bonds both vertically and horizontally are loaded, whereas bonds diagonally adjacent contract. 
 
 \section{Banding Time $t^*$ and the Imposed Step Strain $\gamma_0$}
-As a starting point, we consider the effect of changing the step strain amplitude $\gamma_0$ at small strains around $\gamma_0=10^{-2}$ with a variance of $\pm 10^{-3}$. We fix the the temperature of $x=1 \times 10^{-6}$ and fracture energy $E=5.025 \times 10^{-5}$. The responses are plotted in \cref{fig:LowGammaStrainResponse}. In the extremes of $\gamma_0$, we see 
 
+In order to quantify the delay in fracture post-step-strain imposition, we track the failure time $t^*$ of the material. For simplicity, we take this value to be the point at which the stress has dropped below $75\%$ of the initial stress $\sigma_0$. In \cref{fig:LowGammaTempResponse} we illustrate this line in red. This threshold importantly lies below that of the stress plateau resulting from the initial step strain. As such, it requires the network to fail for the stress to cross this value. We plot the resulting failure times in \cref{fig:LowGammaTempFailure}a.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{chapters/UltraDelayedFracture/LowGammaTemp/FailureJoin.pdf}
+    \caption{Caption}
+    \label{fig:LowGammaTempFailure}
+\end{figure}
+
+In \cref{fig:LowGammaTempFailure}a we see an initial regime where the failure time of the material increases rapidly with decreasing temperature. At these low temperatures, the timescale of stress decay becomes driven by the loss of bonds over, rather than the relaxation of the network resulting from non-affine rearrangements. This can be seen in \cref{fig:LowGammaTempFailure}b where the number of bonds at failure $B^*$, decays rapidly with increasing temperature. As each bond fails, the system loses some stress, which locally may be partially recovered as the system rearranges itself to restore force balance within the material. However, the rate at which bonds fail early in the response is high enough that the material is unable to recover. 
+
+We consider a low enough temperature that these early bond failures do not occur, and as such the material is able to relax into an equilibrium state, then the resultant physics becomes dependent on the failure of the most strained bond. In this configuration, all bonds have reached their equilibrium position for the given set of boundary conditions. All bonds, therefore, have a well-defined and constant rate $\Gamma$ prescribed by their rest strain. At this point, the system remains in this state up until the next bond fails, forcing a local rearrangement of bonds. 
+
+While at this point we are unable to pinpoint the exact cause, a failure of this bond may just lead to a small local deformation, which results in no other bonds failing or causes a brittle fracture resulting in a macroscopic crack, which results in a total loss of bulk stress. The signs of this phenomenon can be observed in the steps that occur in the corresponding $B$ curves shown in \cref{fig:LowGammaTempBondResponse}. Single or multiple bond failures may occur prior to the ultimate brittle fracture and persist for a long time before the next failure event. 
+
+The result of this is an increased variance of failure times, as now the failure becomes more topologically driven, with some networks failing with the first bond failure and others being able to survive with multiple single failures. This is exaggerated in the error bars shown in \cref{fig:LowGammaTempFailure}a: on the log–log scale, a single error bar spans the entire region beneath the curve. 
+
+The lower bound of failure time of these systems is ultimately set by the rate defined \cref{eq:SGRRate}, for the given parameters $x$ and $E$. This prescribed the average time for when the first bond and subsequent uncorrelated bonds break. The network topology is then able to further delay this failure as the material waits for the bond to fail, which has the right local structure to promote brittle failure. As discussed in \cref{sec:Rigidity}, predicting the local deformation of the problem is provably very hard and as such, the prediction of these critical bonds from the rest configuration is not possible.  
 
 \section{Conclusion}
 
