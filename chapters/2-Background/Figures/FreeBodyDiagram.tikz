@@ -1,0 +1,76 @@
+\begin{tikzpicture}[>=stealth]
+    % (a) The Whole Body
+    \begin{scope}
+        \node[anchor=north west] at (-1, 3.5) {a)};
+        
+        % The blob
+        \draw[thick, fill=gray!10] plot [smooth cycle, tension=0.7] coordinates {
+            (0,0) (1,2.5) (3,2) (3.5,0) (2,-1.5)
+        };
+        
+        % External forces
+        \draw[->, thick] (0.2, 2.0) -- (-0.5, 2.5) node[left] {$\bm{F}_1$};
+        \draw[->, thick] (3.3, 1.8) -- (4.0, 2.2) node[right] {$\bm{F}_2$};
+        \draw[->, thick] (2.5, -1.2) -- (2.8, -2.0) node[right] {$\bm{F}_3$};
+        
+        % Point P
+        \coordinate (P) at (2,0.5);
+        \fill (P) circle (2pt) node[right] {$P$};
+    \end{scope}
+
+    % (b) First Cut (Vertical-ish)
+    \begin{scope}[xshift=6cm]
+        \node[anchor=north west] at (-1, 3.5) {b)};
+        
+        % Clip left side
+        % We use a clip to ensure the fill and the outline perfectly match the blob shape
+        \begin{scope}
+            % Define clip region: Everything to the left of the cut surface
+            % The cut surface right boundary is defined by (2, -1.5) to[out=60, in=300] (3, 2)
+            % We close the clip path by going around the left side of the figure
+            \clip (2, -1.5) to[out=60, in=300] (3, 2) -- (4, 4) -- (-3, 4) -- (-3, -3) -- cycle;
+            
+            % Draw and fill the whole blob. 
+            % The clip limits it to the left part.
+            \draw[thick, fill=gray!10] plot [smooth cycle, tension=0.7] coordinates {
+                (0,0) (1,2.5) (3,2) (3.5,0) (2,-1.5)
+            };
+        \end{scope}
+            
+        % The Cut Surface
+        % Drawn on top to cover the seam
+        \draw[thick, fill=gray!30] (2, -1.5) to[out=60, in=300] (3, 2) to[out=260, in=100] (2, -1.5);
+        
+        % Point P on surface
+        \coordinate (Pb) at (2.25, 0.35); % Slightly shifted visually to be on the curve
+        \fill (Pb) circle (2pt) node[left, xshift=-1mm] {$P$};
+        
+        % Vectors
+        \draw[->, thick] (Pb) -- ++(1.5, 0.5) node[right] {$\bm{n}_1$};
+        \draw[->, thick] (Pb) -- ++(1.2, 1.2) node[right] {$\bm{s}_1$};
+        \draw[dashed] (Pb) -- ++(1.2, 0); % Reference line?
+    \end{scope}
+
+    % (c) Second Cut (Horizontal-ish)
+    \begin{scope}[xshift=12cm]
+        \node[anchor=north west] at (-1, 3.5) {c)};
+
+        % Lower Half
+        \draw[thick, fill=gray!10] (0.2, 0.5) to[out=220, in=90] (0,0) 
+            to[out=270, in=170] (2, -1.5) to[out=350, in=270] (3.5, 0)
+            to[out=120, in=330] (3, 0.5);
+            
+        % The Cut Surface (Top of the bottom chunk)
+        \draw[thick, fill=gray!30] (0.2, 0.5) to[out=-20, in=200] (3, 0.5) to[out=160, in=20] (0.2, 0.5);
+
+        % Point P
+        \coordinate (Pc) at (1.6, 0.25);
+        \fill (Pc) circle (2pt) node[below, yshift=-1mm] {$P$};
+        
+        % Vectors
+        \draw[->, thick] (Pc) -- ++(0, 1.5) node[above] {$\bm{n}_2$};
+        \draw[->, thick] (Pc) -- ++(1.2, 1.2) node[right] {$\bm{s}_2$};
+        \draw[dashed] (Pc) -- ++(1.2, 0);
+
+    \end{scope}
+\end{tikzpicture}

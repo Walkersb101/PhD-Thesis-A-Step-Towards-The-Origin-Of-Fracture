@@ -1,0 +1,42 @@
+\begin{tikzpicture}[>=stealth, x={(-0.6cm,-0.4cm)}, y={(1cm,0cm)}, z={(0cm,1cm)}, scale=2]
+    % Coordinates of Origin and Vertices on Axes
+    \coordinate (O) at (0,0,0);
+    \coordinate (A) at (1,0,0); % Point on x-axis
+    \coordinate (B) at (0,1,0); % Point on y-axis
+    \coordinate (C) at (0,0,1); % Point on z-axis
+    
+    % Centroids for vector placement in back faces
+    \coordinate (Gx) at (0, 0.333, 0.333);     % Centroid of OBC (x=0 plane)
+    \coordinate (Gy) at (0.333, 0, 0.333);     % Centroid of OAC (y=0 plane)
+    \coordinate (Gz) at (0.333, 0.333, 0);     % Centroid of OAB (z=0 plane)
+    
+    % Draw Back/Hidden Vectors First (behind the tetrahedron faces)
+    \draw[->, thick] (Gx) -- ++(-0.5, -0.1, 0) node[above left] {$-\bm{s}^{(\bm{n}_x)}$};
+    \draw[->, thick] (Gy) -- ++(-0.1, -0.5, 0) node[below left] {$-\bm{s}^{(\bm{n}_y)}$};
+    \draw[->, thick] (Gz) -- ++(0, -0.1, -0.5) node[below right] {$-\bm{s}^{(\bm{n}_z)}$};
+
+    % Axes Extensions (drawn behind or integrated)
+    \draw[->, dashed] (O) -- (1.5,0,0) node[anchor=north east] {$x$};
+    \draw[->, dashed] (O) -- (0,1.5,0) node[anchor=north west] {$y$};
+    \draw[->, dashed] (O) -- (0,0,1.5) node[anchor=south] {$z$};
+
+    % Dashed edges for back part of tetrahedron
+    \draw[dashed] (O) -- (A);
+    \draw[dashed] (O) -- (B);
+    \draw[dashed] (O) -- (C);
+    
+    % Front Face (Inclined Plane)
+    % Vertices A, B, C
+    
+    \draw[thick] (A) -- (B) -- (C) -- cycle;
+
+    % Centroids for vector placement on front face
+    \coordinate (Gn) at (0.333, 0.333, 0.333); % Centroid of ABC
+    
+    % Normal Vector n on Inclined Face
+    \draw[->, thick] (Gn) -- ++(0.4, 0.4, 0.4) node[above right] {$\bm{n}$};
+    
+    % Stress Vector s^(n) on Inclined Face
+    \draw[->, thick] (Gn) -- ++(0.3, 0.5, 0.2) node[right] {$\bm{s}^{(\bm{n})}$};
+
+\end{tikzpicture}
