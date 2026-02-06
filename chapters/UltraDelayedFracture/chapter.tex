@@ -232,23 +232,57 @@ Despite this large level of diffuse damage, which occurs early in the deformatio
 
 While the number of bonds remains to increase with time $t$, the ultimate number of bonds at failure $B^*$, plateaus as $\gamma_0 \to 0.9$, to a value $B^*\sim 750$. We expect that these networks are like there low strain counterparts and are waiting for a critical bond to fail, which is in a configuration where large-scale crack propagation can occur. This is again characterised by the dramatic increase in the sample-to-sample variance as the failure time gets unpredictably delayed. 
 
-This plateau in $B^*$, while $B$ continues to increase, may indicate a return to diffuse behaviour over a longer period of time, although this effect ultimately appears at a timescale longer than is computationally feasible. This effect may be minimised as a result of a better choice in the breakage threshold $E$, although the author was unable to find a better set of parameters that exemplifies this delayed failure phenomonom.
+This plateau in $B^*$, while $B$ continues to increase, may indicate a return to diffuse behaviour over a longer period of time, although this effect ultimately appears at a timescale longer than is computationally feasible. This effect may be minimised as a result of a better choice in the breakage threshold $E$, although the author was unable to find a better set of parameters that exemplifies this delayed failure phenomenon.
 
 
 \section{Direction of fracture} \label{sec:DirectionOfFracture}
 
-As discussed in \cref{sec:lowStrainResponse}, at small strain, the direction of crack propagation appears to be horizontal or vertical with roughly equal probability. Contrastingly, at high strain, as shown in \cref{fig:HighGammaStrainSnapShots}, failure always propagates perpendicular to the principal strain axis.
+As discussed in \cref{sec:lowStrainResponse}, at small strain, the direction of crack propagation appears to be horizontal or vertical with roughly equal probability. Contrastingly, at high strains $\gamma_0\sim 1$, as shown in \cref{fig:HighGammaStrainSnapShots}, failure always propagates perpendicular to the principal strain axis, parallel to the axis defined by $y=-x$. 
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.9\linewidth]{chapters/UltraDelayedFracture/CrackDirections/BondStrain.pdf}
+    \caption[Illustrations of bond state under affine deformation]{
+    Illustrations of {\bf a)} the resulting strain $\epsilon_b$ and {\bf b)} the angle $\theta^\prime$ resulting from an affine deformation of a bond initially at a principal angle $\theta$. We plot the two curves corresponding to the two strains considered in this work $\gamma_0=0.01$ and $\gamma_0=1$. The principal angle $\theta\in[0,\pi)$ is measured relative to the horizontal $x$-axis. \newline
+    {\bf a)} The zero of each curve, indicated with a vertical line, shows the angle $\theta\in(\pi/2,\pi)$ at which the applied strain transitions from extension to compression.}
+    \label{fig:AffineBondStrain}
+\end{figure}
+
+Considering the purely affine deformation which occurs in the network, we can consider a bond which starts at an angle $\theta$ relative to the $x$ (horizontal) axis in the bond's rest configuration. Under a shear deformation of magnitude $\gamma_0$ in the $xy$ plane, the resultant affine deformation strains the bond such that its axial strain is
+\begin{equation*}
+    \epsilon_b(\theta| \gamma_0) = \sqrt{(\cos(\theta) + \gamma_0\sin(\theta))^2 + \sin^2(\theta)} - 1.
+\end{equation*}
+A more thorough discussion of this can be seen in \cref{sec:approxEx}. We plot in \cref{fig:AffineBondStrain}a, $\epsilon_b(\theta| \gamma_0)$ for the two cases of gamma we consider in this work, $\gamma_0=0.01$ and $\gamma_0=1$. 
+
+For small $\gamma_0$, the resultant affine strains remain small and close to zero with an equal split of bonds in both compression and extension. The magnitudes of the resultant strains also remain of similar size, although with a slight bias to elongated bonds, as is illustrated in the $\gamma_0=1$ case. Here, as the breakage condition considers the bond strain energy $E=\frac{\mu}{2}\epsilon_b^2$ rather than the bond strain $\epsilon_b$, the network's fracture is agnostic to the strain being compressive or extensional.   
+
+\begin{figure}[hbt]
+    \centering
+    \includegraphics[width=0.9\linewidth]{chapters/UltraDelayedFracture/CrackDirections/StrainDistributions.pdf}
+    \caption[Normalised strain distributions $\rho(\epsilon_b/\gamma_0)$ for relaxed network and affine (dashed) networks]{Normalised strain distributions $\rho(\epsilon_b/\gamma_0)$ for relaxed network (solid), affine (dashed) networks and analytical predictions (dotted), for {\bf a) $\gamma_0=0.01$ } and {\bf b)} $\gamma_0=1.0$. Affine network distributions are taken immediately after a step strain of magnitude $\gamma_0$ is imposed affinely. The form of the affine predictions is derived in \cref{sec:affineStrainDist}.}
+    \label{fig:PDFBondDistributions}
+\end{figure}
+
+As a result, the fracture propagates initially independent of the network structure, with the network appearing initially homogenous, as indicated by both \cref{fig:AffineBondStrain} and \cref{fig:PDFBondDistributions}a. The affine predictions shown in \cref{fig:AffineBondStrain} indicate little dependence on $\theta$ for both the resulting strain $\epsilon_b$ and angle $\theta^\prime$, which is reinforced by the distributions plotted in \cref{fig:PDFBondDistributions}a. Here, the affine deformation evenly distributes bonds with both positive and negative strain. As force balance is reimposed, this distribution progressively broadens, though importantly remains symmetric around $\epsilon_b=0$. 
 
 \begin{figure}[hbt]
     \centering
     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/CrackDirections/CrackSnapshots.png}
-    \caption{Caption}
+    \caption{caption}
     \label{fig:CrackDirections}
 \end{figure}
 
-This high-strain regime can be understood by considering the affine deformation of the bonds in the network. During deformation, bonds which lie parallel to the principal shear axis are elongated, whereas bonds perpendicular are contracted by a smaller amount.
+Contrastingly, the affine distribution at $\gamma_0=1$ is asymmetric about $\epsilon_b=0$, with a weighting towards positive strains. Under the implicit force balance, which occurs as the network relaxes to the equilibrium position, the distribution spreads out with a bond with a high strain magnitude. The resultant bonds, which are primed to fail, are therefore bonds whose initial angle in the rest frame $\theta\approx58^{\circ}$. This crack failure mechanism is again illustrated in \cref{fig:CrackDirections}. We illustrate in black the line perpendicular to these maximally strained bonds, which shows a qualitative match to the failure observed in the network. The exact fracture direction will depend strongly on the exact network topology and the local level of non-affine arrangement.
 
+Finally, of interest are the spider-like cracks which form in the small-$\gamma_0$ regime. While cracks at these small strains initially fail in both the horizontal and vertical directions, a defining feature of these single brittle events is the splitting at the crack tip. The primary fracture bifurcates into secondary branches that propagate along diagonal directions through the network. We expect this to be a result of two effects:
+\begin{enumerate}
+    \item As the network fails, the network loses local rigidity, which allows for a large local strain to occur at the crack tip. This forces a change in direction as the network twists. 
+    \item As bonds break and a crack forms, stress can no longer be transmitted across the failed region. This modifies the form of the local stress propagator from the typical Eshelby form, now promoting the failure of bonds off the vertical and horizontal axes. 
+\end{enumerate}
 
+Taken together, these suggestions suggest that the direction of fracture in these networks is controlled by a competition between the initially imposed affine strain field and the subsequent redistribution of stress during relaxation and failure. At small strains, the affine strain distribution and resulting stress field render the network effectively isotropic with respect to fracture. This allows for cracks to fail to nucleate and propagate along either horizontal or vertical directions with comparable likelihood, with subsequent branching arising from local rearrangements at the crack tip.
+
+At high strain, however, the anisotropic strains resulting from the affine deformation strongly bias the population of highly strained bonds toward a well-defined orientation. After relaxation and force balance, these bonds select a preferred fracture direction perpendicular to these maximally loaded bonds. While non-affine rearrangements and network structure introduce variability into the precise failure path, the overall fracture direction is nevertheless governed by the underlying strain-induced anisotropy of the bond loading.
 
 \section{Conclusion}
 
@@ -284,7 +318,7 @@ the initially free end of the bond, which starts at $(l_0\cos\theta,\, l_0\sin\t
 \end{equation*}
 The post-shear bond length is therefore
 \begin{equation}
-    l=l0\sqrt{(\cos(\theta) + \gamma_0\sin(\theta))^2 + \sin^2(\theta)}
+    l=l_0\sqrt{(\cos(\theta) + \gamma_0\sin(\theta))^2 + \sin^2(\theta)}
 \end{equation}
 and the corresponding bond strain is
 \begin{align}
@@ -293,17 +327,15 @@ and the corresponding bond strain is
 \end{align}
 This expression for $\epsilon_b(\theta)$ neglects any non-affine rearrangements of the surrounding network and should therefore be interpreted as an approximate upper bound on the expected bond strains.
 
-
-For the large, disordered networks considered here, we assume that bond orientations are approximately uniformly distributed. We therefore consider the maximum value of $\epsilon_b(\theta|\gamma_0)$ over $\theta \in (0,\pi)$ and define
+For the large, disordered networks considered here, we assume that bond orientations are approximately uniformly distributed. We therefore consider the maximum value of $\epsilon_b(\theta|\gamma_0)$ over $\theta \in [0,\pi)$ and define
 \begin{equation}
-    \epsilon_{\max}(\gamma_0) = \max_{\theta \in (0,\pi)} \left\{ \epsilon_b(\theta|\gamma_0) \right\}.
+    \epsilon_{\max}(\gamma_0) = \max_{\theta \in [0,\pi)} \left\{ \epsilon_b(\theta|\gamma_0) \right\}.
 \end{equation}
 The corresponding maximum expected bond energy at strain $\gamma_0$ is then $\mu \epsilon_{\max}^2/2$.
 
-As the networks we consider are large, we will assume that bonds start in a roughly uniform distribution of angles. We therefore consider the maximum values of $\epsilon_b(\theta | \gamma_0)$ in the range $\theta \in (0,\pi)$. We will refer to this as $\epsilon_{max}(\gamma_0) = \max\left\{ \epsilon_b(\theta | \gamma_0) : \theta \in (0,\pi) \right\}$. The maximum expected strain energy for a given strain $\gamma_0$ is therefore $\mu\epsilon_{max}^2/2$. We then solve for this at the centre of the chosen strain range and introduce a safety factor of two to account for the neglected non-affine rearrangements, which provides a reasonable starting point.
+As the networks we consider are large, we will assume that bonds start in a roughly uniform distribution of angles. We therefore consider the maximum values of $\epsilon_b(\theta | \gamma_0)$ in the range $\theta \in [0,\pi)$. We will refer to this as $\epsilon_{max}(\gamma_0) = \max\left\{ \epsilon_b(\theta | \gamma_0) : \theta \in [0,\pi) \right\}$. The maximum expected strain energy for a given strain $\gamma_0$ is therefore $\mu\epsilon_{max}^2/2$. We then solve for this at the centre of the chosen strain range and introduce a safety factor of two to account for the neglected non-affine rearrangements, which provides a reasonable starting point.
 
 The corresponding maximum expected bond energy at strain $\gamma_0$ is then $\mu \epsilon_{\max}^2/2$. We estimate a suitable central value for the strain parameters by solving for this energy at the centre of the parameter range of interest and introducing a safety factor of approximately two to account for the neglected non-affine effects. This provides a practical starting point for our parameter exploration.
-
 
 We adopt a similar strategy to obtain an approximate starting value for the temperature-like parameter $x$. Here we consider the mean bond energy, defined as
 \begin{equation*}
@@ -312,4 +344,53 @@ We adopt a similar strategy to obtain an approximate starting value for the temp
 Substituting this average strain into the failure rate given in \cref{eq:SGRRate} yields an average bond failure rate $\langle \Gamma \rangle$ for a typical bond in the system. Assuming that bond failures follow a Poisson process, such that the mean lifetime equals $1/\langle \Gamma \rangle$, we choose $x$ such that the average bond survives for a time $\langle \Gamma \rangle \approx 10^{20}$ in simulation units.
 
 These estimates provide a reasonable initial parameter set. However, additional tuning is required to identify parameter combinations that best capture the relevant physics across the full range of behaviours studied in the main text.
+
+\section{Strain Distribution for an Affine Deformation} \label{sec:affineStrainDist}
+As discussed in \cref{sec:approxEx}, the expected strain following an affine deformation of magnitude $\gamma_0$, for a bond with principal angle $\theta\in[0,\pi)$ is
+\begin{equation}
+         \epsilon_b(\theta| \gamma_0) = \sqrt{(\cos(\theta) + \gamma_0\sin(\theta))^2 + \sin^2(\theta)} - 1. \label{eq:affine1}
+\end{equation}
+We define $\lambda\coloneq\epsilon_b+1$ and squaring \cref{eq:affine1} we obtain
+\begin{align*}
+        \lambda^2 
+        &=(\cos(\theta) + \gamma_0\sin(\theta))^2 + \sin^2(\theta) \\
+        &= 1+\gamma_0^2\sin^2(\theta) + \gamma_0\sin(2\theta) \\
+        &= 1 + \gamma_0^2\left[\frac{1}{2}(1-\cos(2\theta)\right] + \gamma_0\sin(2\theta)\\
+        &= 1+ \frac{\gamma_0^2}{2} - \frac{\gamma_0^2}{2}\cos(2\theta)+\gamma_0\sin(2\theta)
+\end{align*}
+By defining $C\coloneq1+ \frac{\gamma_0^2}{2}$, $q\coloneq- \frac{\gamma_0^2}{2}$ and using the identify $\gamma_0\sin(2\theta)+q\cos(2\theta)=R\sin(2\theta + \phi)$, where 
+\begin{equation*}
+    R=\sqrt{\gamma_0^2+q^2}=\sqrt{\gamma_0^2+\frac{\gamma_0^4}{4}},
+\end{equation*}
+we can express that
+\begin{equation*}
+    \lambda^2=C+R\sin(2\theta+\phi)
+\end{equation*}
+where $\phi$ solves $\tan(\phi) = -\gamma_0/2$.
+
+If we assume that the initial bond angle takes the form of a uniform distribution defined by $\theta \sim \text{Unif}[0,\pi)$, then $\alpha\coloneq2\theta+\phi$ also takes the form of a uniform distribution on $[0,2\pi)$. The distribution $U$ of $\sin(\alpha)$ has a known form 
+\[
+    f(u)=\frac{1}{\pi\sqrt{1-u^2}}, \qquad u\in[-1,1].
+\]
+We can consider the affine transformation of $U$ to $\lambda^2$, $\lambda^2 = C + R U$.
+Inverting this relation gives
+\[
+    U = \frac{\lambda^2 - C}{R} = \frac{(\epsilon+1)^2 - C}{R}.
+\]
+A change of variables then yields the probability density function of $\epsilon$ as
+\begin{align*}
+    f_\epsilon(\epsilon)
+    &= f\left(\frac{(\epsilon+1)^2-C}{R}\right)
+      \left|\frac{\mathrm{d}}{\mathrm{d}\epsilon}
+      \left(\frac{(\epsilon+1)^2-C}{R}\right)\right| \\
+    &= \frac{2(\epsilon+1)}
+      {\pi R\sqrt{1-\left(\frac{(\epsilon+1)^2-C}{R}\right)^2}},
+\end{align*}
+with bounds determined by $U\in[-1,1]$. This implies
+\[
+    \epsilon \in \left[\sqrt{C-R}-1,\; \sqrt{C+R}-1\right].
+\]
+
+\section{Verification of numerical Convergence} \label{sec:DelayedConvergenceChecks}
+
 \end{subappendices}
