@@ -139,7 +139,7 @@
                                                                             %
         % Put your university logo here if you wish.                        % 
         \begin{center}                                                      %
-            \includegraphics{library/Durham-University.pdf}                              %
+            \includegraphics{library/DU-LOGO.pdf}                              %
         \end{center}                                                        %
                                                                             %
         \begin{singlespace}                                                 %

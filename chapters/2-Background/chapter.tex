@@ -1,7 +1,7 @@
 \setcounter{equation}{0}
 \chapter{Background}
 
-In this thesis, we will consider several rheological constitutive models which explore a range of soft matter systems. In order to explore these models, we will consider a range of deformation protocols which are rheologically reinvent to each model and the material they represent. The overarching theme of this thesis and the main focus of each chapter is that we analyse the yielding (or fracture) behaviour of the material, and hopefully provide a small step to understand the origins of these behaviours. 
+In this thesis, we will consider several models which explore a range of soft matter systems. In order to explore these models, we will consider a range of deformation protocols which are rheologically reinvent to each model and the material they represent. The overarching theme of this thesis and the main focus of each chapter is that we analyse the yielding (or fracture) behaviour of the material, and hopefully provide a small step to understand the origins of these behaviours. 
 
 In this chapter, we will discuss the underlying theories of these models and provide further context and definitions for the phenomena that we will explore. We will start by introducing some basic rheology concepts which appear throughout this thesis. We secondly approach the problem of viscoelastic flows from a Newtonian perspective by introducing the generalised continuum equations for incompressible fluid flow, which include arbitrary stresses, and derive an approach for solving them for the case of Stokesian (i.e., zero Re) hydrodynamics. The bulk of the work done later in this thesis explores these concepts from a Hookean perspective, so we will introduce a model for semi-flexible filaments, exploring how non-linearity manifests in these systems and how we introduce plasticity in these models. Throughout this discussion, we will introduce some fundamental numerical techniques used in this thesis to perform the studies undertaken, as they become relevant.
 
@@ -179,6 +179,7 @@ The two forms of deformation we will consider in this thesis are: simple shear a
 Both deformation modes preserve the overall area of the material; they do so by inducing contrasting forms of deformation. Simple shear is characterised by non-zero off-diagonal components of the stress tensor $\bm{\sigma}$, which induce a rotation of principal stress axes of the material. In fact, simple shear can be decomposed into a combination of pure shear and a rigid-body rotation. Pure shear, therefore, contains no such rotational component, and the principal directions of stress remain fixed to the axes of deformation. 
 
 \subsubsection{Protocols} \label{sec:DeformationProtocols}
+\todo[inline]{Write the protocols section of introduction}
 
 \begin{figure}[h]
     \centering
@@ -333,7 +334,7 @@ As the name implies, Hydrogels are a type of polymer gel embedded in water, whic
 \paragraph{Fibre networks}
 Mainly biological networks, these networks are composed of semi-flexible fibres such as actin and collagen. As a result, these networks tend to have a length scale much larger than elastomers and hydrogels, with mesh sizes on the order of $1 \mu m$ to $10 \mu m$ \cite{mackintosh_elasticity_1995,Arevalo_Stress_Heterogeneities_2015}. Much like hydrogels, these networks are highly porous, with a large fraction of their volume being occupied by solvent \cite{Jansen_Role_Collagen_2018}; however, due to their larger mesh size, they do not exhibit significant poroelastic effects \cite{burlaMechanicalResilienceActive2019}. 
 
-Due to the nature of these networks, the type of crosslinks in fibre networks can vary widely from linkages via flexible proteins to intricate branching and interweaving of fibre bundles.
+Due to the nature of these networks, the type of crosslinks in fibre networks can vary widely from linkages via flexible proteins to intricate branching and interweaving of fibre bundles.\todo{this needs finishing}
 
 
 \subsection{Semi-Flexible Filaments} \label{sec:SemiFlexible}
@@ -491,7 +492,7 @@ iteratively pruning bonds using the process below, from a higher connected netwo
 These networks offer a simple yet robust alternative to lattice-based networks, with emergent positional disorder, numerical stability and can be trivially extended to three dimensions as done in \cite{shivers_normal_2019, shivers_strain-controlled_2023, shivers_nonlinear_2020}
 
 \subsubsection{Pruning Networks}
-During network creation, networks can be left with disconnected or dangling bond clusters defined in \cref{fig:PruningNetworks}. These do not contribute to the network's mechanical response in the dynamics we will use in this thesis, and as such are removed before simulations. Disconnected clusters, shown in \cref{fig:PruningNetworks}a, are removed by identifying all connected components in the networks and removing all but the largest, corresponding to the bulk network. Correspondingly dangling clusters, shown in \cref{fig:PruningNetworks}b, are connected to the bulk network by a single bond. In graph theory, this cluster is known as a Biconnected component, and the connecting bond a Bridge. We utilise the NetworkX Python package \cite{SciPyProceedings_11} to quickly identify the connected and biconnected components. 
+During network creation, networks can be left with disconnected or dangling bond clusters defined in \cref{fig:PruningNetworks}. These do not contribute to the network's mechanical response in the dynamics we will use in this thesis, and as such are removed before simulations. Disconnected clusters, shown in \cref{fig:PruningNetworks}a, are removed by identifying all connected components in the networks and removing all but the largest, corresponding to the bulk network. Correspondingly dangling clusters, shown in \cref{fig:PruningNetworks}b, are connected to the bulk network by a single bond. In graph theory, this cluster is known as a Biconnected component, and the connecting bond a Bridge. We utilise the NetworkX Python package \cite{SciPyProceedings_11} to quickly identify the connected and biconnected components and remove them. 
 
 \begin{figure}
     \centering
@@ -501,7 +502,7 @@ During network creation, networks can be left with disconnected or dangling bond
     \label{fig:PruningNetworks}
 \end{figure}
 
-Once a clean network is generated, it is possible to prune such a network to lower its overall connectivity. This is similar to the process done in the lattice networks to introduce disorder, although more care needs to be taken due to the initial disorder that may already be present. Bonds are selectively removed from the highest connected pairs of nodes $Z_{ij} = z_i + z_j$, to minimise spatial heterogeneity in the connectivity \cite{wyart_elasticity_2008, lerner_breakdown_2014}. This is repeated until the desired average connectivity is reached. During this process, dangling components are removed if they are created. 
+Once a clean network is generated, it is possible to prune such a network to lower its overall connectivity. This is similar to the process done in the lattice networks to introduce disorder, although more care needs to be taken due to the initial disorder that may already be present. Bonds are selectively removed from the highest connected pairs of nodes $z_{ij} = z_i + z_j$, to minimise spatial heterogeneity in the connectivity \cite{wyart_elasticity_2008, lerner_breakdown_2014}. This is repeated until the desired average connectivity is reached. During this process, dangling components are removed if they are created. 
 
 \subsection{Calculating Stress} \label{sec:viralStress}
 
