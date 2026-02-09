@@ -78,7 +78,7 @@
 \setlength{\headheight}{15pt}                                               %
 \setlength{\headsep}{16pt}                                                  %
 \setlength{\textheight}{23.8cm}                                             %
-\setlength{\footskip}{18pt}                                                 %
+\setlength{\footskip}{16pt}                                                 %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 
