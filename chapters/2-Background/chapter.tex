@@ -1,45 +1,46 @@
 \setcounter{equation}{0}
 \chapter{Background}
 
-In this thesis, we will consider several models which explore a range of soft matter systems. In order to explore these models, we will consider a range of deformation protocols which are rheologically reinvent to each model and the material they represent. The overarching theme of this thesis and the main focus of each chapter is that we analyse the yielding (or fracture) behaviour of the material, and hopefully provide a small step to understand the origins of these behaviours. 
+In this thesis, we will consider several models spanning a range of soft matter systems, along with deformation protocols that are rheologically relevant to each model and the materials we aim to study. The overarching theme of this thesis and the main focus of each chapter is that we analyse the yielding (or fracture) behaviour of the material, to provide a small step towards understanding the origins of these behaviours 
 
-In this chapter, we will discuss the underlying theories of these models and provide further context and definitions for the phenomena that we will explore. We will start by introducing some basic rheology concepts which appear throughout this thesis. We secondly approach the problem of viscoelastic flows from a Newtonian perspective by introducing the generalised continuum equations for incompressible fluid flow, which include arbitrary stresses, and derive an approach for solving them for the case of Stokesian (i.e., zero Re) hydrodynamics. The bulk of the work done later in this thesis explores these concepts from a Hookean perspective, so we will introduce a model for semi-flexible filaments, exploring how non-linearity manifests in these systems and how we introduce plasticity in these models. Throughout this discussion, we will introduce some fundamental numerical techniques used in this thesis to perform the studies undertaken, as they become relevant.
+In this chapter, we will discuss the underlying theories of these models and provide further context and definitions for the phenomena that we will explore. We will start by introducing some basic rheology concepts which appear throughout this thesis. Second, we build on Newtonian fluid mechanics by introducing the generalised continuum equations for incompressible flow, allowing for arbitrary (including viscoelastic) stresses, and derive an approach for solving them in the Stokesian (zero Reynolds number) limit. The bulk of the work done in later chapters looks into exploring these from a Hookean perspective. We introduce a model for semi-flexible filament networks, explore how non-linear mechanical responses manifest in these systems and how plasticity can be incorporated into this framework. Throughout this discussion, we will introduce the key numerical techniques used in this thesis as they become relevant.
+
 
 \section{Introduction to Rheology} \label{sec:IntroRheology}
 
-Rheology is the study of the response of a material to an applied flow deformation/stress  \cite{larson_structure_1999,chenRheologySoftMaterials2010,tannerEngineeringRheology2000,barnes_introduction_1989}. The term originates from the early 20th century and comes from the combination of the Greek words \quotes{rheo}, meaning \quotes{to flow} and logos, meaning to \quotes{study} \cite{barnes_introduction_1989}. While very early work by Hooke \cite{hooke_lectures_1678} and Newton \cite{newton_philosophiae_1687} laid the foundation of simple linear rheological cases, stating respectively \quotes{the power of any spring is in the same proportion with the tension thereof} and \quotes{if you double the force, you double the velocity gradient}. Modern rheology is more interested in the cases where these simple rules do not hold, and non-linear behaviours dominate the physics. To motivate the rheological results we present later in this work, we first introduce an intuitive and mathematical description of stress and strain. These descriptions do not intend to be a full and rigorous description, for which the reader is referred to one of the many textbooks I cite along the way, but rather to provide a clear and sufficient foundation for interpreting the results we present later in the thesis.
+Rheology is the study of the relationship between applied stresses and the resulting deformations (or rates of deformation) in materials  \cite{larson_structure_1999,chenRheologySoftMaterials2010,tannerEngineeringRheology2000,barnes_introduction_1989}. The term originates from the early 20th century and comes from the combination of the Greek words \quotes{rheo}, meaning \quotes{to flow} and logos, meaning to \quotes{study} \cite{barnes_introduction_1989}. While very early work by Hooke \cite{hooke_lectures_1678} and Newton \cite{newton_philosophiae_1687} laid the foundation of linear rheological cases, stating respectively \quotes{the power of any spring is in the same proportion with the tension thereof} ($\sigma \propto \epsilon$) and \quotes{if you double the force, you double the velocity gradient} ($\sigma \propto \dot{\gamma}$). Modern rheology is more interested in the cases where these simple linear relations between stress and strain (or strain rate) break down, and non-linear behaviours dominate the physics. To motivate the rheological results we present later in this work, we therefore introduce an intuitive and mathematical description of stress and strain. These descriptions do not intend to be a full and rigorous treatment; for that, the reader is referred to one of the many textbooks cited throughout this chapter. Rather, we aim to provide a clear and sufficient foundation for interpreting the results we present later in the thesis.
 
 \subsection{Stress and Strain} \label{sec:StressAndStrain}
-The concepts of stress and strain constitute the fundamental building blocks of rheology. In considering the flow of a material, strain is defined as a measure of the deformation resulting from the flow, and stress is a measure of the internal forces that result. The simplest definition of strain, therefore, is 
+The concepts of stress and strain constitute the fundamental building blocks of rheology. In considering the flow of a material, Strain is a measure of the deformation of a material, while stress quantifies the internal forces that arise in response to that deformation. The simplest definition of strain, therefore, is 
 \begin{equation}
     \epsilon = \frac{\Delta x}{L}
     \label{eq:simpleStrain}
 \end{equation}
-where $\Delta x$ is a measure of the deformation and $L$ the systems size \cite{lubliner2008plasticity}. And correspondingly, stress can be defined by the ratio of the internal forces in a material to the cross-sectional area,
+where $\Delta x$ is the change in length and $L$ s the original length of the material in that direction \cite{lubliner2008plasticity}. Correspondingly, stress can be defined by the ratio of the internal forces in a material to the cross-sectional area,
 \begin{equation}
     \Sigma = \frac{F}{A}
     \label{eq:simpleStress}
 \end{equation}
-where $F$ is a measure of the internal forces and $A$ the cross sectional area \cite{lubliner2008plasticity}. As both stress and strain are dependent on direction in which they are measure compared to the axis/basis on which they are expressed, i.e. the direction of the $\Delta x$ relative to $L$ or the direction of $F$ relative to the normal of $A$, we express them as rank-2 tensors $\bm{\sigma}$ and $\bm{\epsilon}$ respectively. For the strain tensor $\bm{\epsilon}$, we refer to the diagonal elements $i = j$ of $\epsilon_{ij}$ as extensional strains, as $\Delta x$ is measured parallel to $L$, and the off-diagonal $i \neq j$ as shear strains where $\Delta x$ is perpendicular to $L$. Respectively, when $F$ is measured parallel to the normal vector of $A$ ($\sigma_{ij}$ for $i = j$), it is a normal stress; otherwise, if it acts along the plane, it is a shear stress. In \cref{sec:StrainTensor,sec:StressTensor}, we provide a more mathematical construction of both $\bm{\epsilon}$ and $\bm{\sigma}$ respectively, but we refer to Refs. \cite{tannerEngineeringRheology2000, chandrasekharaiahContinuumMechanics2014} for a more detailed treatment.
+where $F$ is the force transmitted across a surface of area $A$ \cite{lubliner2008plasticity}. Because both the measurement of stress and strain depend on the direction in which they are measured relative to the chosen coordinate systems, such as $\Delta x$ relative to $L$ or the direction of $F$ relative to the normal of $A$, we represent them as rank-2 tensors $\bm{\sigma}$ and $\bm{\epsilon}$ respectively.
+
+For the strain tensor $\bm{\epsilon}$, the diagonal components ($i=j$) correspond to extensional (normal) strain along the coordinate axes, while off-diagonal components ($i \neq j$) describe shear deformation, which represent skewing or tilting of the material's internal geometry. Similarly, the diagonal components of $\bm{\sigma}$ represent normal stresses (forces acting perpendicular to the plane), whereas the off-diagonal components represent shear stresses (forces acting parallel to the plane). In \cref{sec:StrainTensor,sec:StressTensor}, we provide a more mathematical construction of both $\bm{\epsilon}$ and $\bm{\sigma}$, but we refer to Refs.~\cite{tannerEngineeringRheology2000, chandrasekharaiahContinuumMechanics2014} for a more detailed treatment.
 
 \subsection{Strain Tensor} \label{sec:StrainTensor}
-For simplicity, we will consider the strain tensor $\bm{\epsilon}$ to take the form of Cauchy's linear strain tensor \cite{lubliner2008plasticity}, which will hold throughout this thesis. If we consider a point $P$ which at time $t$ is at $\bm{x}$, which is displaced to a new position $\bm{X}$ at a time $t^\prime$, such that
-\begin{equation}
-    \bm{X}(t^\prime) = \bm{X}(\bm{x},t).
-\end{equation}
-Then, considering a nearby point $Q$ which starts at a distance $d\bm{x}$ from point $P$ we can define the relationship between $d\bm{X}$ and $d\bm{x}$ as 
+For simplicity, we will consider the strain tensor $\bm{\epsilon}$ to take the form of Cauchy's linear strain tensor \cite{lubliner2008plasticity}. While the associated small-deformation assumption will not always be strictly satisfied in later chapters, this linearised description nonetheless offers important insight into the mechanics of the systems considered.
+
+Consider a material point $P$ initially at a position $\bm{x}$ which is displaced to a new position $\bm{X}(\bm{x},t)$ at a later time $t$. Then, considering a nearby point $Q$ which starts at a distance $d\bm{x}$ from point $P$ we can define the relationship between $d\bm{X}$ and $d\bm{x}$ as 
 \begin{equation}
     d\bm{X} = \frac{\partial \bm{X}}{\partial \bm{x}}d\bm{x} = \bm{F}d\bm{x}
 \end{equation}
-where $\bm{F}$ is defined to be the deformation gradient tensor relating $d\bm{X}$ and $d\bm{x}$. To relate the magnitudes of $d\bm{X}$ and $d\bm{x}$ we consider 
+where $\bm{F}$ is the deformation gradient tensor relating $d\bm{X}$ and $d\bm{x}$. To relate the magnitudes of $d\bm{X}$ and $d\bm{x}$ we consider 
 \begin{equation}
     dX^2 = d\bm{X} \cdot d\bm{X} = d\bm{X}^T d\bm{X} = d\bm{x}^T\bm{F}^T\bm{F}d\bm{x}.
 \end{equation}
-The quantity $\bm{C}=\bm{F}^T\bm{F}$ is called the right relative Cauchy-Green Strain tensor\cite{TruesdellNoll1992}.
+The quantity $\bm{C}=\bm{F}^T\bm{F}$ is called the right Cauchy-Green strain tensor\cite{TruesdellNoll1992}.
 
 In order to derive $\bm{\epsilon}$ from $\bm{C}$ we will define the displacement vector 
 \begin{equation}
-    \bm{u}(\bm{X},t) = \bm{X} - \bm{x}.
+    \bm{u}(\bm{x},t) = \bm{X}(\bm{x},t) - \bm{x}.
 \end{equation}
 Then the strain tensor $\bm{C}$ can be written in terms of derivatives of the displacement vector
 \begin{equation*}
@@ -51,12 +52,12 @@ as
     \label{eq:nonlinearstrain}
 \end{equation}
 where we adopt Einstein notation for convenience and $\delta_{ij}$ is the kronecker delta defined in \cref{symbol:delta}.
-In linear elasticity theory, we assume that all displacement gradients are small \cite{TruesdellNoll1992}, such that we can rewrite \cref{eq:nonlinearstrain}
+In linear elasticity theory, we assume that all displacement gradients are small \cite{TruesdellNoll1992} and we therefore neglect terms quadratic in the displacement gradients. We therefore rewrite \cref{eq:nonlinearstrain} to define the strain tensor $\bm{\epsilon}$ as
 \begin{equation}
         2\epsilon_{ij} \equiv C_{ij} - \delta_{ij} = \frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i}  + \mathcal{O}\left\{ \left(\frac{\partial u_i}{\partial x_j}\right)^2 \right\}
         \label{eq:linearStrain}
 \end{equation}
-or in terms of the deformation gradient tensor $\bm{F}$
+or to linear order, in terms of the deformation gradient tensor $\bm{F}$ as
 \begin{equation}
         \epsilon = \frac{1}{2}\left( \bm{F}^T + \bm{F} \right) - \bm{I}.
 \end{equation}
@@ -77,7 +78,17 @@ In the context of continuum mechanics, the off-diagonal components of the strain
 would correspond to $\epsilon_{xy} = \epsilon_{yx} = \gamma / 2$.
 
 \subsection{Stress Tensor} \label{sec:StressTensor}
-To motivate the definition of the stress tensor $\bm{\sigma}$, we consider a body subjected to a total force $\bm{\mathcal{F}}$. This force may be decomposed into two parts, a body force $\bm{b}$ which acts constantly throughout the volume and a surface force $\bm{F}$ which varies across the material, such that $\bm{\mathcal{F}} = \bm{b} + \bm{F}$ \cite{chandrasekharaiahContinuumMechanics2014}. In the Cauchy formulation of stress, only these surface forces are considered, as the body forces are assumed to cancel across the material \cite{macoskoRheologyPrinciplesMeasurements1994}. Under this assumption, the internal state of the material is defined by the distribution of these surface forces that act on arbitrary cuts through the body. 
+To motivate the definition of the stress tensor $\bm{\sigma}$, we consider a body subjected to a total force $\bm{\mathcal{F}}$. This force may be decomposed into two parts, a body force $\bm{b}$ which acts constantly throughout the volume and a surface traction $\bm{T}$ which varies across the material, such that $\bm{\mathcal{F}} = \bm{b} + \bm{T}$ \cite{chandrasekharaiahContinuumMechanics2014}. In the Cauchy formulation of stress, the stress tensor only characterises the distribution of surface forces; the body forces are considered separately in the momentum balance~\cite{macoskoRheologyPrinciplesMeasurements1994}. Under this assumption, the internal state of stress of the material is defined by the distribution of these surface tractions that act on arbitrary cuts through the body. 
+
+We therefore begin by defining the stress acting on an arbitrary surface element. In \cref{eq:simpleStress}, $\Sigma$ represents the average stress acting on an area $A$; however, we wish to define a local quantity $\bm{\sigma}$ and consider the spatial direction of the stress. To do so, we consider the average surface traction $\bm{T}$ acting on $A$ to define,
+\begin{equation*}
+    \bm{s}_{avg} = \frac{\bm{T}}{A},
+\end{equation*}
+where $\bm{s}$ denotes the average stress vector acting on $A$. If, now, the area of $A$ is reduced to a point, then the stress at this point on the surface can be considered to be
+\begin{equation*}
+    \bm{s} = \lim_{A \to 0} \frac{\bm{T}}{A},
+\end{equation*}
+provided the limit exists.
 
 \begin{figure}
     \centering
@@ -86,16 +97,7 @@ To motivate the definition of the stress tensor $\bm{\sigma}$, we consider a bod
     \label{fig:StressFreebody}
 \end{figure}
 
-We therefore begin by defining the stress acting on an arbitrary surface element. In \cref{eq:simpleStress}, $\Sigma$ represents the average stress acting on an area $A$; however, we wish to define a local quantity $\bm{\sigma}$ and consider the spatial direction of the stress. To do so, we consider the average force vector $\bm{F}$ acting on $A$ to define,
-\begin{equation*}
-    \bm{s}_{avg} = \frac{\bm{F}}{A},
-\end{equation*}
-where $\bm{s}$ denotes the average stress vector acting on $A$. If, now, the area of $A$ is reduced to a point, then the stress at this point on the surface can be considered to be
-\begin{equation*}
-    \bm{s} = \lim_{A \to 0} \frac{\bm{F}}{A}.
-\end{equation*}
-
-To generalise this to any point $P$ in a material can consider making a free-body cut, passing through the point $P$ as shown in \cref{fig:StressFreebody}b. The stress vector $\bm{s}_1$ now denotes the stress acting on the left-hand side of the cut body at $P$. If instead we take an alternative cut, then at the same point $P$ we obtain an alternative stress vector $\bm{s}_2$ (see \cref{fig:StressFreebody}c). In fact, there is an infinite set of cuts we can take through $P$, each with a corresponding stress vector $\bm{s}_i$. This means that each such cut gives only partial information about the {\textit state of stress} at $P$. 
+To generalise this to any point $P$ in a material, we can consider making a free-body cut, passing through the point $P$ as shown in \cref{fig:StressFreebody}b. The stress vector $\bm{s}_1$ now denotes the stress acting on the left-hand side of the cut body at $P$. If instead we take an alternative cut, then at the same point $P$ we obtain an alternative stress vector $\bm{s}_2$ (see \cref{fig:StressFreebody}c). In fact, there is an infinite set of cuts we can take through $P$, each with a corresponding stress vector $\bm{s}_i$. This means that each such cut gives only partial information about the {\textit state of stress} at $P$. 
 
 \begin{figure}
     \centering
@@ -106,7 +108,7 @@ To generalise this to any point $P$ in a material can consider making a free-bod
 
 To resolve this, we consider the tetrahedron shown in \cref{fig:CauchyTetrahedron}, made up of three planes parallel to the coordinate axis and a 4\textsuperscript{th} incline plane which connects them \cite{housner1966analysis}. We will denote the planes using their normal vectors $\bm{n}_i$, and the corresponding stress vectors $\bm{s}^{(\bm{n}_i)}$, where $i$ can take the value $x,\;y,\;z$ or $n$ as denoted in \cref{fig:CauchyTetrahedron}. The stress vectors $\bm{s}^{(\bm{n}_x)}$, $\bm{s}^{(\bm{n}_y)}$, $\bm{s}^{(\bm{n}_z)}$, and $\bm{s}^{(\bm{n}_n)}$ do not necessarily point parallel to their corresponding planes' normal vector. If we consider the tetrahedron to be infinitesimally small, then the sum of the forces on the tetrahedron must be $\bm{0}$, from Newton's second law. That is 
 \begin{equation*}
-    \bm{s}^{(\bm{n}_n)} dA_n + \bm{s}^{(\bm{n}_x)} dA_x + \bm{s}^{(\bm{n}_y)} dA_y + \bm{s}^{(\bm{n}_z)} dA_y = \bm{0}.
+    \bm{s}^{(\bm{n}_n)} dA_n + \bm{s}^{(\bm{n}_x)} dA_x + \bm{s}^{(\bm{n}_y)} dA_y + \bm{s}^{(\bm{n}_z)} dA_z = \bm{0}.
 \end{equation*}
 The area of each of the faces can then be related by projecting the inclined plane onto the perpendicular faces,
 \begin{align*}
@@ -114,50 +116,49 @@ The area of each of the faces can then be related by projecting the inclined pla
     dA_y = (\bm{n}_n \cdot \bm{n}_y)dA_n &= l_{yn}dA_n \\
     dA_z = (\bm{n}_n \cdot \bm{n}_z)dA_n &= l_{zn}dA_n
 \end{align*}
-where $\bm{n}_i$ denotes the normal to each plane. By considering the limit as the size of the tetrahedron shrinks, we obtain
+where $\bm{n}_i$ denotes the normal to each plane and $l_{xn},l_{yn},l_{xz}$ are the direction cosines between $\bm{n}_n$, and the coordinate axes. By considering the limit as the size of the tetrahedron shrinks, we obtain
 \begin{equation}
     \bm{s}^{(\bm{n}_n)} = -\left( l_{xn}\bm{s}^{(\bm{n}_x)} + l_{yn}\bm{s}^{(\bm{n}_y)} + l_{zn}\bm{s}^{(\bm{n}_z)} \right).
 \end{equation}
-The stress vector $\bm{s}^{(\bm{n}_n)}$ at the point $P$ is therefore realised by the stress on the inclined plane. Thus, we conclude that, in general, in three dimensions, the state of stress at a point is described by three stress vectors. 
+The stress vector $\bm{s}^{(\bm{n}_n)}$ at the point $P$ is therefore realised by the stress on the inclined plane. Thus, we conclude that, in general, in three dimensions, the state of stress at a point is described by three stress vectors acting on three mutually orthogonal planes through that point. 
 
 While for simplicity we have taken these three vectors to be resolved relative to the coordinate axis, an equivalent description of the stress can be obtained by resolving relative to any three distinct planes which intersect at a point $P$. The rank 2-tensor Cauchy stress tensor $\sigma_{ij}$ can then be constructed by decomposing each stress vector relative to the normal of the defining planes, such that
 \begin{equation}
     s^{(\bm{n}_k)}_i = \sigma_{ij}{n_{k,j}}.
 \end{equation}
-where $\bm{s}^{(\bm{n}_k)}$ denotes the stress vector $\bm{s}$ acting on the plane with normal $\bm{n}_k$. A significant choice of planes defines the principal directions of stress: a set of three mutually orthogonal normals for which the stress tensor $\sigma_{ij}$ is diagonal. For any state of stress, it can be shown that such a principle basis always exists.
+where $\bm{s}^{(\bm{n}_k)}$ denotes the stress vector $\bm{s}$ acting on the plane with normal $\bm{n}_k$. A significant choice of planes defines the principal directions of stress: a set of three mutually orthogonal normals for which the stress tensor $\sigma_{ij}$ is diagonal. For any state of stress, it can be shown that such a principal basis always exists.
 
 If we wish to relate the stress tensor $\epsilon_{ij}$ to the stress tensor $\sigma_{ij}$, then we can consider a linear relation (Hooke's Law) between stress and strain,
 \begin{equation}
-    \sigma_{ij} = C_{ijkm}\epsilon_{ij}.
+    \sigma_{ij} = C_{ijkm}\epsilon_{km}.
 \end{equation}
 where $C_{ijkm}$ is a four-tensor often called the stiffness or Elasticity tensor. By further applying the constraint that the material must deform isotropically, this reduces to 
 \begin{equation}
     \sigma_{ij} = \lambda \epsilon_{kk}\delta_{ij} + 2G\epsilon_{ij},
 \end{equation}
 where $\lambda$ and $G$ are moduli (the Lam\'e constants).
-This assumption assumes that the stress of a material is solely determined by the deformation of the material, as in a compressible material. If the material is also incompressible, then the stress must be rewritten as 
+This relation assumes that the stress is fully determined by the strain, as appropriate for a linearly elastic, compressible material. If the material is also incompressible, then the stress must be rewritten as 
 \begin{equation}
     \sigma_{ij} + p\delta_{ij} = 2G\epsilon_{ij},
     \label{eq:incompressableStress}
 \end{equation}
-where $p$ is the pressure.
+where $p$ is the pressure that enforces the incompressibility constraint.
 
-Finally, when analysing the response of the materials in this thesis, we discuss the bulk stress $\bm{\Sigma}$ and strain $\bm{\epsilon}$. Although this distinction can be a source of confusion, we keep the same notation for the local and bulk strain tensors $\bm{\epsilon}$, under the assumption that the material deforms homogenously. In the cases where this assumption breaks down, the implications of this will be discussed. By contrast, we distinguish between local and bulk measures of stress. The bulk stress tensor is denoted by $\Sigma$ to emphasise that it represents a spatially averaged quantity, which may differ from the local stress tensor $\sigma$ due to non-linear effects such as plasticity, which we discuss next.
+Finally, when analysing the response of the materials in this thesis, we discuss the bulk stress $\bm{\Sigma}$ and strain $\bm{\epsilon}$. Although this distinction can be a source of confusion, we keep the same notation for the local and bulk strain tensors $\bm{\epsilon}$, under the assumption that the material deforms approximately homogeneously. In the cases where this assumption breaks down, the implications of this will be discussed. By contrast, we distinguish between local and bulk measures of stress. The bulk stress tensor is denoted by $\Sigma$ to emphasise that it represents a spatially averaged quantity, which may differ from the local stress tensor $\sigma$ due to non-linear effects such as plasticity resulting in partial heterogeneity, which we discuss next.
 
 \subsection{Plasticity} \label{sec:Plasticity}
+The description of stress and strain introduced above implicitly assumes an elastic response, such that the stress is a single-valued, path-independent function of only the instantaneous strain. However, for many soft materials, this assumption breaks down once the strain exceeds a characteristic elastic limit. Beyond this point, irreversible microscopic rearrangements occur. These manifest macroscopically as plastic deformation or fracture, introducing dissipation and history dependence in the system's response.
 
-The description of stress and strain introduced above implicitly assumes an elastic response, such that the stress is a single-valued function of only the instantaneous strain. However, for many soft materials, this assumption breaks down once the deformation exceeds a characteristic elastic limit. Beyond this point, irreversible microscopic rearrangements occur, which manifest macroscopically as plastic deformation or fracture, introducing dissipation and history dependence in the system's response.
-
-In contrast to elastic deformation, where, upon unloading, all strain is recovered and the material returns to its initial configuration, plastic deformation causes a permanent, irreversible change in the material's configuration. Consequently, upon unloading, the material does not return to its original state, and the material retains a memory of its deformation history in its new configuration. Microscopically theses deformation may correspond to particle rearrangements \cite{falk_dynamics_1998,maloney_amorphous_2006,tanguy_plastic_2006,gartner_nonlinear_2016}, dislocation \cite{shiba_plastic_2010, ispanovity_avalanches_2014,ben-zion_earthquake_1993}, or bond rupture \cite{tauber_stretchy_2022,ducrot_toughening_2014,Creton50th2017,vernereyStatisticalDamageMechanics2018,gong_why_2010} which all reduce the total stored elastic energy.  Rheologically, the sum of these microscopic deformations manifests as stress relaxation, yielding, and flow under sustained loading. 
+In contrast to elastic deformation, where, upon unloading, all strain is recovered and the material returns to its initial configuration, plastic deformation causes a permanent, irreversible change in the material's configuration. Consequently, upon unloading, the material does not return to its original state, but instead retains a memory of its deformation history in its new configuration. Microscopically these deformation may correspond to particle rearrangements \cite{falk_dynamics_1998,maloney_amorphous_2006,tanguy_plastic_2006,gartner_nonlinear_2016}, dislocation \cite{shiba_plastic_2010, ispanovity_avalanches_2014,ben-zion_earthquake_1993}, or bond rupture \cite{tauber_stretchy_2022,ducrot_toughening_2014,Creton50th2017,vernereyStatisticalDamageMechanics2018,gong_why_2010} all of which reduce the total stored elastic energy.  Rheologically, the sum of these microscopic deformations manifests as stress relaxation, yielding, and flow under sustained loading. 
 
 \subsubsection{Shear Banding} \label{sec:ShearBanding}
-An emergent phenomenon of many of these soft elastoplastic materials is the formation of \quotes{shear banding}, whereby the materials' flow profile separates into multiple co-existing macroscopic regions with different strain rates \cite{divoux_stress_2011,divouxTransientShearBanding2010,divoux_yielding_2012,grenard_timescales_2014,gibaud_heterogeneous_2010,kurokawa_avalanche-like_2015}. Such banding has been extensively observed experimentally in a range of amorphous solids \cite{berretNonlinearRheologyTelechelic2001,berretTransientRheologyWormlike1997,besselingShearBandingFlowConcentration2010,diatEffectShearLyotropic1993,divouxShearBandingComplex2016,divouxTransientShearBanding2010,goyonSpatialCooperativitySoft2008,rogersAgingYieldingShear2008,tapadiaBandingEntangledPolymer2006}. In many cases the bands heal over time, leaving a homogeneously fluidised state; however, in some materials shear banding is implicated in catastrophic failure \cite{falk_deformation_2011,bonn_yield_2017,larson_instabilities_1992,OlmstedShearBanding2008,bonnDelayedFractureInhomogeneous1998,tabuteauMicroscopicMechanismsBrittleness2009}. Harder materials, such as polymeric and metallic glasses, show similar phenomenology, yielding via strain localisation and shear banding \cite{greer_shear_2013,hufnagel_deformation_2016,boyce_large_1988,anand_large-deformation_2012,chen_mechanical_2008}. Here the formation of shear bands is typically associated with brittle yielding catastrophic failure, as the material rapidly fractures along the band. 
+An emergent phenomenon of many of these soft elastoplastic materials is the formation of \quotes{shear bands}, whereby the materials' flow field separates into multiple co-existing macroscopic regions with different strain rates \cite{divoux_stress_2011,divouxTransientShearBanding2010,divoux_yielding_2012,grenard_timescales_2014,gibaud_heterogeneous_2010,kurokawa_avalanche-like_2015}. Such banding has been extensively observed experimentally in a range of amorphous solids~\cite{berretNonlinearRheologyTelechelic2001,berretTransientRheologyWormlike1997,besselingShearBandingFlowConcentration2010,diatEffectShearLyotropic1993,divouxShearBandingComplex2016,divouxTransientShearBanding2010,goyonSpatialCooperativitySoft2008,rogersAgingYieldingShear2008,tapadiaBandingEntangledPolymer2006}. In many cases the bands heal over time, leading to a homogeneously fluidised state; however, in some materials shear banding is implicated in catastrophic failure~\cite{falk_deformation_2011,bonn_yield_2017,larson_instabilities_1992,OlmstedShearBanding2008,bonnDelayedFractureInhomogeneous1998,tabuteauMicroscopicMechanismsBrittleness2009}. Harder materials, such as polymeric and metallic glasses, show similar phenomenology, yielding via strain localisation and shear banding under large imposed stresses~\cite{greer_shear_2013,hufnagel_deformation_2016,boyce_large_1988,anand_large-deformation_2012,chen_mechanical_2008}. Here the formation of shear bands is typically associated with brittle yielding, as the material rapidly fractures along the band. 
 
-While the resultant steady state flow of these materials has been widely studied, with a unifying picture of locally correlated plastic events form avalanches of activity across the system \cite{liuDrivingRateDependence2016,puosi_time-dependent_2014,linDensityShearTransformations2014,tanguyPlasticResponse2D2006,lin_scaling_2014,maloney_amorphous_2006}, the onset of these bands remains debated. This initial onset has been widely studied with approaches such as a replica field theory \cite{jaiswalMechanicalYieldAmorphous2016}, as a critical point in an elastoplastic model \cite{linCriticalityApproachFailure2015,liuCreepDynamicsAthermal2018}, as a percolation transition \cite{shrivastavYieldingGlassShear2016}, within artificially seeded particle simulations \cite{ozawaRareEventsDisorder2022}, and experimentally \cite{aimeMicroscopicDynamicsFailure2018,aimeStresscontrolledShearCell2016,knowltonMicroscopicViewYielding2014}.
+While the resultant steady state flow of these materials has been widely studied, with a unifying picture of locally correlated plastic events forming avalanches of activity across the system \cite{liuDrivingRateDependence2016,puosi_time-dependent_2014,linDensityShearTransformations2014,tanguyPlasticResponse2D2006,lin_scaling_2014,maloney_amorphous_2006}, the onset of these bands remains debated. This initial onset has been widely studied with approaches such as a replica field theory \cite{jaiswalMechanicalYieldAmorphous2016}, as a critical point in an elastoplastic model \cite{linCriticalityApproachFailure2015,liuCreepDynamicsAthermal2018}, as a percolation transition \cite{shrivastavYieldingGlassShear2016}, within artificially seeded particle simulations \cite{ozawaRareEventsDisorder2022}, and experimentally \cite{aimeMicroscopicDynamicsFailure2018,aimeStresscontrolledShearCell2016,knowltonMicroscopicViewYielding2014}.
 
+As most of the work in this thesis concerns the fracture of networks, we will generally use \quotes{shear banding} to denote localised bands of high deformation, as is done in metallic glasses. In places where it is important to distinguish between these localised bands and the macroscopic regions of different strain rates, and it is not clear from context, we will do so.
 
-As most of the work in this thesis concerns the fracture of networks, we will generally use \quotes{shear banding} to denote localised bands of high deformation, as is done in metallic glasses. In places where it is important to distinguish between these localised bands and the macroscopic regions of different strain rate, and it is not clear from context, we will do so.
-
+\todo[inline]{Polished up to here}
 
 \section{Rheological protocol} \label{sec:Protocols}
 There are many methods and protocols by which flow can be induced in a material. In this work, we adopt a set of strain-controlled deformation protocols. That is, at any point during our simulation, a prescribed bulk deformation is imposed, and the resulting stress response is measured. Alternatively, in a stress-controlled protocol, a fixed (though potentially time-dependent) stress is imposed, and the material is allowed to deform accordingly \cite{macoskoRheologyPrinciplesMeasurements1994}. 
