@@ -1,4 +1,6 @@
-\chapter{Fatigue} \label{sec:Fatigue}
+% \chapter{Fatigue} \label{sec:Fatigue}
+
+\newpage
 
 \def\l{l}
 \def\ltilde{\tilde{l}}
@@ -26,7 +28,7 @@ We are looking at fatigue quasi-static oscillatory shear. This means the globall
 
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/Figures/SineWave.tikz}
+    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/RandomWalk/SineWave.tikz}
     \caption{Plot of one cycle of oscillatory shear. The shaded regions mark the areas of the cycle in which elements can yield.}
     \label{fig:SineWave}
 \end{figure}
@@ -57,7 +59,7 @@ is the Eshelby stress propagator. The propagator $\hat{\mathbb{ G }}_{ xy }$ is 
 
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/Figures/Prop.pdf}
+    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/RandomWalk/Prop.pdf}
     \caption{{\bf left)} Example propagator yielding from 1 to 0 at $N=1024$. {\bf Right)} Convergence of two important parameters from $\mathbb{G}_{xy}$. The value at the origin $\Origin$ and norm $\Norm$.}
     \label{fig:Propogator}
 \end{figure}
@@ -79,7 +81,7 @@ The parameter of interest to this work is $c^*$, which corresponds to the number
 
 \begin{figure}[hbtp]
     \centering
-    \includegraphics[width=0.8\linewidth]{chapters/Fatigue/Figures/SimpleFirstCycle.pdf}
+    \includegraphics[width=0.8\linewidth]{chapters/Fatigue/RandomWalk/SimpleFirstCycle.pdf}
     \caption{Illustration of how the distribution of $l$ changes in the first cycle. We display the distribution for several key points in the cycle a)-f).}
     \label{fig:SimpleFirstCycle}
 \end{figure}
@@ -98,7 +100,7 @@ Following the same assumptions, subsequent cycles follow the same principles, an
 
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=0.95\linewidth]{chapters/Fatigue/Figures/YieldRegions.pdf}
+    \includegraphics[width=0.95\linewidth]{chapters/Fatigue/RandomWalk/YieldRegions.pdf}
     \caption{A plot of distinct yielding regions for an arbitrary distribution $\rho(\ltilde)$. The green region highlights the absorbed elements which are unable to be strained enough to yield. Elements in the blue regions can yield and map to each other; an element yielding from the positive blue region will lose enough stress to appear in the negative blue region. Elements which yield from the yellow regions enter the green absorbed region.  Elements in the red region have sufficiently large $|\tilde l|$ to yield twice within half a strain cycle; these elements continue yielding until they end up in a blue or red region.}
     \label{fig:YieldRegions}
 \end{figure}
@@ -116,7 +118,7 @@ In the discussions so far, we have considered a simple model whereby when an ele
 
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=0.95\linewidth]{chapters/Fatigue/Figures/OscillatorRegions.pdf}
+    \includegraphics[width=0.95\linewidth]{chapters/Fatigue/RandomWalk/OscillatorRegions.pdf}
     \caption{An illustration of a single element yielding. In black we plot the trivial cases where each element yields to $0$, before restoring force balance. The blue line illustrates a case where, when an element yields, it instead resets its strain to a new local strain chosen at random from a Gaussian distribution $\lw$. {\bf a)} plots $\ltilde$ for a single element in both cases across the first five cycles. {\bf b)} extracts $\ltilde$ stroboscopically at the start of each cycle. Dotted lines are there to guide the eye and do not represent the actual trends in $\ltilde$.}
     \label{fig:OscillatorRegions}
 \end{figure}
@@ -125,7 +127,7 @@ However, as stated in Concept 3, when an element yields, it instead resets its s
 
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/Figures/RandomWalks.pdf}
+    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/RandomWalk/RandomWalks.pdf}
     \caption{Random walks observed in Elasto-plastic simulations. {\bf a)} Blue like plots a random walk observed for the last element in a system which ends up absorbing. {\bf b)} A pair of random walks in a yielding system. The blue element oscillates as a result of the post-hop yielding. This is coupled to the absorbed orange element through stress propagation, resulting in it leaving the absorbed region. {\bf c)} A collection of random walks across many systems. {\bf d)} The standard deviation of the displacement of each random walk.}
     \label{fig:RandomWalks}
 \end{figure}
@@ -140,7 +142,7 @@ Motivated by the discussion above and the data presented in \cref{fig:1Osc}, we 
 
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/Figures/1Osc.pdf}
+    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/RandomWalk/1Osc.pdf}
     \caption{The final number of elements left in the oscillating just before the system reaches its end-state. We plot a sample of cases for when the system {\bf a)} yields or {\bf b)} absorbs. Data is plotted for $l_0=0.075$, $\lw=0.02$ and $N=1024$. }
     \label{fig:1Osc}
 \end{figure}
@@ -157,7 +159,7 @@ While this sequence of steps may appear complicated, from the perspective of the
 
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/Figures/rho(l)_Examples.pdf}
+    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/RandomWalk/rho(l)_Examples.pdf}
     \caption{Probability density $\rho(\ltilde_0)$ of the initial value $\ltilde_0$ for each random walk. The distributions are constructed from more than 5000 simulations that terminate in a random-walk regime, with $\ltilde_0$ extracted at the end of the first cycle after only one element remains.}
     \label{fig:rho(l)_examples}
 \end{figure}
@@ -228,7 +230,7 @@ As a starting point, we take the samples shown from \cref{fig:rho(l)_examples} a
 
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/Figures/Ctilde_overlays.pdf}
+    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/RandomWalk/Ctilde_overlays.pdf}
     \caption{Fits of the one- and two-boundary-condition models. We show two datasets from the full elastoplastic simulations: \emph{Simulation}, which corresponds to the subset of runs contributing the initial values $\tilde{\ell}_0$ to the distributions in \cref{fig:rho(l)_examples}, and \emph{All data}, which includes all simulations that resulted in a valid random walk. The two boundary solution takes the first 1000 terms of the Fourier series. We also plot a two-boundary solution with a Robin boundary on the left-hand side with $\kappa$ approximately equivalent to a $50:50$ absorption/reflection chance (solved using a finite difference model).}
     \label{fig:CtildeBC}
 \end{figure}
@@ -279,7 +281,7 @@ and take the average over $\rho(\ltilde_1)$ to get $\tilde{c}$. We plot the resu
 
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/Figures/Double_l0_comparison.pdf}
+    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/RandomWalk/Double_l0_comparison.pdf}
     \caption{Comparison of two timescales taken from numerical data and semi-analytical results.}
     \label{fig:TwoStepComp}
 \end{figure}
@@ -288,7 +290,7 @@ The overall trends match qualitatively with the curves diverging at around the s
 
 \begin{figure}[hbt]
     \centering
-    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/Figures/rho(l)_Comparison.pdf}
+    \includegraphics[width=0.9\linewidth]{chapters/Fatigue/RandomWalk/rho(l)_Comparison.pdf}
     \caption{Probability density $\rho(\ltilde_0)$ of the initial value $\ltilde_0$ for each random walk. The distributions are constructed from 2500 simulations that terminate in a random-walk regime, with $\ltilde_1$ extracted at the end of the first cycle after only one element remains. In red we plot the analytical prediction of $\rho(\ltilde_1)$ from our model with two absorbing boundaries.}
     \label{fig:rho(l)_Comparison}
 \end{figure}
