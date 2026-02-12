@@ -9,10 +9,14 @@
 
 \section{Introduction}
 
+\begin{itemize}
+    \item Need a section of absorption in EP models
+\end{itemize}
+
 \section{Methodology}
 \begin{itemize}
     \item Consider the low Reynolds limit, where inertia is negligible 
-    \item We define a lattice of $i=1,2,\ldots,N_x$ by $j=1,2,\ldots,N_y$
+    \item We define a lattice of $i=1,2,\ldots,N_x$ by $j=1,2,\ldots,N_y$, and take $N_x=N_y=N$ for simplicity.
     \item Each lattice site/element is considered to be a mesoscopic region of the material, typically approximately the size of a rearrangement event (bond or cluster of particles)
     \item Each element has a local strain $l$, a corresponding local shear stress $\mu l$, and a local yield energy $E$.
     \item The material is assumed to undergo a globally applied bulk strain $\gamma$, which is assumed to be applied affinely to the material.
@@ -27,9 +31,59 @@
     \begin{enumerate}
         \item Between plastic events, the strain of each element affinely follows the globally applied strain $\gamma$, corresponding to elastic loading with $\dot{l}=\dot{\gamma}$
         \item Work in units where the elastic constant $\mu=1$ and $E=1$ such that the critical strain $l_c = \pm 1$
-        \item The plastic event forces a rearrangement of particles; the system is not in force balance, which needs to be reimposed 
+        \item The plastic event forces a rearrangement of particles; the system is not in force balance, which needs to be reimposed. This is done by yielding the element and applying force balance using \cref{eq:eshelbyReal}.
+        \item Define the propogator here, make it clear the constant at $\hat{G}[0,0] = -1$ such that the total lost stress is conserved.
+        \item define both $Origin$ and $\Norm$ here for use later.
+        \begin{figure}[hbt]
+            \centering
+            \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Diagrams/Prop.pdf}
+            \caption{}
+        \end{figure}
+        \item We assign the inital distribtuion of local strains $l$ from a gaussian distribution of width $l_0$. We then immediatly impose force balance on the system which has the effect of scaling the distribution of local strains by a factor $\Norm$.
     \end{enumerate}
+    \item We then apply an oscillatory shear strain $\gamma(t) = \gammaMax \sin(\omega t)$, with rate $\dot{\gamma}(t) = \omega \gammaMax \cos(\omega t)$, and observe the evolution of the system.
+    \item We concider the rate where $\omega \to 0$ such that the system is always in a quasi-static state, and the system is allowed to relax after each plastic event.
+    \item Describe Implementation of jumping to next plastic event and then evolving any avalances. 
+    \item define macrosopic shear stress
+    \[\Sigma = \frac{\mu}{2}\sum_{i=1}^{N_x}\sum_{j=1}^{N_y} l_{ij}.\]
 \end{itemize}
+
+\section{Shear Startup}
+\begin{itemize}
+    \item I think we need to discuss shear startup here, as it gives some background to each half cycle.
+    \todo[inline]{Either make or reference Fig2a from pollard paper}
+    \item As $l_0$ increases, the system becomes more ductile and the failure strain decreases.
+    \item Systems ultimatly fail through shear banding where a region of the material, which is more akin to failures in metalic glasses over the coexistance of macrosopic bands of different strain rates.
+    \item We ultimatly do not resolve the system any further once shear banding occurs, concidering only the path to failure or absorption.
+\end{itemize}
+
+\section{Elasto-Plastic Model Results}
+\begin{figure}
+    \missingfigure[figwidth=\textwidth]{failure times as a function of $\gamma_0$ and $l_0$}
+\end{figure}
+
+\begin{figure}
+    \missingfigure[figwidth=\textwidth]{Endstate plots determing immediate absorption, delayed absorption, and failure}
+\end{figure}
+
+\begin{figure}
+    \missingfigure[figwidth=\textwidth]{Survival function split between absorption and failure}
+\end{figure}
+
+\section{Robustnuss to $l_w$ and $N$}
+
+\begin{figure}
+    \centering
+    \begin{subfigure}[t]{0.45\linewidth}
+        \missingfigure[figwidth=\textwidth]{failure times as a function of $\gamma_0$ and $l_0$ for different $l_w$}
+    \end{subfigure}
+    \begin{subfigure}[t]{0.45\linewidth}
+        \missingfigure[figwidth=\textwidth]{failure times as a function of $\gamma_0$ and $l_0$ for different $N$}
+    \end{subfigure}
+\end{figure}
+
+\section{Path to a single oscillation: Random Walk in Strain Space}
+
 
 
 \input{chapters/Fatigue/RandomWalk}
