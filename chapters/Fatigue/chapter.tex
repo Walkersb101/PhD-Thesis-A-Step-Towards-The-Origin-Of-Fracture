@@ -125,6 +125,7 @@
         {\bf a)} The $95^\mathrm{th}$ percentile failure cycle $C^*_{95\%}$ as a function of imposed strain. Results are shown for system sizes $N = 128, 256, 512, 1024$, indicated in blue, orange, green, and red, respectively. \newline
         {\bf b)} The corresponding distribution of end states. 
         }
+        \todo[inline]{I'm extending the Smaller N lines to the full width. Will be done by early next week}
         \label{fig:EPSizeDependence}
     \end{figure}
     \item in \cref{fig:EPSizeDependence} we plot both the failure cycle $C^*$ and end states. 
@@ -148,24 +149,88 @@
     \end{figure}
     \item We see an overall trend for runs which end in yielding, where systems which take a long time to yield end up with only a few active elements remaining
     \item This is definitely true for runs which end in absorption, which have very few elements remaining. 
-    \item If we consider the extreme case where there is only one element remaining, then the system is very simple and becomes solely driven by a random walk determined by the post hop distribution (we will discuss in \label{sec:EPSimpleModel})
-    \begin{figure}
+    \item If we consider the extreme case where there is only one element remaining, then the system is very simple and becomes solely driven by a random walk determined by the post hop distribution (we will discuss in \cref{sec:EPSimpleModel})
+    \begin{figure}[hp]
         \centering
         \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Figures/RandomWalks.pdf}
-        \caption{Stroboscopic evolution of element lengths measured at the start of each cycle. 
+        \caption{Stroboscopic evolution of element lengths measured at the start of each cycle. $\tilde{C}$ indicates the number of cycles after the random walk is assumed to have begun.\newline
         {\bf a)} Example trajectory of the oscillating element in a realisation that ultimately absorbs. The red dashed line denotes the absorbing boundary; the blue trajectory crosses this threshold, leading to absorption. \newline
         {\bf b)} Example trajectory in a realisation that yields. The blue curve shows the oscillating element, while the orange curve shows a neighbouring element. In this case, the neighbouring element crosses the red boundary first, triggering yielding. \newline
         {\bf c)} Ensemble of trajectories of the oscillating element, each terminated at the first crossing of the absorbing boundary (red dashed line). \newline
         {\bf d)} Standard deviation of the oscillating element displacement, $\sigma(\Delta l_{\mathrm{osc}})$, as a function of cycle number, demonstrating the expected diffusive scaling.}
-\end{figure}
+        \label{fig:RandomWalkExamples}
+    \end{figure}
+    \item We illustrate an example of a random walk observed in \cref{fig:RandomWalkExamples} for {\bf a)} an absorbing case and  {\bf b)} a yielding case. 
+    \item These random walks occur when observed stroboscopically at the start of the cycle. Here, yielding has occurred twice, and $\ltilde$ has shifted by a small amount. This random walk continues to evolve until the element enters the absorbed region, where it is unable to yield (subject to no other elements yielding). Once all elements enter this region.
+    \item Alternatively, as a result of this walk and stress propagation, a neighbouring element which follows a coupled random walk can be displaced from the absorbed region and, as a result, begin to yield. This commonly initiates a shear banding event. 
+    \item We illustrate an ensemble of such random walks in {\bf c)}, resulting from an oscillating element, and plot the standard deviation of the ensemble's displacement in {\bf d)}, which grows as expected, proportional to $\sqrt{\tilde{C}}$.
 \end{itemize}
 
+\section{Origin of Random Walk} \label{sec:EPSimpleModel}
+\begin{itemize}
+    \item Concerning a simple model where elements are diffusely scattered across the system, then the subsequent iterations resulting from stress propagation are small. Therefore, elements can, in the simplest model, be considered independent.
+    \begin{figure}[hbtp]
+        \centering
+        \includegraphics[width=0.8\linewidth]{chapters/Fatigue/RandomWalk/SimpleFirstCycle.pdf}
+        \caption{Illustration of how the distribution of $l$ changes in the first cycle. We display the distribution for several key points in the cycle a)-f).}
+        \label{fig:SimpleFirstCycle}
+    \end{figure}
+    \item To construct a simple model, we first consider the evolution of an element in a single cycle. Use \cref{fig:SimpleFirstCycle} to explain the evolution of elements and how they flip signs in each half cycle.
+    \begin{figure}[hbtp]
+        \centering
+        \includegraphics[width=0.8\linewidth]{chapters/Fatigue/RandomWalk/OscillatorRegions.pdf}
+        \caption{Illustration of how the distribution of $l$ changes in the first cycle. We display the distribution for several key points in the cycle a)-f).}
+        \label{fig:RegionsLw}
+    \end{figure}
+    \item Use \cref{fig:RegionsLw} to explain where elements yield based on their value of $\tilde{l}$. The green region is the absorbed region, the blue the active region, and elements in the yellow region yield to the absorbed state. Follow this up with a discussion on how $l_w$ slightly changes this picture as the dynamics are not entirely deterministic.
+    \item Finally, describe the origin of the apparent random walk using \cref{fig:RegionsLw}b.
+    \item For systems which go onto yield, we therefore can consider a first passage time problem. 
+    \item To the authors’ knowledge, no analytical solution exists for $\rho(\tilde{c})$ for a process with continuous spatial states but discrete time steps. In these cases, it is common to instead consider a continuous-time approximation, which can be modelled as a diffusion process of the form
+    \[
+        \frac{\partial c(x, t)}{\partial t} = D \frac{\partial^2 c(x, t)}{\partial x^2}
+    \]
+    where $D$ is a diffusion coefficient and $c(x,t)$ the concentration.
+    \item We construct D based on the expected values $\mathbb{E}\left[(X_n - X_0)^2\right] = n \sigma^2 = \mathbb{E}\left[(x(t) - x_0)^2\right] = 2 D t$.
+    \item we consider the case where there is a single absorbing BC on the green-blue boundary, two absorbing BC on the green-blue and blue-yellow boundary. Additionally, adding a robin boundary on the green-blue boundary to account for not perfectly absorbing BC on that side. The comparisons are plotted in \cref{fig:CtildeDistributions}.
+    \begin{figure}[h]
+        \centering
+        \includegraphics[width=0.9\linewidth]{chapters/Fatigue/RandomWalk/Ctilde_Models.pdf}
+        \caption{Cumulative distribution functions (CDFs) of $\tilde{C}$ comparing the empirical simulation distribution with model predictions (dashed curves: one-boundary, two-boundary, and two-boundary with Robin condition). \newline
+        Parameters $N=1024$, $l_w=0.02$. {\bf Left:} $l_0=0.0375$,$\gamma_0=0.885$. {\bf Right:} $l_0=0.075$, $\gamma_0=0.826$.}
+        \label{fig:CtildeDistributions}
+    \end{figure}
+    \item The one BC case clearly does not fit the data, with the two BC solutions providing a better fit. The use of a Robin boundary condition models the data better than the purely absorbing case, but does not provide a qualitative match to the data. 
+\end{itemize}
 
+\section{A simple Model}
+\begin{itemize}
+    \item While it might be possible to construct a set of boundary conditions which match the physics observed, we instead decide to use a Monte-Carlo method. We run the same simulation dynamics as in the full Elastoplastic, but instead do not resolve the propagator. Instead, when an element yields, it instead reduces its local stress $l$ by a factor $\Origin$. This models the dynamics of a diffuse set of elements but allows for the same initial starting configurations to be considered. 
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.9\linewidth]{chapters/Fatigue/RandomWalk/Combined_Comparison_Plot.pdf}
+        \caption{Comparison of simulations using the full elastoplastic mode (solid) and diffuse model without propagation (dashed) for the case of absorption. \newline
+        {\bf a)} Comparison of absorption time $C^*$ a function of annealing parameter $l_0=0.025,0.0375,0.05,0.075,0.1,0.125$ from right to left. \newline
+        {\bf b)} Mean activity (fraction of elements yielding) versus cycle for highlighted parameter sets in {\bf a)}. \newline
+        Parameters: $N_x=1024$, $l_w=0.02$}
+        \label{fig:SimpleModelComparison}
+    \end{figure}
+    \item This simple model shows remarkable similarities to the full simulation, particularly at low levels of annealing. Here, elements act independently of each other, with the process being driven by a set of independent random walks. 
+    \item This indicated that with increasing system size, the time to absorb increases, as the systems can support more of these random walks. As the system only absorbs once all the walks have ended 
+\end{itemize}
 
+\section{Conclusion}
+\begin{itemize}
+    \item We have modelled the delayed failure and absorption of these systems under large amplitude oscillatory shear.
+    \item Captured the transition from absorption to yielding across a range of annealing 
+    \item Quantified the delayed failure/absorption observed in these systems as a function of annealing, post-hop and System size. 
+    \item Captured the trend to diffuse behaviour as the system progresses to a higher number of cycles. 
+    \item Began to quantify this diffuse behaviour both analytically and using a very simple method that captures the overall behaviour of the system accurately. 
+\end{itemize}
 
-
-\section{A Simple Model} \label{sec:EPSimpleModel}
-
+\subsection{Further Work}
+\begin{itemize}
+    \item Extend the simple model to try and explore if yielding can be modelled in this context. Early work shown in \cref{fig:RandomWalkExamples}b shows that a neighbour in the absorbed region, close enough that it can be displaced from the absorbed region, is enough in brittle systems to force the system to yield. 
+\end{itemize}
 
 \begin{subappendices}
 

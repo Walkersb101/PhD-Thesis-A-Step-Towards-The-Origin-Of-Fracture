@@ -62,12 +62,13 @@ or to linear order, in terms of the deformation gradient tensor $\bm{F}$ as
         \epsilon = \frac{1}{2}\left( \bm{F}^T + \bm{F} \right) - \bm{I}.
 \end{equation}
 
-The components of $\epsilon_{ij}$ can be separated into two classes: the diagonal components of $\epsilon_{ij}$ describe normal strains, while the off-diagonal elements represent the shear strains. \cref{fig:typesOfStrain} illustrates one diagonal and one off-diagonal element. 
+The components of $\epsilon_{ij}$ can be separated into two classes: the diagonal components of $\epsilon_{ij}$ describe normal strains, while the off-diagonal elements represent the shear strains. 
+\cref{fig:typesOfStrain} illustrates one diagonal and one off-diagonal element. 
 
 \begin{figure}[h]
     \centering
-    \includegraphics[width=.95\linewidth]{chapters/2-Background/Figures/TypesOfStrain.tikz}
-    \caption{Figure showing extensional and simple shear. The dashed outline indicates the undeformed unit cell, which is taken to be of unit length.}
+    \includegraphics[width=.95\linewidth]{chapters/2-Background/Figures/StrainModes.pdf}
+    \caption{Illustration of the two fundamental strain modes in 2D: extensional strain ($\epsilon$), where the element changes length, and shear strain ($\gamma$), where the element changes shape through angular distortion.}
     \label{fig:typesOfStrain}
 \end{figure}
 
@@ -101,8 +102,9 @@ To generalise this to any point $P$ in a material, we can consider making a free
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.6\linewidth]{chapters/2-Background/Figures/CauchyTetrahedron.tikz}
-    \caption{}
+    % \includegraphics[width=0.6\linewidth]{chapters/2-Background/Figures/CauchyTetrahedron.tikz}
+    \includegraphics[width=0.5\linewidth]{chapters/2-Background/Figures/cauchy_tetrahedron.pdf}
+    \caption{Cauchy tetrahedron used to derive the traction vector on an arbitrary plane from force equilibrium, relating stress components on coordinate planes to the stress acting on an inclined plane.}
     \label{fig:CauchyTetrahedron}
 \end{figure}
 
@@ -172,8 +174,9 @@ The two forms of deformation we will consider in this thesis are: simple shear a
 
 \begin{figure}[h]
     \centering
-    \missingfigure[]{Figure illustrating Pure and simple shear}
-    \caption{Figure illustrating Pure and simple shear. {\bf a)} Illustration of simple shear applied along the $xy$ plane. {\bf b)} Illustration of pure shear with elongational axis along the $y$-axis.}
+    % \missingfigure[]{Figure illustrating Pure and simple shear}
+    \includegraphics[width=0.8\textwidth]{chapters/2-Background/Figures/StrainTypes.pdf}
+    \caption{Figure illustrating Pure and simple shear. {\bf left)} Illustration of pure shear with elongational axis along the $y$-axis. {\bf right)} Illustration of simple shear applied along the $xy$ plane.}
     \label{fig:simpleAndPureShear}
 \end{figure}
 
