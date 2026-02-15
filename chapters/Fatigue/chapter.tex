@@ -27,7 +27,7 @@
         \item Upon yielding a element adopts a new local strain chosen at random from a Gaussian distribution of width $l_w$.
         \item The elastic stress lost from a plastic event is redistributed to neighbouring blocks through the Eshelby stress propagator (defined in \cref{sec:EshelbyPropogator})
     \end{enumerate}
-    \item Breakdown rules more precisely
+    \item Break down rules more precisely
     \begin{enumerate}
         \item Between plastic events, the strain of each element affinely follows the globally applied strain $\gamma$, corresponding to elastic loading with $\dot{l}=\dot{\gamma}$
         \item Work in units where the elastic constant $\mu=1$ and $E=1$ such that the critical strain $l_c = \pm 1$
@@ -40,7 +40,7 @@
             \caption{{\bf Left)} Average stress redistribution around a shear transformation in $2D$ {\bf Right)} Convergence of two important parameters from $\mathbb{G}_{xy}$ with grid size $N$. The value at the origin $\Origin$ and norm $\Norm$.}
             \label{fig:PropogatorConvergence}
         \end{figure}
-        \item We assign the initial distribution of local strains $l$ from a Gaussian distribution of width $l_0$. We then immediately impose force balance on the system, which has the effect of scaling the distribution of local strains by a factor $\Norm$.
+        \item We assign the initial distribution of local strains $l$ from a Gaussian distribution of width $l_0$, this sets the level of annealing. We then immediately impose force balance on the system, which has the effect of scaling the distribution of local strains by a factor $\Norm$.
     \end{enumerate}
     \item Introduce the concept of $\ltilde$, the deviation in $l$ from the bulk strain $\gamma$.
     \item We then apply an oscillatory shear strain $\gamma(t) = \gammaMax \sin(\omega t)$, with rate $\dot{\gamma}(t) = \omega \gammaMax \cos(\omega t)$, and observe the evolution of the system.
@@ -63,7 +63,7 @@
     \item I think we need to discuss the shear startup here, as it gives some background to each half cycle.
     \todo[inline]{Either make or reference Fig2a from pollard paper}
     \item As $l_0$ increases, the system becomes more ductile, and the failure strain decreases.
-    \item Systems ultimately fail through shear banding, where a region of the material, which is more akin to failures in metallic glasses, over the coexistence of macroscopic bands of different strain rates.
+    \item Systems ultimately fail through shear banding, which is more akin to failures in metallic glasses, rather than the coexistence of macroscopic bands of different strain rates.
     \item We ultimately do not resolve the system any further once shear banding occurs, considering only the path to failure or absorption.
 \end{itemize}
 
@@ -101,7 +101,7 @@
     \end{figure}
     \item For completeness, we show a set of the corresponding survival functions for several $l_0$ and $\gamma_0$. In a) and b) for $l_0=0.025$, we note the vertical form of the distribution indicating the large number of early failures, where $\approx 95\%$ of samples either immediately absorb or fail. However, of those $5\%$ who do survive the first cycle, see note exponential scaling of $C^*$. 
     \item As $l_0$ increase we see a transition in the absorbed curves from immediate to delayed behaviour. As both $l_0$ and correspondingly $\gamma_0$ increases we see the minimum time to absorption increases; however, the tails of the distribution remain exponential. 
-    \item The corresponding pattens occurs in failure where there exist regimes at high enough $l_0$ where yielding only occurs in a delayed fashion.
+    \item The corresponding patterns occur in failure where there exist regimes at high enough $l_0$ where yielding only occurs in a delayed fashion.
     \item The exponential tails here indicate that failure can occur at any number of cycles; however, with a ever decreasing likelihood 
 \end{itemize}
 
@@ -116,8 +116,8 @@
         \label{fig:FailureCyclelw}
     \end{figure}
     \item In \cref{fig:FailureCyclelw} we plot the number of cycles to failure at $l_0=0.075$ and $N=1024$ for various widths of post-hop distributions. Here we note an effect with smaller values of $l_w$ corresponding to more delayed failures/absorption. 
-    \item The overall shapes of the distribution appear consistent, indicating the dynamics of the system are not dependent on this parameter. The characteristic timescale of the system does depend on this. 
-    \item In the insert, we plot the same data rescaled parametrisation of the data showing the failure cycle scales as the square of the maximum strain up to a constant.
+    \item The overall shapes of the distribution appear consistent, indicating the dynamics of the system are not dependent on this parameter. However, the characteristic timescale of the system does depend on this. 
+    \item In the insert, we plot the same data using a rescaled parametrisation showing the failure cycle scales as the square of the maximum strain up to a constant.
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.99\textwidth]{chapters/Fatigue/Figures/N.pdf}
@@ -129,14 +129,14 @@
         \label{fig:EPSizeDependence}
     \end{figure}
     \item in \cref{fig:EPSizeDependence} we plot both the failure cycle $C^*$ and end states. 
-    \item In a) we show that the time to absorb both decreases with decreasing system size, but also the strain, which this occurs increases (as seen in Pollard's paper). This is effectively how well the initial distribution is sampled.
+    \item In a) we show that the time to absorb both decreases with decreasing system size, but also the strain, which increases (as seen in Pollard's paper). This is effectively how well the initial distribution is sampled.
     \item The cycles to failure results appear to shift in strain, however reach a maximum at about the same value. Indicating different physics occurring for absorbed vs yielding cases.
     \item b) is just there for completeness, I find it easier to understand with it. 
 \end{itemize}
 
 
 
-\section{Path to a single oscillation: Random Walk in Strain Space}
+\section{Path to a single oscillation}
 
 \begin{itemize}
     \item If we consider the final number of active elements just before the point of failure. 
@@ -204,7 +204,7 @@
 
 \section{A simple Model}
 \begin{itemize}
-    \item While it might be possible to construct a set of boundary conditions which match the physics observed, we instead decide to use a Monte-Carlo method. We run the same simulation dynamics as in the full Elastoplastic, but instead do not resolve the propagator. Instead, when an element yields, it instead reduces its local stress $l$ by a factor $\Origin$. This models the dynamics of a diffuse set of elements but allows for the same initial starting configurations to be considered. 
+    \item While it might be possible to construct a set of boundary conditions which match the physics observed, we instead decide to use a Monte-Carlo method. We run the same simulation dynamics as in the full Elastoplastic, but instead do not resolve the propagator. Instead, when an element yields, it reduces its local stress $l$ by a factor $\Origin$. This models the dynamics of a diffuse set of elements but allows for the same initial starting configurations to be considered. 
     \begin{figure}
         \centering
         \includegraphics[width=0.9\linewidth]{chapters/Fatigue/RandomWalk/Combined_Comparison_Plot.pdf}
@@ -230,6 +230,7 @@
 \subsection{Further Work}
 \begin{itemize}
     \item Extend the simple model to try and explore if yielding can be modelled in this context. Early work shown in \cref{fig:RandomWalkExamples}b shows that a neighbour in the absorbed region, close enough that it can be displaced from the absorbed region, is enough in brittle systems to force the system to yield. 
+    \item Is it possible to model the BC as a diffusion process to get an analytical form of the failure time.
 \end{itemize}
 
 \begin{subappendices}
