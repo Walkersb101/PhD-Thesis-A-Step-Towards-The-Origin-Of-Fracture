@@ -1,4 +1,4 @@
-\chapter{A Slow Walk to the end: Failure in Oscillatory shear} \label{sec:Fatigue}
+\chapter{Absorption and Shear Banding in Oscillatory Shear} \label{sec:Fatigue}
 
 \def\l{l}
 \def\ltilde{\tilde{l}}
@@ -54,7 +54,12 @@
         \item Yielded areas are where the system results in a shear band.
         \item Absorbed area where the system has no element which can yield.
     \end{itemize}
-
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.99\linewidth]{chapters/Fatigue/Figures/YieldCountSnapshots.pdf}
+        \caption{Maps of sites that have yielded at least once (black) and sites that have never yielded (white), shown at the end of cycles 1, 4, 16, 64, and 256 (left to right). \newline {\bf Top row:} an absorbing state. {\bf Bottom row:} a yielding state. \newline Both systems reach their respective end states during cycle 256.  Each map has system size $N_x \times N_y=256\times256$, $l_0=0.075$, $\gamma_0=0.835$, $l_w=0.02$}
+        \label{fig:YieldCountSnapshots}
+    \end{figure}
     \item State default parameters $N=1024$, $l_w=0.02$
 \end{itemize}
 
