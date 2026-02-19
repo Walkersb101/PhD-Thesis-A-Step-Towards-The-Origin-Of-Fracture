@@ -78,7 +78,7 @@ This work aims to explore how the simple mesoscopic model described in the prece
 \begin{figure}[bt]
     \centering
     \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/Result Figures/StressStrainCurves.pdf}
-    \caption[Stress-strain curves of a packing-derived network.]{Stress-strain curves of a packing-derived network. $\Sigma$ is the $yy$ component of the viral stress tensor defined in \cref{sec:viralStress} and $\epsilon$ the engineering strain along the $y$ direction defined as $\epsilon=L_y/L_{y,0}-1$. \newline 
+    \caption[Stress-strain curves of a packing-derived network.]{Stress-strain curves of a packing-derived network. $\Sigma$ is the $yy$ component of the virial stress tensor defined in \cref{sec:virialStress} and $\epsilon$ the engineering strain along the $y$ direction defined as $\epsilon=L_y/L_{y,0}-1$. \newline 
     {\bf a)} Single sacrificial network (red solid line) and single matrix network (blue solid line). {\bf b)} Composite double network (black solid line), with the contributions of the component sacrificial network (red dashed line) and matrix network (blue dotted line) shown separately. {\bf Inset:} modulus $G = d\Sigma / d\epsilon$ at small strain.\newline 
     Parameters: $M=3.0, \mu_m=0.2, \lambda_m=3.0$.}
     \label{fig:JammedStressStrain}
@@ -149,8 +149,8 @@ This relaxation redistributes some of the stress previously carried by the broke
     \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/Result Figures/Propogators.pdf}
     \caption[Heat map of Stress propagation in Double Network]{Stress propagation to neighbouring sacrificial bonds from the breakage of a sacrificial bond at the origin. We display each quantity for the case of a single sacrificial network in the left column and a double network with $M=5$ in the right column. In the double network cases, we take $\mu_m = 0.2$. Each quantity is averaged over all sacrificial bonds at each grid square. \newline
     Colour scales show the change due to stress propagation of the: \newline
-    {\bf Top panels:} $yy$ component of the viral stress $\Sigma_{yy}$. \newline
-    %{\bf Middle panels:} $xx$ component of the viral stress $\Sigma_{xx}$. \newline
+    {\bf Top panels:} $yy$ component of the virial stress $\Sigma_{yy}$. \newline
+    %{\bf Middle panels:} $xx$ component of the virial stress $\Sigma_{xx}$. \newline
     {\bf Bottom panels:} sacrificial bond stress $\delta\sigma_{sb} = \mu_s\left(l/l_0 -1 \right)$.
     }
     \label{fig:JammedPropogators}
@@ -181,7 +181,7 @@ Optimally, to satisfy properties I) and II) discussed earlier, the matrix must b
 
 To quantify the reduction in the stress propagated to the neighbouring bonds caused by the matrix, we plot the average change in stress resulting from the failure of the first sacrificial bond during deformation in \cref{fig:JammedPropogators}. To construct a detailed enough mapping, we plot binned averages taken over an ensemble of $100$ network realisations. Each system is strained as described in \cref{sec:NetworkQuasistatic} until the failure of the first sacrificial bond. To capture the resultant propagation of stress after this failure event, we now deviate from the method outlined in \cref{sec:NetworkQuasistatic}. The dynamics are resolved using the same overdamped equation; however, following the failure of the first sacrificial bond, we disallow any further bond failures, and the system is then allowed to relax to a local energy minimum. Each network is then rotated such that the two nodes of the broken bonds lie vertically aligned along the $y$ axis. Bonds are then assigned a bin based on the position of their centre relative to the centre of the broken bond, which is defined to be at $(0,0)$, and the reported quantities are taken as the average value over all bonds in each bin. 
 
-The change in the $yy$ component of the virial stress tensor (defined in \cref{sec:viralStress}) is plotted in \cref{fig:JammedPropogators}a-b for the case of single sacrificial networks and double networks with $M=5$. The plot clearly shows the quadrupolar structure characteristic of the Eshelby stress propagator discussed in \cref{sec:EshelbyPropogator}.
+The change in the $yy$ component of the virial stress tensor (defined in \cref{sec:virialStress}) is plotted in \cref{fig:JammedPropogators}a-b for the case of single sacrificial networks and double networks with $M=5$. The plot clearly shows the quadrupolar structure characteristic of the Eshelby stress propagator discussed in \cref{sec:EshelbyPropogator}.
 % We note that $\delta \Sigma_{yy}$ also exhibits a strongly negative stress relaxation region along the vertical axis, not typically present in the Eshelby propagator. We hypothesise that this feature arises from the non-isotropic nature of our networks at a strain $\epsilon \gg 0$. 
 
 % Correspondingly, panels c)-d) plot the $\delta \Sigma_{xx}$ and show the loading of neighbouring bonds along the $x$ axis, as discussed previously as a driving cause of macroscopic failure. 
@@ -256,7 +256,7 @@ In \cref{sec:SquareAppendix} we briefly explore the role of prestretching bonds 
 \begin{figure}[hbt]
     \centering
     \includegraphics[width=0.9\linewidth]{chapters/DoubleNetworkFracture/Result Figures/StressStrainCurves_lowZ.pdf}
-    \caption[Stress-strain curves of a packing-derived network at low $z_m$.]{Stress-strain curves of a packing-derived network at a low matrix connectivity $z_m=3.5$. $\Sigma$ is the $yy$ component of the viral stress tensor defined in \cref{sec:viralStress} and $\epsilon$ the engineering strain along the $y$ direction defined as $\epsilon=L_y/L_{y,0}-1$. \newline 
+    \caption[Stress-strain curves of a packing-derived network at low $z_m$.]{Stress-strain curves of a packing-derived network at a low matrix connectivity $z_m=3.5$. $\Sigma$ is the $yy$ component of the virial stress tensor defined in \cref{sec:virialStress} and $\epsilon$ the engineering strain along the $y$ direction defined as $\epsilon=L_y/L_{y,0}-1$. \newline 
     {\bf a)} Single sacrificial network (red solid line) and single matrix network (blue solid line). {\bf b)} Composite double network (black solid line), with the contributions of the component sacrificial network (red dashed line) and matrix network (blue dotted line) shown separately. {\bf Inset:} modulus $G = d\Sigma / d\epsilon$ at small strain.\newline 
     Parameters: $M=3.0, \mu_m=0.2, \lambda_m=3.0$, $z_s=5.42$, $z_m=3.5$.}
     \label{fig:LowZStressStrain}

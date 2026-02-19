@@ -7,6 +7,14 @@
 \def\Origin{\mathbb{G}_{xy}(\bm{0})}
 \def\Norm{||\mathbb{G}_{xy}||_2}
 
+\section{Figure todo}
+\begin{enumerate}
+    \item Widen \cref{fig:FailureCyclel0}
+    \item Add $l_0$ labels to \cref{fig:SurvivalDistrbutions}
+    \item Put slices through \cref{fig:EPSizeDependence}
+    \item Try an alternative to a scatter plot in \cref{fig:Pathto1}. plot mean and std?
+\end{enumerate}
+
 \section{Introduction}
 
 \begin{itemize}
@@ -21,38 +29,35 @@
     \item Each element has a local strain $l$, a corresponding local shear stress $\mu l$, and a local yield energy $E$.
     \item The material is assumed to undergo a globally applied bulk strain $\gamma$, which is assumed to be applied affinely to the material.
     \item Each element is assumed to follow the same set of rules
-    \begin{enumerate}
-        \item Each element is assumed to strain elastically by default ($l \to l + \gamma$, where $\gamma$ is the globally applied strain).
+    \begin{itemize}
+        \item Between plastic events, the strain of each element affinely follows the globally applied strain $\gamma$, corresponding to elastic loading.
         \item Each element has a local yield criterion ($\frac{1}{2} \mu l^2=E$) which determines the onset of a plastic event.
-        \item Upon yielding a element adopts a new local strain chosen at random from a Gaussian distribution of width $l_w$.
-        \item The elastic stress lost from a plastic event is redistributed to neighbouring blocks through the Eshelby stress propagator (defined in \cref{sec:EshelbyPropogator})
-    \end{enumerate}
-    \item Break down rules more precisely
-    \begin{enumerate}
-        \item Between plastic events, the strain of each element affinely follows the globally applied strain $\gamma$, corresponding to elastic loading with $\dot{l}=\dot{\gamma}$
-        \item Work in units where the elastic constant $\mu=1$ and $E=1$ such that the critical strain $l_c = \pm 1$
+        \item Work in units where the elastic constant $\mu=1$ and $E=0.5$ such that the critical strain $l_c = \pm 1$
+        \item Upon yielding a element adopts a new local strain chosen at random from a Gaussian distribution of width $l_w$ and mean $0$.
         \item The plastic event forces a rearrangement of particles; the system is not in force balance, which needs to be reimposed. This is done by yielding the element and applying force balance using \cref{eq:eshelbyReal}.
-        \item Define the propagator here, make it clear the constant at $\hat{G}[0,0] = -1$ such that the total lost stress is conserved.
-        \item define both $Origin$ and $\Norm$ here for use later.
-        \begin{figure}[hbt]
-            \centering
-            \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Diagrams/Prop.pdf}
-            \caption{{\bf Left)} Average stress redistribution around a shear transformation in $2D$ {\bf Right)} Convergence of two important parameters from $\mathbb{G}_{xy}$ with grid size $N$. The value at the origin $\Origin$ and norm $\Norm$.}
-            \label{fig:PropogatorConvergence}
-        \end{figure}
-        \item We assign the initial distribution of local strains $l$ from a Gaussian distribution of width $l_0$, this sets the level of annealing. We then immediately impose force balance on the system, which has the effect of scaling the distribution of local strains by a factor $\Norm$.
-    \end{enumerate}
+        \item The elastic stress lost from a plastic event is redistributed to neighbouring blocks through the Eshelby stress propagator (defined in \cref{sec:EshelbyPropogator})
+        \item Define the propagator here, make it clear the constant at $\hat{G}[0,0] = -1$, such that the stress that would be lost at a single element is instead spread across the system.
+    \end{itemize}
+    \item define both $\Origin$ and $\Norm$ here for use later.
+    \begin{figure}[hbt]
+        \centering
+        \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Diagrams/Prop.pdf}
+        \caption{{\bf Left)} Average stress redistribution around a shear transformation in $2D$ {\bf Right)} Convergence of two important parameters from $\mathbb{G}_{xy}$ with grid size $N$. The value at the origin $\Origin$ and norm $\Norm$.}
+        \label{fig:PropogatorConvergence}
+    \end{figure}
+    \item We assign the initial distribution of local strains $l$ from a Gaussian distribution of width $l_0$, this sets the level of annealing. We then immediately impose force balance on the system, which has the effect of scaling the distribution of local strains by a factor $\Norm$.
     \item Introduce the concept of $\ltilde$, the deviation in $l$ from the bulk strain $\gamma$.
-    \item We then apply an oscillatory shear strain $\gamma(t) = \gammaMax \sin(\omega t)$, with rate $\dot{\gamma}(t) = \omega \gammaMax \cos(\omega t)$, and observe the evolution of the system.
-    \item We consider the rate where $\omega \to 0$ such that the system is always in a quasi-static state, and the system is allowed to relax after each plastic event.
+    \item We impose cyclic shear deformation with amplitude $\gammaMax$.
+    \item The deformation is applied quasi-statically: the strain is incremented in small steps, and after each increment, the system is fully relaxed to mechanical equilibrium, allowing any plastic events to complete before further loading.
+    
     \item Describe the implementation of jumping to the next plastic event and then evolving any avalanches. 
     \item define macrosopic shear stress
-    \[\Sigma = \frac{\mu}{2}\sum_{i=1}^{N_x}\sum_{j=1}^{N_y} l_{ij}.\]
+    \[\Sigma = \mu\sum_{i=1}^{N_x}\sum_{j=1}^{N_y} l_{ij}.\]
 
     \item Need to explicitly define end states of the system. 
     \begin{itemize}
-        \item Yielded areas are where the system results in a shear band.
-        \item Absorbed area where the system has no element which can yield.
+        \item Yielded states are where the displayed in a shear band.
+        \item Absorbed states where the system has no element which can yield.
     \end{itemize}
     \begin{figure}
         \centering
@@ -61,25 +66,29 @@
         \label{fig:YieldCountSnapshots}
     \end{figure}
     \item State default parameters $N=1024$, $l_w=0.02$
+    \item Reiterate the $l_0$ is an important parameter
 \end{itemize}
 
 \section{Shear Startup}
 \begin{itemize}
     \item I think we need to discuss the shear startup here, as it gives some background to each half cycle.
-    \todo[inline]{Either make or reference Fig2a from pollard paper}
-    \item As $l_0$ increases, the system becomes more ductile, and the failure strain decreases.
+    \todo[inline]{Make Figure from Pollard paper - already have data}
+    \item As $l_0$ increases at fixed system size $N$, the system becomes more ductile, and the failure strain decreases.
+    \item As $N$ increases, the system also becomes more brittle
     \item Systems ultimately fail through shear banding, which is more akin to failures in metallic glasses, rather than the coexistence of macroscopic bands of different strain rates.
-    \item We ultimately do not resolve the system any further once shear banding occurs, considering only the path to failure or absorption.
+    \todo[inline]{This needs discussing - Do I need to include it?}
 \end{itemize}
 
 \section{Elasto-Plastic Model Results}
 
 \begin{itemize}
+    \item We ultimately do not resolve the system any further once shear banding occurs, considering only the path to failure or absorption.
     \item We begin with the basic physics. As the system oscillates, it will end up in one of two states. Either it will shear band as a result of collective plastic events. Or will absorb with no elements able to yield.
+    \todo[inline]{Discuss max $l_0$ with Suzanne}
     \begin{figure}[h!]
         \centering
         \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Figures/EndStates.pdf}
-        \caption{Distribution of final simulation end states as a function of imposed strain. For each strain amplitude on the $x$-axis, stacked bars show the fraction of realisations classified according to two binary criteria: whether failure occurs on the first cycle (Immediate) or at later cycles (Delayed), and whether the system ultimately becomes absorbed or yields. Results are shown for four values of the annealing parameter $l_0$ (arranged vertically), with smaller $l_0$ corresponding to better-annealed samples. Each bar represents the statistical outcome over all simulations at the corresponding $(\gamma, l_0)$ pair. For each value of $\gamma_0$ and $l_0$, the distributions are made up of at least $10{,}000$ runs, each run with a different value of the random number seed.}
+        \caption{Distribution of simulation end states as a function of imposed strain. For each strain amplitude on the $x$-axis, stacked bars show the fraction of realisations classified according to two binary criteria: whether failure occurs on the first cycle (immediate) or at later cycles (delayed), and whether the system ultimately becomes absorbed or yields. Results are shown for four values of the annealing parameter $l_0$ (arranged vertically), with smaller $l_0$ corresponding to better-annealed samples. Each bar represents the statistical outcome over all simulations at the corresponding $(\gamma, l_0)$ pair. For each value of $\gamma_0$ and $l_0$, the distributions are made up of at least $10{,}000$ runs, each run with a different value of the random number seed.}
         \label{fig:EndStates}
     \end{figure}
     \item If we consider the extreme cases:
@@ -87,13 +96,14 @@
         \item If $\gamma_0$ is not large enough, such that $|\ltilde_{ij} \pm \gamma_0| < l_c \forall \{ i = 1, \ldots, N_x;\; j = 1, \ldots, N_y \}$ then no yielding happens.
         \item If $\gamma_0$ is too large, then the system acts like the shear startup cases and shear bands during the first cycle. 
     \end{itemize}
-    \item it is in the intermediate regime where delayed failure and absorption can occur over many cycles, we illustrate this in \cref{fig:EndStates}.
-    \item For each level of annealing, we transition from always absorbing in the first cycle, to delaying this absorption as elements $\ltilde$ decay towards $0$. We then see yielding occurring at a late number of cycles, before the system always forms a shear band in the first cycle. 
+    \item it is in the intermediate regime where delayed failure and absorption can occur over many cycles, we illustrate this in \cref{fig:EndStates}. This is the main focus of this work
+    \item For each level of annealing, we transition from always absorbing in the first cycle, to delaying this absorption as elements $\ltilde$ decay towards $0$ as we increase $\gamma_0$. We then see yielding occurring at a late number of cycles, before the system always forms a shear band in the first cycle. 
+    \todo[inline]{Need to work out how to describe this better - some notation? + quantify it?}
     \item As the level of annealing increases, the strain point at which the system immediately forms a shear band decreases as predicted in the shear startup case, and the range of maximum strains where delayed failures and absorption occurs increase.
     \begin{figure}[h!]
         \centering
         \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Figures/Decay.pdf}
-        \caption{Failure cycle $C^*$ as a function of the annealing parameter $l_0$. Smaller values of $l_0$ correspond to better annealed samples. We report the $95^\mathrm{th}$ percentile, $C^*_{95\%}$, defined as the cycle at which the survival distributions in \cref{fig:SurvivalDistrbutions} intersect the red threshold line. Results are shown for systems that yield, absorb, or exhibit both behaviours, indicated by solid, dotted, and dashed lines, respectively. For each value of $\gamma_0$ and $l_0$, the distributions are made up of at least $10{,}000$ runs, each run with a different value of the random number seed.}
+        \caption{Final cycle $C^*$ as a function of the annealing parameter $l_0$. Smaller values of $l_0$ correspond to better annealed samples. We report the $95^\mathrm{th}$ percentile, $C^*_{95\%}$, defined as the cycle at which the survival distributions in \cref{fig:SurvivalDistrbutions} intersect the red threshold line. Results are shown for systems that yield, absorb, or exhibit both behaviours, indicated by solid, dotted, and dashed lines, respectively. For each value of $\gamma_0$ and $l_0$, the distributions are made up of at least $10{,}000$ runs, each run with a different value of the random number seed.}
         \label{fig:FailureCyclel0}
     \end{figure}
     \item As we increase strain away from the immediate absorption cases, we see the delay in absorption correspondingly rise, peaking at a maximum strain, around where we begin to observe yielding occurring. Here we see yielding delayed to a long number of cycles, although occurring sooner than their absorbing counterparts. We show this in \cref{fig:FailureCyclel0}
@@ -101,25 +111,28 @@
     \begin{figure}[hp!]
         \centering
         \includegraphics[width=1.0\textwidth]{chapters/Fatigue/Figures/Survival.pdf}
-        \caption{Survival functions of the failure cycle $C^*$. Panels (a–h) show the survival probability $S(C^*)=1-F(C^*)$, conditioned on end state and annealing parameter. [{\bf a)}, {\bf c)}, {\bf e)}, {\bf g)}] corresponds to simulations that terminate via absorption, while the right column [{\bf b)}, {\bf d)}, {\bf f)}, {\bf h)}] corresponds to runs which yield. From top to bottom, rows correspond to increasing annealing parameter $l_0 = 0.025, 0.05, 0.075, 0.1$. Within each panel, multiple curves represent different imposed strain amplitudes, specified in the right column for each $l_0$.}
+        \caption{Survival functions of the termination cycle $C^*$, showing the fraction of initial seed values that remain active up to cycle $C^*$ before reaching an absorbing state ({\bf Left}) or a yielding state ({\bf Right}).
+        Panels (a–h) show the survival probability $S(C^*)=1-F(C^*)$, conditioned on end state and annealing parameter. From top to bottom, rows correspond to increasing annealing parameter $l_0 = 0.025, 0.05, 0.075, 0.1$. Within each panel, multiple curves represent different imposed strain amplitudes, specified in the right column for each $l_0$.}
         \label{fig:SurvivalDistrbutions}
     \end{figure}
     \item For completeness, we show a set of the corresponding survival functions for several $l_0$ and $\gamma_0$. In a) and b) for $l_0=0.025$, we note the vertical form of the distribution indicating the large number of early failures, where $\approx 95\%$ of samples either immediately absorb or fail. However, of those $5\%$ who do survive the first cycle, see note exponential scaling of $C^*$. 
     \item As $l_0$ increase we see a transition in the absorbed curves from immediate to delayed behaviour. As both $l_0$ and correspondingly $\gamma_0$ increases we see the minimum time to absorption increases; however, the tails of the distribution remain exponential. 
     \item The corresponding patterns occur in failure where there exist regimes at high enough $l_0$ where yielding only occurs in a delayed fashion.
-    \item The exponential tails here indicate that failure can occur at any number of cycles; however, with a ever decreasing likelihood 
+    \item The exponential tails here indicate that failure can occur at any number of cycles; however, with an ever-decreasing likelihood 
+    \todo[inline]{Extract Decay constant}
 \end{itemize}
 
 \section{Robustness to $l_w$ and $N$}
 
 \begin{itemize}
-    \item In our model so far, we have only considered the case where we have a fixed system size $N$ and post hop distribution $l_w$. We know from previous work that the system size $N$ affects the transition from brittle to ductile behaviour, which plays an important role in the physics we have seen. 
+    \item So far, we have only considered the case where we have a fixed system size $N$ and post hop distribution $l_w$. We know from previous work that the system size $N$ affects the transition from brittle to ductile behaviour, which plays an important role in the physics we have seen. 
     \begin{figure}[h]
         \centering
         \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Figures/lw.pdf}
-        \caption{Failure cycle $C^*$ as a function of the parameter $l_w$, with the annealing parameter fixed at $l_0 = 0.075$. We report the $95^\mathrm{th}$ percentile, $C^*_{95\%}$, defined as the cycle at which the survival distributions in \cref{fig:SurvivalDistrbutions} intersect the red threshold line. Results are shown for systems that yield, absorb, or exhibit both behaviours, indicated by solid, dotted, and dashed lines, respectively. The values of $l_w$ considered are $0.01, 0.02, 0.03, 0.04$. The insert shows a rescaled parametrisation of the data showing the failure cycle scales as the square of the maximum strain. For each value of $\gamma_0$ and $l_w$, the distributions are constructed from at least $10{,}000$ independent runs, each with a different random number seed.}
+        \caption{Final cycle $C^*$ as a function of the parameter $\gamma_0$, with the annealing parameter fixed at $l_0 = 0.075$. Multiple curves correspond to different values of $l_w$, increasing from top to bottom. We report the $95^\mathrm{th}$ percentile, $C^*_{95\%}$, defined as the cycle at which the survival distributions in \cref{fig:SurvivalDistrbutions} intersect the red threshold line. Results are shown for systems that yield, absorb, or exhibit both behaviours, indicated by solid, dotted, and dashed lines, respectively. The values of $l_w$ considered are $0.01, 0.02, 0.03, 0.04$. The insert shows a rescaling of the data showing the failure cycle scales approximately as the square of the maximum strain. For each value of $\gamma_0$ and $l_w$, the distributions are constructed from at least $10{,}000$ independent runs, each with a different random number seed.}
         \label{fig:FailureCyclelw}
     \end{figure}
+    \todo[inline]{Corrected comments up to here}
     \item In \cref{fig:FailureCyclelw} we plot the number of cycles to failure at $l_0=0.075$ and $N=1024$ for various widths of post-hop distributions. Here we note an effect with smaller values of $l_w$ corresponding to more delayed failures/absorption. 
     \item The overall shapes of the distribution appear consistent, indicating the dynamics of the system are not dependent on this parameter. However, the characteristic timescale of the system does depend on this. 
     \item In the insert, we plot the same data using a rescaled parametrisation showing the failure cycle scales as the square of the maximum strain up to a constant.
