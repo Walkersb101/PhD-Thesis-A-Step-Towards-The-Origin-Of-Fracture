@@ -439,13 +439,13 @@ Mainly biological networks, these networks are composed of semi-flexible fibres 
 \todo[inline]{Polished up to here}
 
 \subsection{Semi-Flexible Filaments} \label{sec:SemiFlexible}
-Fibres can be broadly classified into three regimes according to the ratio of their persistence length $l_p$ to their relevant contour length $l_c$ (for networks, this is typically the mean length between crosslinks). The persistence length quantifies the bending rigidity of the polymer and defines the length scales over which the fibres' filament orientation remains correlated. Intuitively, $l_p$ can be considered as the length scale at which thermal fluctuations of order $k_BT$ have a large enough effect to perturb the filament direction significantly. More formally, it is defined via the exponential decay of tangent–tangent correlations, such that $\langle \bm{t}(s) \cdot \bm{t} (0) \rangle = e^{-s/l_p}$, where $\bm{t}(s)$ is the tangent vector at a position $s$ along the fibre's backbone \cite{doi_theory_1988}. 
+Filaments can be broadly classified into three regimes according to the ratio of their persistence length $l_p$ to their relevant contour length $l_c$ (for networks, this is typically the mean length between crosslinks). The persistence length quantifies the bending rigidity of the polymer and defines the length scales over which the filament orientation remains correlated. Intuitively, $l_p$ can be considered as the length scale at which thermal fluctuations of order $k_BT$ have a large enough effect to perturb the filament direction. More formally, it is defined via the exponential decay of tangent–tangent correlations, such that $\langle \bm{t}(s) \cdot \bm{t} (0) \rangle = e^{-s/l_p}$, where $\bm{t}(s)$ is the tangent vector at a position $s$ along the filament backbone \cite{doi_theory_1988}. 
 
-For short or stiff segments where $l_p \gg l_c$, the filaments act like a rigid rod with its mechanical response governed by enthalpic stretching of molecular bonds. For segments where persistence length is much smaller than the contour length $l_p \ll l_c$, thermal fluctuations are sufficient to induce significant bending, and the polymer adopts a naturally coiled configuration. In this flexible region,  the mechanical response is primarily entropic: small extensions reduce the number of accessible conformations, generating an effective restoring force. At larger extensions, the response again becomes governed by the enthalpic stretching of molecular bonds, as in the stiff case. 
+For short or stiff segments where $l_p \gg l_c$, the filaments act like a rigid rod with its mechanical response governed by enthalpic stretching of molecular bonds. For segments where persistence length is much smaller than the contour length $l_p \ll l_c$, thermal fluctuations are sufficient to induce significant bending, and the filament adopts a naturally coiled configuration. In this flexible region, the mechanical response is primarily entropic: small extensions reduce the number of accessible conformations, generating an effective restoring force. At larger extensions, the response again becomes governed by the enthalpic stretching of molecular bonds, as in the stiff case. 
 
 Semi-flexible filaments, therefore, occupy an intermediate regime between these two limits, with a persistence length $l_p$ comparable to their contour length $l_c$. In this case, the filaments are stiff enough to avoid collapsing into a random coil but large enough that thermally induced bending remains relevant. 
 
-The standard model for semi-flexible filaments is the extensible worm-like chain (EWLC), in which each fibre is treated as a homogeneous cylindrical elastic rod of radius $r$ and Young's modulus $E$ \cite{doi_theory_1988}. The stretching rigidity of the rod is given by the product of its Young's modulus and cross-sectional area,
+The standard model for semi-flexible filaments is the extensible worm-like chain (EWLC), in which each filament is treated as a homogeneous cylindrical elastic rod of radius $r$ and Young's modulus $E$ \cite{doi_theory_1988}. The stretching rigidity of the rod is given by the product of its Young's modulus and cross-sectional area,
 \[
     \mu = E \pi r^2,
 \]
@@ -457,14 +457,14 @@ The Hamiltonian of a single filament can therefore be written as the sum of two 
 \begin{equation*}
     \mathcal{H} = \frac{\mu}{2} \int ds \left( \frac{dl}{ds} \right)^2 + \frac{\kappa}{2} \int ds \left| \frac{\partial \vec{t}}{\partial s} \right|^2
 \end{equation*}
-where $s$ is the arc length coordinate, $dl/ds$ the relative strain of the fibre at point $s$ and $\vec{t}$ the tangent vector. We neglect any energy contributions from the polymers twisting along their axis. 
+where $s$ is the arc length coordinate, $dl/ds$ the relative strain of the fibre at point $s$, and $\vec{t}$ the tangent vector. We neglect any energy contributions from the polymers twisting along their axis. 
 
 Numerically, we discretise each filament into a series of segments, following Ref.~\cite{mackintosh_elasticity_1995}, for which the Hamiltonian of each filament can be expressed as
 \begin{equation}
     \mathcal{H} = \frac{\mu}{2} \sum_{ij} \frac{( l_{ij} - l_{ij,0} )^2}{l_{ij,0}} + \frac{\kappa}{2} \sum_{ijk} \frac{( \theta_{ijk} - \theta_{ijk,0} )^2}{l_{ijk,0}}.
     \label{eq:NetworkHamiltonian}
 \end{equation}
-The first sum runs over all pairs $ij$ along the filament's backbone, while the second runs over all triplets $ijk$. Here $l_{ij}$ denotes the instantaneous segment length between nodes $i$ and $j$, and $\theta_{ijk}$ the instantaneous bond angle formed by node $i$,$j$, and $k$. Quantities with subscript $0$ denote their natural (not necessarily stress-free) values in the rest configuration. We further define $l_{ijk,0} = (l_{ij,0} + l_{jk,0})/2$.  
+The first sum runs over all pairs $ij$ along the filament backbone, while the second runs over all triplets $ijk$. Here $l_{ij}$ denotes the instantaneous segment length between nodes $i$ and $j$, and $\theta_{ijk}$ the instantaneous bond angle formed by nodes $i$,$j$, and $k$. Quantities with subscript $0$ denote their natural (not necessarily stress-free) values in the rest configuration. We further define $l_{ijk,0} = (l_{ij,0} + l_{jk,0})/2$. Multiple filaments can then be combined into a single network structure by connecting filaments at shared nodes, with the set of triplets $ijj$ updated accordingly. 
 
 In this work, we only consider central forces where bending rigidity is neglected; the cross-sectional area of the fibres is negligible relative to their length, such that their moment of inertia is small compared to their cross-sectional area.
 
@@ -518,7 +518,7 @@ with $\left\| \cdot\right\|_\infty$ denoting the $\infty$-norm, ensuring that th
 \begin{equation*}
     q = \left( \frac{1}{2\mathcal{E}} \right)^2
 \end{equation*}
-which restricted to the interval $[0.001, 1.2]$. . Two cases are then distinguished:
+which is restricted to the interval $[0.001, 1.2]$. Two cases are then distinguished:
 \begin{enumerate}
     \item $q \geq 1$: accept $\bm{r}_i (t + \delta t)$ as correct.
     \item $q < 1$: reject the step and restore the configuration to time $t$ before retrying with a smaller timestep.
@@ -527,13 +527,13 @@ In both cases, the time step is subsequently updated via $\delta t \gets q \delt
 
 \subsection{Rigidity} \label{sec:Rigidity}
 
-One of the fundamental properties of soft network materials, absent from conventional continuum descriptions, is rigidity. In these systems, mechanical stability emerges from a marginal balance between constraints and degrees of freedom at the filament level. Consequently, a network's connectivity, topology, and filament mechanics collectively determine whether it can support stress. In what follows, we distinguish between two complementary origins of rigidity in soft networks: constraint-based rigidity, governed primarily by network connectivity, and strain-induced rigidity, which emerges under applied deformation through non-linear dynamics in the network.
+One of the fundamental properties of soft network materials, absent from conventional continuum descriptions, is rigidity. In these systems, mechanical stability emerges from a marginal balance between constraints and degrees of freedom at the filament level. Consequently, a network's connectivity, topology, and filament mechanics collectively determine whether it can support stress. In the section that follows, we distinguish between two complementary origins of rigidity in soft networks: constraint-based rigidity, governed primarily by network connectivity, and strain-induced rigidity, which emerges under applied deformation through non-linear dynamics in the network.
 
 We begin by considering rigidity induced by the number of constraints present in the system. We therefore first examine idealised frameworks in which each connection in the network has a fixed length $l_{ij,0}$ and is allowed to freely hinge around its connecting nodes, with no bending penalty. This is equivalent to the limit of \cref{eq:NetworkHamiltonian} as $\mu \to \infty$ and $\kappa \to 0$. 
 
 Defining $\bm{r}_i(t)$ as the position of the $i$th node of the system, the network configuration is specified by the set of constraints
 \[|\bm{r}_i(t) - \bm{r}_j(t)|^2 = l_{ij,0}^2\] 
-imposed for all connected pairs $ij$. By differentiating with respect to $t$, yields the the compatibility conditions on the nodal velocities $\dot{\bm{r}}$,
+imposed for all connected pairs $ij$. By differentiating with respect to $t$, this yields a set of compatibility conditions on the nodal velocities $\dot{\bm{r}}$,
 \begin{equation} \label{eq:FrameworkRigidity}
     (\bm{\dot{r}}_i(t) - \bm{\dot{r}}_j(t))\cdot(\bm{r}_i(t) - \bm{r}_j(t))=0
 \end{equation}
@@ -549,7 +549,7 @@ Assuming the network is homogenous, we can define an average connectivity of the
 
 This statement of first-order rigidity holds only when the network forms a single rigid cluster, and the bond constraints are independent. However, this is often not the case in over-constrained systems. In such networks, states of self-stress can arise, defined as configurations of internal forces that satisfy force balance in the absence of external loading. Consequently, the effective relationship between degrees of freedom and constraints cannot, in general, be determined by simple counting of nodes and bonds \cite{calladine_buckminster_1978}.
 
-Often, this definition of first-order rigidity is overly restrictive and does not fully capture the behaviour of heterogeneous networks, for which the average connectivity $z$ alone is insufficient to determine rigidity. This limitation is particularly relevant for the disordered networks considered in later chapters. As a 
+Often, this definition of first-order rigidity is overly restrictive and does not fully capture the behaviour of heterogeneous networks, for which the average connectivity $z$ alone is insufficient to determine rigidity. This limitation is particularly relevant for the disordered networks considered in later chapters.
 
 As a simple example, consider attaching a single freely hanging node to an otherwise rigid network. This addition formally violates the strict definition of first-order rigidity, since the new node introduces a floppy mode. However, it does not alter the global load-bearing capacity of the original rigid cluster, which remains able to support stress. For such systems, it is necessary to consider not only the number of constraints but also their spatial organisation to determine global rigidity. In particular, sparsely connected networks below the isostatic point often consist of small rigid clusters embedded within floppy, under-constrained regions. In strongly heterogeneous networks, even systems with average connectivity exceeding the Maxwell threshold $z_c = 2d$ can reorganise such that global deformation occurs without requiring the extension of any bonds. Consequently, the ability of a network to sustain stress is governed by the existence of a system-spanning rigid cluster capable of supporting states of self-stress. For this reason, the onset of global rigidity is commonly described as a rigidity percolation transition \cite{zhang_correlated_2019}. This should be distinguished from geometrical percolation, which identifies the formation of a purely connected path between opposite boundaries of the network and does not, in general, imply mechanical rigidity \cite{kendall_percolation_2009,broadbent_percolation_1957}. In two dimensions, this problem has been well studied \cite{ellenbroek_rigidity_2015} through algorithms such as the pebble game \cite{jacobs_algorithm_1997, jacobs_generic_1995}. Extending these definitions to provide rigidity in dimensions higher than two dimensions is $NP$-hard \cite{abbott_generalizations_2008}.
 
@@ -559,36 +559,45 @@ While the definitions above provide a framework for characterising structural, o
 \end{equation*}
 where $\ddot{\bm{r}}_i(t)$ is the acceleration of a node $i$. This criterion allows rigidity to arise even when non-trivial solutions to \cref{eq:FrameworkRigidity} exist, through the stabilising effect of internal force balance in the material. It therefore represents a weaker notion of rigidity, but one that still permits the network to support states of self-stress. Such configurations are significantly more difficult to predict \cite{holmes-cerfon_almost-rigidity_2021}, as they emerge from nonlinear geometric and mechanical effects that have been extensively studied in the context of frameworks and tensegrities \cite{connelly_frameworks_2022,connelly_second-order_1996,calladine_first-order_1991}. Indeed, determining whether a general planar spring network is rigid is NP-hard \cite{abbott_generalizations_2008}, and consequently, no simple, universally applicable criterion exists for establishing rigidity.
 
-For systems composed of semi-flexible fibres with extensible bonds, both first- and second-order rigidity provide useful proxies for mechanical stability \cite{van_hecke_jamming_2010}. However, these kinematic criteria do not fully capture the complexity of the energy landscape explored by such networks. A more recent and intuitive perspective is provided by energetic rigidity \cite{damavandi_energetic_2022}, which characterises rigidity in terms of the local structure of the elastic energy landscape. In this framework, a configuration is defined to be rigid if any infinitesimal deformation increases the elastic energy, such that the network resides at a local minimum of the energy.
+For systems composed of semi-flexible filaments with extensible bonds, both first- and second-order rigidity provide useful proxies for mechanical stability \cite{van_hecke_jamming_2010}. However, these kinematic criteria do not fully capture the complexity of the energy landscape explored by such networks. A more recent and intuitive perspective is provided by energetic rigidity \cite{damavandi_energetic_2022}, which characterises rigidity in terms of the local structure of the elastic energy landscape. In this framework, a configuration is defined to be rigid if any infinitesimal deformation increases the elastic energy, such that the network resides at a local minimum of the energy.
 
-This viewpoint has yielded important insights into the mechanics of spring networks, vertex models, and jammed packings of soft particles \cite{damavandi_energetic_2022-1}, particularly in the presence of prestress. Nevertheless, even the energetic criterion does not provide a fully predictive framework for determining rigidity in highly disordered fibre networks.
+This viewpoint has yielded important insights into the mechanics of spring networks, vertex models, and jammed packings of soft particles \cite{damavandi_energetic_2022-1}, particularly in the presence of pre-stress. Nevertheless, even the energetic criterion does not provide a fully predictive framework for determining rigidity in highly disordered networks.
 
 \subsection{Fracture in networks}\label{sec:Fracture}
-\todo[inline]{This is not done, polished but not done}
+In \cref{sec:Plasticity}, the idea of plasticity in elastoplastic materials is discussed and is directly used in \cref{sec:Fatigue}. However, in \cref{sec:Ultradelayed,sec:DoubleNetworks} the role of fracture in network materials is examined in depth. In the context of the work considered in this thesis, the terms fracture and yielding are often used interchangeably to describe irreversible failure within the material. A key distinction between these mechanisms is that a fracture often carries the additional implication of a loss in structural connectivity or load-bearing capacity. In network materials, this distinction is particularly important because macroscopic failure typically emerges from the progressive scission of individual connections within a highly heterogeneous structure.
 
-In \cref{sec:Plasticity} the idea of plasticity in elastoplastic materials is discussed and used directly in \cref{sec:Fatigue}. In \cref{sec:Ultradelayed,sec:DoubleNetworks} the role of fracture in network materials is examined. In the context of the work considered in this thesis, the terms fracture and yielding are often used interchangeably to describe the irreversible failure of a bond. A key distinction is that fracture often carries the additional implication of a loss in structural connectivity or load-bearing capacity. In network materials, this distinction is particularly important because macroscopic failure typically emerges from the progressive scission of individual connections within a highly heterogeneous architecture.
+Generally, material failure is a complex problem, stemming from the large separation in length scales between the failure event (e.g. the rupture of a single bond) and the global failure of the material through the evolution of macroscopic cracks. At the microscopic level, fracture begins with the scission of individual connections between nodes that collectively grow into macroscopic failures \cite{Creton50th2017,ju_role_nodate,sanner_less_2025,higuchi_fracture_2018,bonnDelayedFractureInhomogeneous1998,teece_gels_2014}. However, there is generally no one-to-one mapping between the failure of a single bond and the resulting macroscopic fracture. Moreover, the range of time scales involved is also large: damage may accumulate slowly as the material is deformed, whereas macroscopic cracks can propagate rapidly across the system.
 
-Soft network materials, including elastomers, hydrogels, and fibre networks, can undergo very large deformations before visible macroscopic damage occurs \cite{gong_why_2010,tauber_microscopic_2020,Kim2021,ducrot_toughening_2014}. Nevertheless, ultimate failure is unavoidable and reflects processes spanning many length scales, from single-bond rupture to macroscopic crack propagation. Predicting failure is challenging because disorder in the network produces strongly heterogeneous stress fields, so the load is not shared uniformly among bonds \cite{Liang2016,tauber_microscopic_2020,tauber_sharing_2021,broedersz_modeling_2014,storm_nonlinear_2005,bouzidNetworkTopologySoft2018}.
+This challenge is further compounded by the inherent disorder present in real-world soft networks \cite{broedersz_modeling_2014,broedersz_criticality_2011,feng_nonlinear_2016}, which provides no natural route to simplifying the overall dynamics. Unlike ordered materials such as crystalline solids which possess an inherent repeating unit cell and well-defined defect states that act as nucleation sites for fracture, disordered networks lack any obvious structural signature by which such critical defects can be identified. Furthermore, this inherent disorder and the large non-affine rearrangements which occur in the networks often lead to heterogeneity in the stress at the level of individual filaments (i.e. the load is not distributed evenly across the network) \cite{Liang2016,tauber_microscopic_2020,tauber_sharing_2021,broedersz_modeling_2014,storm_nonlinear_2005,bouzidNetworkTopologySoft2018}. Here networks redistribute stress through non-affine rearrangements, often delaying catastrophic failure \cite{shivers_scaling_2019,tauber_sharing_2021,ducrot_structure_2015, tominaga_molecular_2007}. Consequently, predicting when and where a bond may fail is often challenging.
 
-To study fracture in network materials, it is common to assign a local rupture threshold to each bond, such that a connection fails once its extension exceeds a prescribed strain. In central-force network models, this is typically implemented by breaking bonds whose relative extension exceeds a critical fraction $\lambda = (l_{\rm break}-l_0)/l_0$ \cite{tauber_role_2020,dussi_athermal_2020}.
+Experimentally, it has been shown that soft network materials, including elastomers, hydrogels, and fibre networks, can undergo very large deformations before visible macroscopic damage occurs \cite{gong_why_2010,Kim2021,ducrot_toughening_2014,Creton50th2017,aimeMicroscopicDynamicsFailure2018,storm_nonlinear_2005}. Experimental methods such as small-angle neutron scattering \cite{ducrot_structure_2015,tominaga_molecular_2007}, birefringence imaging \cite{gong_double-network_2003,zheng_how_2021}, and light scattering \cite{porr_probing_2025} have helped to reveal how stress is distributed across the network. 
 
-At the microscopic level, fracture begins with the scission of individual connections between nodes \cite{Creton50th2017,ju_role_nodate,sanner_less_2025,higuchi_fracture_2018,bonnDelayedFractureInhomogeneous1998,teece_gels_2014}. However, there is generally no one-to-one mapping between the failure of a single bond and macroscopic fracture. Networks can redistribute stress through non-affine rearrangements, often delaying catastrophic failure \cite{shivers_scaling_2019,tauber_sharing_2021,ducrot_structure_2015, tominaga_molecular_2007}.
+Recent work on mesoscopic computational models, which provide a balance between structural details and computational cost, has been able to characterise this stress distribution \cite{shivers_normal_2019,shivers_scaling_2019,LernerCoordination2024,storm_nonlinear_2005} as well as how fracture evolves \cite{tauber_microscopic_2020,tauber_sharing_2021,tauber_role_2020,dussi_athermal_2020}. In these model it is common to assign a local rupture threshold to each bond. For central-force network models, this is typically implemented by rupturing bonds whose strain exceeds a critical threshold $\lambda = (l_{\rm break}-l_0)/l_0$ \cite{tauber_role_2020,dussi_athermal_2020}. This scale, therefore, plays a central role in determining the system dynamics.
+
+\todo[inline]{Not sure what to say after this}
+
+
+for higher $\lambda$, bonds rupture only at higher extensions, typically beyond the critical strain $\gamma_c$, at which the network strain stiffens.
+In this regime, a substantial population of force chains is already present when the first bond breaks, thereby controlling the material response.  
+
 A central insight from recent mesoscopic simulations is that rigidity plays a key role in determining the fracture pathway\cite{driscollRoleRigidityControlling2016,zhang_fiber_2017}. In Ref.~\cite{zhang_fiber_2017}, diffuse failure was found in sub-isostatic fibre networks, where the proximity to marginal mechanical stability suppresses stress concentration and promotes spatially distributed damage. Here, the authors note that some fracture descriptors, such as number of broken bonds and fracture energy, exhibited a non-monotonic trend as a function of network connectivity, with a maximum around the isostatic point. These networks were considered to fail at a small fracture threshold $\lambda=0.03$ and, as such, observe little strain stiffening. 
 
 \subsection{Disordered Network Models} \label{sec:NetworkStructure}
-Throughout the literature, a wide range of network geometries has been considered. The simplest are affine isotropic models, which approximate the network response by considering a single filament subjected to an imposed deformation and averaging over all initial filament orientations \cite{mackintosh_elasticity_1995, storm_nonlinear_2005}. While such models provide a useful baseline in the limits of high connectivity $z$ or large bending stiffness $\kappa$, they fail to capture key physics arising from non-affine rearrangements and orientational disorder in real-world networks. To incorporate these effects, it is necessary to explicitly prescribe a network topology specifying how bonds connect the nodes of the network. In this work, we consider two classes of networks: those derived from lattice structures and those constructed from the packing of bidispersed soft particles.
+Throughout the literature, a wide range of network geometries has been considered. The simplest are affine isotropic models, which approximate the network response by considering a single filament subjected to an imposed deformation and averaging over all initial filament orientations \cite{mackintosh_elasticity_1995, storm_nonlinear_2005}. While such models provide a useful baseline in the limits of high connectivity $z$ or large bending stiffness $\kappa$, they fail to capture key physics arising from non-affine rearrangements and orientational disorder in real-world networks. To incorporate these effects, it is necessary to explicitly specify a network topology that describes how bonds connect the nodes of the network. In this work, we consider two classes of networks: those derived from lattice structures and those constructed from the packing of bidispersed soft particles.
 
 \subsubsection{Lattice-based networks} \label{sec:LatticeBasedNetworks}
 
-Lattice-based networks are among the simplest network architectures commonly used to study mechanical properties \cite{jacobs_generic_1995,feng_percolation_1984,shivers_scaling_2019,sharma_strain-controlled_2016}. Frequently studied examples include two-dimensional square \cite{mao_soft_2010}, triangular \cite{broedersz_criticality_2011,feng_percolation_1984}, and honeycomb \cite{rens_nonlinear_2016} lattices. Owing to their straightforward construction relative to more disordered network types, and their numerical robustness arising from the uniform lattice spacing $l_0$, these networks provide a convenient and well-controlled framework for analysing the mechanical response of fibre networks.
+Lattice-based networks are among the simplest network topologies commonly used to study mechanical properties \cite{jacobs_generic_1995,feng_percolation_1984,shivers_scaling_2019,sharma_strain-controlled_2016}. Frequently studied examples include two-dimensional square \cite{mao_soft_2010}, triangular \cite{broedersz_criticality_2011,feng_percolation_1984}, and honeycomb \cite{rens_nonlinear_2016} lattices. Owing to their straightforward construction relative to more disordered network types, and their numerical robustness arising from the uniform lattice spacing $l_0$, these networks provide a convenient and well-controlled framework for analysing the mechanical response of fibre networks.
 
 Such networks are constructed by placing nodes on a regular grid defined by a set of lattice vectors and subsequently connecting these nodes according to a prescribed set of rules. For example, in a two-dimensional square lattice, the node positions are generated by the lattice vectors $(1,0)$ and $(0,1)$, with nearest-neighbour nodes connected along the horizontal and vertical directions, subject to the chosen boundary conditions. Other simple lattices, such as the triangular lattice, can be generated analogously, while more complex lattices may be derived from these fundamental cases. For instance, a hexagonal lattice can be obtained from a triangular lattice by imposing the additional constraint that each node has connectivity $z = 3$. Owing to their regular structure, such lattices exhibit highly predictable behaviour, characterised by discrete values of connectivity and bond length.
 
-\begin{figure}
+\begin{figure}[t]
     \centering
-    \missingfigure[]{Lattice based network structure}
-    %\includegraphics[width=0.5\linewidth]{}
-    \caption{Caption}
+    % \missingfigure[]{Lattice based network structure}
+    \includegraphics[width=0.95\linewidth]{chapters/2-Background/Figures/lattice_full_diluted_generic.pdf}
+    \caption[Periodic lattices: full, diluted, and generic diluted networks.]{
+    Examples of periodic lattice structures. We begin with regular lattices (\textbf{left column}), from which disordered diluted networks are generated (\textbf{centre column}) by randomly removing bonds with probability $p=0.2$. Additional disorder is then introduced (\textbf{right column}) by displacing each node from its lattice position by a random distance $d \in [0,\delta_{\max}/2]$ in a random direction, yielding a generic diluted network. Here, $\delta_{\max}=0.6$. Dangling ends and dangling clusters are removed in all diluted networks shown (as described in \cref{sec:PrunningNetwork}).
+    }
     \label{fig:LatticeNetworks}
 \end{figure}
 
@@ -622,11 +631,14 @@ In the present work, however, our primary interest lies in the network structure
 
 \begin{figure}
 \centering
-\missingfigure{Images are PNG, need to convert to pdf}
-%\includegraphics[width=.3\textwidth]{chapters/2-Background/Figures/particles.png}\hfill
-%\includegraphics[width=.3\textwidth]{chapters/2-Background/Figures/Stack.png}\hfill
-%\includegraphics[width=.3\textwidth]{chapters/2-Background/Figures/Network.png}
-\caption[Step of generating a jammed-packed network from 900 soft spheres at $\phi = 1$.]{Step of generating a jammed-packed network from 900 soft spheres at $\phi = 1$. A Packing of bi-disperse disks with a ratio of radii $1:1.4$ (left) in an energy minimum state. Network bonds are created through the contact network of the packing (where spheres overlap) (middle). The nodes are removed (right), leaving only the springs. }
+\includegraphics[width=.32\textwidth]{chapters/2-Background/Figures/particles.pdf}\hfill
+\includegraphics[width=.32\textwidth]{chapters/2-Background/Figures/Stacked.pdf}\hfill
+\includegraphics[width=.32\textwidth]{chapters/2-Background/Figures/network.pdf}
+\caption[Steps for generating a jammed packing network from 400 soft spheres.]{
+Steps for generating a jammed-packing network from 400 soft spheres at $\phi = 1$.\newline 
+\textbf{Left:} A bidisperse disk packing with a radius ratio of $1:1.4$ in an energy-minimised state. \newline
+\textbf{Middle:} Network bonds defined from the contact network of overlapping spheres. \newline
+\textbf{Right:} Disks removed, leaving only the bond forming the network.}
 \label{fig:SingleNetworkGeneration}
 \end{figure}
 
@@ -638,20 +650,29 @@ In this work, we take $\phi=1>\phi_J$ unless stated otherwise. For single networ
 
 These packing-derived networks provide a simple yet robust alternative to lattice-based networks. They exhibit emergent positional disorder, good numerical stability, and can be straightforwardly extended to three dimensions, as demonstrated in \cite{shivers_normal_2019, shivers_strain-controlled_2023, shivers_nonlinear_2020}.
 
-\subsubsection{Pruning Networks}
-During network construction, the resulting graphs can contain disconnected clusters and dangling structures (see \cref{fig:PruningNetworks}). These elements do not contribute to the mechanical response under the dynamics considered in this thesis and are therefore removed before simulation.
+\subsubsection{Pruning Networks} \label{sec:PrunningNetwork}
+During network construction, the resulting graphs can contain disconnected clusters and dangling components (see \cref{fig:PruningNetworks}). These elements do not contribute to the mechanical response under the dynamics considered in this thesis and are therefore removed before simulation.
 
-Disconnected clusters, illustrated in \cref{fig:PruningNetworks}a, are eliminated by identifying all connected components of the network and retaining only the largest component, which corresponds to the bulk network. Dangling structures, shown in \cref{fig:PruningNetworks}b, consist of portions of the network attached to the bulk by a single bond. In graph theory, these correspond to biconnected components connected to the main network via a bridge edge. These are pruned by identifying bridge bonds and removing the associated dangling components.
-
-To perform this analysis efficiently, we use the \texttt{NetworkX} Python package \cite{SciPyProceedings_11} to identify connected components, biconnected components, and bridges. 
+Dangling components, shown in \cref{fig:PruningNetworks}a, consist of portions of the network attached to the bulk by a single bond. In graph theory, these correspond to biconnected components connected to the main network via a bridge edge. These are pruned by identifying bridge bonds and removing the associated dangling components. Disconnected clusters, illustrated in \cref{fig:PruningNetworks}b, are eliminated by identifying all connected components of the network and retaining only the largest component, which corresponds to the bulk network. 
 
 \begin{figure}
     \centering
-    \missingfigure{Diagram of dangling ends and clusters}
-    %\includegraphics[width=0.5\linewidth]{}
-    \caption{Caption}
+    \begin{minipage}[t]{0.449\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{chapters/2-Background/Figures/network_dangling_motifs_400.pdf}
+        \textbf{(a)}
+    \end{minipage}
+    \hfill
+    \begin{minipage}[t]{0.449\linewidth}
+        \centering
+        \includegraphics[width=\linewidth]{chapters/2-Background/Figures/network_disconnected_cluster_400.pdf}
+        \textbf{(b)}
+    \end{minipage}
+    \caption[Dangling and disconnected clusters.]{{\bf a)} A dangling cluster (blue) is defined as a cluster of bonds connected to the rest of the network by only one bond (a bridge, shown in red). These are detected and removed by removing bridges, i.e., bonds that disconnect the graph when cut. {\bf b)} A disconnected cluster (red) is a cluster of bonds that is disconnected from the bulk network. These are removed by identifying all connected components and retaining only the largest one.}
     \label{fig:PruningNetworks}
 \end{figure}
+
+To perform this analysis efficiently, we use the \texttt{NetworkX} Python package \cite{SciPyProceedings_11} to identify connected components, biconnected components, and bridges. 
 
 Once a clean network has been generated, it can be pruned to reduce its average connectivity. This procedure is analogous to the bond dilution used in lattice-based networks to introduce disorder, although additional care is required due to the intrinsic positional disorder already present.
 
@@ -681,6 +702,7 @@ The force $F_i(h)$ can be written as the sum of the $i$-components of the pairwi
     \label{eq:virialDevForce}
 \end{equation}
 where $r_{n,j}$ is the $j$-coordinate of node $n$. The two Heaviside functions (defined in \cref{symbol:heaviside_function}) restrict node $n$ to lie below the line and node $m$ above it.  Substituting \cref{eq:virialDevForce} into \cref{eq:virialDevInt} and integrating over $h$ yields
+\begin{subequations}
 \begin{align}
     \sigma_{ij}
     &= \frac{1}{A}\sum_{m,n}
@@ -694,7 +716,8 @@ where $r_{n,j}$ is the $j$-coordinate of node $n$. The two Heaviside functions (
     f_{mn,i}\, r_{mn,j},
     \label{eq:virialStress}
 \end{align}
-where $\bm{r}_{mn}=\bm{r}_n-\bm{r}_m$. The Heaviside factor in \cref{eq:virialDevTheta} selects pairs with $r_{n,j}>r_{m,j}$. Using Newton's third law, $\bm{f}_{mn}=-\bm{f}_{nm}$, and symmetry under exchange of $m$ and $n$, this restriction can be replaced by the factor of $1/2$, which corrects for double counting in the summation, as seen in \cref{eq:virialDevfinal, eq:virialStress}
+\end{subequations}
+where $\bm{r}_{mn}=\bm{r}_n-\bm{r}_m$. The Heaviside factor in \cref{eq:virialDevTheta} selects pairs with $r_{n,j}>r_{m,j}$. Using Newton's third law, $\bm{f}_{mn}=-\bm{f}_{nm}$, and symmetry under exchange of $m$ and $n$, this restriction can be replaced by the factor of $1/2$, which corrects for double counting in the summation, as seen in \cref{eq:virialDevfinal,eq:virialStress}
 
 The derivation above extends trivially to three dimensions, where instead force contributions above and below an arbitrary plane perpendicular to the $j$-axis are considered. Calculating the stress by this approach eliminates the computation of numerical derivatives and is more computationally efficient, as both $\bm{r}_{ij}$ and $\bm{f}_{ij}$ are already calculated at each timestep when evaluating the system's dynamics. A more thorough derivation of the virial stress tensor, including fluid effects, can be found in Ref.~\cite{yang_generalized_2012}.
 
