@@ -390,9 +390,9 @@ where the Fourier-space kernel is
 \end{equation}
 We illustrate in \cref{fig:Propogator} the stress redistribution resulting from a single plastic event with $\epsilon_{xy}^{\mathrm{pl}} = -1$ at the origin.
 
-\begin{figure}[]
+\begin{figure}[t!]
     \centering
-    \includegraphics[width=0.75\linewidth]{chapters/2-Background/Figures/Prop_512_inset17.pdf}
+    \includegraphics[width=0.9\linewidth]{chapters/2-Background/Figures/Prop_512_inset17.pdf}
     %\missingfigure{Plot of Propagator}
     \caption[Quadrupolar elastoplastic stress propagator]{Quadrupolar redistribution of the elastoplastic shear stress, $\sigma_{xy}$, after a single local plastic event in a system with $\mu=1$. The system is initialised with $\sigma_{xy}=0$ everywhere; one central element is then yielded and set to $\sigma_{xy}=-1$, after which mechanical equilibrium (force balance) is enforced. The main panel shows the full $N_x\times N_y = 512\times512$ propagator, and the inset shows the central $33\times33$ region.}
     \label{fig:Propogator}
@@ -435,8 +435,6 @@ As the name implies, Hydrogels are a type of polymer gel embedded in water, whic
 
 \paragraph{Fibre networks:}
 Mainly biological networks, these networks are composed of semi-flexible fibres such as actin and collagen. As a result, these networks tend to have a length scale much larger than elastomers and hydrogels, with mesh sizes on the order of $1 \mu m$ to $10 \mu m$ \cite{mackintosh_elasticity_1995,Arevalo_Stress_Heterogeneities_2015}. Much like hydrogels, these networks are highly porous, with a large fraction of their volume being occupied by solvent \cite{Jansen_Role_Collagen_2018}; however, due to their larger mesh size, they do not exhibit significant poroelastic effects \cite{burlaMechanicalResilienceActive2019}. Due to the nature of these networks, the type of crosslinks in fibre networks can vary widely from linkages via flexible proteins to intricate branching and interweaving of fibre bundles. Consequently, interactions between fibres are highly heterogeneous and mechanically intricate. Due to the low fibre density, these materials typically exhibit a very small linear stiffness, which makes conventional extensional testing challenging in practice. As a result, their elastic and fracture behaviour is most commonly characterised under shear, rather than through standard extensional protocols. Most examples of fibre networks arise in biological contexts, where they provide structural support both inside and outside of cells \cite{burlaMechanicalResilienceActive2019}.
-
-\todo[inline]{Polished up to here}
 
 \subsection{Semi-Flexible Filaments} \label{sec:SemiFlexible}
 Filaments can be broadly classified into three regimes according to the ratio of their persistence length $l_p$ to their relevant contour length $l_c$ (for networks, this is typically the mean length between crosslinks). The persistence length quantifies the bending rigidity of the polymer and defines the length scales over which the filament orientation remains correlated. Intuitively, $l_p$ can be considered as the length scale at which thermal fluctuations of order $k_BT$ have a large enough effect to perturb the filament direction. More formally, it is defined via the exponential decay of tangent–tangent correlations, such that $\langle \bm{t}(s) \cdot \bm{t} (0) \rangle = e^{-s/l_p}$, where $\bm{t}(s)$ is the tangent vector at a position $s$ along the filament backbone \cite{doi_theory_1988}. 
