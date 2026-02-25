@@ -31,7 +31,7 @@ As the step strain protocol is less commonly studied compared to other protocols
     \includegraphics[width=1.0\linewidth]{chapters/UltraDelayedFracture/Figures/Relax.pdf}
     \caption[Stress relaxation of networks after a step strain of amplitude $\gamma_0$]{Stress relaxation of networks after a step strain of amplitude $\gamma_0$. \newline
     {\bf left:} Stress relaxation response under an imposed shear strain of $\gamma_0$ at $z=3.5$. \newline
-    {\bf right:} Phase space of normalised steady state stress $\sigma_\infty$ under changing $z$ and $\gamma_0$. We observe, in particular, a critical point $z_c=4.0$, where for $z \geq z_c$, all networks can hold a state of self-stress; below this, we observe the introduction of a strain stiffening transition.}
+    {\bf right:} Phase space of normalised steady state stress $\Sigma_\infty$ under changing $z$ and $\gamma_0$. We observe, in particular, a critical point $z_c=4.0$, where for $z \geq z_c$, all networks can hold a state of self-stress; below this, we observe the introduction of a strain stiffening transition.}
     \label{fig:networkRelaxation}
 \end{figure}
 
@@ -130,8 +130,9 @@ We report the decay of the stress shear stress $\Sigma = \Sigma_{xy}(t)$ as a fu
 
 \begin{figure}[b!]
     \centering
-    \includegraphics[width=0.9\linewidth]{chapters/UltraDelayedFracture/LowGammaTemp/Stress.pdf}
-    \caption[Decay of normalised stress $\Sigma/\Sigma_0$ following a step strain $\gamma_0=0.01$ at various temperatures.]{Decay of normalised stress $\Sigma/\Sigma_0$ as a function of time $t$ following the imposition of a step strain of amplitude $\gamma_0=0.01$, with breakage parameter $E=5.025\times10^{-5}$. The red dashed line indicates the failure threshold of the bond. A network is considered to have failed once $\Sigma \leq 0.75$, with the failure time $t^*$ corresponding to the time at which the curves cross the threshold. The triangle and circle show the location of snapshots in \cref{fig:LowGammaTempSnapShots}. \textbf{Inset:} shows the same data plotted on a horizontal linear scale.}
+    \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/LowGammaTemp/Stress.pdf}
+    \caption[Decay of normalised stress $\Sigma/\Sigma_0$ following a step strain $\gamma_0=0.01$ at different temperatures.]
+    {Decay of normalised stress $\Sigma/\Sigma_0$ as a function of time $t$ following the imposition of a step strain of amplitude $\gamma_0=0.01$, with breakage parameter $E=5.025\times10^{-5}$. The colour scale indicates the temperature $T$ associated with each curve. The red dashed line indicates the bond failure threshold. A network is considered to have failed once $\Sigma \leq 0.75$, with the failure time $t^*$ corresponding to the time at which the curves cross this threshold. The symbols show the locations of snapshots in \cref{fig:LowGammaTempSnapShots}. \textbf{Inset:} The same data plotted on a horizontal linear scale.}
     \label{fig:LowGammaTempResponse}
 \end{figure}
 
@@ -142,7 +143,7 @@ For low temperatures, the early-time relaxation closely resembles that shown in 
 \begin{figure}[b!]
     \centering
     \includegraphics[width=0.9\linewidth]{chapters/UltraDelayedFracture/LowGammaTemp/BondCount.pdf}
-    \caption[Number of broken bonds $B$ following a step strain $\gamma_0$]{Number of broken bonds $B$ as a function of time $t$ following the imposition of a step strain of amplitude $\gamma_0=0.01$, with breakage parameter $E=5.025\times10^{-5}$.}
+    \caption[Number of broken bonds $B$ following a step strain $\gamma_0=0.01$ at different temperatures.]{Number of broken bonds $B$ as a function of time $t$ following the imposition of a step strain of amplitude $\gamma_0=0.01$, with breakage parameter $E=5.025\times10^{-5}$. The colour scale indicates the temperature $T$ associated with each curve. The symbols show the location of snapshots in \cref{fig:LowGammaTempSnapShots}.}
     \label{fig:LowGammaTempBondResponse}
 \end{figure}
 
@@ -154,36 +155,34 @@ We plot the corresponding bond-breakage response curves in \cref{fig:LowGammaTem
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/LowGammaTemp/LowGammaTempSnapshots.png}
-    \caption[Snapshot of bond failures at low imposed strain $\gamma_0$ at a high and low temperature $x$]{Snapshot of bond failures after an imposed step strain of $\gamma_0=0.01$, shown in the laboratory (rest) frame. The colour scale indicates the order in which bonds fail from green to blue.\newline
-    Temperature {\bf a)} $T=5 \times 10^{-7}$ and {\bf b)} $T=5 \times 10^{-6}$. \newline
-    Location of {\bf a)} and {\bf b)} shown by a square and triangle, respectively, on the stress-strain curves in \cref{fig:LowGammaTempResponse} and bond failure curves in \cref{fig:LowGammaTempBondResponse}. \newline
-    Parameters: $E=5.025\times10^{-5}$, $\gamma_0=0.01$
+    \caption[Snapshot of bond failures at low imposed strain $\gamma_0$ at a high and low temperature $x$]{Snapshot of bond failures after an imposed step strain of $\gamma_0=0.01$, shown in the laboratory (rest) frame. The colour scale indicates the order in which bonds fail from dark to light.\newline
+    Temperature {\bf a)} $T=5 \times 10^{-6}$, {\bf b)} $T=5.35 \times 10^{-6}$, {\bf c)} $T=5.65 \times 10^{-7}$ and, {\bf d)} $T=5 \times 10^{-7}$. \newline
+    Locations of {\bf a)}, {\bf b)}, {\bf c)} and {\bf d)} are indicated by a square, triangle, star and diamond, respectively, on the stress–strain curves in \cref{fig:LowGammaTempResponse} and the bond failure curves in \cref{fig:LowGammaTempBondResponse}. \newline
+    Parameters: $E=5.025\times10^{-5}$ and $\gamma_0=0.01$
     }
     \label{fig:LowGammaTempSnapShots}
 \end{figure}
 
-To gain further insight into the failure mechanisms of each network, we present representative snapshots of the microstructure at both low and high temperature in \cref{fig:LowGammaTempSnapShots}. Here, bond failures are shown in the laboratory (rest) frame of the network, corresponding to the initial configuration before strain imposition. We begin by considering the high-temperature cases, shown in \cref{fig:LowGammaTempSnapShots}a. In this regime, failure is characterised by extensive diffuse damage: bond breakage occurs throughout the system in a largely spatially uncorrelated manner. As a result, the network rapidly loses rigidity, which is reflected in the corresponding drop in stress. This has been seen in an alternative model by Tauber \etal in Ref.~\cite{tauber_role_2020}. In this work, the authors use an equivalent central force model; however, they consider a topology derived from a two-dimensional triangular lattice (see \cref{sec:LatticeBasedNetworks}) at varying levels of connectivity. The temperature-dependent dynamics are implemented explicitly via Langevin equations of motion. As in our approach, bond failure is governed by a stochastic, thermally activated process, so that rupture events arise from noise-driven fluctuations rather than from a purely deterministic threshold. 
+To gain further insight into the failure mechanisms of each network, we present representative snapshots of the microstructure at both low and high temperature in \cref{fig:LowGammaTempSnapShots}. Here, bond failures are shown in the laboratory (rest) frame of the network, corresponding to the initial configuration before strain imposition. We begin by considering the high-temperature cases, shown in \cref{fig:LowGammaTempSnapShots}a and b. In this regime, failure is characterised by extensive diffuse damage: bond breakage occurs throughout the system in a largely spatially uncorrelated manner. As a result, the network rapidly loses rigidity, which is reflected in the corresponding drop in stress. This has been seen in an alternative model by Tauber \etal in Ref.~\cite{tauber_role_2020}. In this work, the authors use an equivalent central force model; however, they consider a topology derived from a two-dimensional triangular lattice (see \cref{sec:LatticeBasedNetworks}) at varying levels of connectivity. The temperature-dependent dynamics are implemented explicitly via Langevin equations of motion. As in our approach, bond failure is governed by a stochastic, thermally activated process, so that rupture events arise from noise-driven fluctuations rather than from a purely deterministic threshold. 
 
-By contrast, at lower temperatures, the networks predominantly fail through a highly localised rupture event, shown in \cref{fig:LowGammaTempSnapShots}b. Here, the initial failure of a single bond redistributes stress to its neighbours, sufficiently loading them to bring them close to their own failure thresholds. This initiates a cascade of correlated bond breakage events that propagates through the material, ultimately culminating in the macroscopic failure of the network.
+By contrast, at lower temperatures, the networks predominantly fail through a highly localised rupture event, shown in \cref{fig:LowGammaTempSnapShots}c and d. Here, the initial failure of a single bond redistributes stress to its neighbours, sufficiently loading them to bring them close to their own failure thresholds. This initiates a cascade of correlated bond breakage events that propagates through the material, ultimately culminating in the macroscopic failure of the network.
 
 In this small-strain regime, we observe that macroscopic failure tends to propagate either vertically or horizontally with approximately equal probability when viewed in the rest frame of the network. We attribute this to the fact that, at sufficiently small strains, the network remains largely homogeneous and isotropic. Consequently, the stress redistribution induced by a single bond failure is well described by the Eshelby stress propagator, as discussed in \cref{sec:EshelbyPropogator}. This predicts that bonds aligned vertically and horizontally with the failed bond experience an increase in stress, whereas diagonally adjacent bonds are unloaded.
 
 \section{Dependence of the Banding Time $t^*$ on Temperature $T$} \label{sec:LowGammaTemp}
 
-To quantify the delay in fracture following the imposition of the step strain, we define a characteristic failure time $t^*$ for the material. We take $t^*$ to be the time at which the stress $\Sigma(t)$ first falls below $\sigma^*=0.75\Sigma_0$, as indicated by the red line in \cref{fig:LowGammaTempResponse}. This value of stress lies below the plateau value of stress attained via non-affine deformations at early times after the imposition of the step strain.
-Accordingly $\sigma^*$ is only crossed once the network has undergone significant bond failure. In practice, the trends reported below are robust to moderate changes in the chosen threshold, provided it is placed below the post-relaxation plateau. The resulting failure times are reported in \cref{fig:LowGammaTempFailure}a as a function of $1/T$, consistent with the form of the failure rate $\Gamma$, for which $t^* \sim \exp(1/T)$. Consequently, small values of $T$ (large $1/T$) lie to the right of the plot, while increasing temperature corresponds to moving left along the horizontal axis.
+To quantify the delay in fracture following the imposition of the step strain, we define a characteristic failure time $t^*$ for the material. We take $t^*$ to be the time at which the stress $\Sigma(t)$ first falls below $\Sigma^*=0.75\Sigma_0$, as indicated by the red line in \cref{fig:LowGammaTempResponse}. This value of stress lies below the plateau value of stress attained via non-affine deformations at early times after the imposition of the step strain.
+Accordingly, $\sigma^*$ is only crossed once the network has undergone significant bond failure. In practice, the trends reported below are robust to moderate changes in the chosen threshold, provided it is placed below the post-relaxation plateau. The resulting failure times are reported in \cref{fig:LowGammaTempFailure}a as a function of $1/T$, consistent with the form of the failure rate $\Gamma$, for which $t^* \sim \exp(1/T)$. Consequently, small values of $T$ (large $1/T$) lie to the right of the plot, while increasing temperature corresponds to moving left along the horizontal axis.
 
-\begin{figure}
+\begin{figure}[b!]
     \centering
     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/LowGammaTemp/FailureJoin.pdf}
-    \caption[Low-strain failure time and bond breaks versus temperature]{Failure time $t^*$ and the corresponding number of broken bonds $B^*$ as a function of temperature $x$ at a low imposed strain strain $\gamma_0=0.01$. \newline
+    \caption[Failure time $t^*$ and the corresponding number of broken bonds $B^*$ as a function of temperature $x$ at a low imposed strain strain $\gamma_0=0.01$.]{Failure time $t^*$ {\bf a)} and the corresponding number of broken bonds $B^*$ {\bf b)} as a function of temperature $x$ at a low imposed strain strain $\gamma_0=0.01$. \newline
     Parameters: $E=5.025\times10^{-5}$.}
     \label{fig:LowGammaTempFailure}
 \end{figure}
 
 In \cref{fig:LowGammaTempFailure}a we observe a high-temperature regime in which the failure time increases rapidly with decreasing temperature. In this regime, the stress decay post strain imposition is driven by a breakage of bonds that occurs diffusely across the whole system, rather than the relaxation of the network resulting from non-affine deformations. This is reflected in \cref{fig:LowGammaTempFailure}b, where the number of bonds at failure $B^*$ is high when compared to lower temperatures. As each bond in the system breaks, the system loses stress, which may be partially recovered locally as the network deforms to restore force balance. However, at these high temperature the rate of failure of bonds is sufficiently high that the network cannot compensate for the structural damage resulting from the failures, leading to catastrophic failure at small $t^*$. 
-
-\todo[inline]{Corrected up to here}
 
 We next consider a temperature low enough that the corresponding rates of bond breakage $\Gamma(\epsilon_b)$, determined by \cref{eq:SGRRate}, are much larger than the characteristic time for viscoelastic relaxation of the network. In this regime, the temperature and strain are sufficiently low that no damage occurs during the initial relaxation, stopping diffuse damage from occurring early in the response. As all systems considered here are subjected to the same imposed shear strain $\gamma_0=0.01$. Each network must relax to a statistically identical configuration determined primarily by the network structure rather than by any macroscopic control parameter. Consequently, each bond has a well-defined and constant failure rate $\Gamma$ determined by its rest strain. In this mechanical equilibrium state, the resultant response becomes dependent entirely on the next bond to break, which is statistically most likely to be the most highly strained bond. The eventual failure time, for a given network structure, therefore, depends only on the noise temperature $x$ and the stochastic nature of the underlying Poisson failure process.
 
@@ -194,23 +193,15 @@ In this low temperature mechanically equilibrated regime, the lower bound on the
 \section{Dependence of Banding Time on the Imposed Strain $\gamma_0$} \label{sec:DelayedGamma}
 \subsection{Low Strain Regime}
 
-When varying the temperature $x$ in \cref{sec:LowGammaTemp}, we effectively varied how steeply the bond-breaking rate increased as a bond's energy threshold for breakage. Here, instead, by varying the imposed strain, we effectively control the position of each bond relative to the failure threshold $E$. Under differing imposed step strains $\gamma_0$, each network relaxes into a slightly different configuration. Consequently, distinct subsets of bonds are positioned close to the failure threshold $E$. 
+When varying the temperature $x$ in \cref{sec:LowGammaTemp}, we effectively varied how steeply the bond-breaking rate increased as a bond's energy threshold for breakage. Here, instead, by varying the imposed strain, we effectively control the position of each bond relative to the failure threshold $E$. In both cases, we tune the distribution of breakage rates $\Gamma$ within the network. Under different imposed step strains $\gamma_0$, the network relaxes into slightly different configurations, such that distinct subsets of bonds lie close to the failure threshold $E$.
 
-% \begin{figure}[hbt]
-%     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/LowGammaStrain/FailureValues.pdf}
-%     \caption[Failure time $t^*$ and bond count $B^*$ under changing $\gamma_0$ at small strains.]{
-%     {\bf a)} The failure time $t^*$ as a function of the imposed step strain $\gamma_0$ in the small strain regime.
-%     {\bf b)} The corresponding total number of broken bonds $B^*$ at failure.
-%     Parameters: $E=5.025\times10^{-5}$, $x=10^{-6}$
-%     }
-%     \label{fig:LowGammaStrainValues}
-% \end{figure}
+Despite these microscopic differences, the macroscopic response of the system and the associated failure times $t^*$, when examined as a function of $\gamma_0$, increases with decreasing $\gamma_0$, in the same manner as $t^*$ increases with decreasing temperature $T$ (see \cref{fig:LowGammaTempFailure}a). We report the stress–strain responses $\Sigma(t)$ for various imposed step strains $\gamma_0$ in \cref{fig:LowGammaStrainJoint}a and the corresponding failure times $t^*$ in \cref{fig:LowGammaStrainJoint}b. The bond breakage response $B(t)$ and the total number of broken bonds $B^*$ are shown in \cref{fig:LowGammaStrainJoint}c and \cref{fig:LowGammaStrainJoint}d, respectively. In this regime, following the arguments made when considering the effect of temperature $T$ discussed above, we fix the bond breakage energy $E=5.025\times10^{-5}$, temperature $T=10^{-6}$ and vary the step strain amplitude linearly in the range $\gamma_0\in[0.009, 0.011]$.
 
-\begin{figure}[t!]
+\begin{figure}[b!]
     \centering
     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/LowGammaStrain/LowGammaStrainJoint.pdf}
     \caption[Network response for different values of $\gamma_0$ in the small-strain regime]{
-    Network response for different values of imposed strain $\gamma_0$ in the small-strain regime ($\gamma_0 \ll 1$) at fixed temperature $T=10^{-6}$. \newline
+    Network response for different values of imposed strain $\gamma_0$ in the small-strain regime ($\gamma_0 \ll 1$). The symbols show in {\bf a)} and {\bf b)} the location of snapshots in \cref{fig:LowGammaStrainSnapshots}. \newline
     {\bf a)} Normalised stress decay $\Sigma/\Sigma_0$ as a function of time $t$ since the shear strain was imposed. \newline
     {\bf b)} Failure time $t^*$. \newline
     {\bf c)} Failed number of bonds $B$ as a function of time $t$ as a function of time $t$ since the shear strain was imposed. \newline
@@ -220,75 +211,68 @@ When varying the temperature $x$ in \cref{sec:LowGammaTemp}, we effectively vari
     \label{fig:LowGammaStrainJoint}
 \end{figure}
 
-Despite these microscopic differences, the macroscopic response of the system and the associated failure times $t^*$, when examined as a function of $\gamma_0$, increases with decreasing $\gamma_0$, in the same manner as $t^*$ increases with decreasing temperature $T$ seen in \cref{fig:LowGammaTempFailure}a. We report the resulting failure times $t^*$, and the corresponding number of bond breakages $B^*$ at failure, in \cref{fig:LowGammaStrainJoint}b and \cref{fig:LowGammaStrainJoint}d, respectively. In this regime, following the arguments made when considering the effect of temperature $T$ discussed above, we fix the breakage energy $E=5.025\times10^{-5}$ and temperature $T=10^{-6}$ and vary the step strain amplitude linearly in the range $\gamma_0\in[0.009, 0.011]$.
-
-The dependence of the failure time $t^*$ on the imposed step strain follows a simpler and more systematic trend than its dependence on temperature, with $t^*$ varying more regularly across the parameter range. The underlying failure physics again transitions from diffuse to brittle behaviour, as observed in the temperature dependence, here driven by increasing strain. In contrast to the temperature-controlled case, the number of bonds at failure, $B^*$, shown in \cref{fig:LowGammaStrainJoint}d, remains similar across the considered parameters and does not exhibit a plateau, despite reaching longer failure times $t^*\approx 5\times 10^{5}$ at the smallest considered $\gamma_0=0.009$. 
-
-At the highest strains considered, failure proceeds through a series of small cracks rather than a single system-spanning rupture, as illustrated in \cref{fig:LowGammaStrainSnapshots}b. In these higher-strain cases, the initial step strain brings multiple bonds close to their failure threshold, leading to early, spatially distributed breakage events. Each initial failure develops into a macroscopic crack that propagates in an avalanche-like manner, terminating when the failure of a subsequent bond does not release sufficient stress to trigger continued bond breaking.
-
 \begin{figure}[t]
     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/LowGammaStrain/LowGammaStrainSnapshots.png}
     \caption[Snapshot of bond failures at low strains.]{Snapshot of bond failures after an
-    imposed step strain of {\bf a)} $\gamma_0=0.09$ and {\bf b)} $\gamma_0=0.011$. The colour scale indicates the order in which bonds fail from green to blue.\newline
+    imposed step strain of {\bf a)} $\gamma_0=0.09$ and {\bf b)} $\gamma_0=0.011$. The colour scale indicates the order in which bonds fail from dark to light. Locations of {\bf a)} and {\bf b)} are indicated by a square and triangle, respectively, on the response curves in \cref{fig:LowGammaStrainJoint}a and \cref{fig:LowGammaStrainJoint}c. \newline
     Parameters: $E=5.025\times10^{-5}$, $x=10^{-6}$
     }
     \label{fig:LowGammaStrainSnapshots}
 \end{figure}
 
-As illustrated in \cref{fig:LowGammaStrainJoint}a, the overall stress decay $\Sigma(t)$ is qualitatively similar across the range of strain amplitudes and temperatures considered in these low-strain cases. In highly brittle regimes, delayed yielding arises when individual bond failures cascade and ultimately trigger a macroscopic fracture of the network. In the limits of either low temperature or low strain, the underlying physics is the same: the system remains intact until the breakage of a single critical bond that breaks late in the response. This produces strikingly similar modes of failure, as shown in \cref{fig:LowGammaTempSnapShots}b and \cref{fig:LowGammaStrainSnapshots}a.
+As observed in the temperature-controlled case for this low-strain regime, we observe a transition from brittle to ductile behaviour with increasing strain, here driven by increasing strain. As indicated by both the spatial distribution of bond failures found at the highest strain considered in this regime ($\gamma_0=0.011$), shown in \cref{fig:LowGammaStrainSnapshots}a, and the number of bonds at failure $B^*$ reported in \cref{fig:LowGammaStrainJoint}d, the parameter range considered does not exhibit the widespread diffuse damage observed at high temperatures (see \cref{fig:LowGammaTempSnapShots}a). Instead, we see a spatial distribution of bond breakage similar to that shown \cref{fig:LowGammaTempSnapShots}b, where the system forms a system of smaller macroscopic cracks, which causes the system to fail, rather than a single system-spanning rupture. The corresponding number of bonds, which fail in this regime $B^* \approx 340$, remains comparable to $B^*$ in the brittle regime $\approx 250$, when compared to the highly ductile regime seen at high temperatures with $B^* \approx 1500$.
 
-% \begin{figure}[hbt]
-%     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/LowGammaStrain/Responses.pdf}
-%     \caption[]{}
-%     \label{fig:LowGammaStrainResponse}
-% \end{figure}
+In both cases, the initial step strain brings multiple bonds close to their failure threshold, leading to spatially distributed breakage events. These bond failures occur on a similar time-scale, allowing for multiple failures to propagate simultaneously in an avalanche-like manner until multiple macroscopic cracks have formed, terminating when the failure of a subsequent bond does not release sufficient stress to trigger continued bond breaking.
+
+Notably, there is no obvious plateau in the number of bond failures $B^*$ reported in \cref{fig:LowGammaStrainJoint}d at low strains, when compared to the obvious plateau in \cref{fig:LowGammaTempFailure}b, despite reaching longer failure times $t^*\approx 5\times 10^{5}$ at the smallest considered $\gamma_0=0.009$ and the failure modes appearing similar, (see \cref{fig:LowGammaTempSnapShots}d and \cref{fig:LowGammaStrainSnapshots}a). Despite this, within the limits of either low temperature or low strain, the underlying physics is the same: the system remains intact in a period of apparent stability until the breakage of a single critical bond that breaks late in the response. 
+
+Although not currently characterised in this work, the number of bond failures $B^*$ is expected to diverge, as in the high-temperature regime, since a critical strain must exist above which all bonds exceed the threshold energy $E$ and therefore fail rapidly. Here, the network fails diffusely across the system with no correlation between breakage events. Conversely, there must exist a lower strain bound below which the imposed deformation induces a finite bond breakage rate, yet is sufficiently small that failure occurs only after the material has relaxed to a quasi-steady state. The response in this regime would therefore again be controlled by the next bond failure event, and the total number of broken bonds would plateau to the value required for brittle failure to reduce the stress below $\Sigma^*$. Although this value depends on the network topology, it is expected to be broadly similar.
 
 \subsection{High Strain Regime}
 
-So far, we have focused on regimes in which the imposed step strain $\gamma_0$ is small, such that only small deformations are induced in the network. We now consider the response of the system under large imposed strains, $\gamma_0 \sim 1$, where the deformation is sufficient to induce substantial non-affine deformations within the network \cite{shivers_scaling_2019}. We therefore expect qualitatively different relaxation and failure behaviour in this regime. In what follows, we present results obtained using $E = 0.35$, temperature $x = 0.0062$, and step strains in the range $\gamma_0 \in [0.9,1.0]$. The value of the breakage threshold $E$ forces bonds to fail once they exceed a critical strain $\epsilon_{break}=\sqrt{0.9}\approx0.9487$ and follows from the prediction of a purely affinely deformed network immediately after a strain $\gamma_0=1.0$ is imposed, as detailed in \cref{sec:approxEx}
+So far, we have focused on regimes in which the imposed step strain $\gamma_0$ is small, such that only small deformations are induced in the network. We now consider the response of the system under large imposed strains, $\gamma_0 \sim 1$, where the deformation is sufficient to induce substantial non-affine deformations within the network \cite{shivers_scaling_2019}. We therefore expect qualitatively different relaxation and failure behaviour in this regime. In what follows, we present results obtained using $E = 0.35$, temperature $x = 0.0062$, and step strains in the range $\gamma_0 \in [0.9,1.0]$. The value of the breakage threshold $E$ forces bonds to fail once they exceed a critical strain $\epsilon_{break}=\pm\sqrt{0.9}\approx\pm0.9487$ and follows from the prediction of a purely affinely deformed network immediately after a strain $\gamma_0=1.0$ is imposed, as detailed in \cref{sec:approxEx}
 
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/HighGammaStrain/HighGammaStrainJoint.pdf}
     \caption[Response under varying $\gamma_0$ in the high-strain regime]{
-    Network response to different values of imposed strain $\gamma_0$ in the high-strain regime ($\gamma_0 \sim 1$) at fixed temperature $x=0.0062$. \newline
-    {\bf a)} Normalised stress decay $\Sigma/\Sigma_0$ as a function of time t since the shear strain was imposed.\newline
+    Network response to different values of imposed strain $\gamma_0$ in the high-strain regime ($\gamma_0 \sim 1$). The symbols show in {\bf a)} and {\bf b)} the location of snapshots in \cref{fig:HighGammaStrainSnapShots}. \newline
+    {\bf a)} Normalised stress decay $\Sigma/\Sigma_0$ as a function of time $t$ since the shear strain was imposed.\newline
     {\bf b)} Failure time $t^*$. \newline
-    {\bf c)} Failed number of bonds $B$ as a function of time t since the shear strain was imposed. \newline
+    {\bf c)} Failed number of bonds $B$ as a function of time $t$ since the shear strain was imposed. \newline
     {\bf d)} Number of broken bonds at failure $B^*$. \newline
-    Parameters: $E=0.35$.
+    Parameters: $E=0.35$ and $T=0.0062$.
     }
     \label{fig:HighGammaStrain}
 \end{figure}
 
-While the curves in \cref{fig:HighGammaStrain}a-b are qualitatively similar to the previously presented strain-time responses in the low strain regime (\cref{fig:LowGammaTempResponse,fig:LowGammaStrainJoint}), with the failure time apparently increasing without bound with decreasing $\gamma_0$ for all imposed step strains considered. 
+While the curves in \cref{fig:HighGammaStrain}a-b are qualitatively similar to the previously presented strain-time responses in the low strain regime (see \cref{fig:LowGammaStrainJoint}a-b), with the failure time apparently increasing without bound with decreasing $\gamma_0$ as the imposed strain decreases even to the lowest value of strain simulated.
 
+A characteristic feature of failure at the high strains considered here is the rapid increase in bond breakage at early times during relaxation, as shown in \cref{fig:HighGammaStrain}c. The curves closely resemble those observed in the high-temperature cases in \cref{fig:LowGammaTempBondResponse}. This behaviour indicates that many bonds are driven close to their failure threshold and therefore break diffusely and approximately independently. Such diffuse damage is evident in both cases shown in \cref{fig:HighGammaStrainSnapShots}, where early bond failures are distributed throughout the network and do not immediately organise into a macroscopic crack, as reflected by the diffuse background of failures at early stages of the process (small $B$), before global failure. 
 
-
-
-% While present in the low-strain regime, the range of step strains considered here in the high-strain regime $\gamma_0 \in [0.9,1.0]$ leads to a noticeable difference in the value of normalised stress at which the network is in mechanical equilibrium. As the strain increases, the network's apparent shear modulus $G_{xy}$ increases 
-
-
-A characteristic feature of failures at the high strains considered here is the rapid increase in bond failures at an early stage in the system's relaxation, shown in \cref{fig:HighGammaStrain}c. Across all strain values considered, we observe a dramatic increase in bond failures at an early stage in the system's relaxation. The curves mirror that of the high temperature cases considered in \cref{fig:LowGammaTempBondResponse}. This is indicative of a large number of bonds being pushed close to their respective failure threshold and, as such, they fail diffusely and independently. This level of diffuse damage can be observed in both cases shown in \cref{fig:HighGammaStrainSnapShots} where early bond failure occurs diffusely across the network and are unable to form macroscopic failures. 
-
-\begin{figure}[b!t]
+\begin{figure}[t]
     \centering
     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/HighGammaStrain/HighGammaStrainSnapshots.png}
-    \caption[Snapshot of bond failures at low imposed strains $\gamma_0$]{Snapshot of bond failures after an imposed step strain of {\bf a)} $\gamma_0=0.9$ and {\bf b)} $\gamma_0=1.0$. The colour scale indicates the order in which bonds fail from green to blue.\newline
+    \caption[Snapshot of bond failures at low imposed strains $\gamma_0$]{Snapshot of bond failures after an imposed step strain of {\bf a)} $\gamma_0=0.9$ and {\bf b)} $\gamma_0=1.0$. The colour scale indicates the order in which bonds fail from dark to light. Locations of {\bf a)}, {\bf b)}, {\bf c)} and {\bf d)} are indicated by a square, triangle, star and diamond, respectively, on the response curves in \cref{fig:HighGammaStrain}a and \cref{fig:HighGammaStrain}c. \newline
+    In {\bf a)} and {\bf b)} we plot two samples from different networks at $\gamma_0=0.9$, while {\bf c)} and {\bf d)} correspond to $\gamma_0=0.98$ and $\gamma_0=1.0$, respectively. \newline
     Parameters: $E=0.35$, $x=0.0062$
     }
     \label{fig:HighGammaStrainSnapShots}
 \end{figure}
 
-As observed in the low-strain regime, at high enough strains, networks still fail early during the relaxation, through a series of smaller macroscopic failures, rather than through a single macroscopic failure. Here, damage early in the relaxation process is sufficient to cause catastrophic failure within the network, with the system stress quickly decreasing to $0$. This failure mechanism is illustrated in \cref{fig:HighGammaStrainSnapShots}b. Notably, these failures are aligned along lines perpendicular to the principal strain axis. This alignment is discussed further in \cref{sec:DirectionOfFracture}.
+Despite this level of diffuse damage, not found in the small strain regime, networks that undergo a comparatively lower step strain $\gamma_0=0.9$ imposition can survive for several more decades, when compared to network which undergo the highest considered strains $\gamma_0=1$. As indicated in \cref{fig:HighGammaStrain}c, by the number of bonds which have broken in all cases before even the earliest failure time $t^*\approx10^{2}$, and the plateau in $B^*$ with decreasing $\gamma_0$, which both take values close to or higher than even the most diffuse failure (high $\gamma_0$) considered in \cref{fig:LowGammaStrainJoint}d. Given that the imposed strain is small enough that the network can relax into a quasi-steady state, rather than failing immediately, the overall stress response shown in \cref{fig:LowGammaStrainJoint}a shows little change before failure, despite an increasing number of bond failures, as indicated in \cref{fig:HighGammaStrain}c. This behaviour may reflect stabilising effects associated with strain stiffening in the network \cite{sharma_strain-controlled_2016}, which enable the system to maintain its macroscopic load-bearing capacity even as local damage accumulates. Consequently, the network can accommodate a higher density of bond breakage events than in the low-strain regime while exhibiting only minimal changes in its sustained stress.
 
-Despite this large level of diffuse damage, which occurs early in the deformation, lower strain networks can persist for several more decades before they ultimately fail catastrophically in single brittle failure, illustrated in \cref{fig:HighGammaStrainSnapShots}a. These networks exhibit little change in the overall stress response over this time, despite an increasing number of bond failures, as indicated in \cref{fig:HighGammaStrain}c. Here, the number of bond breakages before failure does not plateau with time, unlike what was observed at small strain in \cref{fig:LowGammaTempBondResponse} and \cref{fig:LowGammaStrainJoint}. The author suggests that this behaviour arises from stabilising fields that develop at high strain, which allow the network to remain relatively undeformed at the macroscopic level despite this damage. As a result, the network can sustain a greater extent of bond failure than low-strain systems, while appearing largely unaffected.
+The ultimate failure in these low-strain cases, where failure occurs long after the imposed strain, is characterised by a single macroscopic fracture that propagates perpendicular to the principal strain axis. This preferred orientation is discussed further in \cref{sec:DirectionOfFracture}. Failure is triggered when a critical bond breaks in a configuration that permits large-scale crack propagation. Whereas at sufficiently small strain or temperature this event can occur among the earliest bond failures, here it emerges only after substantial diffuse damage has accumulated throughout the network. This may indicate that only a small subset of bonds within the system is capable of initiating system-spanning failure, although preliminary investigations (not shown in this thesis) have not conclusively confirmed this. Alternatively, another property in the system not quantified in the work, such as structural changes or the distributions of strain relative to $E$, may control when and where these brittle failures occur over diffuse damage. 
 
-While the number of bonds continues to increase with time $t$, the ultimate number of bonds at failure $B^*$ plateaus as $\gamma_0 \to 0.9$ to a value $B^*\sim 750$. We expect that these networks are like their low-strain counterparts and are waiting for a critical bond to fail that lies in a configuration in which large-scale crack propagation can occur. This is again characterised by the dramatic increase in the sample-to-sample variance as the failure time gets unpredictably delayed. 
+The plateau in $B^*$ with decreasing $\gamma_0$, at these small regimes, does suggest a convergence to a regime characterised by brittle failure, where the number of bonds at the point of failure converges $B^*\approx700$, although with. 
 
-This plateau in $B^*$, while $B$ continues to increase, may indicate a return to diffuse behaviour over a longer period of time, although this effect ultimately appears at a timescale longer than is computationally feasible. This effect may be suppressed as a result of a better choice in the breakage threshold $E$, although the author was unable to find a better set of parameters that exemplifies this delayed failure phenomenon.
 
-\section{Direction of fracture} \label{sec:DirectionOfFracture}
+% As observed in the low-strain regime, at high enough strains, networks still fail early during the relaxation, through a series of smaller macroscopic failures, rather than through a single macroscopic failure. Here, damage early in the relaxation process is sufficient to cause catastrophic failure within the network, with the system stress quickly decreasing to $0$. This failure mechanism is illustrated in \cref{fig:HighGammaStrainSnapShots}b. 
+
+
+% This plateau in $B^*$, while $B$ continues to increase, may indicate a return to diffuse behaviour over a longer period of time, although this effect ultimately appears at a timescale longer than is computationally feasible. This effect may be suppressed as a result of a better choice in the breakage threshold $E$, although the author was unable to find a better set of parameters that exemplifies this delayed failure phenomenon.
+
+\section{Direction of Fracture Prorogation} \label{sec:DirectionOfFracture}
 
 As discussed in \cref{sec:lowStrainResponse}, at small strain, the direction of crack propagation is found to be horizontal or vertical with equal probability. Contrastingly, at high strains $\gamma_0\sim 1$, as shown in \cref{fig:HighGammaStrainSnapShots}, failure always propagates perpendicular to the principal strain axis, and approximately along a direction running from the top left to the bottom right of the sample.
 
@@ -324,7 +308,7 @@ As a result, the fracture propagates initially independent of the network struct
     Snapshots of systems in the rest frame at failure.  Arrows indicate the directions parallel and perpendicular to $58^\circ$ relative to the horizontal.
     {\bf a)} $\gamma_0=0.09$, $x=10^{-6}$, $E=5.025\times10^{-5}$. \newline
     {\bf b)} $\gamma_0=1.0$, $x=0.0062$, $E=0.35$. \newline
-    The colour scale indicates the order in which bonds fail from green to blue.\newline
+    The colour scale indicates the order in which bonds fail from dark to light.\newline
     }
     \label{fig:CrackDirections}
 \end{figure}
