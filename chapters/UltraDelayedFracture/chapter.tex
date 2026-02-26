@@ -122,6 +122,7 @@ at which a bond will fail. Since the rigidity transition point $\gamma_c(z)$ is 
 
 In this work, we examine two representative strain amplitudes: a small strain ($\gamma_0=0.01$) and a large strain ($\gamma_0=1.0$). Based on the arguments presented \cref{sec:approxEx}, we use the affine deformation of an ideal network to predict the appropriate breakage threshold $E$ and temperature $T$ for each given $\gamma_0$. For the specific cases represented in this chapter this yields $E=5.025\times10^{-5}$ for $\gamma_0=0.01$ and $E=0.35$ for $\gamma_0=1.0$
 
+\newpage
 \section{Stress Decay and Response} \label{sec:lowStrainResponse}
 
 The step‐strain protocol, in which a shear strain of amplitude $\gamma_0$ is instantaneously applied and then held constant for time $t\geq 0$, was simulated within out network model using the dynamics described in \cref{sec:NetworkDynamics}, together with the bond failure rate defined in \cref{sec:BoltzmanFracture}. Results for a fixed strain amplitude $\gamma_0 = 0.01$ and a set of temperatures spaced logarithmically in the range $x \in [5\times10^{-7}, 5\times10^{-6}]$ are shown in \cref{fig:LowGammaTempResponse}.
@@ -130,7 +131,7 @@ We report the decay of the stress shear stress $\Sigma = \Sigma_{xy}(t)$ as a fu
 
 \begin{figure}[b!]
     \centering
-    \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/LowGammaTemp/Stress.pdf}
+    \includegraphics[width=0.9\linewidth]{chapters/UltraDelayedFracture/LowGammaTemp/Stress.pdf}
     \caption[Decay of normalised stress $\Sigma/\Sigma_0$ following a step strain $\gamma_0=0.01$ at different temperatures.]
     {Decay of normalised stress $\Sigma/\Sigma_0$ as a function of time $t$ following the imposition of a step strain of amplitude $\gamma_0=0.01$, with breakage parameter $E=5.025\times10^{-5}$. The colour scale indicates the temperature $T$ associated with each curve. The red dashed line indicates the bond failure threshold. A network is considered to have failed once $\Sigma \leq 0.75$, with the failure time $t^*$ corresponding to the time at which the curves cross this threshold. The symbols show the locations of snapshots in \cref{fig:LowGammaTempSnapShots}. \textbf{Inset:} The same data plotted on a horizontal linear scale.}
     \label{fig:LowGammaTempResponse}
@@ -148,16 +149,15 @@ For low temperatures, the early-time relaxation closely resembles that shown in 
 \end{figure}
 
 
-In previous work on delayed failure in elastoplastic models \cite{lockwood_ultradelayed_2025}, it is common to look for precursors to shear banding through the displacement profile. Instead, we consider an alternative measure and consider the number of bonds broken in the network $B$. This directly measures the amount of plastic bond breakages that has occurred in the system, although it lacks any spatial information.
+In previous work on delayed failure in elastoplastic models \cite{lockwood_ultradelayed_2025}, it is common to look for precursors to shear banding through the displacement profile. Instead, we consider an alternative measure and consider the number of bonds broken in the network $B$. This directly measures the amount of plastic bond breakages that have occurred in the system, although it lacks any spatial information.
 
-We plot the corresponding bond-breakage response curves in \cref{fig:LowGammaTempBondResponse}, showing the number of bonds that have broken as a function of $t$ since the imposition of the strain. These curves display behaviour consistent with \cref{fig:LowGammaTempResponse}: the networks exhibiting rapid stress relaxation early in the response correspond to higher bond failure $B$. Conversely, curves that appear to reach a quasi-steady state exhibit little bond failure prior to an abrupt increase at the point of macroscopic failure.
+We plot the corresponding bond-breakage response curves in \cref{fig:LowGammaTempBondResponse}, showing the number of bonds that have broken as a function of $t$ since the imposition of the strain. These curves display behaviour consistent with the stress decays shown in \cref{fig:LowGammaTempResponse}: the networks exhibiting rapid stress relaxation early in the response correspond to higher bond failure $B$. Conversely, curves that appear to reach a quasi-steady state exhibit little bond failure prior to an abrupt increase at the point of macroscopic failure.
 
-\begin{figure}[t]
+\begin{figure}[t!]
     \centering
     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/LowGammaTemp/LowGammaTempSnapshots.png}
-    \caption[Snapshot of bond failures at low imposed strain $\gamma_0$ at a high and low temperature $x$]{Snapshot of bond failures after an imposed step strain of $\gamma_0=0.01$, shown in the laboratory (rest) frame. The colour scale indicates the order in which bonds fail from dark to light.\newline
+    \caption[Snapshot of bond failures at low imposed strain $\gamma_0$ at a high and low temperature $x$]{Snapshot of bond failures after an imposed step strain of $\gamma_0=0.01$, shown in the laboratory (rest) frame. The colour scale indicates the order in which bonds fail from dark to light. Locations of {\bf a)}, {\bf b)}, {\bf c)} and {\bf d)} are indicated by a square, triangle, star and diamond, respectively, on the stress–strain curves in \cref{fig:LowGammaTempResponse} and the bond failure curves in \cref{fig:LowGammaTempBondResponse}. \newline
     Temperature {\bf a)} $T=5 \times 10^{-6}$, {\bf b)} $T=5.35 \times 10^{-6}$, {\bf c)} $T=5.65 \times 10^{-7}$ and, {\bf d)} $T=5 \times 10^{-7}$. \newline
-    Locations of {\bf a)}, {\bf b)}, {\bf c)} and {\bf d)} are indicated by a square, triangle, star and diamond, respectively, on the stress–strain curves in \cref{fig:LowGammaTempResponse} and the bond failure curves in \cref{fig:LowGammaTempBondResponse}. \newline
     Parameters: $E=5.025\times10^{-5}$ and $\gamma_0=0.01$
     }
     \label{fig:LowGammaTempSnapShots}
@@ -197,7 +197,7 @@ When varying the temperature $x$ in \cref{sec:LowGammaTemp}, we effectively vari
 
 Despite these microscopic differences, the macroscopic response of the system and the associated failure times $t^*$, when examined as a function of $\gamma_0$, increases with decreasing $\gamma_0$, in the same manner as $t^*$ increases with decreasing temperature $T$ (see \cref{fig:LowGammaTempFailure}a). We report the stress–strain responses $\Sigma(t)$ for various imposed step strains $\gamma_0$ in \cref{fig:LowGammaStrainJoint}a and the corresponding failure times $t^*$ in \cref{fig:LowGammaStrainJoint}b. The bond breakage response $B(t)$ and the total number of broken bonds $B^*$ are shown in \cref{fig:LowGammaStrainJoint}c and \cref{fig:LowGammaStrainJoint}d, respectively. In this regime, following the arguments made when considering the effect of temperature $T$ discussed above, we fix the bond breakage energy $E=5.025\times10^{-5}$, temperature $T=10^{-6}$ and vary the step strain amplitude linearly in the range $\gamma_0\in[0.009, 0.011]$.
 
-\begin{figure}[b!]
+\begin{figure}[t!]
     \centering
     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/LowGammaStrain/LowGammaStrainJoint.pdf}
     \caption[Network response for different values of $\gamma_0$ in the small-strain regime]{
@@ -211,7 +211,7 @@ Despite these microscopic differences, the macroscopic response of the system an
     \label{fig:LowGammaStrainJoint}
 \end{figure}
 
-\begin{figure}[t]
+\begin{figure}[b!]
     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/LowGammaStrain/LowGammaStrainSnapshots.png}
     \caption[Snapshot of bond failures at low strains.]{Snapshot of bond failures after an
     imposed step strain of {\bf a)} $\gamma_0=0.09$ and {\bf b)} $\gamma_0=0.011$. The colour scale indicates the order in which bonds fail from dark to light. Locations of {\bf a)} and {\bf b)} are indicated by a square and triangle, respectively, on the response curves in \cref{fig:LowGammaStrainJoint}a and \cref{fig:LowGammaStrainJoint}c. \newline
@@ -232,7 +232,7 @@ Although not currently characterised in this work, the number of bond failures $
 
 So far, we have focused on regimes in which the imposed step strain $\gamma_0$ is small, such that only small deformations are induced in the network. We now consider the response of the system under large imposed strains, $\gamma_0 \sim 1$, where the deformation is sufficient to induce substantial non-affine deformations within the network \cite{shivers_scaling_2019}. We therefore expect qualitatively different relaxation and failure behaviour in this regime. In what follows, we present results obtained using $E = 0.35$, temperature $x = 0.0062$, and step strains in the range $\gamma_0 \in [0.9,1.0]$. The value of the breakage threshold $E$ forces bonds to fail once they exceed a critical strain $\epsilon_{break}=\pm\sqrt{0.9}\approx\pm0.9487$ and follows from the prediction of a purely affinely deformed network immediately after a strain $\gamma_0=1.0$ is imposed, as detailed in \cref{sec:approxEx}
 
-\begin{figure}[t]
+\begin{figure}[b!]
     \centering
     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/HighGammaStrain/HighGammaStrainJoint.pdf}
     \caption[Response under varying $\gamma_0$ in the high-strain regime]{
@@ -246,15 +246,13 @@ So far, we have focused on regimes in which the imposed step strain $\gamma_0$ i
     \label{fig:HighGammaStrain}
 \end{figure}
 
-While the curves in \cref{fig:HighGammaStrain}a-b are qualitatively similar to the previously presented strain-time responses in the low strain regime (see \cref{fig:LowGammaStrainJoint}a-b), with the failure time apparently increasing without bound with decreasing $\gamma_0$ as the imposed strain decreases even to the lowest value of strain simulated.
+The stress–time responses in \cref{fig:HighGammaStrain}a–b resemble those found in the low-strain regime (see \cref{fig:LowGammaStrainJoint}a–b), with the failure time $t^*$ increasing systematically as $\gamma_0$ decreases over the range considered as observed previously. A characteristic feature of failure at the high strains considered here is the rapid increase in bond breakage at early times during relaxation, as shown in \cref{fig:HighGammaStrain}c. The curves closely resemble those observed in the high-temperature cases in \cref{fig:LowGammaTempBondResponse}. This behaviour indicates that many bonds are driven close to their failure threshold and therefore break diffusely and approximately independently. Such diffuse damage is evident in all cases shown in \cref{fig:HighGammaStrainSnapShots}. In each case, early bond failures are distributed throughout the network, largely independent of the imposed shear strain, and do not immediately coalesce into a macroscopic crack regardless of the eventual mode of failure. Instead, they appear as a spatially dispersed background of isolated events at early stages of the response (small $B$), preceding the onset of global failure regardless of mode.
 
-A characteristic feature of failure at the high strains considered here is the rapid increase in bond breakage at early times during relaxation, as shown in \cref{fig:HighGammaStrain}c. The curves closely resemble those observed in the high-temperature cases in \cref{fig:LowGammaTempBondResponse}. This behaviour indicates that many bonds are driven close to their failure threshold and therefore break diffusely and approximately independently. Such diffuse damage is evident in both cases shown in \cref{fig:HighGammaStrainSnapShots}, where early bond failures are distributed throughout the network and do not immediately organise into a macroscopic crack, as reflected by the diffuse background of failures at early stages of the process (small $B$), before global failure. 
-
-\begin{figure}[t]
+\begin{figure}[b!]
     \centering
     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/HighGammaStrain/HighGammaStrainSnapshots.png}
     \caption[Snapshot of bond failures at low imposed strains $\gamma_0$]{Snapshot of bond failures after an imposed step strain of {\bf a)} $\gamma_0=0.9$ and {\bf b)} $\gamma_0=1.0$. The colour scale indicates the order in which bonds fail from dark to light. Locations of {\bf a)}, {\bf b)}, {\bf c)} and {\bf d)} are indicated by a square, triangle, star and diamond, respectively, on the response curves in \cref{fig:HighGammaStrain}a and \cref{fig:HighGammaStrain}c. \newline
-    In {\bf a)} and {\bf b)} we plot two samples from different networks at $\gamma_0=0.9$, while {\bf c)} and {\bf d)} correspond to $\gamma_0=0.98$ and $\gamma_0=1.0$, respectively. \newline
+    Imposed step strain {\bf a)} $\gamma_0=0.9$, {\bf b)} $\gamma_0=0.9125$, {\bf c)} $\gamma_0=0.975$ and, {\bf d)} $\gamma_0=1.0$. \newline
     Parameters: $E=0.35$, $x=0.0062$
     }
     \label{fig:HighGammaStrainSnapShots}
@@ -264,95 +262,119 @@ Despite this level of diffuse damage, not found in the small strain regime, netw
 
 The ultimate failure in these low-strain cases, where failure occurs long after the imposed strain, is characterised by a single macroscopic fracture that propagates perpendicular to the principal strain axis. This preferred orientation is discussed further in \cref{sec:DirectionOfFracture}. Failure is triggered when a critical bond breaks in a configuration that permits large-scale crack propagation. Whereas at sufficiently small strain or temperature this event can occur among the earliest bond failures, here it emerges only after substantial diffuse damage has accumulated throughout the network. This may indicate that only a small subset of bonds within the system is capable of initiating system-spanning failure, although preliminary investigations (not shown in this thesis) have not conclusively confirmed this. Alternatively, another property in the system not quantified in the work, such as structural changes or the distributions of strain relative to $E$, may control when and where these brittle failures occur over diffuse damage. 
 
-The plateau in $B^*$ with decreasing $\gamma_0$, at these small regimes, does suggest a convergence to a regime characterised by brittle failure, where the number of bonds at the point of failure converges $B^*\approx700$, although with. 
+The plateau in $B^*$ with decreasing $\gamma_0$, at these small regimes, does suggest a convergence to a regime characterised by brittle failure, where the number of bonds at the point of failure converges to $B^*\approx700$, although with a large variance compared to networks that fail early in the response. As indicated in \cref{fig:HighGammaStrainSnapShots}a and \cref{fig:HighGammaStrainSnapShots}b, which show failures within the plateau, the failure modes are similar across network structures and strain within this regime. 
 
-
-% As observed in the low-strain regime, at high enough strains, networks still fail early during the relaxation, through a series of smaller macroscopic failures, rather than through a single macroscopic failure. Here, damage early in the relaxation process is sufficient to cause catastrophic failure within the network, with the system stress quickly decreasing to $0$. This failure mechanism is illustrated in \cref{fig:HighGammaStrainSnapShots}b. 
-
-
-% This plateau in $B^*$, while $B$ continues to increase, may indicate a return to diffuse behaviour over a longer period of time, although this effect ultimately appears at a timescale longer than is computationally feasible. This effect may be suppressed as a result of a better choice in the breakage threshold $E$, although the author was unable to find a better set of parameters that exemplifies this delayed failure phenomenon.
+As observed in the low-strain regime, when the imposed strain is large relative to the breakage energy $E$, many bonds are brought close to their breaking threshold. In this cases, more bond in the network fail rapidly and diffusely compared to smaller strain at and the network either fails through the diffuse loss of bond or through the formation of a series of smaller macroscopic failures illustrated in \cref{fig:HighGammaStrainSnapShots}b.
 
 \section{Direction of Fracture Prorogation} \label{sec:DirectionOfFracture}
 
-As discussed in \cref{sec:lowStrainResponse}, at small strain, the direction of crack propagation is found to be horizontal or vertical with equal probability. Contrastingly, at high strains $\gamma_0\sim 1$, as shown in \cref{fig:HighGammaStrainSnapShots}, failure always propagates perpendicular to the principal strain axis, and approximately along a direction running from the top left to the bottom right of the sample.
+As discussed in \cref{sec:lowStrainResponse}, at small strain, the direction of macroscopic crack propagation is found to be horizontal or vertical with equal probability. In contrast, at high strains $\gamma_0\sim 1$, as shown in \cref{fig:HighGammaStrainSnapShots}, macroscopic failure always propagates perpendicular to the principal strain axis, and approximately along a direction running from the top left to the bottom right of the sample.
 
-Considering the purely affine deformation that occurs in the network, we can consider a bond that starts at an angle $\theta$ relative to the horizontal axis in the bond's rest configuration. Under a shear deformation of magnitude $\gamma_0$ in the $xy$ plane, the resultant affine deformation strains the bond such that its axial strain is
+For simplicity, we consider a network immediately after it has undergone an affine deformation with shear strain $\gamma_0$. At this point, no non-affine deformations have occurred in the network, and its configuration can be derived analytically. 
+
+Consider a bond that, in the network’s initial (rest) configuration, makes an angle $\theta$ with the horizontal axis. Under a shear deformation of magnitude $\gamma_0$ in the $xy$ plane characterised by the matrix
+\begin{equation}
+    \left(\begin{matrix}
+        1 & \gamma_0 \\
+        0 & 1 \\
+    \end{matrix}\right),
+    \label{eq:ultraShearMatrix}
+\end{equation}
+take, without loss of generality, a bond of length $l_0$ with one node fixed at the origin and the other located at $(l_0 \cos\theta,\; l_0 \sin\theta)$. Under the shear transformation defined in \cref{eq:ultraShearMatrix}, the node at the origin remains unchanged, while the second node is mapped affinely to
 \begin{equation*}
-    \epsilon_b(\theta| \gamma_0) = \sqrt{(\cos(\theta) + \gamma_0\sin(\theta))^2 + \sin^2(\theta)} - 1.
+    \left(\begin{matrix}
+        1 & \gamma_0 \\
+        0 & 1 \\
+    \end{matrix}\right)
+    \left(\begin{matrix}
+        l_0\cos\theta \\
+        l_0\sin\theta \\
+    \end{matrix}\right)
+    =
+    \left(\begin{matrix}
+        l_0(\cos\theta + \gamma_0\sin\theta) \\
+        l_0\sin\theta \\
+    \end{matrix}\right).
 \end{equation*}
-A more thorough discussion of this can be seen in \cref{sec:approxEx}. We plot in \cref{fig:AffineBondStrain}a, $\epsilon_b(\theta| \gamma_0)$ for the two cases of gamma we consider in this work, $\gamma_0=0.01$ and $\gamma_0=1$. 
 
-\begin{figure}[b!]
-    \centering
-    \includegraphics[width=0.9\linewidth]{chapters/UltraDelayedFracture/CrackDirections/BondStrain.pdf}
-    \caption[Illustrations of bond state under affine deformation]{
-    Illustrations of {\bf a)} the resulting strain $\epsilon_b$ and {\bf b)} the angle $\theta^\prime$ resulting from an affine deformation of a bond initially at a principal angle $\theta$. We plot the two curves corresponding to the two strains considered in this work $\gamma_0=0.01$ and $\gamma_0=1$. The principal angle $\theta\in[0,\pi)$ is measured relative to the horizontal $x$-axis. The zero of each curve, indicated with a dashed vertical line, shows the angle $\theta\in(\pi/2,\pi)$ at which the applied strain transitions from extension to compression.}
-    \label{fig:AffineBondStrain}
-\end{figure}
+The post-shear bond length is therefore
+\begin{equation}
+l(\theta \mid \gamma_0)
+= l_0 \sqrt{\bigl(\cos\theta + \gamma_0 \sin\theta\bigr)^2 + \sin^2\theta},
+\end{equation}
+and the corresponding bond strain is
+\begin{align}
+\epsilon_b(\theta \mid \gamma_0)
+&= \frac{l(\theta \mid \gamma_0) - l_0}{l_0} \
+&= \sqrt{\bigl(\cos\theta + \gamma_0 \sin\theta\bigr)^2 + \sin^2\theta} - 1.
+\end{align}
 
-For small $\gamma_0$, the resultant affine strains remain small and close to zero with an equal split of bonds in both compression and extension. The transition is indicated by the vertical dashed line associated with the red ($\gamma_0=0.01$) curve. The magnitudes of the resultant strains also remain of similar size, although with a slight bias to elongated bonds, as is exemplified by the $\gamma_0=1$ case. Here, as the breakage condition considers the bond strain energy $E=\frac{\mu}{2}\epsilon_b^2$ rather than the bond strain $\epsilon_b$, the network's fracture is agnostic to the strain being compressive or extensional.   
+This expression for $\epsilon_b(\theta \mid \gamma_0)$ neglects any non-affine relaxation of the surrounding network and should therefore be regarded as an approximation of the bonds strain in the relaxed network.  We plot in \cref{fig:AffineBondStrain}a, $\epsilon_b(\theta| \gamma_0)$ for the two cases of gamma we consider in this work, $\gamma_0=0.01$ and $\gamma_0=1$. 
 
 \begin{figure}[t]
     \centering
-    \includegraphics[width=0.9\linewidth]{chapters/UltraDelayedFracture/CrackDirections/StrainDistributions.pdf}
-    \caption[Normalised strain distributions $\rho(\epsilon_b/\gamma_0)$ for a relaxed network and affine (dashed) networks]{Normalised strain distributions $\rho(\epsilon_b/\gamma_0)$ for a relaxed network (solid), affine (dashed) networks and analytical predictions (dotted), for {\bf a) $\gamma_0=0.01$ } and {\bf b)} $\gamma_0=1.0$. Affine network distributions are taken immediately after a step strain of magnitude $\gamma_0$ is imposed affinely. The from the affine predictions is derived in \cref{sec:affineStrainDist}.}
-    \label{fig:PDFBondDistributions}
+    \includegraphics[width=0.9\linewidth]{chapters/UltraDelayedFracture/CrackDirections/BondStrain.pdf}
+    \caption[Illustrations of bond state under affine deformation]{
+    Illustrations of {\bf a)} the resulting strain $\epsilon_b$ and {\bf b)} the angle $\theta^\prime$ resulting from an affine deformation of a bond initially at a principal angle $\theta$. We plot the two curves corresponding to two strains considered in this work $\gamma_0=0.01$ and $\gamma_0=1$. The principal angle $\theta\in[0,\pi)$ is measured relative to the horizontal $x$-axis. The zero of each curve, indicated with a dashed vertical line, shows the angle $\theta\in(\pi/2,\pi)$ at which the applied strain transitions from extension to compression.}
+    \label{fig:AffineBondStrain}
 \end{figure}
 
-As a result, the fracture propagates initially independent of the network structure, with the network appearing initially homogenous, as indicated by both \cref{fig:AffineBondStrain} and \cref{fig:PDFBondDistributions}a. The affine predictions shown in \cref{fig:AffineBondStrain} indicate little dependence on $\theta$ for both the resulting strain $\epsilon_b$ and angle $\theta^\prime$, which is reinforced by the distributions plotted in \cref{fig:PDFBondDistributions}a. Here, the affine deformation evenly distributes bonds with both positive and negative strain. As force balance is reimposed, this distribution progressively broadens, though importantly remains symmetric around $\epsilon_b=0$. 
+For small $\gamma_0$, the resultant affine strains remain small and close to zero with a roughly equal split of bonds in both compression and extension (red solid line in \cref{fig:AffineBondStrain}a). The transition is indicated by the vertical dashed line associated with the red ($\gamma_0=0.01$) curve. The magnitudes of the resultant strains also remain of similar size, although with a slight bias to elongated bonds, as is exemplified by the $\gamma_0=1$ case. The resultant distribution both immediately following strain imposition (dotted red line) and in the relaxed configuration (solid red line) is plotted in  \cref{fig:PDFBondDistributions}a. As force balance is reimposed through the network relaxing to an equilibrium configuration, the affine distribution progressively broadens, though importantly remains symmetric around $\epsilon_b=0$. In this low strain regime, as the breakage condition considers the bond strain energy $E=\frac{\mu}{2}\epsilon_b^2$ rather than the bond strain $\epsilon_b$, the network's fracture is agnostic to the strain being compressive or extensional. As a result, fracture propagation at low strains does not show a preferred orientation at which bond fail with bonds failing under both extension and compression. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\linewidth]{chapters/UltraDelayedFracture/CrackDirections/StrainDistributions.pdf}
+    \caption[Normalised strain distributions $\rho(\epsilon_b/\gamma_0)$ for a relaxed network and affine (dashed) networks]{Normalised strain distributions $\rho(\epsilon_b/\gamma_0)$ for a relaxed network (solid line), affinely deformed (dashed line) networks and analytical predictions (dotted line), for {\bf a) $\gamma_0=0.01$ } and {\bf b)} $\gamma_0=1.0$. Affine network distributions are taken immediately after a step strain of magnitude $\gamma_0$ is imposed affinely. The from the affine predictions is derived in \cref{sec:affineStrainDist}.}
+    \label{fig:PDFBondDistributions}
+\end{figure}
 
 \begin{figure}
     \centering
     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/CrackDirections/CrackSnapshots.png}
     \caption[Snapshot of crack features plotted in the rest frame]{
-    Snapshots of systems in the rest frame at failure.  Arrows indicate the directions parallel and perpendicular to $58^\circ$ relative to the horizontal.
-    {\bf a)} $\gamma_0=0.09$, $x=10^{-6}$, $E=5.025\times10^{-5}$. \newline
-    {\bf b)} $\gamma_0=1.0$, $x=0.0062$, $E=0.35$. \newline
-    The colour scale indicates the order in which bonds fail from dark to light.\newline
+    Snapshots of systems in the rest frame at failure.  Arrows indicate the directions parallel and perpendicular to $58^\circ$ relative to the horizontal. The colour scale indicates the order in which bonds fail from dark to light.\newline
+    Parameters {\bf a)} $\gamma_0=0.09$, $x=10^{-6}$, $E=5.025\times10^{-5}$ and {\bf b)} $\gamma_0=1.0$, $x=0.0062$, $E=0.35$. \newline
     }
     \label{fig:CrackDirections}
 \end{figure}
 
-Contrastingly, the affine distribution at $\gamma_0=1$ is asymmetric about $\epsilon_b=0$, with a clear bias towards positive (extensional) strains. As the network subsequently relaxes to restore force balance, this distribution broadens further, producing a larger population of bonds with high strain magnitude. Consequently, the bonds most likely to fail are those whose initial orientation in the rest frame is $\theta\approx58^{\circ}$, corresponding to the angle that produces the largest affine deformation. This crack failure mechanism is again illustrated in \cref{fig:CrackDirections}. We illustrate in black the directions parallel and perpendicular to the maximally strained bonds ($\theta\approx58^{\circ}$), which show qualitative agreement with the observed failure pattern in the network. The exact fracture direction will depend strongly on the particular network topology and the local level of non-affine arrangement.
+Contrastingly, the distribution of bond strain in the affinely deformed network at $\gamma_0=1$ is asymmetric about $\epsilon_b=0$, with a bias towards positive (extensional) strains. As the network subsequently relaxes to restore force balance, this distribution broadens further, producing a larger population of bonds with high strain magnitude. Consequently, the bonds most likely to fail are those whose initial orientation in the rest frame is $\theta\approx58^{\circ}$, corresponding to the angle that produces the largest affine deformation. This crack failure mechanism is again illustrated in \cref{fig:CrackDirections}b. We illustrate in black the directions parallel and perpendicular to the maximally strained bonds ($\theta\approx58^{\circ}$), which show qualitative agreement with the observed failure pattern in the network, for the eventual failure directions in both strain regimes ($\gamma \ll 1$ in \cref{fig:CrackDirections}a and $\gamma \sim 1$ in \cref{fig:CrackDirections}b). The exact fracture direction will depend strongly on the particular network topology and the local level of non-affine arrangement.
 
-Finally, of interest are the spider-like cracks that form in the small-$\gamma_0$ regime. While cracks at these small strains initially fail in both the horizontal and vertical directions, a defining feature of these single brittle events is the splitting at the crack tip. The primary fracture bifurcates into secondary branches that propagate along diagonal directions through the network. We expect this to be a result of two effects:
-% \needspace{5\baselineskip}
-\begin{enumerate}
-    \item As the network fails, the network loses local rigidity, which allows for a large local strain to occur at the crack tip. This forces a change in direction as the network twists. 
-    \item As bonds break and a crack forms, stress can no longer be transmitted across the failed region. This modifies the form of the local stress propagator from the typical Eshelby propagator, to one that promotes the failure of bonds off the vertical and horizontal axes. 
-\end{enumerate}
+Finally, of interest are the spider-like cracks that form in the small-$\gamma_0$ regime, shown in \cref{fig:LowGammaTempSnapShots}c, \cref{fig:LowGammaTempSnapShots}d, \cref{fig:LowGammaStrainSnapshots}a and for comparison to the high-$\gamma_0$ regime in \cref{fig:CrackDirections}a. While cracks at these small strains initially propagate in both the horizontal and vertical directions, a defining feature of these single brittle events is the splitting at the crack tip. The primary fracture bifurcates into secondary branches that propagate along diagonal directions through the network. 
 
-Taken together, these observations suggest that the direction of fracture in these networks is controlled by a competition between the initially imposed affine strain field and the subsequent redistribution of stress during relaxation and failure. At small strains, the affine strain distribution and resulting stress field render the network effectively isotropic with respect to fracture. This allows for cracks to fail to nucleate and propagate along either horizontal or vertical directions with comparable likelihood, with subsequent branching arising from local deformations at the crack tip.
+Although we do not directly resolve the local stress or rigidity during branching, two plausible mechanisms may contribute to the observed crack-tip splitting. First, progressive bond loss near the crack tip likely reduces the local stiffness, permitting larger non-affine rotations and shear concentrations that deflect the advancing tip away from the principal axes. Second, once a crack forms, stress propagation across the failed region is suppressed, so the crack-tip stress redistribution is expected to differ from the Eshelby-like redistribution characteristic of an intact elastic medium this altered redistribution may favour the loading of bonds along oblique directions and hence branching. Testing these hypotheses would require direct measurements of the evolving local stiffness (or rigid cluster structure) and of the spatial pattern of stress/strain energy release around the tip, as is done experimentally under normal deformation in Refs. \cite{ju_role_nodate,qiMappingDeformationDissipation2024,zheng_how_2021,ducrot_structure_2015,wangCharacterizationDeformationFracture2025}.
+
+Taken together, these observations suggest that the direction of fracture in these networks is controlled by a competition between the initially imposed affine strain field and the subsequent redistribution of stress during relaxation and failure. At small imposed strains, the affine strain distribution and resulting stress field render the network effectively isotropic with respect to fracture. This allows for cracks to fail to nucleate and propagate along either horizontal or vertical directions with comparable likelihood, with subsequent branching arising from local deformations at the crack tip.
 
 At high strain, however, the anisotropic strains resulting from the affine deformation strongly bias the population of highly strained bonds toward a well-defined orientation. After relaxation and force balance, these bonds select a preferred fracture direction perpendicular to these maximally loaded bonds. While non-affine deformations and network structure introduce variability into the precise failure path, the overall fracture direction is nevertheless governed by the underlying strain-induced anisotropy of the bond loading.
 
 \section{Conclusion}
-In this chapter, we have investigated the delayed failure of soft network materials under a simple set of assumptions. Our central aim has been to demonstrate that the phenomenon characterised by Lockwood \etal~\cite{lockwood_ultradelayed_2025} can be reproduced using direct simulations of network materials. We have demonstrated, within a minimal thermal model inspired by the SGR model, that the failure time of the network can be delayed to extremely long time scales following the imposed deformation. In this regime, the networks can appear macroscopically stable, exhibiting little to no detectable precursors in the bulk material properties, before the eventual rupture of a critical bond ultimately triggers a catastrophic, brittle failure of the system.
+In this chapter, we have investigated the delayed failure of soft network materials under a simple set of assumptions. Our central aim has been to demonstrate that the phenomenon predicted by Lockwood \etal~\cite{lockwood_ultradelayed_2025} in continuum and lattice elastoplastic models can be reproduced using direct simulations of network materials. We have demonstrated, within a minimal thermal model with thermally activated bond breakage events, that the failure time of the network can be delayed to extremely long time scales following the imposed deformation. In this regime, the networks can appear macroscopically stable, exhibiting little to no detectable precursors in the bulk material properties, before the eventual rupture of a critical bond ultimately triggers a catastrophic, brittle failure of the system.
 
-At low imposed step strains, we found that networks that ultimately undergo ultra-delayed failure initially relax in a manner that is almost indistinguishable from an equivalent athermal network in which bonds are not permitted to break. Following this initial non-affine relaxation, the system enters a long-lived stable state in which further mechanical deformations are minimal. In this state, bond failure is rare and controlled by the thermal fluctuation in the bonds over slow deterministic mechanical processes. The rupture of bonds is therefore well described by a stochastic Poisson process, as each bond explores its local energy well and occasionally escapes over its energy barrier. 
+At low imposed step strains, we found that networks that ultimately undergo ultra-delayed failure initially relax in a manner that is almost indistinguishable from an equivalent athermal network in which bonds are not permitted to break. Following this initial non-affine relaxation, the system enters a long-lived stable state in which further mechanical deformations are minimal. In this state, bond failure is rare and controlled by the thermal fluctuation in the bonds rather than slow deterministic mechanical processes. The rupture of bonds is therefore well described by a stochastic Poisson process, as each bond explores its local energy well and occasionally escapes over the energy barrier that impedes its breakage. 
 
-The resulting macroscopic fractures in these networks typically nucleate from the failure of a single critical bond that happens to reside in a local configuration that can trigger a cascade of correlated failures. Once initiated, this cascade of breakages leads to a brittle, system-spanning failure. In the low-strain regime, these cracks predominantly propagate along horizontal or vertical directions in the network’s rest frame, consistent with the near-isotropic distribution of bond strains. As the cracks form, we observe the formation of secondary branching as the network's local structure changes, resulting in the fracture changing direction and splitting. We argued that this behaviour arises from bond failure, resulting in both a local loss of rigidity at the crack tip and modifications to the stress propagator as the network becomes damaged.
+The resulting macroscopic fractures in these networks typically nucleate from the failure of a single critical bond with a local configuration that can trigger a cascade of correlated failures. Once initiated, this cascade of breakages leads to a brittle, system-spanning fracture. In the low-strain regime, these cracks predominantly propagate along horizontal or vertical directions in the network’s rest frame, consistent with the near isotropic distribution of bond strains. As the cracks form, we observe the formation of secondary branching as the network's local structure changes, resulting in the fracture changing direction and splitting. We argued that this behaviour arises from bond failure, resulting in both a local loss of rigidity at the crack tip and modifications to the stress propagator as the network becomes damaged.
 
-In contrast, at large imposed strains, the network is driven far beyond its elastic regime, and substantial non-affine deformations occur during relaxation. Here, a large number of aligned bonds are pushed close to their failure thresholds immediately after the step strain, leading to widespread, spatially diffuse bond breakage at early times. Despite this early damage, we found that networks can still exhibit ultra-delayed failure, persisting for many decades in time before ultimately fracturing. Interestingly, in this regime, the material can sustain a much larger number of broken bonds before macroscopic failure, compared to the low-strain case, suggesting that the strain stiffening exhibited by highly deformed networks allows the network to accommodate progressive damage without immediate collapse.
+In contrast, at large imposed strains, the network is driven far beyond the regime of linear elasticity, and substantial non-affine deformations occur during relaxation. Here, a large number of aligned bonds are pushed close to their failure thresholds immediately after the step strain, leading to widespread, spatially diffuse bond breakage at early times. Despite this early damage, we found that networks can still exhibit ultra-delayed failure, persisting essentially intact for many decades in time before ultimately fracturing. Interestingly, in this regime, the material can sustain a much larger number of broken bonds before macroscopic failure, compared to the low-strain case, suggesting that the strain stiffening exhibited by highly deformed networks allows the network to accommodate progressive damage without immediate collapse.
 
-Taken together, these results indicate that, despite the simplicity of the model, we have captured the essential physical ingredients underlying ultra-delayed failure resulting from thermal effects. In these disordered network the interplay between non-affine deformations, thermally activated bond failures, and stress redistribution controls the network's response. The fact that qualitatively similar behaviour emerges across different parameter regimes and in pre-existing models indicates that delayed yielding is not a fragile artefact of the model. 
+Taken together, these results indicate that, despite the simplicity of the model, we have captured the essential physical ingredients underlying ultra-delayed failure resulting from thermal effects. In these disordered network the interplay between non-affine deformations, thermally activated bond failures, and stress redistribution controls the network's response. The fact that qualitatively similar behaviour emerges across different parameter regimes as well as in models studied by Lockwood \etal indicates that delayed yielding is a robust phenomenon.
 
 At the same time, the complex and often unpredictable nature of failure, from time to crack structure, raises new questions about the microscopic mechanisms that ultimately govern when and where catastrophic failure nucleates. We therefore suggest that future work in this area could include:
 \begin{itemize}
     \item {\bf Alternative network models} -- In this work, we have considered networks in the thermal regime through the introduction of a rate of bond failure dependent on a noise temperature $x$. A common method of introducing temperature in molecular dynamics simulations is through the introduction of a Brownian or Langevin thermostat \cite{allen_computer_2017}. Here, instead, thermal fluctuations are introduced explicitly at the level of the node dynamics, such that the node positions are driven by a stochastic equation. Work done by Tauber \etal in Ref.~\cite{tauber_role_2020} showed that an increase in temperature corresponded to a more homogeneous stress redistribution and induced increased thermally activated failure of springs, equivalent to our failure rate condition defined in \cref{eq:SGRRate}. 
 
-    We would expect that the results from these two approaches would show qualitatively similar results. In this formulation, however, the temperature $T$ is instead considered an explicit temperature rather than a noise parameter, as the bond energies, by definition, are considered on the same scale as temperature. This model may therefore be a better representation of elastomers and hydrogels, which are known to be governed by thermal fluctuations and entropy \cite{arruda_three-dimensional_1993,james_theory_1943}. These models prove to be significantly more computationally challenging, requiring a much smaller time-step than the overdamped equations used elsewhere \cite{leimkuhler_robust_2013}. 
+    We would expect that the results from these two approaches would show qualitatively similar results. In this formulation, however, the temperature $T$ is instead considered to be one a scale as as the thermal energy scale that controls the magnitude of Brownian fluctuations relative to the bond elastic energy, rather than appearing explicitly as an activation parameter in a prescribed breakage rate. This model may therefore be a better representation of elastomers and hydrogels, which are known to be governed by thermal fluctuations and entropy \cite{arruda_three-dimensional_1993,james_theory_1943}. These models prove to be significantly more computationally challenging, requiring a much smaller time-step than the overdamped equations used elsewhere \cite{leimkuhler_robust_2013}. 
     [Early experiments by the author into this model proved successful, although they were unable to reach the system sizes and timescales needed to characterise the dynamics.]
 
-    \item {\bf Athermal fracture} -- As discussed in \cref{sec:delayedInto}, we have focused on delayed failure arising from thermally activated bond breaking, treating purely athermal failure as unlikely in the regime studied here. In the constitutive models explored in Ref.~\cite{lockwood_ultradelayed_2025}, it was shown that delayed failure is impossible in the athermal limit due to the absence of a timescale associated with local plastic rearrangements. 
+    \item {\bf Athermal fracture} -- As discussed in \cref{sec:delayedInto}, we have focused on delayed failure arising from thermally activated bond breaking, treating purely athermal failure as unlikely in the regime studied here. In the constitutive models explored in Ref.~\cite{lockwood_ultradelayed_2025}, delayed failure is absent in the athermal limit because there is no intrinsic timescale associated with local plastic rearrangements.
     
-    However, in the networks considered here, the relaxation time increases as the connectivity is reduced towards the isostatic point $z_c$, diverging as a power law at $z_c$ \cite{shivers_strain-controlled_2023}. This could, in principle, provide an alternative athermal route to ultra-delayed failure if the material relaxes sufficiently slowly. However, in this regime, the sample-to-sample variance of the fracture strain also grows significantly \cite{zhang_fiber_2017}. Consequently, although tuning the connectivity and imposed strain $\gamma_0$ may provide a route to ultra-delayed failure, the resulting behaviour would be strongly dependent on the specific network realisation.
-
+    However, in the networks considered here, the relaxation time increases as the connectivity is reduced towards the isostatic point $z_c$, diverging as a power law at $z_c$ \cite{shivers_strain-controlled_2023}. This could, in principle, provide an alternative athermal route to ultra-delayed failure if the material relaxes sufficiently slowly. However, in this regime, the sample-to-sample variance of the fracture strain also grows significantly \cite{zhang_fiber_2017}, so failure becomes strongly dependent on the specific network realisation. Moreover, it is not clear that a marginally stable network is able to store sufficient elastic energy to brittle fail a long time after the imposed strain.  As a result, although an athermal mechanism cannot be excluded, it would require fine tuning of connectivity and imposed strain (if it is possible), and is therefore unlikely to provide a robust route to ultra-delayed failure.
+    
     \item {\bf Stress redistribution and Critical bonds} -- A key question raised by the results presented in this work concerns how stress is redistributed during fracture. Much of the existing literature on this problem considers the evolution of a crack tip under predominantly elongational loading perpendicular to the fracture plane \cite{sanner_less_2025, bolander_fracture_1998, shekhawat_damage_2013, slepyan_models_2002, ju_role_nodate}, a regime in which the local deformations near the crack tip are always large. In contrast, in the low-strain regime studied here, we observe an abrupt transition in fracture behaviour at some point during the failure. This suggests that the local stress redistribution evolves qualitatively during propagation. 
 
     Further analytical progress may be possible by extending classical treatments of the Eshelby stress propagator \cite{picard_elastic_2004, eshelby_determination_1997} to account for the presence of non-homogeneous fracture surfaces or more complex wall geometries resembling those created by pre-existing damage. Such approaches could provide deeper insight into how stress is redistributed in the vicinity of evolving cracks in disordered networks.
 
-    Finally, we introduced the concept of a critical bond, whose failure resulted in the immediate catastrophic failure of the network. The existence of such critical bonds or regions of heightened susceptibility have been widely observed in amorphous materials, both experimentally and computationally \cite{mattsson_time-dependent_2017,cipelletti_microscopic_2020,yu_shortest_2024,membrillo_solis_tracking_2022,ozawaRareEventsDisorder2022,aime_microscopic_2018,nabizadeh_network_2024}. We hope that continued advances in experimental techniques \cite{porr_probing_2025} and numerical or data-driven methods \cite{mangal_predicting_2024,mangal_topological_2023,cubuk_identifying_2015} will enable the identification of where such failures nucleate, and ultimately provide routes to predicting or controlling their dynamics.
+    Finally, we introduced the concept of a critical bond, whose failure resulted in the immediate catastrophic failure of the network. The existence of such critical bonds or regions of heightened susceptibility have been widely observed in amorphous materials, both experimentally and computationally \cite{mattsson_time-dependent_2017,cipelletti_microscopic_2020,yu_shortest_2024,membrillo_solis_tracking_2022,ozawaRareEventsDisorder2022,aime_microscopic_2018,nabizadeh_network_2024}. Continued advances in experimental techniques \cite{porr_probing_2025} and numerical or data-driven methods \cite{mangal_predicting_2024,mangal_topological_2023,cubuk_identifying_2015} may in the future enable the identification of where such failures nucleate, and ultimately provide routes to predicting or controlling their dynamics.
     
     \item {\bf Relation to gel collapse in colloidal networks} -- A potentially related phenomenon occurs in colloidal gels and arrested particle networks, for which experiments have shown that the materials can support their own weight for long times before ultimately collapsing catastrophically \cite{harich_gravitational_2016,bartlett_sudden_2012,manley_gravitational_2005,starrs_collapse_2002}. It has been shown in these systems that the network never truly reaches a static state: individual bonds continuously break and reform due to thermal fluctuations, and the microstructure slowly evolves. Therefore, this form of delayed yielding has been interpreted as a form of thermally activated creep rupture, where rare microscopic rearrangements progressively weaken load-bearing strands until a critical failure event nucleates \cite{blindstrom_structures_2012,teece_gels_2014,sprakel_stress_2011}.
     
@@ -360,7 +382,7 @@ At the same time, the complex and often unpredictable nature of failure, from ti
 
     Ultimately, this may be able to separate the purely dynamics-based delay routes from the solvent-mediated mechanisms, alternatively proposed as a source of delayed failure \cite{harich_gravitational_2016,varga_modelling_2018,padmanabhan_gravitational_2018}. Here, hydrodynamical erosion of the gel forms fluidised channels (\quotes{streamers}), which have been proposed to destabilise the gel's structure. Establishing which ingredients are essential across these systems would clarify whether ultra-delayed instabilities are a generic consequence of thermally activated rupture in disordered networks, or whether additional hydrodynamical couplings are required in the colloidal case.
     
-    \item {\bf Experimental studies with the protocol of step shear strain} -- At present there remains limited direct experimental evidence for ultra-delayed banding or failure under a true step strain protocol. Most work has been limited to short timescale failure in polymer melts \cite{boukany_exploring_2009,boukany_step_2009,barroso_evaluation_2002,einaga_stress_1973} or simple constitutive models \cite{moorcroft_shear_2014,moorcroft_criteria_2013,adams_nonmonotonic_2009}. With consequences for material manufacturing industries, it is important to test this experimentally, in both network and more generally amorphous materials. The major problem with observing this experimentally is the parametrisation of the system such that the failure time ultimately occurs within experimental timescales, but also late enough to be defined as delayed rather than immediate failure. While a true step strain protocol is inaccessible experimentally, a rapid strain ramp, at a rate quick enough to avoid any failure before the maximum strain $\gamma_0$ is reached, is achievable \cite{barroso_evaluation_2002}. 
+    \item {\bf Experimental studies with the protocol of step shear strain} -- At present there remains limited direct experimental evidence for ultra-delayed banding or failure under a true step strain protocol. Most work has been limited to short timescale failure in polymer melts \cite{boukany_exploring_2009,boukany_step_2009,barroso_evaluation_2002,einaga_stress_1973} or simple constitutive models \cite{moorcroft_shear_2014,moorcroft_criteria_2013,adams_nonmonotonic_2009}. With consequences for material manufacturing industries, it is important to test this experimentally, in both network and more generally amorphous materials. The major problem with observing this experimentally is the parametrisation of the system such that the failure time ultimately occurs within experimental timescales, but also late enough to be defined as delayed rather than immediate failure. Identifying such a parameter regime is already non-trivial at the computational level, and is therefore expected to pose an even greater challenge in experimental realisations. While a true step strain protocol is inaccessible experimentally, a rapid strain ramp, at a rate quick enough to avoid any failure before the maximum strain $\gamma_0$ is reached, is achievable \cite{barroso_evaluation_2002}. 
 \end{itemize}
 
 \newpage
@@ -369,41 +391,10 @@ At the same time, the complex and often unpredictable nature of failure, from ti
 \section{Calculating Approximate free parameters in Breakage Rate} \label{sec:approxEx}
 Predicting the relaxed post-strain configurations of disordered networks is inherently challenging. This problem has been extensively studied in the context of rigidity (see \cref{sec:Rigidity}). Recent work exploring the high-dimensional energy landscapes of such networks has demonstrated that predicting their evolution is computationally intractable without direct numerical simulation \cite{damavandi_energetic_2022,damavandi_energetic_2022-1}. These difficulties arise primarily from the large non-affine deformations characteristic of semi-flexible networks. As the final parameter ranges will ultimately be refined through systematic parameter space searches, we require only a reasonable initial estimate rather than an exact prediction.
 
-
-To obtain such an estimate, we first consider a single bond of rest length $l_0$ oriented at an angle $\theta$ to the horizontal axis, with one node fixed at the origin. Under a simple shear deformation characterised by the matrix
+Based on the discussion in \cref{sec:DirectionOfFracture} for a network immediately after it has undergone an affine deformation with shear strain $\gamma_0$, a bond that, in the network’s initial (rest) configuration, makes an angle $\theta$ with the horizontal axis, has a strain defined by,
 \begin{equation*}
-    \left(\begin{matrix}
-        1 & \gamma_0 \\
-        0 & 1 \\
-    \end{matrix}\right)
+     \epsilon_b(\theta| \gamma_0) = \sqrt{(\cos(\theta) + \gamma_0\sin(\theta))^2 + \sin^2(\theta)} - 1.
 \end{equation*}
-the initially free end of the bond, which starts at $(l_0\cos\theta,\, l_0\sin\theta)$, is transformed to
-\begin{equation*}
-    \left(\begin{matrix}
-        1 & \gamma_0 \\
-        0 & 1 \\
-    \end{matrix}\right)
-    \left(\begin{matrix}
-        l_0\cos(\theta) \\
-        l_0\sin(\theta) \\
-    \end{matrix}\right)
-    =
-    \left(\begin{matrix}
-        l_0(\cos(\theta) + \gamma_0\sin(\theta)) \\
-        l_0\sin(\theta) \\
-    \end{matrix}\right).
-\end{equation*}
-The post-shear bond length is therefore
-\begin{equation}
-    l(\theta | \gamma_0)=l_0\sqrt{(\cos(\theta) + \gamma_0\sin(\theta))^2 + \sin^2(\theta)}
-\end{equation}
-and the corresponding bond strain is
-\begin{align}
-     \epsilon_b(\theta| \gamma_0) = \frac{l(\theta | \gamma_0) - l_0}{l_0}
-     &= \frac{l_0\sqrt{(\cos(\theta) + \gamma_0\sin(\theta))^2 + \sin^2(\theta)} -l_0}{l_0} \\
-     &= \sqrt{(\cos(\theta) + \gamma_0\sin(\theta))^2 + \sin^2(\theta)} - 1.
-\end{align}
-This expression for $\epsilon_b(\theta)$ neglects any non-affine deformations of the surrounding network and should therefore be interpreted as an approximate upper bound on the expected bond strains.
 
 For the large, disordered networks considered here, we assume that bond orientations are approximately uniformly distributed. We therefore consider the maximum value of $\epsilon_b(\theta|\gamma_0)$ over $\theta \in [0,\pi)$ and define
 \begin{equation}
