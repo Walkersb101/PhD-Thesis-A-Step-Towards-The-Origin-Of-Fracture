@@ -1,11 +1,13 @@
 \setcounter{equation}{0}
-\chapter{Background}
+\chapter{Theoretical Framework and Methods}
 
-The overarching theme of this thesis and the main focus of each chapter is that we analyse the yielding (or fracture) behaviour of the material to provide a small step towards understanding the origins of these behaviours. We will consider several models spanning a range of soft matter systems, along with deformation protocols that are rheologically relevant to each model and the materials that we aim to study. 
+\red{
+    The overarching theme of this thesis and the main focus of each chapter is that we analyse the yielding (or fracture) behaviour of the material to provide a small step towards understanding the origins of these behaviours. To do so, we examine a set of models spanning different classes of soft matter systems, together with deformation protocols that are rheologically relevant to the materials they represent. The purpose of this chapter is to establish the theoretical framework and methodological foundations that underpin the analyses presented in the chapters that follow.
 
-In this chapter, we will discuss the underlying theories of these models and provide further context and definitions for the phenomena that we will explore. We start by introducing some basic rheology concepts, which appear throughout this work. Second, we build on Newtonian fluid mechanics by introducing the generalised continuum equations for incompressible flow, allowing for arbitrary (including viscoelastic) stresses, and derive an approach for solving them in the Stokesian (zero Reynolds number) limit. The majority of the work done in later chapters looks into exploring yielding and fracture from a Hookean perspective in soft network materials. We introduce a model for semi-flexible filament networks, explore how non-linear mechanical responses manifest in these systems and how plasticity can be incorporated into this framework. Throughout this discussion, we will introduce the key numerical techniques used in this thesis as they become relevant.
-
-\todo[inline]{Scale separation: Make the modelling hierarchy explicit (what lives at which scale, and why it’s in this thesis) Right now the chapter contains the right ingredients, but the causal chain is implicit. I’d make the hierarchy explicit near the start (or perhaps, as a small schematic figure/table): Continuum language (stress/strain + protocols) → overdamped incompressible force balance → local plastic eigenstrain produces long-ranged Eshelby-type stress redistribution → those redistribution/localisation ideas motivate how damage nucleates/accumulates in discrete disordered networks → network topology/rigidity (near isostaticity) controls non-affinity, force chains, and failure modes. That gives the reader a “map” so the later technical derivations feel motivated. }
+    A unifying principle throughout this work is a separation of scales linking continuum descriptions of deformation to discrete models of failure. The chapter, therefore, begins at the macroscopic level, where the rheological variables of stress and strain are introduced as the primary descriptors of mechanical response. Building on this language, the generalised continuum equations for incompressible flow are formulated, allowing for arbitrary constitutive stresses, including viscoelastic contributions. These equations are then specialised to the overdamped (Stokesian) limit, appropriate for soft materials in which inertial effects are negligible, and an approach to their solution is outlined.
+    
+    Having established a continuum framework, the discussion then turns to smaller scales. Yielding is interpreted in terms of local plastic rearrangements that introduce internal deformations and generate long-range stress redistribution. This perspective motivates the transition to discrete lattice and network models, in which damage nucleation and accumulation can be resolved explicitly at the level of mesoscopic regions and individual bonds. The chapter, therefore, introduces a model for disordered networks of semi-flexible filaments, describes how non-linear mechanical response arises within this framework, and outlines how plasticity can be incorporated. The numerical techniques employed throughout the thesis are introduced alongside the models to which they apply.
+}
 
 \section{Introduction to Rheology} \label{sec:IntroRheology}
 
@@ -19,7 +21,7 @@ The concepts of stress and strain constitute the fundamental building blocks of 
 \end{equation}
 where $\Delta x$ is the change in length and $L$ s the original length of the material in that direction \cite{lubliner2008plasticity}. Correspondingly, stress can be defined by the ratio of the internal forces in a material to the cross-sectional area,
 \begin{equation}
-    \Sigma = \frac{F}{A}
+    \sigma = \frac{F}{A}
     \label{eq:simpleStress}
 \end{equation}
 where $F$ is the force transmitted across a surface of area $A$ \cite{lubliner2008plasticity}. Because both the measurement of stress and strain depend on the direction in which they are measured relative to the chosen coordinate systems, such as $\Delta x$ relative to $L$ or the direction of $F$ relative to the normal of $A$, we represent them as rank-2 tensors $\bm{\sigma}$ and $\bm{\epsilon}$ respectively.
@@ -146,7 +148,11 @@ where $\lambda$ and $\mu$ are moduli (the Lam\'e constants). This relation assum
 \end{equation}
 where $p$ is the pressure that enforces the incompressibility constraint.
 
-Finally, when analysing the response of the materials in this thesis, we discuss the bulk stress $\bm{\Sigma}$ and strain $\bm{\epsilon}$. Although this distinction can be a source of confusion, we keep the same notation for the local and bulk strain tensors $\bm{\epsilon}$, under the assumption that the material deforms approximately homogeneously. In the cases where this assumption breaks down, the implications will be discussed and made clear. By contrast, we will explicitly distinguish between local and bulk measures of stress. The bulk stress tensor is denoted by $\Sigma$ to emphasise that it represents a spatially averaged quantity, which may differ from the local stress tensor $\sigma$ due to non-linear effects such as plasticity, resulting in partial heterogeneity, which we discuss next.
+Finally, when analysing the response of the materials in this thesis, we discuss the bulk stress $\bm{\Sigma}$ and strain $\bm{\epsilon}$. Although this distinction can be a source of confusion, we keep the same notation for the local and bulk strain tensors $\bm{\epsilon}$, under the assumption that the material deforms approximately homogeneously. In the cases where this assumption breaks down, the implications will be discussed and made clear. By contrast, we will explicitly distinguish between local and bulk measures of stress. The bulk stress tensor is denoted by $\Sigma$ to emphasise that it represents a spatially averaged quantity, defined as 
+\[
+    \Sigma_{ij}=\frac{1}{V}\int_V \sigma_{ij}(\bm{r})dV,
+\]
+which may differ from the local stress tensor $\sigma$ due to non-linear effects such as plasticity, resulting in partial heterogeneity, which we discuss next. 
 
 \subsection{Plasticity} \label{sec:Plasticity}
 The description of stress and strain introduced above implicitly assumes an elastic response, such that the stress is a single-valued, path-independent function of only the instantaneous strain. However, for many soft materials, this assumption breaks down once the strain exceeds a characteristic elastic limit. Beyond this point irreversible microscopic rearrangements occur. These manifest macroscopically as plastic deformation or fracture, introducing dissipation and history dependence in the system's response.
@@ -156,7 +162,7 @@ In contrast to elastic deformation, in which all strain is recovered upon unload
 \subsubsection{Shear Banding} \label{sec:ShearBanding}
 An emergent phenomenon of many of these soft elastoplastic materials is the formation of \quotes{shear bands}, whereby the materials' flow field separates into multiple co-existing macroscopic regions with different strain rates \cite{divoux_stress_2011,divouxTransientShearBanding2010,divoux_yielding_2012,grenard_timescales_2014,gibaud_heterogeneous_2010,kurokawa_avalanche-like_2015}. Such banding has been extensively observed experimentally in a range of amorphous solids~\cite{berretNonlinearRheologyTelechelic2001,berretTransientRheologyWormlike1997,besselingShearBandingFlowConcentration2010,diatEffectShearLyotropic1993,divouxShearBandingComplex2016,divouxTransientShearBanding2010,goyonSpatialCooperativitySoft2008,rogersAgingYieldingShear2008,tapadiaBandingEntangledPolymer2006}. In many cases the bands heal over time, leading to a homogeneously fluidised state; however, in some materials shear banding is implicated in catastrophic failure~\cite{falk_deformation_2011,bonn_yield_2017,larson_instabilities_1992,OlmstedShearBanding2008,bonnDelayedFractureInhomogeneous1998,tabuteauMicroscopicMechanismsBrittleness2009}. Harder materials, such as polymeric and metallic glasses, show similar phenomenology, yielding via strain localisation and shear banding under large imposed stresses~\cite{greer_shear_2013,hufnagel_deformation_2016,boyce_large_1988,anand_large-deformation_2012,chen_mechanical_2008}. Here the formation of shear bands is typically associated with brittle yielding, as the material rapidly fractures along the band. 
 
-While the resultant steady state flow of these materials has been widely studied, with a unifying picture of locally correlated plastic events forming avalanches of activity across the system \cite{liuDrivingRateDependence2016,puosi_time-dependent_2014,linDensityShearTransformations2014,tanguyPlasticResponse2D2006,lin_scaling_2014,maloney_amorphous_2006}, the onset of these bands remains debated. This initial yielding transition has been investigated through a range of approaches, including replica field theory \cite{jaiswalMechanicalYieldAmorphous2016}, as a critical point in an elastoplastic model \cite{linCriticalityApproachFailure2015,liuCreepDynamicsAthermal2018}, as a percolation transition \cite{shrivastavYieldingGlassShear2016}, within artificially seeded particle simulations \cite{ozawaRareEventsDisorder2022}, and also experimentally \cite{aimeMicroscopicDynamicsFailure2018,aimeStresscontrolledShearCell2016,knowltonMicroscopicViewYielding2014}.
+While the resultant steady state flow of these materials has been widely studied, with a unifying picture of locally correlated plastic events forming avalanches of activity across the system \cite{liuDrivingRateDependence2016,puosi_time-dependent_2014,linDensityShearTransformations2014,tanguy_plastic_2006,lin_scaling_2014,maloney_amorphous_2006}, the onset of these bands remains debated. This initial yielding transition has been investigated through a range of approaches, including replica field theory \cite{jaiswalMechanicalYieldAmorphous2016}, as a critical point in an elastoplastic model \cite{linCriticalityApproachFailure2015,liuCreepDynamicsAthermal2018}, as a percolation transition \cite{shrivastavYieldingGlassShear2016}, within artificially seeded particle simulations \cite{ozawaRareEventsDisorder2022}, and also experimentally \cite{aimeMicroscopicDynamicsFailure2018,aimeStresscontrolledShearCell2016,knowltonMicroscopicViewYielding2014}.
 
 As most of the work in this thesis concerns the fracture of networks, we will generally use shear banding to denote localised bands of high deformation, as is done in metallic glasses. In places where it is important to distinguish between these localised bands and the macroscopic regions of different strain rates, and it is not clear from the context, we will state the distinction explicitly.
 
@@ -180,6 +186,16 @@ Pure shear is a homogeneous deformation in which the material is extended along 
 \]
 where $\lambda$ is the principal stretch and the corresponding engineering strain is defined as $\epsilon = \lambda - 1$.
 
+\begin{figure}[b!]
+    \centering
+    % \missingfigure[]{Figure illustrating Pure and simple shear}
+    \includegraphics[width=0.9\textwidth]{chapters/2-Background/Figures/StrainTypes.pdf}
+    \caption[Illustration of pure and simple shear.]{Illustration of pure and simple shear. \newline 
+    {\bf Left)} Pure shear with the elongational axis aligned along the $y$-axis. In \Cref{sec:DoubleNetworks}, this deformation is referred to as extensional stretching to maintain consistency with the existing literature. \newline 
+    {\bf Right)} Simple shear applied in the $xy$ plane.}
+    \label{fig:simpleAndPureShear}
+\end{figure}
+
 By contrast, simple shear involves the relative sliding of parallel material planes while their separation remains fixed. Its deformation gradient may be written as
 \[
 \mathbf{F}_{\mathrm{simple}} =
@@ -189,16 +205,6 @@ By contrast, simple shear involves the relative sliding of parallel material pla
 \end{pmatrix},
 \]
 where $\gamma$ is the shear, defined in \cref{sec:StrainTensor}. Unlike pure shear, simple shear contains a rotational component and can be decomposed into pure shear plus a rigid-body rotation.
-
-\begin{figure}[t]
-    \centering
-    % \missingfigure[]{Figure illustrating Pure and simple shear}
-    \includegraphics[width=0.8\textwidth]{chapters/2-Background/Figures/StrainTypes.pdf}
-    \caption[Illustration of pure and simple shear.]{Illustration of pure and simple shear. \newline 
-    {\bf Left)} Pure shear with the elongational axis aligned along the $y$-axis. In \Cref{sec:DoubleNetworks}, this deformation is referred to as extensional stretching to maintain consistency with the existing literature. \newline 
-    {\bf Right)} Simple shear applied in the $xy$ plane.}
-    \label{fig:simpleAndPureShear}
-\end{figure}
 
 \subsection{Oscillatory Shear} \label{sec:lAOS}
 
@@ -227,33 +233,66 @@ In \Cref{sec:DoubleNetworks}, we impose a quasi-static version of this protocol,
 
 The constitutive descriptions introduced above specify how local stress responds to deformation. However, to understand how a local plastic event influences the surrounding material, we require a description of how stresses and velocities are transmitted through the medium. In soft amorphous materials, this redistribution is governed by incompressible hydrodynamics in the low-Reynolds-number limit. We therefore briefly summarise the continuum equations that underpin the elastic propagators used throughout this thesis.
 
+% \subsection{Navier-Stokes}
+% From conservation of mass and momentum, the Navier--Stokes equations for a generalised incompressible flow read
+% \begin{subequations}
+% \label{eq:NavierStokes}
+% \begin{align}
+%     \rho \left(\partial_t+(\bm{u} \cdot \nabla)\right)\bm{u} &= \nabla \cdot \bm{\sigma} \label{eq:incompressibleNavier1} \\
+%     \nabla\cdot\bm{v} &= 0 \label{eq:incompressibleNavier2}
+% \end{align}
+% \end{subequations}
+
+% where $\rho$ is the fluid's density, $\bm{v}$ the fluid's flow field, and $\bm{\sigma}$ is a tensor which characterises the total stress applied to the fluid. The total stress may be decomposed as $\bm{\sigma} = \bm{\tau} - p\bm{I}$, where $\bm{\tau}$ is the deviatoric stress tensor and $p$ is the hydrostatic pressure.
+
+% The physics we wish to consider in this thesis is the slow flow of pasty materials where the internal viscous forces dominate over the inertial forces. We therefore consider the low-Reynolds-number limit of \cref{eq:incompressibleNavier1} as 
+% \[
+%     Re=\rho U L / \mu \to 0
+% \]
+% where $U$ and $L$ are characteristic displacements and length scales. In this limit, the inertial term on the left-hand side of \cref{eq:incompressibleNavier1} becomes negligible, and the equations reduce to
+% \begin{subequations}
+% \label{eq:StokesLimit}
+% \begin{align}
+%     \nabla \cdot (\bm{\tau} - p\bm{I}) &= 0 \\
+%     \nabla \cdot \bm{u} &= 0.
+% \end{align}
+% \end{subequations}
+% This result may also be obtained directly from the mechanical equilibrium condition in \cref{eq:incompressableStress}, which requires the net force in the system to vanish:
+% \[
+% \nabla \cdot (\mu \bm{\epsilon}) = \nabla \cdot \bm{\sigma} = 0.
+% \]
+
 \subsection{Navier-Stokes}
 From conservation of mass and momentum, the Navier--Stokes equations for a generalised incompressible flow read
 \begin{subequations}
 \label{eq:NavierStokes}
 \begin{align}
-    \rho \left(\partial_t+(\bm{u} \cdot \nabla)\right)\bm{u} &= \nabla \cdot \bm{\Sigma} \label{eq:incompressibleNavier1} \\
-    \nabla\cdot\bm{u} &= 0 \label{eq:incompressibleNavier2}
+    \rho \left(\partial_t+(\bm{v} \cdot \nabla)\right)\bm{v} &= \nabla \cdot \bm{\sigma} \label{eq:incompressibleNavier1} \\
+    \nabla\cdot\bm{v} &= 0 \label{eq:incompressibleNavier2}
 \end{align}
 \end{subequations}
+where $\rho$ is the fluid density, $\bm{v}$ the velocity field, and $\bm{\sigma}$ the total Cauchy stress tensor. The stress may be decomposed as
+\begin{equation*}
+    \bm{\sigma} = \bm{\tau} - p\bm{I},
+\end{equation*}
+where $\bm{\tau}$ is the deviatoric stress tensor and $p$ the hydrostatic pressure enforcing incompressibility.
 
-where $\rho$ is the fluid's density, $\bm{u}$ the fluid's flow field, and $\bm{\Sigma}$ is a tensor which characterises the total stress applied to the fluid. The total stress may be decomposed as $\bm{\Sigma} = \bm{\sigma} - p\bm{I}$, where $\bm{\sigma}$ is the deviatoric stress tensor and $p$ is the hydrostatic pressure.
-
-The physics we wish to consider in this thesis is the slow flow of pasty materials where the internal viscous forces dominate over the inertial forces. We therefore consider the low-Reynolds-number limit of \cref{eq:incompressibleNavier1} as 
+The physics we wish to consider in this thesis concerns the slow deformation of pasty materials in which viscous or elastic stresses dominate over inertia. We therefore consider the low-Reynolds-number limit of \cref{eq:incompressibleNavier1},
 \[
-    Re=\rho U L / \mu \to 0
+    Re = \frac{\rho v L}{\mu} \to 0,
 \]
-where $U$ and $L$ are characteristic velocity and length scales. In this limit, the inertial term on the left-hand side of \cref{eq:incompressibleNavier1} becomes negligible, and the equations reduce to
+where $v$ and $L$ are characteristic velocity and length scales. In this limit, inertial terms become negligible and the equations reduce to the Stokes (force-balance) equations
 \begin{subequations}
 \label{eq:StokesLimit}
 \begin{align}
-    \nabla \cdot (\bm{\sigma} - p\bm{I}) &= 0 \\
-    \nabla \cdot \bm{u} &= 0.
+    \nabla \cdot (\bm{\tau} - p\bm{I}) &= 0, \\
+    \nabla \cdot \bm{v} &= 0.
 \end{align}
 \end{subequations}
-This result may also be obtained directly from the mechanical equilibrium condition in \cref{eq:incompressableStress}, which requires the net force in the system to vanish:
+
+In what follows we adopt a displacement-based formulation. Introducing a displacement field $\bm{u}(\bm{r},t)$ with $\bm{v}=\partial_t\bm{u}$, the quasi-static limit corresponds to determining $\bm{u}$ at each time from the mechanical equilibrium condition \cref{eq:StokesLimit}. This result may also be obtained directly from the requirement that the net force vanish,
 \[
-\nabla \cdot (\mu \bm{\epsilon}) = \nabla \cdot \bm{\Sigma} = 0.
+\nabla \cdot \bm{\sigma} = 0.
 \]
 
 Following the arguments of Ref.~\cite{picard_elastic_2004}, we will assume that the strain $\bm{\epsilon}$ is a linear superposition of a plastic flow $\bm{\epsilon}^{\mathrm{pl}}$ and elastic deformation $\bm{\epsilon^{\mathrm{el}}}$ and that the fluid is homogeneous, isotropic, and linearly elastic. The strain $\bm{\epsilon}$ of the fluid may therefore be written as
@@ -261,30 +300,30 @@ Following the arguments of Ref.~\cite{picard_elastic_2004}, we will assume that 
 \begin{gather}
     \bm{\epsilon} = \bm{\epsilon}^{\mathrm{el}} + \bm{\epsilon}^{\mathrm{pl}}
     \label{eq:strainDecomp} \\
-    \bm{\epsilon}^{\mathrm{el}} =
+    \bm{\epsilon} =
     \frac{1}{2}\left(\nabla \bm{u} + (\nabla \bm{u})^{T}\right)
 \end{gather}
 \end{subequations}
 where $\bm{u}(\bm{r})$ is the total displacement vector at a position $\bm{r}$. For a homogeneous, isotropic, linearly elastic and incompressible medium ($\nabla\cdot\bm{u}=0$), the deviatoric stress becomes
 \begin{equation}
-    \bm{\sigma} = 2\mu \bm{\epsilon^{\mathrm{el}}} = 2\mu\bm{\epsilon} - 2\mu\bm{\epsilon}^{\mathrm{pl}}.
+    \bm{\tau} = 2\mu \bm{\epsilon^{\mathrm{el}}} = 2\mu\bm{\epsilon} - 2\mu\bm{\epsilon}^{\mathrm{pl}}.
     \label{eq:elasticStress}
 \end{equation}
 
-Now, considering a single localised plastic event induced by elastic loading, the strain field $\bm{\epsilon}$ can be decomposed into a superposition of $\bm{\epsilon}^{\mathrm{el}0}$, $\bm{\epsilon}^{\mathrm{el}1}$ and $\bm{\epsilon}^{\mathrm{pl}1}$ where the superscript $0$ denotes the contribution from the elastic loading and $1$ the contribution from the localised plastic event. The materials deformation field can also be decomposed in the same way into a pair of deformation fields $\bm{u}^0$ and $\bm{u}^1$, which are the material's elastic and plastic responses respectively, so that $\bm{u} = \bm{u}^0 + \bm{u}^1$. As the elastic contribution must obey \cref{eq:StokesLimit} and the incompressibility condition $\nabla \cdot \bm{u}^0 = 0$, the plastic deformation $\bm{u}^1$ resulting from the localised plastic event must satisfy, 
-\begin{subequations}
-    \label{eq:plasticStokes}
-    \begin{align}
-        \nabla \cdot \left( 2\mu \bm{\epsilon}^{\mathrm{el}1} - p^1 \bm{I} \right) &= 2\mu \nabla \cdot \bm{\epsilon}^{\mathrm{pl}1}, \label{eq:plasticStokes1}\\
-        \nabla \cdot \bm{u}^1 &= 0.
-    \end{align}
-\end{subequations}
+% Now, considering a single localised plastic event induced by elastic loading, the strain field $\bm{\epsilon}$ can be decomposed into a superposition of $\bm{\epsilon}^{\mathrm{el}0}$, $\bm{\epsilon}^{\mathrm{el}1}$ and $\bm{\epsilon}^{\mathrm{pl}1}$ where the superscript $0$ denotes the contribution from the elastic loading and $1$ the contribution from the localised plastic event. The materials deformation field can also be decomposed in the same way into a pair of deformation fields $\bm{u}^0$ and $\bm{u}^1$, which are the material's elastic and plastic responses respectively, so that $\bm{u} = \bm{u}^0 + \bm{u}^1$. As the elastic contribution must obey \cref{eq:StokesLimit} and the incompressibility condition $\nabla \cdot \bm{u}^0 = 0$, the plastic deformation $\bm{u}^1$ resulting from the localised plastic event must satisfy, 
+% \begin{subequations}
+%     \label{eq:plasticStokes}
+%     \begin{align}
+%         \nabla \cdot \left( 2\mu \bm{\epsilon}^{\mathrm{el}1} - p^1 \bm{I} \right) &= 2\mu \nabla \cdot \bm{\epsilon}^{\mathrm{pl}1}, \label{eq:plasticStokes1}\\
+%         \nabla \cdot \bm{u}^1 &= 0.
+%     \end{align}
+% \end{subequations}
 
-Under the assumption that the deformation is isotropic and incompressible ($\nabla \cdot \bm{u} = \bm{0}$) for any deformation at rest, we can express the left-hand side of \cref{eq:plasticStokes1} as 
-\[\nabla \cdot \left( 2\mu \bm{\epsilon}^{\mathrm{el}1} - p^1 \bm{I} \right) = -\nabla p^1 + \mu \nabla^2 \bm{u}^1.\]
+% Under the assumption that the deformation is isotropic and incompressible ($\nabla \cdot \bm{u} = \bm{0}$) for any deformation at rest, we can express the left-hand side of \cref{eq:plasticStokes1} as 
+% \[\nabla \cdot \left( 2\mu \bm{\epsilon}^{\mathrm{el}1} - p^1 \bm{I} \right) = -\nabla p^1 + \mu \nabla^2 \bm{u}^1.\]
 
 \subsection{Oseen/Stokeslet Tensor} \label{sec:Oseen}
-The solution to \cref{eq:plasticStokes} is well known and has been studied in a wide range of systems. For notational simplicity, we henceforth drop the superscripts ${}^1$ and ${}^{\mathrm{pl}}$ on all relevant fields.
+The solution to \cref{eq:StokesLimit} is well known and has been studied in a wide range of systems. For notational simplicity, we henceforth drop the superscripts ${}^1$ and ${}^{\mathrm{pl}}$ on all relevant fields.
  
 The most common way to approach the problem is to consider the response to a point force $\bm{F}$ applied at $\bm{r}^\prime$ in a periodic system,
 \begin{subequations}
@@ -298,7 +337,7 @@ where the solution to the deformation field can be expressed as a convolution of
 \begin{equation}
     \bm{u}(\bm{r}) = \int \bm{\mathbb{O}}(\bm{r},\bm{r}^\prime) \bm{F} \delta(\bm{r} - \bm{r}^\prime)d\bm{r}^\prime.
 \end{equation}
-The tensor $\bm{\mathbb{O}}$ was first derived by Oseen in 1927 \cite{oseen_neuere_1927}, refined by Burgers in 1939 \cite{Burgers1939}, and is commonly referred to as the Oseen-Burgers tensor or the Stokeslet tensor \cite{Hancock1953}, depending on the field of the author. It is important to note here that the form of \cref{eq:plasticStokes} echoes the work of Eshelby \cite{eshelby_determination_1997}, who considered the effect of a plastic deformation of an elliptical inclusion with constant value inside and zero outside, on an infinite elastic sheet. In this work, Eshelby showed that the displacement caused by this plastic event can be considered as if generated by the boundary of the inclusion, which is equivalent to the form found in \cref{eq:plasticStokes}.
+The tensor $\bm{\mathbb{O}}$ was first derived by Oseen in 1927 \cite{oseen_neuere_1927}, refined by Burgers in 1939 \cite{Burgers1939}, and is commonly referred to as the Oseen-Burgers tensor or the Stokeslet tensor \cite{Hancock1953}, depending on the field of the author. It is important to note here that the form of \cref{eq:StokesLimit} echoes the work of Eshelby \cite{eshelby_determination_1997}, who considered the effect of a plastic deformation of an elliptical inclusion with constant value inside and zero outside, on an infinite elastic sheet. In this work, Eshelby showed that the displacement caused by this plastic event can be considered as if generated by the boundary of the inclusion, which is equivalent to the form found in \cref{eq:StokesLimit}.
 
 \subsubsection{Derivation}
 Inspired by Ref.~\cite{kim_microhydrodynamics_1991}, we enforce that the deformation field $\bm{u}(\bm{r})$ of \cref{eq:Stokes} vanishes at infinity, i.e. $\lim_{r \to \infty}|\bm{u}(\bm{r})| = 0$. Under this assumption and using the assumption that the Stokes equations are linear in $p(\bm{r})$ and $\bm{u}(\bm{r})$, we can write the pressure field as the scalar product of the point force $\bm{F}$ and a vector field $\bm{P}(\bm{r})$ and the deformation field $\bm{u}(\bm{r})$ as the tensor $\mathbb{O}_{ij}$ acting on $F$:
@@ -351,14 +390,13 @@ Both \cref{eq:fourierDeformation,eq:fourierDeformationGradient} naturally descri
 We now use the deformation gradients obtained above to construct the corresponding strain and stress fields. This procedure leads directly to the Eshelby stress propagator describing the elastic redistribution induced by a localised plastic event.
 
 From \cref{eq:EPStrain}, the resulting strain fields
-\begin{align}
-        \epsilon_{ij} &= \epsilon_{ij}^{\mathrm{el}} + \epsilon_{ij}^{\mathrm{pl}} \\ 
-        &= \frac{1}{2}\left( \partial_i u_j + \partial_j u_i \right) + \epsilon_{ij}^{\mathrm{pl}}
+\begin{equation}
+        \epsilon_{ij} = \epsilon_{ij}^{\mathrm{el}} + \epsilon_{ij}^{\mathrm{pl}} \implies \epsilon^{\mathrm{el}}_{ij} = \frac{1}{2}\left( \partial_i u_j + \partial_j u_i \right) - \epsilon_{ij}^{\mathrm{pl}}
         \label{eq:eshelbyStrain}
-\end{align}
+\end{equation}
 and stress fields
 \begin{equation}
-    \sigma_{ij} = 2\mu \epsilon^{\mathrm{el}}_{ij}
+    \tau_{ij} = 2\mu \epsilon^{\mathrm{el}}_{ij}
     \label{eq:eshelbyStress}
 \end{equation}
 can then be expressed in terms of the deformation gradients found in \cref{eq:fourierDeformationGradient}. For simplicity, we will consider the deformation resulting from a plastic shear event $\epsilon_{xy}^{\mathrm{pl}}$ in a two-dimensional system and without loss of generality, we focus on the shear component $\sigma_{xy}^1$, which captures the stress redistribution associated with a local plastic shear event. However, the formalism presented here does not depend on the particular form of $\bm{\epsilon}^{\mathrm{pl}}$ nor on the spatial dimension, and is therefore equally valid in three dimensions.
@@ -374,14 +412,14 @@ In two dimensions, the Fourier representations of the displacement components $u
 \end{subequations}
 Substituting $\hat{u}_x$ and $\hat{u}_y$ into \cref{eq:eshelbyStrain,eq:eshelbyStress} and resolving for $\hat{\sigma}^1_{xy}$, we obtain
 \begin{align*}
-    \hat{\sigma}_{xy}^1 = 2\mu \hat{\epsilon}_{ij} &= \mu2\left( i k_x u_y + ik_yu_x  \right) - 2\mu\epsilon_{xy}^{\mathrm{pl}}\\
-    & = \mu^22 \left( k_y^2 \hat{\mathbb{O}}_{xx} + k_x^2 \hat{\mathbb{O}}_{yy} +  2 k_xk_y\hat{\mathbb{O}}_{xy} - \frac{1}{\mu} \right)\epsilon_{xy}^{\mathrm{pl}}
+    \hat{\tau}_{xy}^1 = 2\mu \hat{\epsilon}^{\mathrm{pl}}_{ij} &= 2\mu\left( i k_x u_y + ik_yu_x  \right) - 2\mu\epsilon_{xy}^{\mathrm{pl}}\\
+    & = 2\mu^2 \left( k_y^2 \hat{\mathbb{O}}_{xx} + k_x^2 \hat{\mathbb{O}}_{yy} +  2 k_xk_y\hat{\mathbb{O}}_{xy} - \frac{1}{\mu} \right)\epsilon_{xy}^{\mathrm{pl}}
 \end{align*}
 where we use the symmetry of the Oseen tensor $\hat{\mathbb{O}}_{xy}=\hat{\mathbb{O}}_{yx}$.
 
 By collecting terms, we obtain the shear stress propagator $\mathbb{G}_{xy}$, which describes the stress redistribution produced by a single plastic event in an infinite medium:
 \begin{equation}
-\sigma_{xy}^1(\bm{r}) = \mu \int \mathbb{G}_{xy}(\bm{r}-\bm{r}') \epsilon_{xy}^{\mathrm{pl1}}(\bm{r}')d\bm{r}',
+\tau_{xy}^1(\bm{r}) = \mu \int \mathbb{G}_{xy}(\bm{r}-\bm{r}') \epsilon_{xy}^{\mathrm{pl1}}(\bm{r}')d\bm{r}',
 \end{equation}
 where the Fourier-space kernel is
 \begin{equation}
@@ -390,15 +428,15 @@ where the Fourier-space kernel is
 \end{equation}
 We illustrate in \cref{fig:Propogator} the stress redistribution resulting from a single plastic event with $\epsilon_{xy}^{\mathrm{pl}} = -1$ at the origin.
 
-\begin{figure}[t!]
+\begin{figure}
     \centering
     \includegraphics[width=0.9\linewidth]{chapters/2-Background/Figures/Prop_512_inset17.pdf}
     %\missingfigure{Plot of Propagator}
-    \caption[Quadrupolar elastoplastic stress propagator]{Quadrupolar redistribution of the elastoplastic shear stress, $\sigma_{xy}$, after a single local plastic event in a system with $\mu=1$. The system is initialised with $\sigma_{xy}=0$ everywhere; one central element is then yielded and set to $\sigma_{xy}=-1$, after which mechanical equilibrium (force balance) is enforced. The main panel shows the full $N_x\times N_y = 512\times512$ propagator, and the inset shows the central $33\times33$ region.}
+    \caption[Quadrupolar elastoplastic stress propagator]{Quadrupolar redistribution of the elastoplastic shear stress, $\tau_{xy}$, after a single local plastic event in a system with $\mu=1$. The system is initialised with $\tau_{xy}=0$ everywhere; one central element is then yielded and set to $\tau_{xy}=-1$, after which mechanical equilibrium (force balance) is enforced. The main panel shows the full $N_x\times N_y = 512\times512$ propagator, and the inset shows the central $17\times17$ region around the propagator.}
     \label{fig:Propogator}
 \end{figure}
 
-Equivalent expressions can be derived for the normal stress components $\sigma_{xx}$ and $\sigma_{yy}$, as well as for plastic events associated with normal stresses $\mu \epsilon_{xx}^{\mathrm{pl}}$ and $\mu \epsilon_{yy}^{\mathrm{pl}}$. Alternatively, the propagator may be generalised to three dimensions, for which
+Equivalent expressions can be derived for the normal stress components $\tau_{xx}$ and $\tau_{yy}$, as well as for plastic events associated with normal stresses $\mu \epsilon_{xx}^{\mathrm{pl}}$ and $\mu \epsilon_{yy}^{\mathrm{pl}}$. Alternatively, the propagator may be generalised to three dimensions, for which
 \begin{equation}
 \hat{\mathbb{G}}_{xy}(\bm{k}) = -4 \frac{k_x^2 k_y^2}{k^4} - \frac{k_z^2}{k^2}.
 \end{equation}
@@ -479,7 +517,7 @@ We neglect long-range hydrodynamic interactions in the drag term due to hydrodyn
 \begin{equation*}
     \bm{F}_{d,i} = -\zeta\left(\dot{\bm{r}}_i - \bm{v}_f(\bm{r}_i)\right),
 \end{equation*}
-where $\zeta$ is the drag coefficient. We will work in units throughout this thesis where $\zeta=1$. This form of drag violates Galilean invariance, where the force becomes dependent on the considered frame of reference; however, it is still commonly used in literature \cite{gittes_dynamic_1998, broedersz_modeling_2014, ikeda_unified_2012, puosi_time-dependent_2014,durian_foam_1995, salerno_avalanches_2012, liu_driving_2016} and provides similar results when compared to the more accurate form used in dissipative particle dynamics \cite{groot_dissipative_1997}. 
+where $\zeta$ is the drag coefficient. We will work in units throughout this thesis where $\zeta=1$. This form of drag violates Galilean invariance, where the force becomes dependent on the considered frame of reference; however, it is still commonly used in literature \cite{gittes_dynamic_1998, broedersz_modeling_2014, ikeda_unified_2012, puosi_time-dependent_2014,durian_foam_1995, salerno_avalanches_2012, liuDrivingRateDependence2016} and provides similar results when compared to the more accurate form used in dissipative particle dynamics \cite{groot_dissipative_1997}. 
 
 Deformations to the system can be considered to be applied affinely across the system, as in the widely used affine solvent model \cite{durian_foam_1995,lerner_simulations_2013}, in which the background fluid velocity field $\bm{v}_f$ deforms affinely in response to the imposed macroscopic strain.
 
@@ -683,10 +721,10 @@ In principle, the macroscopic stress can be obtained via the principle of virtua
 Instead, molecular dynamics simulations typically report the virial stress tensor, which can be computed efficiently from the instantaneous particle forces and positions. While there are many formulations of the virial stress tensor \cite{walton_pressure_1983,erpenbeck_einstein-kubo-helfand_1995,tsai_virial_1979}, we will present a brief derivation of the virial stress tensor derived by Irving and Kirkwood in Ref.~\cite{irving_statistical_1950} in two dimensions.
 
 
-Following the arguments of Doi and Edwards in Ref.~\cite{doi_theory_1988}, we consider an arbitrary line perpendicular to the $j$-axis, which intersects the network at a position $h$ along that axis. The $ij$ component of the stress across this line, $\sigma_{ij}(h)$, is defined as the $i$ component of the force (per unit length) exerted by the portion of the network above the line on the portion below it, which we denote by $F_i(h)$. The macroscopic stress $\sigma_{ij}$ is then obtained by averaging $\sigma_{ij}(h)$ along the $j$-direction,
+Following the arguments of Doi and Edwards in Ref.~\cite{doi_theory_1988}, we consider an arbitrary line perpendicular to the $j$-axis, which intersects the network at a position $h$ along that axis. The $ij$ component of the stress across this line, $\sigma_{ij}(h)$, is defined as the $i$ component of the force (per unit length) exerted by the portion of the network above the line on the portion below it, which we denote by $F_i(h)$. The macroscopic stress $\Sigma_{ij}$ is then obtained by averaging $\sigma_{ij}(h)$ along the $j$-direction,
 \begin{gather}
-    \sigma_{ij} = \langle \sigma_{ij}(h) \rangle = \frac{\langle F_i(h) \rangle}{L_i}, \\
-    \sigma_{ij} = \frac{1}{L_i L_j}\int_0^{L_j} F_i(h)\, dh,
+    \Sigma_{ij} = \langle \sigma_{ij}(h) \rangle = \frac{\langle F_i(h) \rangle}{L_i}, \\
+    \Sigma_{ij} = \frac{1}{L_i L_j}\int_0^{L_j} F_i(h)\, dh,
     \label{eq:virialDevInt}
 \end{gather}
 where $L_i$ is the system length in the $i$ direction and $L_j$ is the extent of the averaging along the $j$-axis.  Their product $L_iL_j \equiv A$ is the system area. For simplicity, we neglect solvent contributions and retain only the contribution to the stress from the inter-node forces.
@@ -700,15 +738,15 @@ The force $F_i(h)$ can be written as the sum of the $i$-components of the pairwi
 where $r_{n,j}$ is the $j$-coordinate of node $n$. The two Heaviside functions (defined in \cref{symbol:heaviside_function}) restrict node $n$ to lie below the line and node $m$ above it.  Substituting \cref{eq:virialDevForce} into \cref{eq:virialDevInt} and integrating over $h$ yields
 \begin{subequations}
 \begin{align}
-    \sigma_{ij}
+    \Sigma_{ij}
     &= \frac{1}{A}\sum_{m,n}
     f_{mn,i}(r_{n,j}-r_{m,j})
     \Theta(r_{n,j}-r_{m,j})
     \label{eq:virialDevTheta} \\
-    &= \frac{1}{2A}\sum_{m,n}
+    \Sigma_{ij} &= \frac{1}{2A}\sum_{m,n}
     f_{mn,i}(r_{n,j}-r_{m,j})
     \label{eq:virialDevfinal} \\
-    &= \frac{1}{2A}\sum_{m,n}
+    \Sigma_{ij} &= \frac{1}{2A}\sum_{m,n}
     f_{mn,i}\, r_{mn,j},
     \label{eq:virialStress}
 \end{align}
@@ -723,7 +761,7 @@ When studying rheology, we aim to characterise a material's response to an impos
 
 Achieving such system sizes in simulations, however, is often computationally prohibitive. A common strategy to circumvent this limitation is to employ periodic boundary conditions, whereby material leaving one side of the unit cell re-enters on the opposite side. This construction removes physical boundaries from the computational domain and thereby eliminates edge effects. Consequently, macroscopic strains must be imposed through alternative methods rather than via conventional boundary-driven forcing.
 
-\begin{figure}[hbt]
+\begin{figure}[b]
     \centering
     \begin{subfigure}[t]{0.5\linewidth}
         \centering
@@ -755,5 +793,11 @@ To impose shear in the $x$ direction using Lees--Edwards boundary conditions, pa
 \end{equation}
 whilst periodic images are shifted by an amount $\gamma L_y$ between adjacent rows, as shown in \cref{fig:Lees-Edwards}. This construction is computationally advantageous because the primary simulation cell remains orthogonal. Implementation details can be found in Ref.~\cite{allen_computer_2017}.
 
-\todo[inline]{I would suggesting adding an explicit roadmap as last section of this chapter where you clearly state the scientific question you ask in each chapter (1-2 from each chapter - think of those are objectives) + the relevant background from this chapter. Then, in the individual chapters, you can refer to this section with
-short 1 line take-home message answering these questions to complete the circle. The workflow here would be: 1. find a physics-informed lay person's take-home message for a chapter, 2. construct a question from that answer, 3. put that question here}
+\section{Conclusion}
+\red{
+    In this chapter, we have established the rheological and mechanical framework that underpins the remainder of this thesis. Beginning from continuum descriptions of overdamped deformation, we introduced the macroscopic variables used to characterise material response under shear, with particular emphasis on strain-controlled protocols and stress relaxation emerges. These provide the definitions of elasticity, yielding, and failure that will be used throughout.
+    
+    We then connected this macroscopic viewpoint to microscopic structure by considering disordered fibre networks as minimal models of soft heterogeneous solids. Within this framework, stress emerges from bond level forces, and relaxation reflects the interplay between elastic deformation, non-affine rearrangements, and bond rupture. Even in the overdamped dynamics considered in this work, complex time-dependent behaviour can arise from the redistribution of stress across a disordered network, which we will explore in later chapters.
+    
+    A central conclusion is that macroscopic response reflects an evolving microscopic state. Whether a material relaxes, accumulates damage gradually, or fails catastrophically depends on how stress is distributed through the system. The concepts explored in this background will provides the basis for analysing damage accumulation under cyclic loading, delayed yielding under an imposed step strain, and toughness in double network systems in the chapters that follow.
+}
