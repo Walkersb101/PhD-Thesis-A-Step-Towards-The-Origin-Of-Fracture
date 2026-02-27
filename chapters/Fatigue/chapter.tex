@@ -19,19 +19,53 @@
 \end{itemize}
 
 \section{Methodology}
+As a starting point for the model used in this work, we adopt the framework introduced in \cref{sec:Hydrodynamics}. We consider the flow of a simple incompressible material subject to a viscoelastic stress tensor $\bm{\sigma}$, which is decomposed as
+\[
+    \bm{\sigma} = \bm{\tau} - p\bm{I},
+\]
+where $\bm{\tau}$ denotes the deviatoric stress and $p$ is the hydrostatic pressure enforcing incompressibility.
+
+As in \cref{sec:Hydrodynamics}, we assume that viscous and elastic stresses dominate over inertia. In this overdamped limit, the governing equations reduce to the Stokes (force-balance) form
+\begin{subequations}
+\label{eq:fatigueForceBalance}
+\begin{align}
+\nabla \cdot (\bm{\tau} - p\bm{I}) &= 0, \
+\nabla \cdot \bm{v} &= 0.
+\end{align}
+\end{subequations}
+
+Throughout this work, we further consider the quasi-static shear limit, such that both elastic and plastic relaxation are instantaneous and the material remains in mechanical equilibrium at all times. This assumption motivates, as in \cref{sec:Hydrodynamics}, the use of a displacement-based formulation in which the displacement field $\bm{u}(\bm{r},t)$ is defined through $\bm{v} = \partial_t \bm{u}$.
+
+To solve the dynamics of \cref{eq:fatigueForceBalance}, we introduce a lattice of $i=1,2,\ldots,N_x$ by $j=1,2,\ldots,N_y$ elements. Each element is assumed to be a mesoscopic sample of the material, each representing a coarse-grained region containing multiple microstructural constituents (for example, a few particles in a colloidal system \cite{Schall2007}, or several hundred metallic glass particles \cite{Pan2008}). This partition into mesoscopic elements should be understood as a conceptual coarse-graining procedure rather than as a division into sharply defined physical subregions; the elements do not correspond to fixed material boundaries, but instead denote representative volumes over which a local constitutive description is assumed to apply. Therefore, these element sizes are assumed to satisfy two conditions:
+\begin{enumerate}
+    \item Sufficiently small that the bulk response can be obtained by averaging over many such elements.
+    \item Sufficiently large that, within each element, the deformation can be meaningfully characterised by local continuum elastic strain and stress fields.
+\end{enumerate}
+
+While each element could be associated with a microscopic conformation tensor, which fully defines the material's state, we will consider a scalar model where each element is assigned a local elastic shear strain $l$, a corresponding local shear stress $\mu l$ and a local yield energy $E$. Each element in the lattice is assumed to follow the following set of rules. Between each plastic event, the strain of each element is assumed to follow affinely the globally applied elastic strain $\gamma$, corresponding to elastic loading in the material. Each element is assumed to continue this elastic loading until its strain energy reaches the yield threshold
+\[
+    E=\frac{1}{2}\mu l^2
+\]
+where beyond this threshold the element is assumed to immediately yield. For this work, we will work in units where $\mu=1$ and $E=0.5$, such that the yielding threshold for elements reduces to 
+\[
+    |l| > l_c := \sqrt{2E/\mu}=1.
+\]
+
+When each element yields, it adopts a new local strain at random from a Gaussian distribution with $l_w$ and mean $0$. This parameter does not alter whether the material ultimately yields or absorbs, and therefore does not modify the qualitative physics of the transition. It does, however, introduce a characteristic timescale into the system, which will be examined and quantified in subsequent sections. Following a yielding event, an element that we will later assume to have been in force balance before yielding no longer satisfies \cref{eq:fatigueForceBalance}; the local stress field develops a non-zero divergence, and force balance is violated. Force balance is then immediately reimposed via the Eshelby stress propagator in two dimensions \cite{picard_elastic_2004,eshelby_determination_1997} (see \cref{sec:EshelbyPropogator} for its derivation).
+
 \begin{itemize}
-    \item Consider the low Reynolds limit, where inertia is negligible 
-    \item We define a lattice of $i=1,2,\ldots,N_x$ by $j=1,2,\ldots,N_y$, and take $N_x=N_y=N$ for simplicity.
-    \item Each lattice site/element is considered to be a mesoscopic region of the material, typically approximately the size of a rearrangement event (bond or cluster of particles)
-    \item Each element has a local strain $l$, a corresponding local shear stress $\mu l$, and a local yield energy $E$.
-    \item The material is assumed to undergo a globally applied bulk strain $\gamma$, which is assumed to be applied affinely to the material.
+    % \item Consider the low Reynolds limit, where inertia is negligible 
+    % \item We define a lattice of $i=1,2,\ldots,N_x$ by $j=1,2,\ldots,N_y$, and take $N_x=N_y=N$ for simplicity.
+    % \item Each lattice site/element is considered to be a mesoscopic region of the material, typically approximately the size of a rearrangement event (bond or cluster of particles)
+    % \item Each element has a local strain $l$, a corresponding local shear stress $\mu l$, and a local yield energy $E$.
+    % \item The material is assumed to undergo a globally applied bulk strain $\gamma$, which is assumed to be applied affinely to the material.
     \item Each element is assumed to follow the same set of rules
     \begin{itemize}
-        \item Between plastic events, the strain of each element affinely follows the globally applied strain $\gamma$, corresponding to elastic loading.
-        \item Each element has a local yield criterion ($\frac{1}{2} \mu l^2=E$) which determines the onset of a plastic event.
-        \item Work in units where the elastic constant $\mu=1$ and $E=0.5$ such that the critical strain $l_c = \pm 1$
-        \item Upon yielding a element adopts a new local strain chosen at random from a Gaussian distribution of width $l_w$ and mean $0$.
-        \item The plastic event forces a rearrangement of particles; the system is not in force balance, which needs to be reimposed. This is done by yielding the element and applying force balance using \cref{eq:eshelbyReal}.
+        % \item Between plastic events, the strain of each element affinely follows the globally applied strain $\gamma$, corresponding to elastic loading.
+        % \item Each element has a local yield criterion ($\frac{1}{2} \mu l^2=E$) which determines the onset of a plastic event.
+        % \item Work in units where the elastic constant $\mu=1$ and $E=0.5$ such that the critical strain $l_c = \pm 1$
+        % \item Upon yielding a element adopts a new local strain chosen at random from a Gaussian distribution of width $l_w$ and mean $0$.
+        % \item The plastic event forces a rearrangement of particles; the system is not in force balance, which needs to be reimposed. This is done by yielding the element and applying force balance using \cref{eq:eshelbyReal}.
         \item The elastic stress lost from a plastic event is redistributed to neighbouring blocks through the Eshelby stress propagator (defined in \cref{sec:EshelbyPropogator})
         \item Define the propagator here, make it clear the constant at $\hat{G}[0,0] = -1$, such that the stress that would be lost at a single element is instead spread across the system.
     \end{itemize}
