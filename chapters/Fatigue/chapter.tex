@@ -179,17 +179,28 @@ The regime of primary interest here is the intermediate range of amplitudes, in 
 
 \begin{figure}
     \centering
-    \includegraphics[width=0.99\textwidth]{chapters/Fatigue/Figures/Decay.pdf}
-    \caption{Final cycle $C^*$ as a function of the annealing parameter $l_0$. Smaller values of $l_0$ correspond to better annealed samples. We report the $95^\mathrm{th}$ percentile, $C^*_{95\%}$, defined as the cycle at which the survival distributions in \cref{fig:SurvivalDistrbutions} intersect the red threshold line. Results are shown for systems that yield, absorb, or exhibit both behaviours, indicated by solid, dotted, and dashed lines, respectively. For each value of $\gamma_0$ and $l_0$, the distributions are made up of at least $10{,}000$ runs, each run with a different value of the random number seed.}
+    \includegraphics[width=1.0\textwidth]{chapters/Fatigue/Figures/Decay.pdf}
+    \caption{Final cycle $C^*$ as a function of the annealing parameter $l_0$. Smaller values of $l_0$ correspond to better annealed samples. We report the $95^\mathrm{th}$ percentile, $C^*_{95\%}$, defined as the cycle at which the survival distributions in \cref{fig:SurvivalDistrbutions} intersect the red threshold line. Results are shown for systems that yield, absorb, or exhibit both behaviours, indicated by solid, dotted, and dashed lines, respectively. For each pair of values for $\gamma_0$ and $l_0$, the distributions are made up of at least $10{,}000$ samples, each run with a different value of the random number seed.}
     \label{fig:FailureCyclel0}
 \end{figure}
 
 If, for the moment, we focus on the case where $l_0=0.05$, which is sufficiently well annealed that, for the system size considered $N=1024$, all four outcomes are realised: immediate yielding, delayed yielding, immediate absorption, and delayed absorption. Here, as $\gammaMax$ is increased, we transition from a state where the absorbed region is large enough such that all considered samples are absorbed to a state where the absorption can be delayed. Here, a small subset of elements starts outside the absorbed region and hence begins to yield as a result of the applied deformation. This transition is indicated in \cref{fig:FailureCyclel0}, where the number of cycles required to reach a final state, $\CycleStar$, is shown. Specifically, we report the $95^\mathrm{th}$ percentile, $\CycleNineFive$. The dotted curves correspond to trajectories that evolve into an absorbing state. For strongly annealed samples (e.g. $l_0=0.025,0.0375,0.5$), we see the reported value $\CycleNineFive$ decays to $0$ at a finite strain. More weakly annealed samples likewise show $\CycleNineFive\to0$ as $\gamma_0$ decreases, although the precise strain amplitude at which this occurs is not resolved here.
 
-As the maximally imposed strain amplitude $\gamma_0$ is increased, the number of cycles required to reach an absorbing state grows, approaching a maximum. Beyond a critical amplitude, trajectories that result in a yielded end state emerge, as enough cooperative damage can occur to facilitate the formation of a shear band. As indicated in \cref{fig:EndStates}, for highly annealed samples (low $l_0$), both 
+As the maximally imposed strain amplitude $\gamma_0$ is increased, the number of cycles required to reach an absorbing state grows. Beyond a critical amplitude, trajectories that result in a yielded end state emerge, as enough cooperative damage can occur to facilitate the formation of a shear band. As indicated in \cref{fig:EndStates}, for highly annealed samples (low $l_0$), this emergence of yielding states includes both delayed and immediate failures. This reflects the narrow initial distribution of local strains: some lie sufficiently close to forming an instability that a band nucleates almost immediately, while others require many cycles of incremental damage accumulation before such an instability forms. 
 
+At lower levels of annealing (larger $l_0$), this overlap is no longer present. The broader initial distribution produces a clearer separation in behaviour, as $\gamma_0$ is increased, there is a distinct progression from delayed absorption to delayed yielding, and only at higher amplitudes to immediate yielding. 
 
+In both cases, this emergence of yielding trajectories coincides with the largest observed values of $\CycleNineFive$, reflecting the long transient required for sufficient cooperative damage to accumulate. At this amplitude, however, the probability of sampling a yielding trajectory is minimal. We emphasise that for each pair of values $(\gamma_0, l_0)$ we sample at least $10{,}000$ independent realisations, differing in both the initial strain distribution and the subsequent post-hop resampling. The curves shown in \cref{fig:FailureCyclel0} include only those end states for which more than $500$ such realisations reach the corresponding outcome. This threshold ensures that the reported statistics are not dominated by rare events with insufficient sampling. As such, curves toward the tail of this distribution, where trajectories both yield and absorb, are based on fewer contributing realisations than cases in which all sampled seeds converge to the same end state. Nevertheless, the underlying behaviours are robust. Additional sampling would only smooth the distributions quantitatively, without altering the observed transitions or the structure of the phase behaviour.
 
+As the imposed amplitude is further increased, the number of cycles to absorption, characterised by $\CycleNineFive$ in \cref{fig:FailureCyclel0}, continues to increase as its probability to observe such a trajectory decreases, as illustrated in \cref{fig:EndStates}. Equivalently, the number of cycles to reach a yielding state, again characterised by $\CycleNineFive$ in \cref{fig:FailureCyclel0}, decreases with increasing $\gammaMax$ as the trajectories tend to the shear startup case. Consequently, the number of cycles to reach either state, shown as dashed lines in \cref{fig:FailureCyclel0}, peaks at a strain in this intermediate regime where both trajectories are possible. 
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=1.0\textwidth]{chapters/Fatigue/Figures/Survival.pdf}
+    \caption{Survival functions of the termination cycle $C^*$, showing the fraction of initial seed values that remain active up to cycle $C^*$ before reaching an absorbing state ({\bf Left}) or a yielding state ({\bf Right}).
+    Panels (a–h) show the survival probability $S(C^*)=1-F(C^*)$, conditioned on end state and annealing parameter. From top to bottom, rows correspond to increasing annealing parameter $l_0 = 0.025, 0.05, 0.075, 0.1$. Within each panel, multiple curves represent different imposed strain amplitudes, specified in the right column for each $l_0$.}
+    \label{fig:SurvivalDistrbutions}
+\end{figure}
 
 \newpage
 % \begin{itemize}
@@ -260,22 +271,22 @@ As the maximally imposed strain amplitude $\gamma_0$ is increased, the number of
     % \item it is in the intermediate regime where delayed failure and absorption can occur over many cycles, we illustrate this in \cref{fig:EndStates}. This is the main focus of this work
     % \item For each level of annealing, we transition from always absorbing in the first cycle, to delaying this absorption as elements $\ltilde$ decay towards $0$ as we increase $\gamma_0$. We then see yielding occurring at a late number of cycles, before the system always forms a shear band in the first cycle. 
     % \todo[inline]{Need to work out how to describe this better - some notation? + quantify it?}
-    \item As the level of annealing increases, the strain point at which the system immediately forms a shear band decreases as predicted in the shear startup case, and the range of maximum strains where delayed failures and absorption occurs increase.
+    % \item As the level of annealing increases, the strain point at which the system immediately forms a shear band decreases as predicted in the shear startup case, and the range of maximum strains where delayed failures and absorption occurs increase.
     % \begin{figure}[h!]
     %     \centering
     %     \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Figures/Decay.pdf}
     %     \caption{Final cycle $C^*$ as a function of the annealing parameter $l_0$. Smaller values of $l_0$ correspond to better annealed samples. We report the $95^\mathrm{th}$ percentile, $C^*_{95\%}$, defined as the cycle at which the survival distributions in \cref{fig:SurvivalDistrbutions} intersect the red threshold line. Results are shown for systems that yield, absorb, or exhibit both behaviours, indicated by solid, dotted, and dashed lines, respectively. For each value of $\gamma_0$ and $l_0$, the distributions are made up of at least $10{,}000$ runs, each run with a different value of the random number seed.}
     %     \label{fig:FailureCyclel0}
     % \end{figure}
-    \item As we increase strain away from the immediate absorption cases, we see the delay in absorption correspondingly rise, peaking at a maximum strain, around where we begin to observe yielding occurring. Here we see yielding delayed to a long number of cycles, although occurring sooner than their absorbing counterparts. We show this in \cref{fig:FailureCyclel0}
-    \item The peak of these distributions shifts according to where the transition to immediate banding occurs.
-    \begin{figure}[hp!]
-        \centering
-        \includegraphics[width=1.0\textwidth]{chapters/Fatigue/Figures/Survival.pdf}
-        \caption{Survival functions of the termination cycle $C^*$, showing the fraction of initial seed values that remain active up to cycle $C^*$ before reaching an absorbing state ({\bf Left}) or a yielding state ({\bf Right}).
-        Panels (a–h) show the survival probability $S(C^*)=1-F(C^*)$, conditioned on end state and annealing parameter. From top to bottom, rows correspond to increasing annealing parameter $l_0 = 0.025, 0.05, 0.075, 0.1$. Within each panel, multiple curves represent different imposed strain amplitudes, specified in the right column for each $l_0$.}
-        \label{fig:SurvivalDistrbutions}
-    \end{figure}
+    % \item As we increase strain away from the immediate absorption cases, we see the delay in absorption correspondingly rise, peaking at a maximum strain, around where we begin to observe yielding occurring. Here we see yielding delayed to a long number of cycles, although occurring sooner than their absorbing counterparts. We show this in \cref{fig:FailureCyclel0}
+    % \item The peak of these distributions shifts according to where the transition to immediate banding occurs.
+    % \begin{figure}[hp!]
+    %     \centering
+    %     \includegraphics[width=1.0\textwidth]{chapters/Fatigue/Figures/Survival.pdf}
+    %     \caption{Survival functions of the termination cycle $C^*$, showing the fraction of initial seed values that remain active up to cycle $C^*$ before reaching an absorbing state ({\bf Left}) or a yielding state ({\bf Right}).
+    %     Panels (a–h) show the survival probability $S(C^*)=1-F(C^*)$, conditioned on end state and annealing parameter. From top to bottom, rows correspond to increasing annealing parameter $l_0 = 0.025, 0.05, 0.075, 0.1$. Within each panel, multiple curves represent different imposed strain amplitudes, specified in the right column for each $l_0$.}
+    %     \label{fig:SurvivalDistrbutions}
+    % \end{figure}
     \item For completeness, we show a set of the corresponding survival functions for several $l_0$ and $\gamma_0$. In a) and b) for $l_0=0.025$, we note the vertical form of the distribution indicating the large number of early failures, where $\approx 95\%$ of samples either immediately absorb or fail. However, of those $5\%$ who do survive the first cycle, see note exponential scaling of $C^*$. 
     \item As $l_0$ increase we see a transition in the absorbed curves from immediate to delayed behaviour. As both $l_0$ and correspondingly $\gamma_0$ increases we see the minimum time to absorption increases; however, the tails of the distribution remain exponential. 
     \item The corresponding patterns occur in failure where there exist regimes at high enough $l_0$ where yielding only occurs in a delayed fashion.
