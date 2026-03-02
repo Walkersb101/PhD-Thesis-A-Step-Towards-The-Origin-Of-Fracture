@@ -1,13 +1,14 @@
 \setcounter{equation}{0}
-\chapter{Theoretical Framework and Methods}
+\chapter{Theoretical Framework and
+Methods}
 
-\red{
+% \red{
     The overarching theme of this thesis and the main focus of each chapter is that we analyse the yielding (or fracture) behaviour of the material to provide a small step towards understanding the origins of these behaviours. To do so, we examine a set of models spanning different classes of soft matter systems, together with deformation protocols that are rheologically relevant to the materials they represent. The purpose of this chapter is to establish the theoretical framework and methodological foundations that underpin the analyses presented in the chapters that follow.
 
-    A unifying principle throughout this work, is a separation of scales linking continuum descriptions of deformation to discrete models of failure. The chapter therefore begins at the macroscopic level, where the rheological variables of stress and strain are introduced as the primary descriptors of mechanical response. Building on this language, the generalised continuum equations for incompressible flow are formulated, allowing for arbitrary constitutive stresses, including viscoelastic contributions. These equations are then specialised to the overdamped (Stokesian) limit, appropriate for soft materials in which inertial effects are negligible, and an approach to their solution is outlined.
+    A unifying principle throughout this work is a separation of scales linking continuum descriptions of deformation to discrete models of failure. The chapter therefore begins at the macroscopic level, where the rheological variables of stress and strain are introduced as the primary descriptors of mechanical response. Building on this language, the generalised continuum equations for incompressible flow are formulated, allowing for arbitrary constitutive stresses, including viscoelastic contributions. These equations are then specialised to the overdamped (Stokesian) limit, appropriate for soft materials in which inertial effects are negligible, and an approach to their solution is outlined.
     
-    Having established a continuum framework, we now turn to mesoscopic descriptions in which deformation is resolved explicitly at the level of coarse-grained regions or individual network bonds. Yielding is interpreted in terms of local plastic rearrangements that introduce internal deformations and generate long-range stress redistribution. This perspective motivates the transition to discrete lattice and network models, in which damage nucleation and accumulation can be resolved explicitly at the level of mesoscopic regions and individual bonds. We introduce a model for disordered networks of semi-flexible filaments, describes how non-linear mechanical response arises within this framework, and outlines how plasticity can be incorporated. The numerical techniques employed throughout the thesis are introduced alongside the models to which they apply.
-}
+    Having established a continuum framework, we now turn to mesoscopic descriptions in which deformation is resolved explicitly at the level of coarse-grained regions or individual network bonds. Yielding is interpreted in terms of local plastic rearrangements that introduce internal deformations and generate long-range stress redistribution. This perspective motivates the transition to discrete lattice and network models, in which damage nucleation and accumulation can be resolved explicitly at the level of mesoscopic regions and individual bonds. We introduce a model for disordered networks of semi-flexible filaments, describe how non-linear mechanical response arises within this framework, and outline how plasticity can be incorporated. The numerical techniques employed throughout the thesis are introduced alongside the models to which they apply.
+% }
 
 \section{Introduction to Rheology} \label{sec:IntroRheology}
 
@@ -160,7 +161,6 @@ The description of stress and strain introduced above implicitly assumes an elas
 In contrast to elastic deformation, in which all strain is recovered upon unloading and the material returns to its initial configuration, plastic deformation produces a permanent, irreversible change in the material's configuration. Consequently, upon unloading, the material does not return to its original state but instead retains a memory of its deformation history in its new configuration. Microscopically these deformation may correspond to particle rearrangements \cite{falk_dynamics_1998,maloney_amorphous_2006,tanguy_plastic_2006,gartner_nonlinear_2016}, dislocation \cite{shiba_plastic_2010, ispanovity_avalanches_2014,ben-zion_earthquake_1993}, or bond rupture \cite{tauber_stretchy_2022,ducrot_toughening_2014,Creton50th2017,vernereyStatisticalDamageMechanics2018,gong_why_2010} all of which reduce the total stored elastic energy.  Rheologically, the sum of these microscopic deformations manifests as stress relaxation, yielding, and flow under sustained loading. 
 
 \subsubsection{Shear Banding} \label{sec:ShearBanding}
-An emergent phenomenon of many of these soft elastoplastic materials is the formation of \quotes{shear bands}, whereby the materials' flow field separates into multiple co-existing macroscopic regions with different strain rates \cite{divoux_stress_2011,divouxTransientShearBanding2010,divoux_yielding_2012,grenard_timescales_2014,gibaud_heterogeneous_2010,kurokawa_avalanche-like_2015}. Such banding has been extensively observed experimentally in a range of amorphous solids~\cite{berretNonlinearRheologyTelechelic2001,berretTransientRheologyWormlike1997,besselingShearBandingFlowConcentration2010,diatEffectShearLyotropic1993,divouxShearBandingComplex2016,divouxTransientShearBanding2010,goyonSpatialCooperativitySoft2008,rogersAgingYieldingShear2008,tapadiaBandingEntangledPolymer2006}. In many cases the bands heal over time, leading to a homogeneously fluidised state; however, in some materials shear banding is implicated in catastrophic failure~\cite{falk_deformation_2011,bonn_yield_2017,larson_instabilities_1992,OlmstedShearBanding2008,bonnDelayedFractureInhomogeneous1998,tabuteauMicroscopicMechanismsBrittleness2009}. Harder materials, such as polymeric and metallic glasses, show similar phenomenology, yielding via strain localisation and shear banding under large imposed stresses~\cite{greer_shear_2013,hufnagel_deformation_2016,boyce_large_1988,anand_large-deformation_2012,chen_mechanical_2008}. Here the formation of shear bands is typically associated with brittle yielding, as the material rapidly fractures along the band. 
 
 While the resultant steady state flow of these materials has been widely studied, with a unifying picture of locally correlated plastic events forming avalanches of activity across the system \cite{liuDrivingRateDependence2016,puosi_time-dependent_2014,linDensityShearTransformations2014,tanguy_plastic_2006,lin_scaling_2014,maloney_amorphous_2006}, the onset of these bands remains debated. This initial yielding transition has been investigated through a range of approaches, including replica field theory \cite{jaiswalMechanicalYieldAmorphous2016}, as a critical point in an elastoplastic model \cite{linCriticalityApproachFailure2015,liuCreepDynamicsAthermal2018}, as a percolation transition \cite{shrivastavYieldingGlassShear2016}, within artificially seeded particle simulations \cite{ozawaRareEventsDisorder2022}, and also experimentally \cite{aimeMicroscopicDynamicsFailure2018,aimeStresscontrolledShearCell2016,knowltonMicroscopicViewYielding2014}.
 
@@ -190,7 +190,7 @@ where $\lambda$ is the principal stretch and the corresponding engineering strai
     \centering
     % \missingfigure[]{Figure illustrating Pure and simple shear}
     \includegraphics[width=0.9\textwidth]{chapters/2-Background/Figures/StrainTypes.pdf}
-    \caption[Illustration of pure and simple shear.]{Illustration of pure and simple shear. \newline 
+    \caption[Illustration of pure and simple shear.]{Illustration of pure and simple shear. Dashed lines denote the material’s rest configuration, while solid lines indicate its deformed state. \newline 
     {\bf Left)} Pure shear with the elongational axis aligned along the $y$-axis. In \Cref{sec:DoubleNetworks}, this deformation is referred to as extensional stretching to maintain consistency with the existing literature. \newline 
     {\bf Right)} Simple shear applied in the $xy$ plane.}
     \label{fig:simpleAndPureShear}
@@ -204,7 +204,7 @@ By contrast, simple shear involves the relative sliding of parallel material pla
 0 & 1
 \end{pmatrix},
 \]
-where $\gamma$ is the shear, defined in \cref{sec:StrainTensor}. Unlike pure shear, simple shear contains a rotational component and can be decomposed into pure shear plus a rigid-body rotation.
+where $\gamma$ is the shear, defined in \cref{sec:StrainTensor}. Unlike pure shear, simple shear contains a rotational component and can be decomposed into a pure shear mode plus a rigid-body rotation.
 
 \subsection{Oscillatory Shear} \label{sec:lAOS}
 
@@ -231,7 +231,7 @@ In \Cref{sec:DoubleNetworks}, we impose a quasi-static version of this protocol,
 
 \section{Force balance in the Stokes limit} \label{sec:Hydrodynamics}
 
-The constitutive descriptions introduced above specify how local stress responds to deformation. However, to understand how a local plastic event influences the surrounding material, we require a description of how stresses and velocities are transmitted through the medium. In soft amorphous materials, this redistribution is governed by incompressible hydrodynamics in the low-Reynolds-number limit. We therefore briefly summarise the continuum equations that underpin the elastic propagators used throughout this thesis.
+The constitutive descriptions introduced above specify how local stress responds to deformation. However, to understand how a local plastic event influences the surrounding material, we require a description of how stresses and displacements are transmitted through the material. In soft amorphous materials, this redistribution is governed by incompressible hydrodynamics in the low-Reynolds-number limit. We therefore briefly summarise the continuum equations that underpin the elastic propagators used throughout this thesis.
 
 % \subsection{Navier-Stokes}
 % From conservation of mass and momentum, the Navier--Stokes equations for a generalised incompressible flow read
@@ -295,7 +295,7 @@ In what follows we adopt a displacement-based formulation. Introducing a displac
 \nabla \cdot \bm{\sigma} = 0.
 \]
 
-Following the arguments of Ref.~\cite{picard_elastic_2004}, we will assume that the strain $\bm{\epsilon}$ is a linear superposition of a plastic flow $\bm{\epsilon}^{\mathrm{pl}}$ and elastic deformation $\bm{\epsilon^{\mathrm{el}}}$ and that the fluid is homogeneous, isotropic, and linearly elastic. The strain $\bm{\epsilon}$ of the fluid may therefore be written as
+Following the arguments of Ref.~\cite{picard_elastic_2004}, we will assume that the strain $\bm{\epsilon}$ is a linear superposition of a plastic contribution $\bm{\epsilon}^{\mathrm{pl}}$ and an elastic contribution $\bm{\epsilon}^{\mathrm{el}}$ and that the fluid is homogeneous, isotropic, and linearly elastic. The strain $\bm{\epsilon}$ of the fluid may therefore be written as
 \begin{subequations}    \label{eq:decompositionAndDeformation} \label{eq:EPStrain}
 \begin{gather}
     \bm{\epsilon} = \bm{\epsilon}^{\mathrm{el}} + \bm{\epsilon}^{\mathrm{pl}}
@@ -323,7 +323,7 @@ where $\bm{u}(\bm{r})$ is the total displacement vector at a position $\bm{r}$. 
 % \[\nabla \cdot \left( 2\mu \bm{\epsilon}^{\mathrm{el}1} - p^1 \bm{I} \right) = -\nabla p^1 + \mu \nabla^2 \bm{u}^1.\]
 
 \subsection{Oseen/Stokeslet Tensor} \label{sec:Oseen}
-The solution to \cref{eq:StokesLimit} is well known and has been studied in a wide range of systems. For notational simplicity, we henceforth drop the superscripts ${}^1$ and ${}^{\mathrm{pl}}$ on all relevant fields.
+The solution to \cref{eq:StokesLimit} is well known and has been studied in a wide range of systems. For notational simplicity, we henceforth drop the superscript ${}^{\mathrm{pl}}$ on all relevant fields.
  
 The most common way to approach the problem is to consider the response to a point force $\bm{F}$ applied at $\bm{r}^\prime$ in a periodic system,
 \begin{subequations}
@@ -353,7 +353,7 @@ Applying the fourier transform to \cref{eq:Stokes}, we obtain
 = -F_i = -F_j \delta_{ij}.
 \label{eq:StokesFourier}
 \end{equation*}
-We introduce the Kronecker delta $\delta_{ij}$ to eliminate $F_j$.
+We introduce the Kronecker delta $\delta_{ij}$ to eliminate $F_j$
 \begin{equation}
     - i k_i \hat{P}_j 
     - \mu k^2 \hat{\mathbb{O}}_{ij} 
@@ -383,7 +383,7 @@ The resultant deformation gradients ($\partial_l u_i$), expressed in fourier spa
     ik_l\hat{u}_i = \frac{1ik_l}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right)F_j
     \label{eq:fourierDeformationGradient}
 \end{equation}
-Both \cref{eq:fourierDeformation,eq:fourierDeformationGradient} naturally describe the deformation and gradient fields for a periodic system up to an arbitrary constant $\bm{u}_0$, due to the singularity at $\bm{k}=\bm{0}$. 
+Both \cref{eq:fourierDeformation,eq:fourierDeformationGradient} naturally describe the deformation and deformation gradient fields for a periodic system up to an arbitrary constant $\bm{u}_0$, due to the singularity at $\bm{k}=\bm{0}$. We will address this constant later.
 
 \subsection{Eshelby Stress Propagator} \label{sec:EshelbyPropogator}
 
@@ -399,7 +399,7 @@ and stress fields
     \tau_{ij} = 2\mu \epsilon^{\mathrm{el}}_{ij}
     \label{eq:eshelbyStress}
 \end{equation}
-can then be expressed in terms of the deformation gradients found in \cref{eq:fourierDeformationGradient}. For simplicity, we will consider the deformation resulting from a plastic shear event $\epsilon_{xy}^{\mathrm{pl}}$ in a two-dimensional system and without loss of generality, we focus on the shear component $\sigma_{xy}^1$, which captures the stress redistribution associated with a local plastic shear event. However, the formalism presented here does not depend on the particular form of $\bm{\epsilon}^{\mathrm{pl}}$ nor on the spatial dimension, and is therefore equally valid in three dimensions.
+can then be expressed in terms of the deformation gradients found in \cref{eq:fourierDeformationGradient}. For simplicity, we will consider the deformation resulting from a plastic shear event $\epsilon_{xy}^{\mathrm{pl}}$ in a two-dimensional system and without loss of generality, we focus on the shear component $\tau_{xy}$, which captures the elastic stress redistribution associated with a local plastic shear event. However, the formalism presented here does not depend on the particular form of $\bm{\epsilon}^{\mathrm{pl}}$ nor on the spatial dimension, and is therefore equally valid in three dimensions.
 
 In two dimensions, the Fourier representations of the displacement components $u_x$ and $u_y$ take the form,
 \begin{subequations}
@@ -412,14 +412,14 @@ In two dimensions, the Fourier representations of the displacement components $u
 \end{subequations}
 Substituting $\hat{u}_x$ and $\hat{u}_y$ into \cref{eq:eshelbyStrain,eq:eshelbyStress} and resolving for $\hat{\sigma}^1_{xy}$, we obtain
 \begin{align*}
-    \hat{\tau}_{xy}^1 = 2\mu \hat{\epsilon}^{\mathrm{pl}}_{ij} &= 2\mu\left( i k_x u_y + ik_yu_x  \right) - 2\mu\epsilon_{xy}^{\mathrm{pl}}\\
+    \hat{\tau}_{xy} = 2\mu \hat{\epsilon}^{\mathrm{el}}_{ij} &= 2\mu\left( i k_x u_y + ik_yu_x  \right) - 2\mu\epsilon_{xy}^{\mathrm{pl}}\\
     & = 2\mu^2 \left( k_y^2 \hat{\mathbb{O}}_{xx} + k_x^2 \hat{\mathbb{O}}_{yy} +  2 k_xk_y\hat{\mathbb{O}}_{xy} - \frac{1}{\mu} \right)\epsilon_{xy}^{\mathrm{pl}}
 \end{align*}
 where we use the symmetry of the Oseen tensor $\hat{\mathbb{O}}_{xy}=\hat{\mathbb{O}}_{yx}$.
 
 By collecting terms, we obtain the shear stress propagator $\mathbb{G}_{xy}$, which describes the stress redistribution produced by a single plastic event in an infinite medium:
 \begin{equation}
-\tau_{xy}^1(\bm{r}) = \mu \int \mathbb{G}_{xy}(\bm{r}-\bm{r}') \epsilon_{xy}^{\mathrm{pl1}}(\bm{r}')d\bm{r}',
+\tau_{xy}(\bm{r}) = \mu \int \mathbb{G}_{xy}(\bm{r}-\bm{r}') \epsilon_{xy}^{\mathrm{pl1}}(\bm{r}')d\bm{r}',
 \end{equation}
 where the Fourier-space kernel is
 \begin{equation}
@@ -460,8 +460,6 @@ The form of the stress propagator given in \cref{eq:StressPropogator} holds stri
 
 The continuum framework outlined above provides a basic description of stress transmission and flow in soft materials and forms the foundation of the work considered in \cref{sec:Fatigue}. However, many of the systems of interest in this thesis derive their mechanical response from their underlying filamentous (fibre-based) microstructure. We will therefore now focus on the mechanics of soft networks, in which the connectivity, structure, and mechanics of the constituent filaments play a central role in determining macroscopic behaviour. The failure mechanics of soft networks are studied in detail in \cref{sec:Ultradelayed,sec:DoubleNetworks}.
 
-
-
 \subsection{Types of Network} \label{sec:TypesOfNetworks}
 With the term \quotes{soft networks}, we describe a whole class of materials. These materials all share the common feature of being composed of a network of interconnected filaments; however, their mechanical properties vary widely. While we endeavour to make our models as general as possible, it is important to understand the differences between these materials and how these differences may affect the applicability of our results. Below, we briefly describe some of the most common types of soft networks.
 
@@ -469,10 +467,12 @@ With the term \quotes{soft networks}, we describe a whole class of materials. Th
 Composed of long, flexible polymer chains cross-linked into a network, elastomers are perhaps the most well-known class of soft networks and are commonly found in thermosetting rubbers and plastics. Existing above the glass transition temperature $T_g$ of polymer networks, their mechanical behaviour is largely governed by entropic elasticity: deformation reduces the configurational entropy of polymer chains, generating a restoring force \cite{treloarElasticityRelatedProperties1973}. As a result, elastomers typically exhibit large reversible deformations until bond or cross-linker failure occurs, with pronounced strain stiffening before failure \cite{kimMeasurementNonlinearMechanical2011}.
 
 \paragraph{Hydrogels:}
-As the name implies, Hydrogels are a type of polymer gel embedded in water, which can form up to $90\%$ of the material volume \cite{gong_why_2010,tanaka_determination_2005,sun_highly_2012}. This tends to leave them softer and weaker than elastomers due to their lower polymer density. Consequently, intermolecular interactions below the network scale are reduced, and their properties become highly dependent on the network structure. However, the presence of water as a solvent also introduces new physical phenomena such as the swelling of polymer chains and a coupling between network deformation and fluid flow referred to as poroelasticity \cite{biotTheoryFiniteDeformations1972}. Due to their high solvent content, hydrogels are often used in biomedical applications, particularly as artificial tendons, ligaments, and cartilage \cite{yasudaNovelDoubleNetworkHydrogel2009,yinSelfHealingHydrogelsSynthesis2023,hoHydrogelsPropertiesApplications2022}.
+As the name implies, hydrogels are a type of polymer gel embedded in water, which can form up to $90\%$ of the material volume \cite{gong_why_2010,tanaka_determination_2005,sun_highly_2012}. This tends to leave them softer and weaker than elastomers due to their lower polymer density. Consequently, intermolecular interactions below the network scale are reduced, and their properties become highly dependent on the network structure. However, the presence of water as a solvent also introduces new physical phenomena such as the swelling of polymer chains and a coupling between network deformation and fluid flow referred to as poroelasticity \cite{biotTheoryFiniteDeformations1972}. Due to their high solvent content, hydrogels are often used in biomedical applications, particularly as artificial tendons, ligaments, and cartilage \cite{yasudaNovelDoubleNetworkHydrogel2009,yinSelfHealingHydrogelsSynthesis2023,hoHydrogelsPropertiesApplications2022}.
 
 \paragraph{Fibre networks:}
 Mainly biological networks, these networks are composed of semi-flexible fibres such as actin and collagen. As a result, these networks tend to have a length scale much larger than elastomers and hydrogels, with mesh sizes on the order of $1 \mu m$ to $10 \mu m$ \cite{mackintosh_elasticity_1995,Arevalo_Stress_Heterogeneities_2015}. Much like hydrogels, these networks are highly porous, with a large fraction of their volume being occupied by solvent \cite{Jansen_Role_Collagen_2018}; however, due to their larger mesh size, they do not exhibit significant poroelastic effects \cite{burlaMechanicalResilienceActive2019}. Due to the nature of these networks, the type of crosslinks in fibre networks can vary widely from linkages via flexible proteins to intricate branching and interweaving of fibre bundles. Consequently, interactions between fibres are highly heterogeneous and mechanically intricate. Due to the low fibre density, these materials typically exhibit a very small linear stiffness, which makes conventional extensional testing challenging in practice. As a result, their elastic and fracture behaviour is most commonly characterised under shear, rather than through standard extensional protocols. Most examples of fibre networks arise in biological contexts, where they provide structural support both inside and outside of cells \cite{burlaMechanicalResilienceActive2019}.
+
+To describe their mechanical response more precisely, it is necessary to consider the properties of the individual filaments that make up the network.
 
 \subsection{Semi-Flexible Filaments} \label{sec:SemiFlexible}
 Filaments can be broadly classified into three regimes according to the ratio of their persistence length $l_p$ to their relevant contour length $l_c$ (for networks, this is typically the mean length between crosslinks). The persistence length quantifies the bending rigidity of the polymer and defines the length scales over which the filament orientation remains correlated. Intuitively, $l_p$ can be considered as the length scale at which thermal fluctuations of order $k_BT$ have a large enough effect to perturb the filament direction. More formally, it is defined via the exponential decay of tangent–tangent correlations, such that $\langle \bm{t}(s) \cdot \bm{t} (0) \rangle = e^{-s/l_p}$, where $\bm{t}(s)$ is the tangent vector at a position $s$ along the filament backbone \cite{doi_theory_1988}. 
@@ -587,7 +587,7 @@ This statement of first-order rigidity holds only when the network forms a singl
 
 Often, this definition of first-order rigidity is overly restrictive and does not fully capture the behaviour of heterogeneous networks, for which the average connectivity $z$ alone is insufficient to determine rigidity. This limitation is particularly relevant for the disordered networks considered in later chapters.
 
-As a simple example, consider attaching a single freely hanging node to an otherwise rigid network. This addition formally violates the strict definition of first-order rigidity, since the new node introduces a floppy mode. However, it does not alter the global load-bearing capacity of the original rigid cluster, which remains able to support stress. For such systems, it is necessary to consider not only the number of constraints but also their spatial organisation to determine global rigidity. In particular, sparsely connected networks below the isostatic point often consist of small rigid clusters embedded within floppy, under-constrained regions. In strongly heterogeneous networks, even systems with average connectivity exceeding the Maxwell threshold $z_c = 2d$ can reorganise such that global deformation occurs without requiring the extension of any bonds. Consequently, the ability of a network to sustain stress is governed by the existence of a system-spanning rigid cluster capable of supporting states of self-stress. For this reason, the onset of global rigidity is commonly described as a rigidity percolation transition \cite{zhang_correlated_2019}. This should be distinguished from geometrical percolation, which identifies the formation of a purely connected path between opposite boundaries of the network and does not, in general, imply mechanical rigidity \cite{kendall_percolation_2009,broadbent_percolation_1957}. In two dimensions, this problem has been well studied \cite{ellenbroek_rigidity_2015} through algorithms such as the pebble game \cite{jacobs_algorithm_1997, jacobs_generic_1995}. Extending these definitions to provide rigidity in dimensions higher than two dimensions is $NP$-hard \cite{abbott_generalizations_2008}.
+As a simple example, consider attaching a single freely hanging node to an otherwise rigid network. This addition formally violates the strict definition of first-order rigidity, since the new node introduces a floppy mode. However, it does not alter the global load-bearing capacity of the original rigid cluster, which remains able to support stress. For such systems, it is necessary to consider not only the number of constraints but also their spatial organisation to determine global rigidity. In particular, sparsely connected networks below the isostatic point often consist of small rigid clusters embedded within floppy, under-constrained regions. In strongly heterogeneous networks, even systems with average connectivity exceeding the Maxwell threshold $z_c = 2d$ can reorganise such that global deformation occurs without requiring the extension of any bonds. Consequently, the ability of a network to sustain stress is governed by the existence of a system-spanning rigid cluster capable of supporting states of self-stress. For this reason, the onset of global rigidity is commonly described as a rigidity percolation transition \cite{zhang_correlated_2019}. This should be distinguished from geometrical percolation, which identifies the formation of a purely connected path between opposite boundaries of the network and does not, in general, imply mechanical rigidity \cite{kendall_percolation_2009,broadbent_percolation_1957}. In two dimensions, this problem has been well studied \cite{ellenbroek_rigidity_2015} through algorithms such as the pebble game \cite{jacobs_algorithm_1997, jacobs_generic_1995}. Extending these definitions to provide rigidity in dimensions higher than two dimensions has been proven to be computationally intractable using current methods \cite{abbott_generalizations_2008}.
 
 While the definitions above provide a framework for characterising structural, or first-order, rigidity, they do not account for the fact that the networks considered here consist of deformable springs rather than fixed-length linkages. It is well known that under-constrained (sub-isostatic) spring networks can undergo a rigidity transition at coordination number less than $z_c=2d$ \cite{feng_percolation_1984, sharma_strain-controlled_2016, wyart_elasticity_2008, feng_nonlinear_2016, vermeulen_geometry_2017, rens_micromechanical_2018}. The simplest illustration of such a transition is a string fixed at both ends. When the separation between the fixed ends is smaller than the contour length of the string, the string carries no tension and admits a floppy mode, offering no resistance to transverse deformation. However, once the fixed points are separated sufficiently that the string comes under tension, the floppy mode is removed, and the string can resist transverse deflection, thereby appearing mechanically rigid \cite{biot_mechanics_1965}. This transition is often referred to as second-order rigidity \cite{connelly_second-order_1996}, where non-structural changes can cause the system to act as if it is in a rigid configuration. Mathematically, second-order rigidity is obtained by differentiating \cref{eq:FrameworkRigidity} with respect to time, yielding
 \begin{equation*}
@@ -635,15 +635,15 @@ Such networks are constructed by placing nodes on a regular grid defined by a se
     \label{fig:LatticeNetworks}
 \end{figure}
 
-While trivial to construct, such lattices lack the structural disorder typical of disordered networks, which exhibit no long-range order.
-
-This predictability is undesirable when modelling disordered networks, where the goal is to represent amorphous materials lacking long-range structure. Disorder is therefore introduced into these networks through two complementary approaches. First, a common method is bond dilution via the random removal of lattice bonds. In practice, each bond is retained with probability $p$ (and removed with probability $1-p$), where $p$ sets the desired bond occupation fraction \cite{broedersz_criticality_2011,head_distinct_2003}. This procedure is widely used when studying the role of geometric percolation in such models \cite{broedersz_criticality_2011,feng_percolation_1984,das_redundancy_2012}.
+While trivial to construct, such lattices lack the structural disorder typical of disordered networks, which exhibit no long-range order. This predictability is undesirable when modelling disordered networks, where the goal is to represent amorphous materials lacking long-range structure. Disorder is therefore introduced into these networks through two complementary approaches. First, a common method is bond dilution via the random removal of lattice bonds. In practice, each bond is retained with probability $p$ (and removed with probability $1-p$), where $p$ sets the desired bond occupation fraction \cite{broedersz_criticality_2011,head_distinct_2003}. This procedure is widely used when studying the role of geometric percolation in such models \cite{broedersz_criticality_2011,feng_percolation_1984,das_redundancy_2012}.
 
 Although random bond removal may appear to introduce only limited structural disorder, it fundamentally alters the rigidity of the network (see \cref{sec:Rigidity}). In particular, the system exhibits a rigidity percolation transition at a critical bond occupation probability $p_c$, at which isolated clusters coalesce into a single system-spanning cluster \cite{jacobs_generic_1995,zhang_correlated_2019}. A related transition occurs at the isostatic point, where the network loses (or gains) first-order rigidity.
 
 A further advantage of bond dilution in lattice-based networks is the disruption of long, system-spanning force chains \cite{ruiz-franco_force_2022} that arise from the perfect alignment of bonds in the underlying lattice geometry. Networks that do not undergo such pruning typically exhibit low-strain softening of the shear modulus $K$ \cite{licup_nonlinear_2016}, associated with the buckling of these extended fibres.
 
 The effects of these system-spanning force chains can be mitigated by a second form of disorder commonly employed in lattice networks, in which the nodal positions are randomly perturbed and the corresponding bond rest lengths and angles are redefined \cite{jacobs_generic_1995,krushynska_multi-frequency_2025,sheinman_nonlinear_2012,head_predicting_2025}. Networks incorporating this positional disorder are commonly referred to as generic networks \cite{jacobs_generic_1995}. The magnitude of these perturbations is typically constrained to be less than half the minimum lattice spacing, $\delta_{\min}/2$, to prevent node overlap \cite{shivers_normal_2019}.
+
+We explore the physics of square lattice based networks in \cref{sec:SquareAppendix} in the context of composite network materials comprising of two interconnected networks. 
 
 \subsubsection{Packing-Derived Networks} \label{sec:PackingBasedNetworks}
 
@@ -682,7 +682,7 @@ After all contacts have been processed, the disks themselves are removed, leavin
 
 In this work, we take $\phi = 1 > \phi_J$ unless stated otherwise. For single networks, this corresponds to an average connectivity $z \approx 5.4$, which lies well above the isostatic threshold. In principle, networks with lower connectivity (while remaining above the isostatic threshold $z=4$) could be generated by preparing packings at $\phi$ closer to $\phi_J$. Instead, we obtain lower-connectivity networks by iteratively pruning bonds from an initially highly connected network constructed at $\phi=1$, following the procedure described below. This allows for tighter control of the network connectivity when studying systems with lower coordination.
 
-These packing-derived networks provide a simple yet robust alternative to lattice-based networks. They exhibit emergent positional disorder, good numerical stability, and can be straightforwardly extended to three dimensions, as demonstrated in \cite{shivers_normal_2019, shivers_strain-controlled_2023, shivers_nonlinear_2020}.
+These packing-derived networks provide a simple yet robust alternative to lattice-based networks. They exhibit emergent positional disorder, good numerical stability, and can be straightforwardly extended to three dimensions, as demonstrated in \cite{shivers_normal_2019, shivers_strain-controlled_2023, shivers_nonlinear_2020}. We therefore use them as the primary network structures considered in \cref{sec:Ultradelayed,sec:DoubleNetworks}.
 
 \subsubsection{Pruning Networks} \label{sec:PrunningNetwork}
 During network construction, the resulting graphs can contain disconnected clusters and dangling components (see \cref{fig:PruningNetworks}). These elements do not contribute to the mechanical response under the dynamics considered in this thesis and are therefore removed before simulation.
@@ -794,10 +794,10 @@ To impose shear in the $x$ direction using Lees--Edwards boundary conditions, pa
 whilst periodic images are shifted by an amount $\gamma L_y$ between adjacent rows, as shown in \cref{fig:Lees-Edwards}. This construction is computationally advantageous because the primary simulation cell remains orthogonal. Implementation details can be found in Ref.~\cite{allen_computer_2017}.
 
 \section{Conclusion}
-\red{
-    In this chapter we have established the rheological and mechanical framework that underpins the remainder of this thesis. Beginning from continuum descriptions of overdamped deformation, we introduced the macroscopic variables used to characterise material response under an applied deformation. These provide the definitions of elasticity, yielding, and failure that will be used throughout.
+% \red{
+    In this chapter, we have established the rheological and mechanical framework that underpins the remainder of this thesis. Beginning from continuum descriptions of overdamped deformation, we introduced the macroscopic variables used to characterise material response under an applied deformation. These provide the definitions of elasticity, yielding, and failure that will be used throughout.
     
-    We then connected this macroscopic viewpoint to microscopic structure by considering disordered fibre networks as minimal models of soft heterogeneous solids. Within this framework, stress emerges from bond level forces, and discussed how relaxation in network materials reflects the interplay between elastic deformation, non-affine rearrangements, and bond breakage. Even in the overdamped dynamics considered in this work, complex time-dependent behaviour can arise from the redistribution of stress across a disordered network, which we will explore in later chapters.
+    We then connected this macroscopic viewpoint to microscopic structure by considering disordered fibre networks as minimal models of soft heterogeneous solids. Within this framework, stress emerges from bond-level forces, and discussed how relaxation in network materials reflects the interplay between elastic deformation, non-affine rearrangements, and bond breakage. Even in the overdamped dynamics considered in this work, complex time-dependent behaviour can arise from the redistribution of stress across a disordered network, which we will explore in later chapters.
     
     A central conclusion is that macroscopic response reflects an evolving microscopic state. Whether a material relaxes, accumulates damage gradually, or fails catastrophically depends on how stress is distributed through the system. The concepts explored in this background will provide the basis for analysing damage accumulation under cyclic loading, delayed yielding under an imposed step strain, and toughness in double network systems in the chapters that follow.
-}
+% }

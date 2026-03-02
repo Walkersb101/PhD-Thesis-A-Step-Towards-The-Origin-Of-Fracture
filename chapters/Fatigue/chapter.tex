@@ -6,6 +6,8 @@
 \def\lc{\ell_c}
 \def\Origin{\mathbb{G}_{xy}(\bm{0})}
 \def\Norm{||\mathbb{G}_{xy}||_2}
+\def\CycleStar{C^*}
+\def\CycleNineFive{\CycleStar_{95\%}}
 
 \section{Figure todo}
 \begin{enumerate}
@@ -18,7 +20,7 @@
     \item Need a section on absorption in EP models
 \end{itemize}
 
-\section{Methodology}
+\section{Methodology} \label{sec:fatigueMethodology}
 As a starting point for the model used in this work, we adopt the framework introduced in \cref{sec:Hydrodynamics}. We consider the flow of a simple incompressible material subject to a viscoelastic stress tensor $\bm{\sigma}$, which is decomposed as
 \[
     \bm{\sigma} = \bm{\tau} - p\bm{I},
@@ -42,11 +44,11 @@ To solve the dynamics of \cref{eq:fatigueForceBalance}, we introduce a lattice o
     \item Sufficiently large that, within each element, the deformation can be meaningfully characterised by local continuum elastic strain and stress fields.
 \end{enumerate}
 
-While each element could be associated with a microscopic conformation tensor, which fully defines the material's state, we will consider a scalar model where each element is assigned a local elastic shear strain $l$, a corresponding local shear stress $\mu l$ and a local yield energy $E$. Each element in the lattice is assumed to follow the following set of rules. Between each plastic event, the strain of each element is assumed to follow affinely the globally applied elastic strain $\gamma$, corresponding to elastic loading in the material. Each element is assumed to continue this elastic loading until its strain energy reaches the yield threshold
+While each element could be associated with a microscopic conformation tensor which fully defines the material's state, instead we consider a scalar model where each element is assigned a local elastic shear strain $l$, a corresponding local shear stress $\mu l$ and a local yield energy $E$. Each element in the lattice is assumed to follow the following set of rules. Between each plastic event, the strain of each element is assumed to follow affinely the globally applied elastic strain $\gamma$, corresponding to elastic loading in the material. Each element is assumed to continue this elastic loading until its strain energy reaches the yield threshold
 \[
     E=\frac{1}{2}\mu l^2
 \]
-where beyond this threshold the element is assumed to immediately yield. For this work, we will work in units where $\mu=1$ and $E=0.5$, such that the yielding threshold for elements reduces to 
+where, beyond this threshold, the element is assumed to immediately yield. For this work we will work in units where $\mu=1$ and $E=0.5$, such that the yielding threshold for elements reduces to 
 \[
     |l| > \lc := \sqrt{2E/\mu}=1.
 \]
@@ -67,7 +69,7 @@ In our model we only consider the shear stress component of this correction $\ta
 \begin{figure}[t]
     \centering
     \includegraphics[width=0.99\textwidth]{chapters/Fatigue/Diagrams/Prop.pdf}
-    \caption{{\bf Left)} Stress redistribution $\bm{\tau}^1$ resulting from a point stress perturbation $\bm{S}=1$ in $2D$ {\bf Right)} Convergence of two important parameters from $\mathbb{G}_{xy}$ with grid size $N$. The value at the origin $\Origin$ and norm $\Norm$.}
+    \caption{{\bf a)} Stress redistribution $\bm{\tau}^1$ resulting from a point stress perturbation $\bm{S}=1$ in $2D$ {\bf b)} Convergence of two important parameters from $\mathbb{G}_{xy}$ with grid size $N$. The value at the origin $\Origin$ and norm $\Norm$.}
     \label{fig:PropogatorConvergence}
 \end{figure}
 
@@ -88,19 +90,19 @@ Although the local strain is reset to zero, the stress at that site does not dec
 \qquad \text{as } N \to \infty.
 \]
 
-To initialise the sample prior to any deformation, each element is assigned a local shear strain $l$, sampled at random from a distribution that has a width $l_0$ and zero mean. This distribution is naturally not force balance, as such we immediately impose it across the lattice using \cref{eq:FatiguefourierDeformation}. As a result of this imposed force balance the resultant distribution of shear strain $l$ is reduced by a factor equal to $\Norm$. We will only conciser initial distributions sampled in this manor (from a Gaussian distribution) in this work, although simulation where the initial distribution is instead sampled from a beta distribution showed little change to in a shear startup protocol (see \cref{sec:ShearStartup}). Alternative algorithms which enforce force balance have been used such as the one discussed in Ref.~\cite{Popovi2018}.
+To initialise the sample prior to any deformation, each element is assigned a local shear strain $l$, sampled at random from a distribution that has a width $l_0$ and zero mean. This distribution is naturally not in force balance; as such, we immediately impose it across the lattice using \cref{eq:FatiguefourierDeformation}. As a result of this imposed force balance, the resultant distribution of shear strain $l$ is reduced by a factor equal to $\Norm$. In the rare instances where an element remains above its yielding threshold after this projection, it is allowed to yield according to the rules specified later in the chapter. We will only consider initial distributions sampled in this manner (from a Gaussian distribution) in this work. However, it should be noted that simulations in which the initial strain distribution was instead drawn from a beta distribution, as implemented in Ref.~\cite{pollard_yielding_2022}, showed little qualitative difference in the shear startup protocol (see \cref{sec:ShearStartup}). Alternative algorithms which enforce force balance have been used, such as the one discussed in Ref.~\cite{Popovi2018}.
 
-Small values of the initial width $l_0$ represent well-annealed samples, whereas larger values correspond to poorly annealed ones. In experimental system, strong annealing might arise from equilibration at temperatures just above the glass transition, from slow cooling from high temperature to zero, or from prolonged ageing at low temperature prior to quenching. By contrast, weak annealing would be associated with equilibration at higher temperature before quench, more rapid cooling, or shorter ageing times. We do not attempt to model these preparation histories directly; instead, the single parameter $l_0$ serves as an effective measure of the degree of annealing.
+Small values of the initial width $l_0$ represent well-annealed samples, whereas larger values correspond to poorly annealed ones. In experimental systems, strong annealing might arise from equilibration at temperatures just above the glass transition, from slow cooling from high temperature to zero, or from prolonged ageing at low temperature before quenching. By contrast, weak annealing would be associated with equilibration at higher temperature before quench, more rapid cooling, or shorter ageing times. We do not attempt to model these preparation histories directly; instead, the single parameter $l_0$ serves as an effective measure of the degree of annealing.
 
-For discussion later in this chapter we introduce a decomposition,
+For discussion later in this chapter, we introduce a decomposition,
 \[
     l = \ltilde + \gamma
 \]
-where as stated previously $\gamma$ is the globally applied elastic strain, and is therefore uniform across all elements. The quantity $\ltilde$ is therefore defined as the local deviation from this imposed contribution, $\ltilde := l - \gamma$ and quantifies the element-to-element fluctuations about the externally applied deformation. Equivalently, $\ltilde$ may be interpreted as the intrinsic strain field in the absence of any externally imposed strain ($\gamma=0$). Since $\ltilde$ is defined to be separate from the globally applied elastic strain, it evolves only through internal plastic events within the material. Although it changes as a result of local yielding, it should not be interpreted as the plastic strain of an individual element. Rather, $\ltilde$ contains contributions from the element’s initial strain state, the elastically redistributed strain generated by prior plastic events elsewhere in the material, and any plastic strain accumulated locally if that element has yielded.
+where as stated previously, $\gamma$ is the globally applied elastic strain, and is therefore uniform across all elements. The quantity $\ltilde$ is therefore defined as the local deviation from this imposed contribution, $\ltilde := l - \gamma$ and quantifies the element-to-element fluctuations about the externally applied deformation. Equivalently, $\ltilde$ may be interpreted as the intrinsic strain field in the absence of any externally imposed strain ($\gamma=0$). Since $\ltilde$ is defined to be separate from the globally applied elastic strain, it evolves only through internal plastic events within the material. Although it changes as a result of local yielding, it should not be interpreted as the plastic strain of an individual element. Rather, $\ltilde$ contains contributions from the element’s initial strain state, the elastically redistributed strain generated by prior plastic events elsewhere in the material, and any plastic strain accumulated locally if that element has yielded.
 
-As discussed previously, we wish to consider the response of amorphous solids under oscillatory shear. The bulk elastic strain $\gamma$ is therefore taken to vary periodically in time, oscillating between $\gamma_{\max}$ and $-\gamma_{\max}$, with the system initially prepared at $\gamma = 0$. A single cycle is defined as the complete evolution of the imposed strain from $\gamma=0$ to $\gammaMax$, back to $0$, then to $-\gammaMax$, and finally returning to $0$. 
+As discussed previously, we wish to consider the response of amorphous solids under oscillatory shear. The bulk elastic strain $\gamma$ is therefore taken to vary between $\gamma_{\max}$ and $-\gamma_{\max}$, with the system initially prepared at $\gamma = 0$. A single cycle is defined as the complete evolution of the imposed strain from $\gamma=0$ to $\gammaMax$, back to $0$, then to $-\gammaMax$, and finally returning to $0$. 
 
-Since we assume that the material remains in force balance at all times and that an element yields instantaneously once its local threshold is exceeded, the dynamics correspond to the athermal limit of zero temperature. Accordingly, the protocol studied here is that of athermal quasi-static shear (AQS), as considered widely in the literature on sheared amorphous materials. As a result the global deformation of the material is assumed to shear in small steps stopping when an element yields. After each strain increment, the resulting unstable element, now just above threshold, is then yielded and force balanced reimposed. This may lead to further elements becoming unstable. Any such elements are then yielded, and  force balance is reimposed again. This procedure continues until no elements remain unstable and all avalanches have ceased, at which point the system continues to globally shear. Numerically, each elastic strain step requires determining the increment $\Delta\gamma$ needed to bring the least stable element to its yielding threshold $E/l_c$. This is obtained from
+Since we assume that the material remains in force balance at all times and that an element yields instantaneously once its local threshold is exceeded, the dynamics correspond to the athermal limit of zero temperature. Accordingly, the protocol studied here is that of athermal quasi-static shear (AQS), as considered widely in the literature on sheared amorphous materials \cite{liuCreepDynamicsAthermal2018,barlow_ductile_2020,pollard_yielding_2022,maloney_amorphous_2006,Popovi2018,ness_oscillatory_2017,fioccoOscillatoryAthermalQuasistatic2013,Ruscher2021,khandareElastoplasticModellingCyclic2026}. As a result, the global deformation of the material is assumed to shear in small steps, stopping when an element yields. After each strain increment, the resulting unstable element, now just above threshold, is then yielded and force-balanced reimposed. This may lead to further elements becoming unstable. Any such elements are then yielded, and force balance is reimposed. This procedure continues until no elements remain unstable and all avalanches have ceased, at which point the system continues to globally shear. Numerically, each elastic strain step involves determining the required increment $\Delta\gamma$ needed to bring the least stable element to its yielding threshold $E/l_c$. This is obtained from
 \begin{equation*}
 \Delta \gamma =
 \begin{cases}
@@ -117,19 +119,80 @@ The macroscopic stress of the system is defined as the lattice average of the lo
     \Sigma = \frac{\mu}{N_x N_y}\sum_{i=1}^{N_x}\sum_{j=1}^{N_y} l_{ij}.
 \end{equation}
 
-\todo[inline]{define end states of the system}
-\begin{itemize}
-    \item Yielded states are where the displayed in a shear band.
-    \item Absorbed states where the system has no element which can yield.
-\end{itemize}
+As discussed previously, the long-term response of shear-oscillated amorphous solids is either to reach an absorbing state in which no further plastic events occur or to undergo a discontinuous transition to a yielded state. In the model described above, the absorbing state is realised when all elements have values of $\ltilde$ sufficiently close to zero that even the maximum imposed elastic strain, $\pm\gammaMax$, does not drive any element beyond its yielding threshold. Mathematically, this condition requires $|\ltilde|<1-\gammaMax$
+for every element. We will refer to the region $-1+\gammaMax < \ltilde < 1-\gammaMax$ as the absorbed region, within which elements remain stable under the imposed oscillatory strain. Alternatively, the sample can undergo the formation of a shear band, which spreads quickly across the sample, and the sample fails suddenly. Within our models, these bands appear as localised regions of high plasticity when compared to the bulk of the material. Consequently, we detect the formation of these events by comparing the amount of plastic yielding across streamlines (rows or columns of our lattice) in our material. In \cref{fig:YieldCountSnapshots}, we plot maps of two representative systems: the top row shows a sample that evolves into an absorbing state, whereas the bottom row shows a sample that undergoes macroscopic yielding via the formation of a system-spanning shear band. In both cases, we observe only limited diffuse damage with no clear visual distinction between the samples until the final cycle, at which point a pronounced shear band emerges in the yielding case.
 
-Throughout this work we use units in which the elastic constant $\mu=1$, and we take a uniform yielding threshold $E=0.5$ for all elements. The corresponding critical yielding strain is therefore $\lc=1$. We note that elements yield when the magnitude of their local strain satisfies $|l|>\lc$, so yielding can occur at both positive and negative strain. 
+\begin{figure}
+    \centering
+    \includegraphics[width=0.99\linewidth]{chapters/Fatigue/Figures/YieldCountSnapshots.pdf}
+    \caption[Maps of yielded sites in an absorbing and yielded system.]{Maps of sites that have yielded at least once (black) and sites that have never yielded (white), shown at the end of cycles 1, 4, 16, 64, and 256 (left to right). \newline {\bf Top row:} an absorbing state. {\bf Bottom row:} a yielding state. \newline Both systems reach their respective end states during cycle 256.  Each map has system size $N_x \times N_y=256\times256$, $l_0=0.075$, $\gamma_0=0.835$, $l_w=0.02$}
+    \label{fig:YieldCountSnapshots}
+\end{figure}
 
-The remaining model parameters to be explored are the degree of initial annealing set by $l_0$ (recall that small values of $l_0$ correspond to highly annealed samples); the magnitude of the applied cyclic deformation $\gammaMax$ (whose scale is set relative to $l_c$); the system size $N=N_x=N_y$; and the width of the post-hop distribution $\lw$. Unless states otherwise we will work with systems of size $N=1024$ and a post-hop distribution with with $\lw=0.02$
+Throughout this work, we use units in which the elastic constant $\mu=1$, and we take a uniform yielding threshold $E=0.5$ for all elements. The corresponding critical yielding strain is therefore $\lc=1$. We note that elements yield when the magnitude of their local strain satisfies $|l|>\lc$, so yielding can occur at both positive and negative strain. 
+
+The remaining model parameters to be explored are the degree of initial annealing set by $l_0$ (recall that small values of $l_0$ correspond to highly annealed samples); the magnitude of the applied cyclic deformation $\gammaMax$ (whose scale is set relative to $l_c$); the system size $N=N_x=N_y$; and the width of the post-hop distribution $\lw$. Unless stated otherwise, we will work with systems of size $N=1024$ and a post-hop distribution with $\lw=0.02$.
+
+\section{Shear Startup}
+As a starting point for the results presented later in this chapter, we first examine the behaviour of the model under shear startup (see \cref{sec:ShearStartup}). This protocol has been analysed in detail by Pollard and Fielding in Ref.~\cite{pollard_yielding_2022}. We therefore briefly reproduce a subset of their results here, focusing on those aspects that are most relevant for the analysis developed below.
+
+Although the primary focus of this chapter is oscillatory shear, the startup protocol provides the simplest setting in which to identify the elastic regime, the onset of yielding, and the approach to steady flow under a controlled deformation. These same ingredients govern the material response within each half-cycle of an oscillatory protocol. By analysing shear startup first, we therefore isolate the basic mechanisms of stress build-up, yielding, and relaxation that will recur in the cyclic case.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.99\linewidth]{chapters/Fatigue/Figures/pollard.pdf}
+    \caption[Stress-strain curves of the lattice elastoplastic model under shear startup.]{Stress-strain curves of the lattice elastoplastic model under shear startup. {\bf a)} Responses for a lattice size $N \times N = 1024 \times 1024$, with decreasing levels of sample annealing in curves downwards: $l_0=0.025,0.05,0.075, \ldots, 0.2.$. {\bf b)} Finite-size dependence for two different annealing levels $l_0=0.05$ (dashed curves) and $l_0=0.125$ (solid curves) for system sizes $N=64,128,256,512,1024,2048,4096$.}
+    \label{fig:ShearStarup}
+\end{figure}
+
+In \cref{fig:ShearStarup}a, we show stress-strain curves for a system of size $N \times N = 1024 \times 1024$ at various annealing levels. As can be seen, for highly annealed samples  (low $l_0$), the response is initially linear in strain, corresponding to elastic loading of the elements. The stress then reaches a pronounced overshoot before dropping sharply towards a steady-state flow value. At low values of $l_0$, the distribution of element strains $l$ is narrow, and therefore a larger fraction of elements lie close to their local yield threshold at the point of the first element yielding. The stress redistributed by this initial plastic event is therefore sufficient to trigger further yielding events in rapid succession, promoting a collective cascade and an abrupt macroscopic stress drop. As $l_0$ increases, the height of this overshoot decreases with the system tending towards ductile behaviour. This correlates with the widening of the initial distribution, forcing the first yielding event to occur at a lower strain. Although for small enough $l_0$ the distribution remains sufficiently narrow to promote avalanches of failures after only a few failures. 
+
+For less well-annealed samples (larger $l_0$), the overshoot becomes progressively smaller, and the subsequent stress drop more gradual. The failure of individual samples illustrated here occurs through a cumulative sequence of smaller discontinuous stress drops for the weakest annealed samples. Although it is shown in Ref.~\cite{pollard_yielding_2022} to be a continuous decline when averaged over many runs with different initial random seeds. In these less well-annealed samples, plastic activity is initiated earlier in the deformation, because a broader initial distribution of local strains brings a finite fraction of elements close to threshold even at a small applied strain. As a result, stress relaxation is distributed over a wider strain interval, and the macroscopic response appears more ductile.
+
+The role of the system size is illustrated in \cref{fig:ShearStarup}b. We consider two cases: a highly annealed sample ($l_0=0.05$) and a less annealed ($l_0=0.125$). In the highly annealed case, failure is already sharp, even at modest system sizes, but the peak strain shifts to lower values as $N$ increases. In the less annealed case ($l_0=0.125$), small systems display a more gradual relaxation composed of multiple smaller stress drops, whereas larger systems exhibit a progressively steeper decline that converges towards a single dominant drop. Increasing $N$ enhances the likelihood that a local plastic rearrangement triggers a system-spanning cascade. In the large-system limit ($N\to\infty$), a finite stress overshoot signals the onset of a collective failure mode rather than a sequence of isolated plastic relaxations.
+
+While the work of Pollard and Fielding went on to characterise in detail the formation of shear bands and the subsequent approach to steady flow following failure \cite{pollard_yielding_2022}, the focus here is different. In the oscillatory shear protocol considered below, we do not resolve the post-banding dynamics once a shear band has formed. Instead, we restrict attention to the onset of instability itself, classifying trajectories according to whether they evolve towards failure or are absorbed into a stable absorbing state. This differs from the approach taken by Khandare and Sastry in Ref.~\cite{khandareElastoplasticModellingCyclic2026}, who explicitly go on to analyse the spatiotemporal dynamics within the shear-banded regime.
+
+\section{Oscillatory shear}
+We begin by outlining the basic physics that governs a sample’s response under the oscillatory shear protocol defined in \cref{sec:fatigueMethodology}. As the sample is cycled, plastic activity accumulates through successive local yielding events. Each event redistributes stress and modifies the local strain field, altering the stability of neighbouring elements.
+
+Over repeated cycles, this accumulated plastic deformation can evolve in two distinct ways. In one scenario, the redistributed stress progressively organises into a correlated structure, ultimately forming a system-spanning shear band and leading to macroscopic failure. In the other, plastic events reorganise the system into a configuration in which all elements remain below threshold throughout subsequent cycles. In this case, the dynamics terminate in an absorbed state, with no further yielding possible under the imposed amplitude. In \cref{fig:EndStates} we show the probability of each end state as a function of the imposed shear amplitude $\gamma_0$, for different degrees of annealing. For both failure and absorption, we further distinguish between events that occur within the first cycle and those that arise after many cycles.
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=0.99\textwidth]{chapters/Fatigue/Figures/EndStates.pdf}
+    \caption{Distribution of simulation end states as a function of imposed strain. For each strain amplitude on the $x$-axis, stacked bars show the fraction of realisations classified according to two binary criteria: whether failure occurs on the first cycle (immediate) or at later cycles (delayed), and whether the system ultimately becomes absorbed or yields. Results are shown for four values of the annealing parameter $l_0$ (arranged vertically), with smaller $l_0$ corresponding to better-annealed samples. Each bar represents the statistical outcome over all simulations at the corresponding $(\gamma, l_0)$ pair. For each value of $\gamma_0$ and $l_0$, the distributions are made up of at least $10{,}000$ samples, each sample with a different value of the random number seed.}
+    \label{fig:EndStates}
+\end{figure}
+
+These regimes are realised at opposite extremes of the imposed oscillation amplitude $\gamma_0$. If $\gamma_0$ is sufficiently small relative to the width of the initial strain distribution $l_0$, it is possible that all elements satisfy
+\[
+    -1+\gammaMax < \ltilde_{ij} < 1-\gammaMax
+\]
+for all lattice sites $(i,j)$. In this case, no element is driven beyond its threshold during the first cycle, and the configuration is absorbing from the outset.
+
+However, the initial distribution takes the form of the Gaussian distribution of width $l_0\Norm$. In the thermodynamic limit $N \to \infty$, the extreme tails of the initial distribution are increasingly sampled. Although elements with $|\tilde{l}|>1$ would already have yielded during preparation and are therefore excluded, the probability of finding elements arbitrarily close to threshold remains finite. For sufficiently large systems, such near-critical elements are statistically unavoidable, and therefore the dynamics is expected to evolve as described later in the chapter. These cases are indicated in brown in \cref{fig:EndStates}. 
+
+Alternatively, at the other extreme, where $\gammaMax$ is large, the imposed deformation is enough to cause a shear band to form in either of the two half cycles (as $\gamma \to \gammaMax$ or $\gamma \to -\gammaMax$). In this limit, the dynamics are identical to those of shear startup: plastic activity organises during the monotonic loading segment, damage accumulates to the point of instability, and the system is driven irreversibly into the yielded state within the first cycle. These cases are indicated in purple in \cref{fig:EndStates}. 
+
+The regime of primary interest here is the intermediate range of amplitudes, in which neither immediate failure nor immediate absorption occurs. Instead, the system evolves over many cycles, with a small amount of plastic activity accumulating during each cycle. These cases are shown in orange and blue in \cref{fig:EndStates}, corresponding to trajectories that ultimately yield and those that eventually reach an absorbing state, respectively. 
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.99\textwidth]{chapters/Fatigue/Figures/Decay.pdf}
+    \caption{Final cycle $C^*$ as a function of the annealing parameter $l_0$. Smaller values of $l_0$ correspond to better annealed samples. We report the $95^\mathrm{th}$ percentile, $C^*_{95\%}$, defined as the cycle at which the survival distributions in \cref{fig:SurvivalDistrbutions} intersect the red threshold line. Results are shown for systems that yield, absorb, or exhibit both behaviours, indicated by solid, dotted, and dashed lines, respectively. For each value of $\gamma_0$ and $l_0$, the distributions are made up of at least $10{,}000$ runs, each run with a different value of the random number seed.}
+    \label{fig:FailureCyclel0}
+\end{figure}
+
+If, for the moment, we focus on the case where $l_0=0.05$, which is sufficiently well annealed that, for the system size considered $N=1024$, all four outcomes are realised: immediate yielding, delayed yielding, immediate absorption, and delayed absorption. Here, as $\gammaMax$ is increased, we transition from a state where the absorbed region is large enough such that all considered samples are absorbed to a state where the absorption can be delayed. Here, a small subset of elements starts outside the absorbed region and hence begins to yield as a result of the applied deformation. This transition is indicated in \cref{fig:FailureCyclel0}, where the number of cycles required to reach a final state, $\CycleStar$, is shown. Specifically, we report the $95^\mathrm{th}$ percentile, $\CycleNineFive$. The dotted curves correspond to trajectories that evolve into an absorbing state. For strongly annealed samples (e.g. $l_0=0.025,0.0375,0.5$), we see the reported value $\CycleNineFive$ decays to $0$ at a finite strain. More weakly annealed samples likewise show $\CycleNineFive\to0$ as $\gamma_0$ decreases, although the precise strain amplitude at which this occurs is not resolved here.
+
+As the maximally imposed strain amplitude $\gamma_0$ is increased, the number of cycles required to reach an absorbing state grows, approaching a maximum. Beyond a critical amplitude, trajectories that result in a yielded end state emerge, as enough cooperative damage can occur to facilitate the formation of a shear band. As indicated in \cref{fig:EndStates}, for highly annealed samples (low $l_0$), both 
+
+
 
 
 \newpage
-\begin{itemize}
+% \begin{itemize}
     % \item Consider the low Reynolds limit, where inertia is negligible 
     % \item We define a lattice of $i=1,2,\ldots,N_x$ by $j=1,2,\ldots,N_y$, and take $N_x=N_y=N$ for simplicity.
     % \item Each lattice site/element is considered to be a mesoscopic region of the material, typically approximately the size of a rearrangement event (bond or cluster of particles)
@@ -160,60 +223,50 @@ The remaining model parameters to be explored are the degree of initial annealin
 
     % \item define macrosopic shear stress
 
-    \item Need to explicitly define end states of the system. 
-    \begin{itemize}
-        \item Yielded states are where the displayed in a shear band.
-        \item Absorbed states where the system has no element which can yield.
-    \end{itemize}
-    \begin{figure}
-        \centering
-        \includegraphics[width=0.99\linewidth]{chapters/Fatigue/Figures/YieldCountSnapshots.pdf}
-        \caption{Maps of sites that have yielded at least once (black) and sites that have never yielded (white), shown at the end of cycles 1, 4, 16, 64, and 256 (left to right). \newline {\bf Top row:} an absorbing state. {\bf Bottom row:} a yielding state. \newline Both systems reach their respective end states during cycle 256.  Each map has system size $N_x \times N_y=256\times256$, $l_0=0.075$, $\gamma_0=0.835$, $l_w=0.02$}
-        \label{fig:YieldCountSnapshots}
-    \end{figure}
+    % \item Need to explicitly define end states of the system. 
+    % \begin{itemize}
+    %     \item Yielded states are where the displayed in a shear band.
+    %     \item Absorbed states where the system has no element which can yield.
+    % \end{itemize}
+
     
     % \[\Sigma = \mu\sum_{i=1}^{N_x}\sum_{j=1}^{N_y} l_{ij}.\]
     % \item State default parameters $N=1024$, $l_w=0.02$
     % \item Reiterate the $l_0$ is an important parameter
-\end{itemize}
+% \end{itemize}
 
 \section{Shear Startup}
-\begin{itemize}
-    \item I think we need to discuss the shear startup here, as it gives some background to each half cycle.
-    \todo[inline]{Make Figure from Pollard paper - already have data}
-    \item As $l_0$ increases at fixed system size $N$, the system becomes more ductile, and the failure strain decreases.
-    \item As $N$ increases, the system also becomes more brittle
-    \item Systems ultimately fail through shear banding, which is more akin to failures in metallic glasses, rather than the coexistence of macroscopic bands of different strain rates.
-    \todo[inline]{This needs discussing - Do I need to include it?}
-\end{itemize}
+% \begin{itemize}
+    % \item I think we need to discuss the shear startup here, as it gives some background to each half cycle.
+    % \todo[inline]{Make Figure from Pollard paper - already have data}
+    % \item As $l_0$ increases at fixed system size $N$, the system becomes more ductile, and the failure strain decreases.
+    % \item As $N$ increases, the system also becomes more brittle
+    % \item Systems ultimately fail through shear banding, which is more akin to failures in metallic glasses, rather than the coexistence of macroscopic bands of different strain rates.
+    % \todo[inline]{This needs discussing - Do I need to include it?}
+% \end{itemize}
 
 \section{Elasto-Plastic Model Results}
 
 \begin{itemize}
-    \item We ultimately do not resolve the system any further once shear banding occurs, considering only the path to failure or absorption.
-    \item We begin with the basic physics. As the system oscillates, it will end up in one of two states. Either it will shear band as a result of collective plastic events. Or will absorb with no elements able to yield.
-    \todo[inline]{Discuss max $l_0$ with Suzanne}
-    \begin{figure}[h!]
-        \centering
-        \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Figures/EndStates.pdf}
-        \caption{Distribution of simulation end states as a function of imposed strain. For each strain amplitude on the $x$-axis, stacked bars show the fraction of realisations classified according to two binary criteria: whether failure occurs on the first cycle (immediate) or at later cycles (delayed), and whether the system ultimately becomes absorbed or yields. Results are shown for four values of the annealing parameter $l_0$ (arranged vertically), with smaller $l_0$ corresponding to better-annealed samples. Each bar represents the statistical outcome over all simulations at the corresponding $(\gamma, l_0)$ pair. For each value of $\gamma_0$ and $l_0$, the distributions are made up of at least $10{,}000$ runs, each run with a different value of the random number seed.}
-        \label{fig:EndStates}
-    \end{figure}
-    \item If we consider the extreme cases:
-    \begin{itemize}
-        \item If $\gamma_0$ is not large enough, such that $|\ltilde_{ij} \pm \gamma_0| < l_c \forall \{ i = 1, \ldots, N_x;\; j = 1, \ldots, N_y \}$ then no yielding happens.
-        \item If $\gamma_0$ is too large, then the system acts like the shear startup cases and shear bands during the first cycle. 
-    \end{itemize}
-    \item it is in the intermediate regime where delayed failure and absorption can occur over many cycles, we illustrate this in \cref{fig:EndStates}. This is the main focus of this work
-    \item For each level of annealing, we transition from always absorbing in the first cycle, to delaying this absorption as elements $\ltilde$ decay towards $0$ as we increase $\gamma_0$. We then see yielding occurring at a late number of cycles, before the system always forms a shear band in the first cycle. 
-    \todo[inline]{Need to work out how to describe this better - some notation? + quantify it?}
+    % \item We ultimately do not resolve the system any further once shear banding occurs, considering only the path to failure or absorption.
+    % \item We begin with the basic physics. As the system oscillates, it will end up in one of two states. Either it will shear band as a result of collective plastic events. Or will absorb with no elements able to yield.
+    % \todo[inline]{Discuss max $l_0$ with Suzanne}
+
+    % \item If we consider the extreme cases:
+    % \begin{itemize}
+    %     \item If $\gamma_0$ is not large enough, such that $|\ltilde_{ij} \pm \gamma_0| < l_c \forall \{ i = 1, \ldots, N_x;\; j = 1, \ldots, N_y \}$ then no yielding happens.
+    %     \item If $\gamma_0$ is too large, then the system acts like the shear startup cases and shear bands during the first cycle. 
+    % \end{itemize}
+    % \item it is in the intermediate regime where delayed failure and absorption can occur over many cycles, we illustrate this in \cref{fig:EndStates}. This is the main focus of this work
+    % \item For each level of annealing, we transition from always absorbing in the first cycle, to delaying this absorption as elements $\ltilde$ decay towards $0$ as we increase $\gamma_0$. We then see yielding occurring at a late number of cycles, before the system always forms a shear band in the first cycle. 
+    % \todo[inline]{Need to work out how to describe this better - some notation? + quantify it?}
     \item As the level of annealing increases, the strain point at which the system immediately forms a shear band decreases as predicted in the shear startup case, and the range of maximum strains where delayed failures and absorption occurs increase.
-    \begin{figure}[h!]
-        \centering
-        \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Figures/Decay.pdf}
-        \caption{Final cycle $C^*$ as a function of the annealing parameter $l_0$. Smaller values of $l_0$ correspond to better annealed samples. We report the $95^\mathrm{th}$ percentile, $C^*_{95\%}$, defined as the cycle at which the survival distributions in \cref{fig:SurvivalDistrbutions} intersect the red threshold line. Results are shown for systems that yield, absorb, or exhibit both behaviours, indicated by solid, dotted, and dashed lines, respectively. For each value of $\gamma_0$ and $l_0$, the distributions are made up of at least $10{,}000$ runs, each run with a different value of the random number seed.}
-        \label{fig:FailureCyclel0}
-    \end{figure}
+    % \begin{figure}[h!]
+    %     \centering
+    %     \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Figures/Decay.pdf}
+    %     \caption{Final cycle $C^*$ as a function of the annealing parameter $l_0$. Smaller values of $l_0$ correspond to better annealed samples. We report the $95^\mathrm{th}$ percentile, $C^*_{95\%}$, defined as the cycle at which the survival distributions in \cref{fig:SurvivalDistrbutions} intersect the red threshold line. Results are shown for systems that yield, absorb, or exhibit both behaviours, indicated by solid, dotted, and dashed lines, respectively. For each value of $\gamma_0$ and $l_0$, the distributions are made up of at least $10{,}000$ runs, each run with a different value of the random number seed.}
+    %     \label{fig:FailureCyclel0}
+    % \end{figure}
     \item As we increase strain away from the immediate absorption cases, we see the delay in absorption correspondingly rise, peaking at a maximum strain, around where we begin to observe yielding occurring. Here we see yielding delayed to a long number of cycles, although occurring sooner than their absorbing counterparts. We show this in \cref{fig:FailureCyclel0}
     \item The peak of these distributions shifts according to where the transition to immediate banding occurs.
     \begin{figure}[hp!]
