@@ -180,7 +180,7 @@ The regime of primary interest here is the intermediate range of amplitudes, in 
 \begin{figure}
     \centering
     \includegraphics[width=1.0\textwidth]{chapters/Fatigue/Figures/Decay.pdf}
-    \caption{Final cycle $C^*$ as a function of the annealing parameter $l_0$. Smaller values of $l_0$ correspond to better annealed samples. We report the $95^\mathrm{th}$ percentile, $C^*_{95\%}$, defined as the cycle at which the survival distributions in \cref{fig:SurvivalDistrbutions} intersect the red threshold line. Results are shown for systems that yield, absorb, or exhibit both behaviours, indicated by solid, dotted, and dashed lines, respectively. For each pair of values for $\gamma_0$ and $l_0$, the distributions are made up of at least $10{,}000$ samples, each run with a different value of the random number seed.}
+    \caption{Final cycle $C^*$ as a function of the annealing parameter $l_0$. Smaller values of $l_0$ correspond to better annealed samples. We report the $95^\mathrm{th}$ percentile, $C^*_{95\%}$, defined as the cycle at which the survival distributions in \cref{fig:SurvivalDistrbutions} intersect the red threshold line. Results are shown for systems that yield, absorb, or exhibit both behaviours, indicated by solid, dotted, and dashed lines, respectively. For each pair of values for $\gamma_0$ and $l_0$, the distributions are made up of at least $10{,}000$ samples, each run with a different value of the random number seed. The curves shown in \cref{fig:FailureCyclel0} include only those end states for which more than $1000$ such samples reach the corresponding outcome.}
     \label{fig:FailureCyclel0}
 \end{figure}
 
@@ -190,17 +190,48 @@ As the maximally imposed strain amplitude $\gamma_0$ is increased, the number of
 
 At lower levels of annealing (larger $l_0$), this overlap is no longer present. The broader initial distribution produces a clearer separation in behaviour, as $\gamma_0$ is increased, there is a distinct progression from delayed absorption to delayed yielding, and only at higher amplitudes to immediate yielding. 
 
-In both cases, this emergence of yielding trajectories coincides with the largest observed values of $\CycleNineFive$, reflecting the long transient required for sufficient cooperative damage to accumulate. At this amplitude, however, the probability of sampling a yielding trajectory is minimal. We emphasise that for each pair of values $(\gamma_0, l_0)$ we sample at least $10{,}000$ independent realisations, differing in both the initial strain distribution and the subsequent post-hop resampling. The curves shown in \cref{fig:FailureCyclel0} include only those end states for which more than $500$ such realisations reach the corresponding outcome. This threshold ensures that the reported statistics are not dominated by rare events with insufficient sampling. As such, curves toward the tail of this distribution, where trajectories both yield and absorb, are based on fewer contributing realisations than cases in which all sampled seeds converge to the same end state. Nevertheless, the underlying behaviours are robust. Additional sampling would only smooth the distributions quantitatively, without altering the observed transitions or the structure of the phase behaviour.
+In both cases, this emergence of yielding trajectories coincides with the largest observed values of $\CycleNineFive$, reflecting the long transient required for sufficient cooperative damage to accumulate. At this amplitude, however, the probability of sampling a yielding trajectory is minimal. We emphasise that for each pair of values $(\gamma_0, l_0)$ we sample at least $10{,}000$ independent realisations, differing in both the initial strain distribution and the subsequent post-hop resampling. The curves shown in \cref{fig:FailureCyclel0} include only those end states for which more than $1000$ such realisations reach the corresponding outcome. This threshold ensures that the reported statistics are not dominated by rare events with insufficient sampling. As such, curves toward the tail of this distribution, where trajectories both yield and absorb, are based on fewer contributing realisations than cases in which all sampled seeds converge to the same end state. Nevertheless, the underlying behaviours are robust. Additional sampling would only smooth the distributions quantitatively, without altering the observed transitions or the structure of the phase behaviour.
 
 As the imposed amplitude is further increased, the number of cycles to absorption, characterised by $\CycleNineFive$ in \cref{fig:FailureCyclel0}, continues to increase as its probability to observe such a trajectory decreases, as illustrated in \cref{fig:EndStates}. Equivalently, the number of cycles to reach a yielding state, again characterised by $\CycleNineFive$ in \cref{fig:FailureCyclel0}, decreases with increasing $\gammaMax$ as the trajectories tend to the shear startup case. Consequently, the number of cycles to reach either state, shown as dashed lines in \cref{fig:FailureCyclel0}, peaks at a strain in this intermediate regime where both trajectories are possible. 
 
 \begin{figure}[p]
     \centering
     \includegraphics[width=1.0\textwidth]{chapters/Fatigue/Figures/Survival.pdf}
-    \caption{Survival functions of the termination cycle $C^*$, showing the fraction of initial seed values that remain active up to cycle $C^*$ before reaching an absorbing state ({\bf Left}) or a yielding state ({\bf Right}).
-    Panels (a–h) show the survival probability $S(C^*)=1-F(C^*)$, conditioned on end state and annealing parameter. From top to bottom, rows correspond to increasing annealing parameter $l_0 = 0.025, 0.05, 0.075, 0.1$. Within each panel, multiple curves represent different imposed strain amplitudes, specified in the right column for each $l_0$.}
+    \caption[Survival functions of the termination cycle $C^*$]{Survival functions of the termination cycle $\CycleStar$, showing the fraction of initial seed values that remain active up to cycle $\CycleStar$ before reaching an absorbing state ({\bf Left}) or a yielding state ({\bf Right}).
+    Panels (a–h) show the survival probability $S(C^*)=1-F(\CycleStar)$, conditioned on end state and annealing parameter. From top to bottom, rows correspond to increasing annealing parameter $l_0 = 0.025, 0.05, 0.075, 0.1$. Within each panel, multiple curves represent different imposed strain amplitudes, specified in the right column for each $l_0$. Decay constants $\lambda$ obtained from exponential fits to the tails of the survival functions are shown in \cref{fig:SurvivalDistrbutionsFits}.}
     \label{fig:SurvivalDistrbutions}
 \end{figure}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.99\linewidth]{chapters/Fatigue/Figures/Survival_TailFits_DecayConstant.pdf}
+    \caption{Decay constant $\lambda$ characterising the exponential tails of the survival functions shown in \cref{fig:SurvivalDistrbutions}. For each annealing parameter $l_0$ and strain amplitude, $\lambda$ is obtained by fitting the large-$\CycleStar$ regime to 
+    $S(\CycleStar) \sim \exp(-\lambda \CycleStar)$. Results are shown separately for absorbing and yielding trajectories.}
+    \label{fig:SurvivalDistrbutionsFits}
+\end{figure}
+
+In \cref{fig:SurvivalDistrbutions} we plot the corresponding survival distributions $S(\CycleStar)=1-F(\CycleStar)$, where $F(\CycleStar)$ is the cumulative distribution. The red dashed line indicates the $95^\mathrm{th}$ percentile of $\CycleStar$. We plot the distributions separately for samples whose trajectories ultimately absorb (left column) and those that yield (right column), without distinguishing between immediate and delayed cases. 
+
+For the lowest level of annealing considered, $l_0 = 0.025$, the survival curves exhibit an initial steep drop that accounts for approximately $90\%$ of the distribution. This reflects the large fraction of trajectories that either absorb or yield immediately, as shown in \cref{fig:EndStates}. As the strain amplitude $\gammaMax$ increases for y trajectories (blue to green), and decreases for yielding trajectories (blue to yellow), the survival curves begin to separate at progressively smaller survival probabilities. Once the distributions diverge from the initial drop, they show exponential scaling with a decay constant $\lambda$ shown in \cref{fig:SurvivalDistrbutionsFits}. 
+
+For absorbing trajectories, the form of the distributions changes as the level of annealing decreases (increasing $l_0$). At $l_0 = 0.025$ and $l_0 = 0.05$, there is a range of $\gammaMax$ for which both immediate and delayed absorption occur. In this regime, the survival curves exhibit an initial vertical drop for such values of $\gammaMax$ corresponding to the finite fraction of trajectories that absorb immediately. However, as $l_0$ increases (or $\gammaMax$ increases for $l_0=0.05$), the distributions transition to a form in which $S(\CycleStar)$ decreases only weakly at small $\CycleStar$, indicating that few trajectories terminate at a small number of cycles. Instead, the majority of trajectories survive longer delay times, where the distributions transition exhibit an exponential tail. As discussed previously, the immediately absorbing states arise from a finite-size sampling of the initial Gaussian distribution. In the thermodynamic limit, $N \to \infty$, the full distribution is sampled, and such immediate absorption events vanish. Accordingly, the asymptotic form of $S(\CycleStar)$ for absorbing trajectories is expected to resemble the distributions observed at larger $\gammaMax$ or higher $l_0$, where early-time termination is suppressed. We will discuss this more in \cref{sec:FatigueRobustness}. However, the large-$\CycleStar$ behaviour remains robust: the decay constants $\lambda$ extracted from the exponential tails collapse onto a common curve when plotted against $\gammaMax$ as indicated in \cref{fig:SurvivalDistrbutionsFits}a.
+
+In contrast, the form of the yielding distributions remains qualitatively unchanged. At large $\gammaMax$ the survival curves exhibit a vertical drop, as all samples yield within the first cycle. As $\gammaMax$ decreases from this critical point, the point at which $S(\CycleStar)$ diverges from the vertical case increases, indicating an increasing probability of delayed samples. At low aneling levels ($l_0=0.1$), there exist strains where all yielding events are delayed, as indicated in \cref{fig:EndStates}. For such values of $\gammaMax$, the survival functions appear to decay as a power law similar to the behaviour seen in the trajectories which absorb. However, when comparing the extracted decay constants, no clear systematic trend with $\gammaMax$ is observed. There is a slight tendency for $\lambda$ to decrease as the amplitude decreases, suggesting a larger number of cycles to yielding are possible, but this effect is weak. This behaviour is not reflected in the data shown in \cref{fig:FailureCyclel0}, where the reported $\CycleStar$ to yielding appears to reach a similar maximum across values of $l_0$. The discrepancy arises because, as $l_0$ decreases, the probability of sampling delayed yielding trajectories becomes progressively smaller, with most realisations instead failing immediately.
+
+The overall trends indicate that, provided the system does not absorb or yield immediately, both absorption and yielding can occur over a broad range of cycle numbers. In principle, both yielding and absorbing states can occur after arbitrarily many cycles, but trajectories reaching large $\CycleStar$ are progressively rarer.
+
+\section{Robustness to $l_w$ and $N$} \label{sec:FatigueRobustness}
+
+So far, we have considered only a fixed system size $N$ and post-hop distribution $l_w$. However, it is well established that the system size plays a central role in the transition from ductile to brittle behaviour. In particular, Pollard and Fielding in Ref.~\cite{pollard_yielding_2022} demonstrated that increasing $N$, with larger systems exhibiting increasingly abrupt, brittle-like stress drops, while smaller systems can display behaviour that appears ductile. As we have already discussed, this system-size dependence is therefore expected to influence the fatigue behaviour discussed here.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Figures/lw.pdf}
+    \caption{Final cycle $C^*$ as a function of the parameter $\gamma_0$, with the annealing parameter fixed at $l_0 = 0.075$. Multiple curves correspond to different values of $l_w$, increasing from top to bottom. We report the $95^\mathrm{th}$ percentile, $C^*_{95\%}$, defined as the cycle at which the survival distributions in \cref{fig:SurvivalDistrbutions} intersect the red threshold line. Results are shown for systems that yield, absorb, or exhibit both behaviours, indicated by solid, dotted, and dashed lines, respectively. The values of $l_w$ considered are $0.01, 0.02, 0.03, 0.04$. The insert shows a rescaling of the data showing the failure cycle scales approximately as the square of the maximum strain. For each value of $\gamma_0$ and $l_w$, the distributions are constructed from at least $10{,}000$ independent runs, each with a different random number seed.}
+    \label{fig:FailureCyclelw}
+\end{figure}
+
+First, we instead consider the effect of the post-hop distribution, characterised by its width $l_w$. In the results presented so far, this width has been fixed at $l_w = 0.2$. In \cref{fig:FailureCyclelw}, we show the number of cycles $\CycleStar$ for a fixed initial disorder $l_0 = 0.075$ and system size $N = 1024$, for several different values of $l_w$. As noted when defining the post hop distribution in \cref{sec:fatigueMethodology}, the 
 
 \newpage
 % \begin{itemize}
@@ -246,7 +277,7 @@ As the imposed amplitude is further increased, the number of cycles to absorptio
     % \item Reiterate the $l_0$ is an important parameter
 % \end{itemize}
 
-\section{Shear Startup}
+% \section{Shear Startup}
 % \begin{itemize}
     % \item I think we need to discuss the shear startup here, as it gives some background to each half cycle.
     % \todo[inline]{Make Figure from Pollard paper - already have data}
@@ -256,9 +287,9 @@ As the imposed amplitude is further increased, the number of cycles to absorptio
     % \todo[inline]{This needs discussing - Do I need to include it?}
 % \end{itemize}
 
-\section{Elasto-Plastic Model Results}
+% \section{Elasto-Plastic Model Results}
 
-\begin{itemize}
+% \begin{itemize}
     % \item We ultimately do not resolve the system any further once shear banding occurs, considering only the path to failure or absorption.
     % \item We begin with the basic physics. As the system oscillates, it will end up in one of two states. Either it will shear band as a result of collective plastic events. Or will absorb with no elements able to yield.
     % \todo[inline]{Discuss max $l_0$ with Suzanne}
@@ -287,24 +318,23 @@ As the imposed amplitude is further increased, the number of cycles to absorptio
     %     Panels (a–h) show the survival probability $S(C^*)=1-F(C^*)$, conditioned on end state and annealing parameter. From top to bottom, rows correspond to increasing annealing parameter $l_0 = 0.025, 0.05, 0.075, 0.1$. Within each panel, multiple curves represent different imposed strain amplitudes, specified in the right column for each $l_0$.}
     %     \label{fig:SurvivalDistrbutions}
     % \end{figure}
-    \item For completeness, we show a set of the corresponding survival functions for several $l_0$ and $\gamma_0$. In a) and b) for $l_0=0.025$, we note the vertical form of the distribution indicating the large number of early failures, where $\approx 95\%$ of samples either immediately absorb or fail. However, of those $5\%$ who do survive the first cycle, see note exponential scaling of $C^*$. 
-    \item As $l_0$ increase we see a transition in the absorbed curves from immediate to delayed behaviour. As both $l_0$ and correspondingly $\gamma_0$ increases we see the minimum time to absorption increases; however, the tails of the distribution remain exponential. 
-    \item The corresponding patterns occur in failure where there exist regimes at high enough $l_0$ where yielding only occurs in a delayed fashion.
-    \item The exponential tails here indicate that failure can occur at any number of cycles; however, with an ever-decreasing likelihood 
-    \todo[inline]{Extract Decay constant}
-\end{itemize}
+    % \item For completeness, we show a set of the corresponding survival functions for several $l_0$ and $\gamma_0$. In a) and b) for $l_0=0.025$, we note the vertical form of the distribution indicating the large number of early failures, where $\approx 95\%$ of samples either immediately absorb or fail. However, of those $5\%$ who do survive the first cycle, see note exponential scaling of $C^*$. 
+    % \item As $l_0$ increase we see a transition in the absorbed curves from immediate to delayed behaviour. As both $l_0$ and correspondingly $\gamma_0$ increases we see the minimum time to absorption increases; however, the tails of the distribution remain exponential. 
+    % \item The corresponding patterns occur in failure where there exist regimes at high enough $l_0$ where yielding only occurs in a delayed fashion.
+    % \item The exponential tails here indicate that failure can occur at any number of cycles; however, with an ever-decreasing likelihood 
+    % \todo[inline]{Extract Decay constant}
+% \end{itemize}
 
-\section{Robustness to $l_w$ and $N$}
+% \section{Robustness to $l_w$ and $N$} \label{sec:FatigueRobustness}
 
 \begin{itemize}
-    \item So far, we have only considered the case where we have a fixed system size $N$ and post hop distribution $l_w$. We know from previous work that the system size $N$ affects the transition from brittle to ductile behaviour, which plays an important role in the physics we have seen. 
-    \begin{figure}[h]
-        \centering
-        \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Figures/lw.pdf}
-        \caption{Final cycle $C^*$ as a function of the parameter $\gamma_0$, with the annealing parameter fixed at $l_0 = 0.075$. Multiple curves correspond to different values of $l_w$, increasing from top to bottom. We report the $95^\mathrm{th}$ percentile, $C^*_{95\%}$, defined as the cycle at which the survival distributions in \cref{fig:SurvivalDistrbutions} intersect the red threshold line. Results are shown for systems that yield, absorb, or exhibit both behaviours, indicated by solid, dotted, and dashed lines, respectively. The values of $l_w$ considered are $0.01, 0.02, 0.03, 0.04$. The insert shows a rescaling of the data showing the failure cycle scales approximately as the square of the maximum strain. For each value of $\gamma_0$ and $l_w$, the distributions are constructed from at least $10{,}000$ independent runs, each with a different random number seed.}
-        \label{fig:FailureCyclelw}
-    \end{figure}
-    \todo[inline]{Corrected comments up to here}
+    % \item So far, we have only considered the case where we have a fixed system size $N$ and post hop distribution $l_w$. We know from previous work that the system size $N$ affects the transition from brittle to ductile behaviour, which plays an important role in the physics we have seen. 
+    % \begin{figure}[h]
+    %     \centering
+    %     \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Figures/lw.pdf}
+    %     \caption{Final cycle $C^*$ as a function of the parameter $\gamma_0$, with the annealing parameter fixed at $l_0 = 0.075$. Multiple curves correspond to different values of $l_w$, increasing from top to bottom. We report the $95^\mathrm{th}$ percentile, $C^*_{95\%}$, defined as the cycle at which the survival distributions in \cref{fig:SurvivalDistrbutions} intersect the red threshold line. Results are shown for systems that yield, absorb, or exhibit both behaviours, indicated by solid, dotted, and dashed lines, respectively. The values of $l_w$ considered are $0.01, 0.02, 0.03, 0.04$. The insert shows a rescaling of the data showing the failure cycle scales approximately as the square of the maximum strain. For each value of $\gamma_0$ and $l_w$, the distributions are constructed from at least $10{,}000$ independent runs, each with a different random number seed.}
+    %     \label{fig:FailureCyclelw}
+    % \end{figure}
     \item In \cref{fig:FailureCyclelw} we plot the number of cycles to failure at $l_0=0.075$ and $N=1024$ for various widths of post-hop distributions. Here we note an effect with smaller values of $l_w$ corresponding to more delayed failures/absorption. 
     \item The overall shapes of the distribution appear consistent, indicating the dynamics of the system are not dependent on this parameter. However, the characteristic timescale of the system does depend on this. 
     \item In the insert, we plot the same data using a rescaled parametrisation showing the failure cycle scales as the square of the maximum strain up to a constant.
@@ -315,7 +345,6 @@ As the imposed amplitude is further increased, the number of cycles to absorptio
         {\bf a)} The $95^\mathrm{th}$ percentile failure cycle $C^*_{95\%}$ as a function of imposed strain. Results are shown for system sizes $N = 128, 256, 512, 1024$, indicated in blue, orange, green, and red, respectively. \newline
         {\bf b)} The corresponding distribution of end states. 
         }
-        \todo[inline]{I'm extending the Smaller N lines to the full width. Will be done by early next week}
         \label{fig:EPSizeDependence}
     \end{figure}
     \item in \cref{fig:EPSizeDependence} we plot both the failure cycle $C^*$ and end states. 
