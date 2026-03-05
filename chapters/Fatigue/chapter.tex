@@ -290,8 +290,76 @@ finding $\gamma_{0,1/2}(N\to\infty)=0.783\pm0.0005$, $\nu=0.1690\pm0.0018$, and 
 
 \section{Path to a single active element.}
 
-To explain the results we have so far explored we will concider the number of active elements 
+To explain the results we have so far explored, we will consider the number of active elements $f_{active}$ left in the system. We define here an active element to be one which has the possibility of yielding as a result of bulk elastic straining (not in the absorbed region). It is especially defined as an element whose value of $\ltilde$ (an element's deviation from the bulk strain $\gamma$) is 
+\[
+    \ltilde \le -1+\gammaMax
+    \quad \text{or} \quad
+    \ltilde \ge 1-\gammaMax.
+\]
 
+In \cref{fig:Pathto1}a and \cref{fig:Pathto1}b, we plot the average fraction of elements that remain active as a function of the number of cycles elapsed in the simulation. The level of annealing is fixed at $l_0=0.075$ with a system size $N=1024$ ($f_{\mathrm{active}}=1/N^2\approx1\times10^{-6}$ therefore corresponding to a single active element). For all cases considered, the number of active elements decreases as the system evolves, starting from an initially large fraction of active elements. The initial decrease is rapid during the first few cycles and corresponds to a large amount of plastic activity that pushes elements out of the active region. In the absorbing cases (dashed lines), after this initial decrease the fraction of active elements decays approximately exponentially, as indicated in \cref{fig:Pathto1}a, eventually approaching the limit of a single active element remaining in the sample.
+
+In the inset of \cref{fig:Pathto1}a we plot a binned average of $f_{\mathrm{active}}$ in the cycle immediately prior to the system reaching its end state. For both yielding and absorbing trajectories, we observe that samples which survive a larger number of cycles tend to have a smaller fraction of active elements. In absorbing trajectories, this typically corresponds to only a single element remaining active, reflecting the mechanism by which samples reach an absorbing state discussed earlier.
+
+In \cref{fig:Pathto1}b, we show that this behaviour is consistent across different levels of annealing, considering parameter sets for which the number of cycles to absorption satisfies $\CycleNineFive\approx200$. All curves display the same qualitative pattern: a steep initial decrease in the fraction of active elements, followed by an approximately exponential decay that ultimately plateaus at the single–element limit. We therefore expect this behaviour to be generic for absorbing trajectories across different levels of annealing and imposed strain amplitude $\gammaMax$.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.99\textwidth]{chapters/Fatigue/Figures/ActiveDecay_Path21Osc.pdf}
+    \caption[Decay of number of active elements remaining in the system.]{Example decay of the number of active elements as trajectories evolve. Curves show the mean value of $f_{\mathrm{active}}$ across $1000$ samples, while at least $500$ samples remain active. We distinguish between trajectories which absorb (solid) and yield (dashed). 
+    {\bf a)} $l_0 = 0.075$, $\lw = 0.02$, and $N = 1024$.
+    {\bf Insert)} binned mean of the fraction of active elements in the final cycle $\CycleStar$ taken across more than $10{,}000$ samples for each $\gammaMax$.
+    {\bf b)} Parameter sets for which the number of cycles to an absorbed state satisfies $\CycleNineFive \approx 200$. From bottom to top: $(l_0,\gamma_{\max})=(0.0375,0.882)$, $(0.05,0.848)$, $(0.075,0.802)$, $(0.1,0.784)$ and $(0.125,0.775)$.
+    }
+    \label{fig:Pathto1}
+\end{figure}
+
+In the low $f_{\mathrm{active}}$ limit, where the number of active elements decays exponentially, we can treat each element as evolving independently. In this regime, active elements are sufficiently far apart that stress propagation from one event does not significantly affect the behaviour of another, due to the $1/r^D$ decay found in the stress propagator. In this regime, each active element's behaviour is entirely set by the post-hop distribution.  
+
+\subsection{Self-Interaction of an Active Element}
+
+This subsection briefly discusses the self-interaction experienced by an element following a yielding event, which plays an important role in the evolution of active sites in the model. When an element yields, the stress released by the event is redistributed elastically throughout the system via the stress propagator defined in \cref{sec:EshelbyPropogator}. Because force balance is subsequently reimposed, a portion of this redistributed stress is recovered elastically. For an element which loses a stress of 1, the actual change in stress experienced by the element corresponds to the value of the stress propagator at the origin $\Origin\approx-0.5708$ as $N \to \infty$.
+
+In our model, we are working in units where the critical strain of an element is $l_c=\pm 1$. For the moment, we will consider only the positive threshold $l_c=1$; by symmetry, the same arguments apply for $l_c=-1$. As discussed in \cref{sec:fatigueMethodology}, when an element yields, it resamples its local stress from the post hop distribution, which we take to be Gaussian with width $\lw$ and mean $0$, $\mathcal{N}(0,\lw^2)$. We denote the strain of an element immediately after yielding (before force balance) by $\eta\sim\mathcal{N}(0,\lw^2)$. The strain released in the event is therefore $1+\eta$, and the yielded element loses stress equal to $|\Origin|(1+\eta)$, after force balance is re-imposed.
+
+Provided this stress loss does not move the element into the absorbing region, it will yield again on the next half-cycle, again losing (or gaining) stress equal to $|\Origin|(1+\eta)$. Since this second yielding occurs from the opposite threshold $l_c=-1$, the associated stress change has the opposite sign. The net stress change over a full cycle is therefore
+\[
+    |\Origin|(\eta_1+\eta_2) \sim \mathcal{N}(0, 2|\Origin|^2\lw^2)
+\] 
+where $\eta_1$ is the post-hop sample from the first half cycle (e.g. the positive half cycle), and $\eta_2$ is the post-hop sample from the second half cycle (e.g. the negative half cycle). 
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=0.99\linewidth]{chapters/Fatigue/RandomWalk/OscillatorRegions.pdf}
+    \caption[Illustration of an ideal trajectory of a single independent element]{
+    Illustration of an idealised trajectory of a single independent element. The black curve shows the case without a post-hop distribution, where the stress changes from each half-cycle cancel exactly, leaving no net change over a full cycle. The orange curve shows the case with a Gaussian post-hop distribution (shown here with a large $l_w$ for illustration). \newline
+    {\bf a)} Evolution of $\ltilde$ over several idealised cycles. {\bf b)} The value of $\ltilde$ viewed stroboscopically at the start of each cycle. Dotted lines are included to guide the eye and do not represent the actual evolution of $\ltilde$.
+    }
+    \label{fig:IdealElement}
+\end{figure}
+
+We illustrate this idea in \cref{fig:IdealElement}. In panel a), we show the idealised trajectory of a single independent element in orange. The value of $\ltilde$ oscillates between positive and negative values within the active (blue) region, skipping over the absorbed (green) region. For reference, we plot in black the case where $l_w=0$, corresponding to no post-hop distribution, where the stress change over the whole cycle is zero. In \cref{fig:IdealElement}b, we show the evolution of $\ltilde$ viewed stroboscopically at the start of each cycle. The cases with no post-hop distribution (black) show no change in the element value of $\ltilde$, whereas with a post-hop distribution, it performs a random walk, continuous in $\ltilde$ but discrete in cycles. 
+
+\begin{figure}[p]
+    \centering
+    \includegraphics[width=0.99\textwidth]{chapters/Fatigue/Figures/RandomWalks.pdf}
+    \caption[Stroboscopic evolution of element strain measured at the start of each cycle.]{Stroboscopic evolution of element strain $l$ measured at the start of each cycle. $\tilde{C}$ indicates the number of cycles after the random walk has begun.\newline
+    {\bf a)} Example trajectory of an active element in a sample that ultimately absorbs. The red dashed line denotes the absorbing boundary; the blue trajectory crosses this threshold, leading to absorption. \newline
+    {\bf b)} Example trajectory in a sample that ultimately yields. The blue curve shows the active element, while the orange curve shows a neighbouring element. In this case, the neighbouring element crosses the red boundary active, triggering yielding. \newline
+    {\bf c)} Ensemble of trajectories of the oscillating element, each terminated at the first crossing of the absorbing boundary (red dashed line). \newline
+    {\bf d)} Standard deviation of the active element displacement, $\sigma(\Delta l_{\mathrm{osc}})$, as a function of cycle number, demonstrating the expected diffusive scaling. \newline
+    Parameters: $l_0=0.075$, $\gammaMax=0.823$, $\lw=0.02$, $N=1024$
+    }
+    \label{fig:RandomWalkExamples}
+\end{figure}
+
+We confirm that such a random walk also arises in the full simulations in \cref{fig:RandomWalkExamples}. These trajectories correspond to cases in which only a single active element remains. In this limit, the starting point of the random walk is well defined, as the element experiences no additional stress from redistribution events elsewhere in the system. Although such a random walk can be found before this point if the active elements are diffuse enough. 
+
+In \cref{fig:RandomWalkExamples}a, we show the random walk of the final element for a sample which ultimately absorbs, as the element crosses the boundary between the active and absorbed region indicated by the dashed line. Once the last element crosses this boundary, the system is classified as being in an absorbed state, because no further plastic events can occur. In the diffuse limit, the approach to absorption can therefore be viewed as a first-passage problem, in which each remaining active element performs a random walk until it first reaches the absorbing boundary.
+
+Correspondingly, for trajectories that yield only after many cycles, the remaining active elements can become sufficiently diffuse to undergo a random walk, although such trajectories are less likely than those that yield early. In \cref{fig:RandomWalkExamples}b, we illustrate such a random walk in orange. We also show a neighbouring element to the active element in red. Due to stress propagation, this absorbed element (which lies below the dotted line) undergoes a correlated random walk as a result of the active element yielding. Because of the form of the propagator, this neighbouring element experiences a walk of opposite sign to that of the active element. That is, the active element’s value of $l$ walks downward towards the threshold, while the neighbouring absorbed element walks upward toward it. Given a suitable initial configuration, the active element can pull the absorbed element into the active region, where it can subsequently yield. In the cases shown here, the surrounding elements were in a configuration such that this process nucleates the formation of a shear band, although this does not occur in all realisations. 
+
+We verify that such walks are 
 
 \newpage
 % \begin{itemize}
@@ -387,7 +455,7 @@ To explain the results we have so far explored we will concider the number of ac
 
 % \section{Robustness to $\lw$ and $N$} \label{sec:FatigueRobustness}
 
-\begin{itemize}
+% \begin{itemize}
     % \item So far, we have only considered the case where we have a fixed system size $N$ and post hop distribution $\lw$. We know from previous work that the system size $N$ affects the transition from brittle to ductile behaviour, which plays an important role in the physics we have seen. 
     % \begin{figure}[h]
     %     \centering
@@ -411,37 +479,37 @@ To explain the results we have so far explored we will concider the number of ac
     % \item In a) we show that the time to absorb both decreases with decreasing system size, but also the strain, which increases (as seen in Pollard's paper). This is effectively how well the initial distribution is sampled.
     % \item The cycles to failure results appear to shift in strain, however reach a maximum at about the same value. Indicating different physics occurring for absorbed vs yielding cases.
     % \item b) is just there for completeness, I find it easier to understand with it. 
-\end{itemize}
+% \end{itemize}
 
 
 
 % \section{Path to a single oscillation}
 
 \begin{itemize}
-    \item If we consider the final number of active elements just before the point of failure. 
-    \begin{figure}[h]
-        \centering
-        \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Figures/1Osc.pdf}
-        \caption[A sample of the final number of active elements remaining in the oscillating set immediately before the system reaches its end state.]{A sample of the final number of active elements remaining in the oscillating set immediately before the system reaches its end state. We distinguish between runs whose end states end in yielding and absorption. \newline 
-        Parameter: $l_0 = 0.075$, $\lw = 0.02$, and $N = 1024$.}
-        \label{fig:Pathto1}
-    \end{figure}
-    \item We see an overall trend for runs which end in yielding, where systems which take a long time to yield end up with only a few active elements remaining
-    \item This is definitely true for runs which end in absorption, which have very few elements remaining. 
-    \item If we consider the extreme case where there is only one element remaining, then the system is very simple and becomes solely driven by a random walk determined by the post hop distribution (we will discuss in \cref{sec:EPSimpleModel})
-    \begin{figure}[hp]
-        \centering
-        \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Figures/RandomWalks.pdf}
-        \caption[Stroboscopic evolution of element lengths measured at the start of each cycle.]{Stroboscopic evolution of element lengths measured at the start of each cycle. $\tilde{C}$ indicates the number of cycles after the random walk is assumed to have begun.\newline
-        {\bf a)} Example trajectory of the oscillating element in a realisation that ultimately absorbs. The red dashed line denotes the absorbing boundary; the blue trajectory crosses this threshold, leading to absorption. \newline
-        {\bf b)} Example trajectory in a realisation that yields. The blue curve shows the oscillating element, while the orange curve shows a neighbouring element. In this case, the neighbouring element crosses the red boundary first, triggering yielding. \newline
-        {\bf c)} Ensemble of trajectories of the oscillating element, each terminated at the first crossing of the absorbing boundary (red dashed line). \newline
-        {\bf d)} Standard deviation of the oscillating element displacement, $\sigma(\Delta l_{\mathrm{osc}})$, as a function of cycle number, demonstrating the expected diffusive scaling.}
-        \label{fig:RandomWalkExamples}
-    \end{figure}
-    \item We illustrate an example of a random walk observed in \cref{fig:RandomWalkExamples} for {\bf a)} an absorbing case and  {\bf b)} a yielding case. 
-    \item These random walks occur when observed stroboscopically at the start of the cycle. Here, yielding has occurred twice, and $\ltilde$ has shifted by a small amount. This random walk continues to evolve until the element enters the absorbed region, where it is unable to yield (subject to no other elements yielding). Once all elements enter this region.
-    \item Alternatively, as a result of this walk and stress propagation, a neighbouring element which follows a coupled random walk can be displaced from the absorbed region and, as a result, begin to yield. This commonly initiates a shear banding event. 
+    % \item If we consider the final number of active elements just before the point of failure. 
+    % \begin{figure}[h]
+    %     \centering
+    %     \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Figures/1Osc.pdf}
+    %     \caption[A sample of the final number of active elements remaining in the oscillating set immediately before the system reaches its end state.]{A sample of the final number of active elements remaining in the oscillating set immediately before the system reaches its end state. We distinguish between runs whose end states end in yielding and absorption. \newline 
+    %     Parameter: $l_0 = 0.075$, $\lw = 0.02$, and $N = 1024$.}
+    %     \label{fig:Pathto1}
+    % \end{figure}
+    % \item We see an overall trend for runs which end in yielding, where systems which take a long time to yield end up with only a few active elements remaining
+    % \item This is definitely true for runs which end in absorption, which have very few elements remaining. 
+    % \item If we consider the extreme case where there is only one element remaining, then the system is very simple and becomes solely driven by a random walk determined by the post hop distribution (we will discuss in \cref{sec:EPSimpleModel})
+    % \begin{figure}[hp]
+    %     \centering
+    %     \includegraphics[width=0.9\textwidth]{chapters/Fatigue/Figures/RandomWalks.pdf}
+    %     \caption[Stroboscopic evolution of element lengths measured at the start of each cycle.]{Stroboscopic evolution of element lengths measured at the start of each cycle. $\tilde{C}$ indicates the number of cycles after the random walk is assumed to have begun.\newline
+    %     {\bf a)} Example trajectory of the oscillating element in a realisation that ultimately absorbs. The red dashed line denotes the absorbing boundary; the blue trajectory crosses this threshold, leading to absorption. \newline
+    %     {\bf b)} Example trajectory in a realisation that yields. The blue curve shows the oscillating element, while the orange curve shows a neighbouring element. In this case, the neighbouring element crosses the red boundary first, triggering yielding. \newline
+    %     {\bf c)} Ensemble of trajectories of the oscillating element, each terminated at the first crossing of the absorbing boundary (red dashed line). \newline
+    %     {\bf d)} Standard deviation of the oscillating element displacement, $\sigma(\Delta l_{\mathrm{osc}})$, as a function of cycle number, demonstrating the expected diffusive scaling.}
+    %     \label{fig:RandomWalkExamples}
+    % \end{figure}
+    % \item We illustrate an example of a random walk observed in \cref{fig:RandomWalkExamples} for {\bf a)} an absorbing case and  {\bf b)} a yielding case. 
+    % \item These random walks occur when observed stroboscopically at the start of the cycle. Here, yielding has occurred twice, and $\ltilde$ has shifted by a small amount. This random walk continues to evolve until the element enters the absorbed region, where it is unable to yield (subject to no other elements yielding). Once all elements enter this region.
+    % \item Alternatively, as a result of this walk and stress propagation, a neighbouring element which follows a coupled random walk can be displaced from the absorbed region and, as a result, begin to yield. This commonly initiates a shear banding event. 
     \item We illustrate an ensemble of such random walks in {\bf c)}, resulting from an oscillating element, and plot the standard deviation of the ensemble's displacement in {\bf d)}, which grows as expected, proportional to $\sqrt{\tilde{C}}$.
 \end{itemize}
 
