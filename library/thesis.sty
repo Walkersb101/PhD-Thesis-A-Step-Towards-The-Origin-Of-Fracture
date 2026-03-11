@@ -50,10 +50,15 @@
             natbib=true, 
             doi=false,
             url=false,
+            eprint=false,
             isbn=false]{biblatex}
 % Use multiple .bib files to avoid overleaf limit
 \addbibresource{references/bib1.bib}
 \addbibresource{references/bib2.bib}
+
+\AtEveryBibitem{%
+    \clearfield{note}%
+}
 
 \usepackage{xargs}                      % Use more than one optional parameter in a new commands
 \usepackage[pdftex,dvipsnames]{xcolor}  % Coloured text etc.
