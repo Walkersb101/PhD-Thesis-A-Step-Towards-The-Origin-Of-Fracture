@@ -43,11 +43,15 @@
 \usepackage{graphicx}
 
 \usepackage[backend=biber, 
-            style=numeric-comp, 
+            citestyle=numeric-comp,
+            bibstyle=phys,
             sorting=none, 
             uniquename=init, 
             giveninits=true, 
             natbib=true, 
+            biblabel=brackets,
+            maxbibnames=2,
+            minbibnames=2,
             doi=false,
             url=false,
             eprint=false,
@@ -58,6 +62,64 @@
 
 \AtEveryBibitem{%
     \clearfield{note}%
+    \clearfield{language}%
+      \ifentrytype{article}{%
+            \clearfield{pages}%
+            \clearfield{eid}%
+      }{}%
+}
+
+\newbibmacro*{linkedtitle}[1]{%
+      \iffieldundef{doi}{%
+            \iffieldundef{url}{%
+                  #1%
+            }{%
+                  \href{\thefield{url}}{#1}%
+            }%
+      }{%
+            \href{https://doi.org/\thefield{doi}}{#1}%
+      }%
+}
+
+\renewbibmacro*{title}{%
+  \ifboolexpr{%
+    test {\iffieldundef{title}}
+    and
+    test {\iffieldundef{subtitle}}
+  }
+    {}
+    {\usebibmacro{linkedtitle}{%
+       \printtext[title]{%
+         \printfield[titlecase]{title}%
+         \setunit{\subtitlepunct}%
+         \printfield[titlecase]{subtitle}}}%
+     \newunit}%
+  \printfield{titleaddon}}
+
+\renewbibmacro*{journal}{%
+      \ifboolexpr{%
+            test {\iffieldundef{journaltitle}}
+            and
+            test {\iffieldundef{journalsubtitle}}
+            and
+            test {\iffieldundef{shortjournal}}
+      }
+            {}
+            {\printtext[journaltitle]{%
+                   \iffieldundef{shortjournal}
+                          {\printfield[noformat]{journaltitle}%
+                              \setunit{\subtitlepunct}%
+                                \printfield[noformat]{journalsubtitle}}
+                          {\printfield[noformat]{shortjournal}}}%
+             \newunit}%
+      \iffieldundef{journaltitleaddon}
+            {}
+            {\printfield{journaltitleaddon}}}
+
+\renewbibmacro*{note+pages}{%
+      \printfield{note}%
+      \setunit{\bibpagespunct}%
+      \printfield{pages}%
 }
 
 \usepackage{xargs}                      % Use more than one optional parameter in a new commands
