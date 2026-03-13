@@ -13,6 +13,10 @@
                                                     %
 \documentclass{library/duthesis}                    %
                                                     %
+% Explicitly declare bib resources in the root file so TeX Workshop can index citations.
+\addbibresource{references/bib1.bib}
+\addbibresource{references/bib2.bib}
+
 \documenttype{Thesis}  % <n-Month Report | Thesis>  %                 
 \title{A Step towards the Origin of Fracture}       %
 \author{Samuel Walker}                              %
@@ -49,6 +53,7 @@
 \include{chapters/Fatigue/chapter}
 \include{chapters/UltraDelayedFracture/chapter}
 \include{chapters/DoubleNetworkFracture/chapter}
+\include{chapters/6-Conclusion/chapter}
                                                     %
 % Bibliography                                      %
 \include{references/ref}                            %
