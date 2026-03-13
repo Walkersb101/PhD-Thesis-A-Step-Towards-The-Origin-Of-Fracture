@@ -1,6 +1,8 @@
+% !TeX root = ../../thesis.tex
+
 \setcounter{equation}{0}
 \chapter{Theoretical Framework and
-Methods}
+Methods} \label{sec:Background}
 
 % \red{
     The overarching theme of this thesis and the main focus of each chapter is that we analyse the yielding (or fracture) behaviour of the material to provide a small step towards understanding the origins of these behaviours. To do so, we examine a set of models spanning different classes of soft matter systems, together with deformation protocols that are rheologically relevant to the materials they represent. The purpose of this chapter is to establish the theoretical framework and methodological foundations that underpin the analyses presented in the chapters that follow.
@@ -20,7 +22,7 @@ The concepts of stress and strain constitute the fundamental building blocks of 
     \epsilon = \frac{\Delta x}{L}
     \label{eq:simpleStrain}
 \end{equation}
-where $\Delta x$ is the change in length and $L$ s the original length of the material in that direction \cite{lubliner2008plasticity}. Correspondingly, stress can be defined by the ratio of the internal forces in a material to the cross-sectional area,
+where $\Delta x$ is the change in length and $L$ the original length of the material in that direction \cite{lubliner2008plasticity}. Correspondingly, stress can be defined by the ratio of the internal forces in a material to the cross-sectional area,
 \begin{equation}
     \sigma = \frac{F}{A}
     \label{eq:simpleStress}
@@ -55,7 +57,7 @@ as
     C_{ij} = \delta_{ij} + \frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i} + \frac{\partial u_k}{\partial x_j}\frac{\partial u_k}{\partial x_i}
     \label{eq:nonlinearstrain}
 \end{equation}
-where we adopt Einstein notation for convenience and $\delta_{ij}$ is the kronecker delta defined in \cref{symbol:delta}.
+where we adopt Einstein notation for convenience and $\delta_{ij}$ is the Kronecker delta defined in \cref{symbol:delta}.
 In linear elasticity theory, we assume that all displacement gradients are small \cite{TruesdellNoll1992} and we therefore neglect quadratic terms in the displacement gradients. We therefore rewrite \cref{eq:nonlinearstrain} to define the strain tensor $\bm{\epsilon}$ as
 \begin{equation}
         2\epsilon_{ij} \equiv C_{ij} - \delta_{ij} = \frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i}  + \mathcal{O}\left\{ \left(\frac{\partial u_i}{\partial x_j}\right)^2 \right\}
@@ -65,6 +67,13 @@ or to linear order, in terms of the deformation gradient tensor $\bm{F}$ as
 \begin{equation}
         \epsilon = \frac{1}{2}\left( \bm{F}^T + \bm{F} \right) - \bm{I}.
 \end{equation}
+
+The diagonal components of $\epsilon_{ij}$ describe extensional strains, while the off-diagonal components describe shear. In simple shear, the upper face of a material element is displaced by an amount $\Delta x$ relative to the lower face while the separation $L_y$ between the faces remains fixed. The engineering shear strain is therefore
+\[
+    \gamma_{xy} = \frac{\Delta x}{L_y}.
+\]
+In the small-strain tensor used here, this corresponds to $\epsilon_{xy}=\epsilon_{yx}=\gamma_{xy}/2$. \Cref{fig:typesOfStrain} illustrates these two modes of deformation.
+
 
 The components of $\epsilon_{ij}$ can be separated into two classes: the diagonal components of $\epsilon_{ij}$ describe normal strains, while the off-diagonal elements represent the shear strains. 
 \cref{fig:typesOfStrain} illustrates one diagonal and one off-diagonal element. 
@@ -470,7 +479,7 @@ Composed of long, flexible polymer chains cross-linked into a network, elastomer
 As the name implies, hydrogels are a type of polymer gel embedded in water, which can form up to $90\%$ of the material volume \cite{gong_why_2010,tanaka_determination_2005,sun_highly_2012}. This tends to leave them softer and weaker than elastomers due to their lower polymer density. Consequently, intermolecular interactions below the network scale are reduced, and their properties become highly dependent on the network structure. However, the presence of water as a solvent also introduces new physical phenomena such as the swelling of polymer chains and a coupling between network deformation and fluid flow referred to as poroelasticity \cite{biotTheoryFiniteDeformations1972}. Due to their high solvent content, hydrogels are often used in biomedical applications, particularly as artificial tendons, ligaments, and cartilage \cite{yasudaNovelDoubleNetworkHydrogel2009,yinSelfHealingHydrogelsSynthesis2023,hoHydrogelsPropertiesApplications2022}.
 
 \paragraph{Fibre networks:}
-Mainly biological networks, these networks are composed of semi-flexible fibres such as actin and collagen. As a result, these networks tend to have a length scale much larger than elastomers and hydrogels, with mesh sizes on the order of $1 \mu m$ to $10 \mu m$ \cite{mackintosh_elasticity_1995,Arevalo_Stress_Heterogeneities_2015}. Much like hydrogels, these networks are highly porous, with a large fraction of their volume being occupied by solvent \cite{Jansen_Role_Collagen_2018}; however, due to their larger mesh size, they do not exhibit significant poroelastic effects \cite{burlaMechanicalResilienceActive2019}. Due to the nature of these networks, the type of crosslinks in fibre networks can vary widely from linkages via flexible proteins to intricate branching and interweaving of fibre bundles. Consequently, interactions between fibres are highly heterogeneous and mechanically intricate. Due to the low fibre density, these materials typically exhibit a very small linear stiffness, which makes conventional extensional testing challenging in practice. As a result, their elastic and fracture behaviour is most commonly characterised under shear, rather than through standard extensional protocols. Most examples of fibre networks arise in biological contexts, where they provide structural support both inside and outside of cells \cite{burlaMechanicalResilienceActive2019}.
+Mainly biological networks, these networks are composed of semi-flexible fibres such as actin and collagen. As a result, these networks tend to have a length scale much larger than elastomers and hydrogels, with mesh sizes on the order of $1 \mu m$ to $10 \mu m$ \cite{mackintosh_elasticity_1995,Arevalo_Stress_Heterogeneities_2015}. Much like hydrogels, these networks are highly porous, with a large fraction of their volume being occupied by solvent \cite{Jansen_Role_Collagen_2018}; however, due to their larger mesh size, they do not exhibit significant poroelastic effects \cite{Arevalo_Stress_Heterogeneities_2015}. Due to the nature of these networks, the type of crosslinks in fibre networks can vary widely from linkages via flexible proteins to intricate branching and interweaving of fibre bundles. Consequently, interactions between fibres are highly heterogeneous and mechanically intricate. Due to the low fibre density, these materials typically exhibit a very small linear stiffness, which makes conventional extensional testing challenging in practice. As a result, their elastic and fracture behaviour is most commonly characterised under shear, rather than through standard extensional protocols. Most examples of fibre networks arise in biological contexts, where they provide structural support both inside and outside of cells \cite{burlaMechanicalResilienceActive2019}.
 
 To describe their mechanical response more precisely, it is necessary to consider the properties of the individual filaments that make up the network.
 
@@ -500,9 +509,9 @@ Numerically, we discretise each filament into a series of segments, following Re
     \mathcal{H} = \frac{\mu}{2} \sum_{ij} \frac{( l_{ij} - l_{ij,0} )^2}{l_{ij,0}} + \frac{\kappa}{2} \sum_{ijk} \frac{( \theta_{ijk} - \theta_{ijk,0} )^2}{l_{ijk,0}}.
     \label{eq:NetworkHamiltonian}
 \end{equation}
-The first sum runs over all pairs $ij$ along the filament backbone, while the second runs over all triplets $ijk$. Here $l_{ij}$ denotes the instantaneous segment length between nodes $i$ and $j$, and $\theta_{ijk}$ the instantaneous bond angle formed by nodes $i$,$j$, and $k$. Quantities with subscript $0$ denote their natural (not necessarily stress-free) values in the rest configuration. We further define $l_{ijk,0} = (l_{ij,0} + l_{jk,0})/2$. Multiple filaments can then be combined into a single network structure by connecting filaments at shared nodes, with the set of triplets $ijj$ updated accordingly. 
+The first sum runs over all pairs $ij$ along the filament backbone, while the second runs over all triplets $ijk$. Here $l_{ij}$ denotes the instantaneous segment length between nodes $i$ and $j$, and $\theta_{ijk}$ the instantaneous bond angle formed by nodes $i$, $j$, and $k$. Quantities with subscript $0$ denote their natural (not necessarily stress-free) values in the rest configuration. We further define $l_{ijk,0} = (l_{ij,0} + l_{jk,0})/2$. Multiple filaments can then be combined into a single network structure by connecting filaments at shared nodes, with the set of triplets $ijj$ updated accordingly. 
 
-In this work, we only consider central forces where bending rigidity is neglected $\kappa = 0$; the cross-sectional area of the fibres is negligible relative to their length, such that their moment of inertia is small compared to their cross-sectional area.
+In this work, we restrict attention to central-force networks and therefore neglect bending rigidity, setting $\kappa = 0$; the cross-sectional area of the fibres is negligible relative to their length, such that their moment of inertia is small compared to their cross-sectional area.
 
 \subsection{Dynamics} \label{sec:NetworkDynamics}
 To resolve the network dynamics, we assume the system remains in force balance with a background solvent. The elastic force on a node $i$ arising from the stretching of the fibres is obtained from the Hamiltonian as

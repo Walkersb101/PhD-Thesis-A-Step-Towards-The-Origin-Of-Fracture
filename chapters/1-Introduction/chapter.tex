@@ -1,41 +1,64 @@
+% !TeX root = ../../thesis.tex
+
 \setcounter{equation}{0}
 \chapter{Introduction}
 
-Fracture is a ubiquitous part of everyday life, arising whenever materials are subjected to stresses that exceed their ability to sustain them. A metal paperclip that snaps after being bent back and forth
+Fracture is a ubiquitous part of everyday life, arising whenever materials are subjected to stresses that exceed their ability to sustain them. From the largest of scales, such as the rupture of tectonic plates during earthquakes \cite{Cocco2023} and the shearing of ice sheets \cite{Jennings2021}, to the smallest scales, where collagen fibre networks that provide structural support in connective tissues can fail \cite{Burla2020}, fracture is a phenomenon that we encounter regularly. Understanding the mechanics of fracture is crucial for predicting and preventing catastrophic failures in engineering structures, mitigating natural disasters, and developing new materials with improved fracture resistance.
+
+All of the examples listed above are unified by the fact they have an amorphous materials: instead of a regular, crystalline structure, the constituent parts (grains, fibres, droplets, etc.) of these materials are arranged in a disordered manner. For example, 7he random granular structure of rock and drives the complex fracture patterns often observed in geological materials \cite{Cocco2023}, while the disordered arrangement of ice crystals in glaciers and ice sheets leads to the formation of crevasses and other fracture features \cite{Jennings2021}. Similarly, the random network of collagen fibres in connective tissues gives rise to complex fracture patterns that are important for understanding tissue mechanics \cite{Burla2020,ruiz-franco_force_2022}. The study of the way in which amorphous materials fracture and yield is a far-reaching topic, and one of much debate and discussion \cite{falk_deformation_2011,nicolas_deformation_2018,larson_structure_1999,bonn_yield_2017}.
+
+As the examples above illustrate, fracture in amorphous materials arises across a wide range of length scales and is relevant to many areas of science and engineering. The mechanical response of these materials is often complex and difficult to predict. 
+Shear experiments on a range of soft disordered materials, including foams (e.g. aqueous foams and bubble raft systems) \cite{durian_foam_1995,Khan1988,WEAIRE2008}, emulsions (e.g. mayonnaise and oil-in-water emulsions) \cite{Mason1996,Datta2011,Derkach2009,AbuJdayil2003} and colloidal suspensions (e.g. paint and toothpaste) \cite{Mewis2011,Koumakis2011,Petekidis2004,Cloitre2003} have revealed that the yielding transition in these materials is often associated with a critical point \cite{nicolas_deformation_2018,Divoux2024,lin_scaling_2014,Ozawa2018,Dahmen2011}. Depending on both the material and the imposed loading conditions, amorphous solids can display behaviour that combines features traditionally associated with both solids and liquids. For example, under certain conditions, amorphous solids can flow like a liquid \cite{nicolas_deformation_2018,bonn_yield_2017}, while under other conditions they can behave like a solid and fracture in a brittle manner \cite{bonn_yield_2017,Divoux2024}. These transitions between solid-like and liquid-like, which are often associated with the yielding or fracture of the material \cite{nicolas_deformation_2018,Divoux2024,lin_scaling_2014,Ozawa2018,Dahmen2011}, are an essential part of understanding the behaviour of a material. 
+
+The physical origin of this yielding transition has been connected with a variety of microscopic phenomena \cite{bonn_yield_2017}. In earthquakes and landslides, the accumulation of stress along geological faults or shear zones can eventually overcome frictional resistance, leading to sudden slip and the rapid release of stored elastic energy \cite{Cocco2023}. In other cases, such as in foams, emulsions and colloidal suspension solid like behaviour can arise from the jamming of the constituent particles, as the constituent particles become so densely packed that they are unable to rearrange and flow \cite{Mason1996,Datta2011,Derkach2009,AbuJdayil2003,Mewis2011,Koumakis2011,Petekidis2004,Cloitre2003,Torquato2010,Paredes2013,durian_foam_1995,WEAIRE2008}. At small deformations or loads, the material responds elastically as the particles try to resist the applied deformation. At larger loads or deformations, the particles are forced to rearrange locally in order to accommodate the applied deformation and relax the stored stress. If this happends on a sufficiently large scale and on a short enough timescale a fluid-like behaviour emerges. This has been directly observed in colloidal suspensions and polymer melts, where the material typically possesses a characteristic relaxation timescale over which local stresses can dissipate \cite{Koumakis2011,Petekidis2004,Nordstrom2010}. For deformation which are applied on a timescale shorten than this, the material can behave like a solid and fracture in a brittle manner, while for deformation which are applied on a timescale longer than this, the material can flow like a liquid \cite{nicolas_deformation_2018,bonn_yield_2017}.
+
+A final class of amorphous materials that is particularly relevant to the work considered in this thesis is soft network materials. This term is commonly used to describe a broad range of systems that share a common structural motif: a disordered network of interconnected fibres \cite{tauber_microscopic_2020,gong_why_2010,tanaka_determination_2005,biotTheoryFiniteDeformations1972,mackintosh_elasticity_1995,Arevalo_Stress_Heterogeneities_2015}. Examples of such materials appear in many contexts. Some are encountered directly in everyday objects, such as elastomers which make up the rubber of car and bicycle tyre. Others are present in biological systems, for example the collagen fibre networks that provide structural support in connective tissues. Still others arise in specialised materials such as polymer gels and engineered fibre networks used in manufacturing and medical applications \cite{yasudaNovelDoubleNetworkHydrogel2009,yinSelfHealingHydrogelsSynthesis2023,hoHydrogelsPropertiesApplications2022}. Despite occupying only a small fraction of the total material volume, the fibres in these systems form a load-bearing network that largely determines the mechanical response of the material \cite{Bonamy2011,sharma_strain-controlled_2016,Arevalo2015}. As a result, properties such as stiffness, yielding, and fracture are governed primarily by the structure and failure of this underlying network rather than by the surrounding medium. Each investigation is presented in its own chapter, but all are connected by a common interest in how disorder, stress redistribution, and microscopic failure processes control macroscopic mechanical response.
 
 \section{Layout of thesis}
 
+The work presented in this thesis consists of three main investigations, which can be grouped into two broader themes. The first theme, which focuses on yielding and fatigue in amorphous materials under cyclic deformation. The second concerns the fracture of soft netwrok materials, first in a single single disordered networks and then in composite double-network systems. 
+
+The overall structure of the thesis reflects this progression. \Cref{sec:Background} introduce the basic concepts and theoretical frameworks that are used throughout this thesis. This is followed by \Cref{sec:Fatigue}, which studies absorption and failure under oscillatory shear in an elastoplastic model. The next two chapters, \cref{sec:Ultradelayed,sec:DoubleNetworks}, turn to fracture in soft network materials, first under step strain and then in double-networks under extension. The thesis then concludes with a final chapter that draws together the main results and discusses their broader implications.
+
+\subsection{Theoretical Framework and Methods}
+In \cref{sec:Background}, we introduce the basic concepts and theoretical frameworks that are used throughout this thesis. The chapter is intended to provide a common language for the later work, so that the subsequent research chapters can focus on their specific physical problems without repeatedly reintroducing the same definitions and assumptions. In particular, it establishes the continuum and mesoscopic ideas needed to discuss deformation, yielding, and fracture in disordered soft materials.
+
+The first part of the chapter is devoted to rheology and continuum mechanics. Here we introduce the basic concepts of stress and strain, dissuss the distinction between elastic and plastic deformation, and outlines the rheological protocols that are used in later chapters. These include oscillatory shear, step strain, and shear startup, each of which is employed in a different chapter to probe a different aspect of material response. A central part of this section is the derivation of the force-balance equations in the Stokes limit, which provide a framework for understanding how stress is redistributed and a basis for the arguments used in the subsequent chapters.
+
+The second part of the chapter turns from continuum descriptions to the second theme of this thesis: the fracture of soft network materials. This section therefore connects the continuum framework used to describe bulk rheology with the discrete fibre networks that ultimately govern the mechanical response of these systems. Within this chapter we thefore introduce in more detail the types of soft network materials that are the focus of this section, concider the pheononom of rigidity, strain stiffening and fracture which are not captured by traditional continuum models but are important for understanding the behaviour of these materials. Finally we introduce the explicit mesoscale models are studied in the later chapters together with the numerical methods used to simulate them. Taken together, these two parts provide the theoretical and methodological foundation on which the rest of the thesis is built.
+
+\subsection{Absorption and Failure in Oscillatory Shear}
+\Cref{sec:Fatigue} forms the first main research chapter of the thesis and addresses the first of its two broader themes. The chapter examines the response of an amorphous material under large-amplitude oscillatory shear using a mesoscopic elastoplastic model. Its central aim is to understand how repeated deformation drives the system either towards an absorbing state, in which plastic activity eventually ceases, or towards yielding and failure through the formation of a system-spanning instability.
+
+Amorphous materials subjected to cyclic loading can display strikingly different long-time responses. At small strain amplitudes, repeated occilation may organise over many cycles the system into a absorbing state in which plastic activity ceases; at larger ampltiues, the same can instead sustain irreversible rearrangements, promote shear localisation, and ultimately trigger macroscopic failure \cite{pineChaosThresholdIrreversibility2005,Cort2008,Fiocco2013,Regev_onset_2013,kawasakiMacroscopicYieldingJammed2016,Leishangthem2017,JocteurYielding2024}. Understanding this competition between relaxation and failure is central to fatigue in disordered solids.
+
+In both particle-based simulations and coarse-grained descriptions, well-annealed systems tend to yield more abruptly and localise deformation more readily, whereas poorly annealed systems exhibit more distributed plastic activity and longer-lived transients \cite{Leishangthem2017,Popovi2018,barlow_ductile_2020,liuFateShearoscillatedAmorphous2022}. Elastoplastic models provide a useful framework for studying this behaviour because they retain the essential ingredients for yielding in amorphous materials, namely local plastic event, long-ranged stress redistribution, and structural disorder, while remaining simple enough to probe delayed dynamics over many deformation cycles \cite{nicolas_deformation_2018,pollard_yielding_2022}. Recent work has shown that such models can reproduce the strong growth of failure times near cyclic yielding and can exhibit a coexistence region in which absorbing and yielding trajectories remain possible over a finite interval of strain amplitudes \cite{khandareElastoplasticModellingCyclic2026,cochran_slow_2024}.
+
+In this chapter, we use an athermal quasi-static elastoplastic model to examine this transition region in detail. We focus on how the imposed strain amplitude and the degree of annealing control both the probability of reaching an absorbing or yielded state and the number of cycles required to do so. We then show that, for low enough levels of anneling, as the dynamics evolve, the remaining plastic activity becomes progressively more dilute, such that the approach to absorption can be interpreted as a first-passage process for weakly interacting mesoscopic elements. This perspective provides a simple physical picture for delayed absorption under oscillatory shear. In this way, the chapter moves from phenomenology to mechanism, concluding with a stochastic picture for how delayed absorption emerges in the oscillatory response of the elastoplastic model.
+
+\subsection{Ultradelayed Fracture After Step Strain in Networks}
+
 \section{Notation}
-\subsection*{Vectors, tensors, and scalars}
-
-\begin{itemize}
-    \item Bold symbols denote vectors and tensors. For example, the position vector is written as $\mathbf{r}$ and the stress tensor as $\mathbf{\Sigma}$.
-
-    \item Non-bold symbols denote scalar quantities. For example, the volume fraction is written as $\phi$.
-
-    \item Given a bold symbol, the corresponding non-bold symbol, in the absence of a sub- or superscript specifying a component, denotes its magnitude. For example,
-    \[
-        r := |\mathbf{r}|.
-    \]
-\end{itemize}
-
-\subsection*{Relative vectors}
-
-Bold symbols with a double subscript denote relative quantities between nodes $i$ and $j$. For example, the relative position of node $j$ with respect to node $i$ is defined as
+Throughout this thesis, bold symbols denote vectors and tensors, while non-bold symbols denote scalar quantities. When no component index is specified, the corresponding non-bold symbol denotes the magnitude of the bold quantity; for example,
+\[
+    r := |\mathbf{r}|.
+\]
+Relative quantities between nodes $i$ and $j$ are written with a double subscript, for example
 \[
     \mathbf{r}_{ij} := \mathbf{r}_j - \mathbf{r}_i.
 \]
 
-\subsection*{Index notation}
-
-Throughout this thesis, we adopt the Einstein summation convention, whereby repeated indices are implicitly summed over.
-
-\noindent Partial derivatives with respect to Cartesian coordinates are written as
+We adopt the Einstein summation convention throughout, so repeated indices are implicitly summed over, and partial derivatives with respect to Cartesian coordinates are written as
 \[
     \partial_i \equiv \frac{\partial}{\partial x_i}.
 \]
+A circumflex (``hat'') denotes the Fourier transform of a quantity, so that for a function $f(x)$ we write
+\[
+    \hat{f}(k) = \mathcal{F}(f)(k),
+\]
+where $\mathcal{F}$ denotes the Fourier transform and $k$ is the wavenumber.
 
-\noindent The Kronecker delta is defined as
+The Kronecker delta is defined as
 \begin{equation}
     \delta_{ij} =
     \begin{cases}
@@ -46,16 +69,6 @@ Throughout this thesis, we adopt the Einstein summation convention, whereby repe
 \end{equation}
 and acts as the identity tensor in index notation.
 
-\subsection*{Fourier-space notation}
-
-A circumflex (``hat'') denotes the Fourier transform of a quantity. For a function $f(x)$, we write
-\[
-    \hat{f}(k) = \mathcal{F}(f)(k),
-\]
-where $\mathcal{F}$ denotes the Fourier transform and $k$ is the wavenumber.
-
-\subsection*{Special functions}
-
 The Dirac delta distribution is defined implicitly through
 \begin{equation}
     \int_{-\infty}^{\infty} \delta(x)\, \mathrm{d}x = 1,
@@ -65,7 +78,7 @@ The Dirac delta distribution is defined implicitly through
 \end{equation}
 for any sufficiently smooth function $f(x)$.
 
-\noindent The Heaviside step function is defined as
+The Heaviside step function is defined as
 \begin{equation}
     \Theta(x)= 
     \begin{cases} 
