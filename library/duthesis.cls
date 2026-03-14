@@ -212,9 +212,9 @@
 \newcommand{\acknowledgement}[1]{                                           %
     \chapter*{Acknowledgements}                                             %
     \addcontentsline{toc}{chapter}{\numberline{}Acknowledgements}           % 
-    \begin{singlespace}                                                     %
+    \begin{spacing}{1.5}                                                    %
         \input{#1}                                                          %    
-    \end{singlespace}                                                       %
+    \end{spacing}                                                           %
 }                                                                           %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
