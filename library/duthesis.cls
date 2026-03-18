@@ -274,15 +274,18 @@
 
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
-% LIST OF SYMBOLS                                                           %   
-% ===============                                                           %
-\newcommand{\listofsymbols}[1]{                                             %
-    \chapter*{List of Symbols}                                              %
-    \addcontentsline{toc}{chapter}{\numberline{}List of Symbols}            %
+% NOTATIONS                                                                 %
+% =========                                                                 %
+\newcommand{\notations}[1]{                                                %
+    \chapter*{Notations}                                                    %
+    \addcontentsline{toc}{chapter}{\numberline{}Notations}                 %
     \begin{singlespace}                                                     %
         \input{#1}                                                          %
     \end{singlespace}                                                       %
 }                                                                           %
+
+% Backward-compatible alias.                                                %
+\newcommand{\listofsymbols}[1]{\notations{#1}}                            %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 

@@ -23,20 +23,18 @@ The simplest measure of strain is the relative change in length,
     \epsilon = \frac{\Delta x}{L},
     \label{eq:simpleStrain}
 \end{equation}
-where $\Delta x$ is the change in length and $L$ is the original length \cite{lubliner2008plasticity}.
-
-This definition corresponds to extensional (or normal) deformation, in which a material element changes its length along a given direction. In contrast, materials may also deform through shear, in which layers of material slide past one another without a change in volume. In simple shear, if the upper boundary of a material is displaced by $\Delta x$ over a separation $L_y$, the shear strain is defined as
+where $\Delta x$ is the change in length and $L$ is the original length \cite{lubliner2008plasticity,macoskoRheologyPrinciplesMeasurements1994,barnes_introduction_1989}.This definition corresponds to extensional (or normal) deformation, in which a material element changes its length along a given direction. In contrast, materials may also deform through shear, in which layers of material slide past one another without a change in volume. In simple shear, if the upper boundary of a material is displaced by $\Delta x$ over a separation $L_y$, the shear strain is defined as
 \begin{equation}
-    \gamma_{xy} = \frac{\Delta x}{L_y}.
+    \gamma_{xy} = \frac{\Delta x}{L_y}/
 \end{equation}
-These two fundamental modes of deformation are illustrated in \cref{fig:typesOfStrain}.
+\cite{lubliner2008plasticity,macoskoRheologyPrinciplesMeasurements1994,barnes_introduction_1989} These two fundamental modes of deformation are illustrated in \cref{fig:typesOfStrain}.
 
 Extension and shear represent the fundamental forms of deformation, with more general deformations arising as combinations of the two. Since both $\epsilon$ and $\gamma_{xy}$ are defined relative to the undeformed configuration, they correspond to engineering strains, and the term strain will be used in this sense unless otherwise specified.
 
 \begin{figure}
     \centering
     \includegraphics[width=.95\linewidth]{chapters/2-Background/Figures/StrainModes.pdf}
-    \caption[Illustration of the two fundamental strain modes in 2D]{Illustration of the two fundamental strain modes in 2D: extensional strain ($\epsilon$), where the element changes length, and shear strain ($\gamma$), where the element changes shape through angular distortion.}
+    \caption[Illustration of the two fundamental strain modes in 2D]{Illustration of the two fundamental strain modes in 2D: extensional strain ($\epsilon$), where the element changes length, and shear strain ($\gamma$), where the element changes shape through angular distortion. The dashed lines denote the material's undeformed configuration, while the solid lines indicate its deformed state.}
     \label{fig:typesOfStrain}
 \end{figure}
 
@@ -45,7 +43,7 @@ Correspondingly, stress may be defined as the force per unit area transmitted ac
     \sigma = \frac{F}{A},
     \label{eq:simpleStress}
 \end{equation}
-where $F$ is the force acting on an area $A$ \cite{lubliner2008plasticity}.
+where $F$ is the force acting on an area $A$ \cite{,macoskoRheologyPrinciplesMeasurements1994,barnes_introduction_1989}.
 
 Both stress and strain depend on direction. For example, strain depends on the direction along which deformation is measured, while stress depends on both the orientation of the surface and the direction of the applied force. As a result, they are described by second-rank tensors, $\bm{\sigma}$ and $\bm{\epsilon}$.
 
@@ -55,69 +53,111 @@ The components of these tensors reflect the two deformation modes introduced abo
 
 The engineering strains introduced above are useful for simple extension and shear, but in general a material element may stretch, compress, and shear in different directions simultaneously. To describe such local deformations, it is convenient to work in terms of the displacement field and its gradients.
 
-Consider a material point initially at position $\bm{x}$, which is displaced to a new position $\bm{X}(\bm{x},t)$. The resulting displacement is defined as
+We start by considering a material point initially at position $\bm{x}$, which is displaced to a new position $\bm{X}(\bm{x})$. The resulting displacement field is defined as
 \[
-    \bm{u}(\bm{x},t) = \bm{X}(\bm{x},t) - \bm{x}.
+    \bm{u}(\bm{x}) = \bm{X}(\bm{x}) - \bm{x}.
 \]
 
-While $\bm{u}(\bm{x},t)$ describes the motion of individual material points, the deformation of a material more generally depends on how this displacement varies in space. To quantify this, we consider two nearby points initially separated by $d\bm{x}$. After deformation, their separation becomes
+While $\bm{u}(\bm{x})$ describes the motion of an individual material point, deformation is determined by spatial variations of the displacement field. To quantify this, we consider two nearby material points separated in the reference configuration by $d\bm{x}$. Since $\bm{X}(\bm{x}) = \bm{x} + \bm{u}(\bm{x})$, the separation after the applied deformation is
 \[
-    d\bm{X} = \frac{\partial \bm{X}}{\partial \bm{x}} d\bm{x}.
+    d\bm{X} = \frac{\partial \bm{X}}{\partial \bm{x}} d\bm{x} = \bm{F} d\bm{x} = \left( \bm{I} + \frac{\partial \bm{u}}{\partial \bm{x}} \right) d\bm{x},
 \]
-For small deformations, this change is equivalently described by the gradient of the displacement field,
+where $\bm{F}$ is the deformation gradient. The corresponding change in separation is therefore
 \[
-    \frac{\partial u_i}{\partial x_j}.
+    d\bm{u} = d\bm{X} - d\bm{x} = \frac{\partial \bm{u}}{\partial \bm{x}} d\bm{x},
 \]
-This quantity includes both the deformationof the materials and any rigid-body rotation (where the whole sample rotates). Since rigid-body rotations do not contribute to strain, we define the strain tensor as the symmetric part of the displacement gradient,
+such that the local deformation is characterised by the displacement gradient $\nabla \bm{u}$ (or in components, $\partial u_i/\partial x_j$).
+
+Since the displacement gradient contains contributions from both deformation and rigid-body rotation, it may be decomposed as 
+\[
+    \nabla \bm{u} = \bm{\epsilon} + \bm{\omega},
+\]
+where $\bm{\epsilon}$ is symmetric and $\bm{\omega}$ is antisymmetric. The antisymmetric part corresponds to bulk rigid-body rotations and does not contribute to the measured local deformation. The strain tensor, which qunatifies this local deformation, can therefore be defined as the symmetric part of the displacement gradient,
 \begin{equation}
-    \epsilon_{ij} = \frac{1}{2}\left( \frac{\partial u_i}{\partial x_j} + \frac{\partial u_j}{\partial x_i} \right).
-    \label{eq:linearStrain}
+\bm{\epsilon} = \frac{1}{2}\left( \nabla \bm{u} + (\nabla \bm{u})^T \right),
+\label{eq:linearStrain}
 \end{equation}
+where we have neglected higher-order terms in the displacement gradient, which are small in the limit of small deformations. This definition is known as the linearised strain tensor or infinitesimal strain tensor \cite{chandrasekharaiahContinuumMechanics2014}.
 
-This corresponds to the linear, or small-strain, approximation, in which displacement gradients are assumed small and higher-order terms are neglected. While the assumption of small deformations is not always strictly satisfied in later chapters, this linearised description nonetheless provides useful insight into the mechanics of the systems considered.
-
-For completeness, the strain tensor may be related to the deformation gradient tensor $\bm{F} = \partial \bm{X}/\partial \bm{x}$ via
+In Cartesian coordinates, the corresponding strain tensor in three dimensions may therefore be written as
+\[
+    \bm{\epsilon} =
+    \begin{bmatrix}
+        \dfrac{\partial u_x}{\partial x} & \dfrac{1}{2}\left( \dfrac{\partial u_x}{\partial y} + \dfrac{\partial u_y}{\partial x} \right) & \dfrac{1}{2}\left( \dfrac{\partial u_x}{\partial z} + \dfrac{\partial u_z}{\partial x} \right) \\[6pt]
+        \dfrac{1}{2}\left( \dfrac{\partial u_y}{\partial x} + \dfrac{\partial u_x}{\partial y} \right) & \dfrac{\partial u_y}{\partial y} & \dfrac{1}{2}\left( \dfrac{\partial u_y}{\partial z} + \dfrac{\partial u_z}{\partial y} \right) \\[6pt]
+        \dfrac{1}{2}\left( \dfrac{\partial u_z}{\partial x} + \dfrac{\partial u_x}{\partial z} \right) & \dfrac{1}{2}\left( \dfrac{\partial u_z}{\partial y} + \dfrac{\partial u_y}{\partial z} \right) & \dfrac{\partial u_z}{\partial z}
+    \end{bmatrix}.
+\]
+The diagonal components of this tensor therefore represent normal strains, corresponding to fractional changes in length along the $x$, $y$, and $z$ directions, while the off-diagonal components represent shear strains, corresponding to changes in the angle between material line elements. These off-diagonal components are related to the engineering shear strains introduced in \cref{sec:StressAndStrain} through
 \begin{equation}
-    \bm{\epsilon} = \frac{1}{2}\left( \bm{F}^T + \bm{F} \right) - \bm{I},
+    \gamma_{ij} = 2\epsilon_{ij}, \qquad i \neq j,
+    \label{eq:engineeringShearStrain}
 \end{equation}
-to linear order.
+so that, for example, $\gamma_{xy} = 2\epsilon_{xy}$. 
+
+A further decomposition of the symmetric strain tensor $\bm{\epsilon}$ separates it into deviatoric and volumetric parts,
+\[
+    \bm{\epsilon} = \bm{d} + \frac{1}{D} \mathrm{Tr}(\bm{\epsilon}) \bm{I},
+\]
+where $\bm{d}$ is the deviatoric (traceless) part, $\bm{I}$ is the identity tensor, and $D$ is the dimensionality of the space. For incompressible materials, the volumetric strain vanishes, so that $\mathrm{Tr}(\bm{\epsilon}) = 0$ and the strain is purely deviatoric, $\bm{\epsilon} = \bm{d}$. This decomposition will be useful in the continuum descriptions developed later.
+The form above is only valid in the limit of small deformations, where the displacement gradients are sufficiently small that higher-order terms can be neglected. For larger deformations, finite-strain measures such as the Green–Lagrange strain tensor must be used \cite{TruesdellNoll1992}. In this thesis, the linearised strain tensor serves as the common language used to discuss local elastic response, force balance, and stress redistribution.
 
 \subsection{Stress Tensor} \label{sec:StressTensor}
-
 We now introduce the stress tensor, which describes how internal forces are transmitted through a material.
 
-Consider a surface element of area $A$ within a material. The force $\bm{T}$ acting across this surface defines the traction,
+If we consider a surface element of area $A$ within a material. The force $\bm{T}$ acting across this surface defines the traction,
 \begin{equation}
     \bm{s} = \lim_{A \to 0} \frac{\bm{T}}{A},
 \end{equation}
 which represents the force per unit area acting on a surface with a given orientation.
 
-To characterise the internal state of stress at a point, we may imagine making an infinitesimal cut through the material. The traction $\bm{s}$ then represents the force exerted across this cut. However, this traction depends on the orientation of the surface. Different cuts through the same point, with different normals, will in general yield different traction vectors.
+To characterise the internal state of stress at a point, we may imagine making an arbitary cut through the material passign through that point. The traction $\bm{s}$ then represents the force exerted across this cut. However, the traction thefore depends on the orientation of the cut. Different cuts through the same point, with different normals, will in general yield different traction vectors $\bm{s}$.
 
-A single traction vector $\bm{s}$ therefore provides only partial information about the internal state of stress. Instead, the full state of stress at a point is determined by the set of traction vectors acting on all possible planes through that point.
+A single traction vector $\bm{s}$ therefore provides only partial information about the internal state of stress. Instead, the full state of stress at a point is determined by the set of traction vectors acting on all possible planes through that point. To relate these traction vectors, we consider an infinitesimal tetrahedral element with three faces aligned with the coordinate planes, with normals $\bm{n}^{(x)}$, $\bm{n}^{(y)}$, and $\bm{n}^{(z)}$, and a fourth inclined face with normal $\bm{n}$. Requiring force balance on this element shows that the traction $\bm{s}(\bm{n})$ acting on the inclined face can be written as a linear combination of the tractions $\bm{s}(\bm{n}^{(x)})$, $\bm{s}(\bm{n}^{(y)})$, and $\bm{s}(\bm{n}^{(z)})$ acting on the coordinate planes. In the limit as the tetrahedron shrinks to a point, the traction therefore depends linearly on the surface normal $\bm{n}$. This construction is illustrated in \cref{fig:CauchyTetrahedron}.
 
-\begin{figure}
+\begin{figure}[t!]
     \centering
     \includegraphics[width=0.5\linewidth]{chapters/2-Background/Figures/cauchy_tetrahedron.pdf}
     \caption[Force equilibrium on a Cauchy tetrahedron for the derivation of the traction vector.]{Cauchy tetrahedron used to derive the traction vector on an arbitrary plane from force equilibrium, relating stress components on coordinate planes to the stress acting on an inclined plane.}
     \label{fig:CauchyTetrahedron}
 \end{figure}
 
-To relate these traction vector, we concider an infinitesimal tetrahedral element with three faces aligned with the coordinate planes and a fourth inclined face with normal $\bm{n}$. Requiring force balance on this element shows that the traction acting on the inclined face can be written as a linear combination of the tractions acting on the coordinate planes. In the limit as the tetrahedron shrinks to a point, this implies that the traction depends linearly on the surface normal. This construction is illustrated in \cref{fig:CauchyTetrahedron}.
-
-This linear relation can be expressed in terms of a second-rank tensor $\sigma_{ij}$ such that the traction acting on a plane with normal $\bm{n}$ is given by
+This linear relation can be written in as
 \begin{equation}
-    s_i = \sigma_{ij} n_j.
+    \bm{s}(\bm{n}) = \bm{\sigma}\cdot\bm{n} \qquad (\textrm{or in components, } s_i = \sigma_{ij} n_j).
 \end{equation}
-This defines the Cauchy stress tensor.
+This relation defines the Cauchy stress tensor $\bm{\sigma}$. As we defined the three faces of the tetrahedron to be aligned with the coordinate planes, the stress tensor in three dimentional cartesian corrdinates can be constructed as
+\[
+    \bm{\sigma} = 
+    \begin{bmatrix}
+    | & | & | \\
+    \bm{s}^{(x)} & \bm{s}^{(y)} & \bm{s}^{(z)} \\
+    | & | & |
+    \end{bmatrix}
+    = 
+    \begin{bmatrix}
+        \sigma_{xx} & \sigma_{xy} & \sigma_{xz} \\
+        \sigma_{yx} & \sigma_{yy} & \sigma_{yz} \\
+        \sigma_{zx} & \sigma_{zy} & \sigma_{zz}
+    \end{bmatrix}.
+\]
 
-As for the strain tensor $\epsilon_{ij}$, the components of the stress tensor $\sigma_{ij}$ have a clear physical interpretation. The diagonal components correspond to normal stresses, acting perpendicular to a surface, while the off-diagonal components correspond to shear stresses, acting parallel to the surface. In the absence of body torques, local torque balance implies that the stress tensor is symmetric, i.e $\sigma_{ij} = \sigma_{ji}$.
+As with the strain tensor $\bm{\epsilon}$, the components of the stress tensor $\bm{\sigma}$ have a clear physical interpretation. The diagonal components correspond to normal stresses, acting perpendicular to a surface, while the off-diagonal components correspond to shear stresses, acting parallel to the surface. In the absence of body torques, local torque balance implies that the stress tensor is symmetric, i.e., $\sigma_{ij} = \sigma_{ji}$.
+In Cartesian coordinates, it may therefore be written as
+\[
+    \bm{\sigma} =
+    \begin{bmatrix}
+        \sigma_{xx} & \sigma_{xy} & \sigma_{xz} \\
+        \sigma_{xy} & \sigma_{yy} & \sigma_{yz} \\
+        \sigma_{xz} & \sigma_{yz} & \sigma_{zz}
+    \end{bmatrix}.
+\]
 
-For notational purposes, we will distinguish between local and bulk measures of stress. The bulk stress tensor $\bm{\Sigma}$ is defined as the spatial average of the local stress,
+For notational clarity, throughout the remainder of the thesis we distinguish between local and bulk measures of stress. In continuum descriptions, the bulk stress tensor $\bm{\Sigma}$ is defined as the spatial average of the local stress,
 \begin{equation}
     \Sigma_{ij}=\frac{1}{V}\int_V \sigma_{ij}(\bm{r})\, dV,
 \end{equation}
-and may differ from the local stress in the presence of spatial heterogeneity, such as that arising from plastic deformation.
+and may differ from the local stress in the presence of spatial heterogeneity, such as that arising from plastic deformation. Throughout the thesis, $\bm{\Sigma}$ denotes a bulk or system-averaged stress, while the precise definition used in each model is introduced where needed in the corresponding chapter.
 
 \subsection{Linear Stress--Strain Relation}
 
@@ -129,19 +169,20 @@ where $C_{ijkm}$ is a fourth-rank tensor, often called the stiffness or elastici
 
 For an isotropic material, the stiffness tensor can be expressed in terms of two independent elastic moduli, $\mu$ and $\lambda$ (the Lam\'e parameters). The stress can therefore be written as
 \[
-    \sigma_{ij} = \lambda \epsilon_{kk} \delta_{ij} + 2\mu \epsilon_{ij}
+    \sigma_{ij} = \lambda \epsilon_{kk} \delta_{ij} + 2\mu \epsilon_{ij}.
 \]
 
 For incompressible materials, the first term is replaced by a hydrostatic pressure $p$ that enforces the incompressibility constraint. The stress therefore reduces to
 \begin{equation}
     \sigma_{ij} = -p\delta_{ij} + 2\mu\epsilon_{ij},
-    \label{eq:incompressableStress}
+    \label{eq:incompressibleStress}
 \end{equation}
+which is the form used later where incompressibility is assumed.
 
 \subsection{Plasticity} \label{sec:Plasticity}
-The description of stress and strain introduced above implicitly assumes an elastic response, such that the stress is a single-valued, path-independent function of only the instantaneous strain. However, for many soft materials, this assumption breaks down once the strain exceeds a characteristic elastic limit. Beyond this point irreversible microscopic rearrangements occur. These manifest macroscopically as plastic deformation or fracture, introducing dissipation and history dependence in the system's response.
+The description of stress and strain introduced above implicitly assumes that the deformation of the material is fully reversible, such that the material returns to its original configuration upon unloading. However, many materials deviate from this behaviour once the applied stress exceeds a characteristic threshold. Beyond this point, the response is no longer purely elastic and irreversible deformation occurs. These manifest macroscopically as plastic deformation or fracture, introducing history dependence in the system’s response.
 
-In contrast to elastic deformation, in which all strain is recovered upon unloading and the material returns to its initial configuration, plastic deformation produces a permanent, irreversible change in the material's configuration. Consequently, upon unloading, the material does not return to its original state but instead retains a memory of its deformation history in its new configuration. Microscopically these deformation may correspond to particle rearrangements \cite{falk_dynamics_1998,maloney_amorphous_2006,tanguy_plastic_2006,gartner_nonlinear_2016}, dislocation \cite{shiba_plastic_2010, ispanovity_avalanches_2014,ben-zion_earthquake_1993}, or bond rupture \cite{tauber_stretchy_2022,ducrot_toughening_2014,Creton50th2017,vernereyStatisticalDamageMechanics2018,gong_why_2010} all of which reduce the total stored elastic energy.  Rheologically, the sum of these microscopic deformations manifests as stress relaxation, yielding, and flow under sustained loading. 
+In contrast to elastic deformation, in which all strain is recovered upon unloading and the material returns to its initial configuration, plasticity refers to the ability of a material to undergo such permanent deformation under applied loading. Where as elastic deformation forces reversable changes in the material's configuration, plastic deformation produces a permanent lasting change in the material's configuration. Consequently, upon unloading the original state is not recovered upon unloading but instead retains a memory of its deformation history in its new configuration \cite{lubliner2008plasticity,Simo2000-ComputationalInelasticity,Wu2004}. Microscopically these plastic deformation may correspond to particle rearrangements \cite{falk_dynamics_1998,maloney_amorphous_2006,tanguy_plastic_2006,gartner_nonlinear_2016}, dislocation \cite{shiba_plastic_2010, ispanovity_avalanches_2014,ben-zion_earthquake_1993}, or bond rupture \cite{tauber_stretchy_2022,ducrot_toughening_2014,Creton50th2017,vernereyStatisticalDamageMechanics2018,gong_why_2010} all of which reduce the total stored elastic energy. Rheologically, the sum of these microscopic deformations manifests as stress relaxation, yielding, and flow under sustained loading. 
 
 \subsubsection{Shear Banding} \label{sec:ShearBanding}
 
@@ -196,7 +237,7 @@ Oscillatory shear is a widely used protocol for characterising the rheology of s
 In \Cref{sec:Fatigue}, we consider the quasi-static limit of this protocol, in which the deformation is sufficiently slow that the material remains in mechanical equilibrium throughout the cycle despite the occurrence of plastic events. In this protocol, the imposed strain is cycled between $-\gamma_0$ and $\gamma_0$ over successive cycles. This protocol has become a common tool for probing the stability and memory of amorphous and network solids under repeated loading, as it isolates the role of accumulated plastic activity from rate-dependent effects \cite{liuFateShearoscillatedAmorphous2022,Leishangthem2017,Fiocco_memory_2014,Regev_onset_2013}.
 
 \subsection{Step Strain} \label{sec:StepStrain}
-In \Cref{sec:Ultradelayed} we focus on the step strain protocol. Here, after the material is initialised, a step of amplitude $\gamma_0$ is instantaneously applied at $t=0$ and is held constant until the end of the protocol. Mathematically, we can define the strain through $\gamma = \gamma_0 \Theta(t)$, where $\Theta(t)$ is the Heaviside function defined in \cref{symbol:heaviside_function}. This implies that the strain rate $\dot{\gamma}=\delta(t)\gamma_0$, where $\delta(t)$ is the delta function defined in \cref{symbol:dirac_delta}.
+In \Cref{sec:Ultradelayed} we focus on the step strain protocol. Here, after the material is initialised, a step of amplitude $\gamma_0$ is instantaneously applied at $t=0$ and is held constant until the end of the protocol. Mathematically, we can define the strain through $\gamma = \gamma_0 \Theta(t)$, where $\Theta(t)$ is the Heaviside function. This implies that the strain rate $\dot{\gamma}=\delta(t)\gamma_0$, where $\delta(t)$ is the delta function.
 
 Although this idealised step strain can be implemented numerically, it is physically impossible due to the finite inertia of rheological instruments. Nevertheless, a strain ramp applied on a timescale which is short compared with the intrinsic material relaxation time can be modelled effectively as an instantaneous step \cite{Fang_inhomogeneity_2011}.
 
@@ -240,7 +281,7 @@ The constitutive descriptions introduced above specify how local stress responds
 %     \nabla \cdot \bm{u} &= 0.
 % \end{align}
 % \end{subequations}
-% This result may also be obtained directly from the mechanical equilibrium condition in \cref{eq:incompressableStress}, which requires the net force in the system to vanish:
+% This result may also be obtained directly from the mechanical equilibrium condition in \cref{eq:incompressibleStress}, which requires the net force in the system to vanish:
 % \[
 % \nabla \cdot (\mu \bm{\epsilon}) = \nabla \cdot \bm{\sigma} = 0.
 % \]
@@ -640,7 +681,7 @@ The base radius $R_0$ is then rescaled so that the total particle area matches t
     = R_0^3\left(1-\frac{r_{ij}}{D_{ij}}\right)^2
     \Theta(D_{ij}-r_{ij}),
 \end{equation}
-where $r_{ij}$ is the centre-to-centre distance between disk $i$ and $j$, and $D_{ij}=R_i+R_j$ is the sum of their radii. The Heaviside function $\Theta(x)$ (defined in \cref{symbol:heaviside_function}) ensures that the interaction is non-zero only when particles overlap ($r_{ij}<D_{ij}$), and vanishes otherwise. 
+where $r_{ij}$ is the centre-to-centre distance between disk $i$ and $j$, and $D_{ij}=R_i+R_j$ is the sum of their radii. The Heaviside function $\Theta(x)$ ensures that the interaction is non-zero only when particles overlap ($r_{ij}<D_{ij}$), and vanishes otherwise. 
 
 Starting from this random initial condition, the system is relaxed via energy minimisation of the soft repulsive interactions until a mechanically stable packing is obtained. In Ref.~\cite{chacko_slow_2019}, this minimisation is performed by integrating an overdamped equation of motion equivalent to that presented in \cref{sec:NetworkDynamics}.
 
@@ -718,7 +759,7 @@ The force $F_i(h)$ can be written as the sum of the $i$-components of the pairwi
     \Theta(h-r_{n,j})\Theta(r_{m,j}-h),
     \label{eq:virialDevForce}
 \end{equation}
-where $r_{n,j}$ is the $j$-coordinate of node $n$. The two Heaviside functions (defined in \cref{symbol:heaviside_function}) restrict node $n$ to lie below the line and node $m$ above it.  Substituting \cref{eq:virialDevForce} into \cref{eq:virialDevInt} and integrating over $h$ yields
+where $r_{n,j}$ is the $j$-coordinate of node $n$. The two Heaviside functions restrict node $n$ to lie below the line and node $m$ above it. Substituting \cref{eq:virialDevForce} into \cref{eq:virialDevInt} and integrating over $h$ yields
 \begin{subequations}
 \begin{align}
     \Sigma_{ij}
