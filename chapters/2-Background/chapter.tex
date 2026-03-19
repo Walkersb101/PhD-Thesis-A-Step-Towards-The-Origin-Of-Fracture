@@ -23,9 +23,9 @@ The simplest measure of strain is the relative change in length,
     \epsilon = \frac{\Delta x}{L},
     \label{eq:simpleStrain}
 \end{equation}
-where $\Delta x$ is the change in length and $L$ is the original length \cite{lubliner2008plasticity,macoskoRheologyPrinciplesMeasurements1994,barnes_introduction_1989}.This definition corresponds to extensional (or normal) deformation, in which a material element changes its length along a given direction. In contrast, materials may also deform through shear, in which layers of material slide past one another without a change in volume. In simple shear, if the upper boundary of a material is displaced by $\Delta x$ over a separation $L_y$, the shear strain is defined as
+where $\Delta x$ is the change in length and $L$ is the original length measured along the same axis \cite{lubliner2008plasticity,macoskoRheologyPrinciplesMeasurements1994,barnes_introduction_1989}. This definition corresponds to extensional (or normal) deformation, in which a material element changes its length along a given direction. In contrast, materials may also deform through shear, in which layers of material slide past one another without a change in volume. In simple shear, if the upper boundary of a material is displaced by $\Delta x$ over a separation $L_y$, the shear strain is defined as
 \begin{equation}
-    \gamma_{xy} = \frac{\Delta x}{L_y}/
+    \gamma_{xy} = \frac{\Delta x}{L_y}
 \end{equation}
 \cite{lubliner2008plasticity,macoskoRheologyPrinciplesMeasurements1994,barnes_introduction_1989} These two fundamental modes of deformation are illustrated in \cref{fig:typesOfStrain}.
 
@@ -100,7 +100,8 @@ A further decomposition of the symmetric strain tensor $\bm{\epsilon}$ separates
     \bm{\epsilon} = \bm{d} + \frac{1}{D} \mathrm{Tr}(\bm{\epsilon}) \bm{I},
 \]
 where $\bm{d}$ is the deviatoric (traceless) part, $\bm{I}$ is the identity tensor, and $D$ is the dimensionality of the space. For incompressible materials, the volumetric strain vanishes, so that $\mathrm{Tr}(\bm{\epsilon}) = 0$ and the strain is purely deviatoric, $\bm{\epsilon} = \bm{d}$. This decomposition will be useful in the continuum descriptions developed later.
-The form above is only valid in the limit of small deformations, where the displacement gradients are sufficiently small that higher-order terms can be neglected. For larger deformations, finite-strain measures such as the Green–Lagrange strain tensor must be used \cite{TruesdellNoll1992}. In this thesis, the linearised strain tensor serves as the common language used to discuss local elastic response, force balance, and stress redistribution.
+
+The form presented above is only valid in the limit of small deformations, where the displacement gradients are sufficiently small that higher-order terms can be neglected. For larger deformations, finite-strain measures such as the Green–Lagrange strain tensor must be used \cite{TruesdellNoll1992}. In this thesis, the linearised strain tensor serves as the common language used to discuss local elastic response, force balance, and stress redistribution.
 
 \subsection{Stress Tensor} \label{sec:StressTensor}
 We now introduce the stress tensor, which describes how internal forces are transmitted through a material.
@@ -184,11 +185,41 @@ The description of stress and strain introduced above implicitly assumes that th
 
 In contrast to elastic deformation, in which all strain is recovered upon unloading and the material returns to its initial configuration, plasticity refers to the ability of a material to undergo such permanent deformation under applied loading. Where as elastic deformation forces reversable changes in the material's configuration, plastic deformation produces a permanent lasting change in the material's configuration. Consequently, upon unloading the original state is not recovered upon unloading but instead retains a memory of its deformation history in its new configuration \cite{lubliner2008plasticity,Simo2000-ComputationalInelasticity,Wu2004}. Microscopically these plastic deformation may correspond to particle rearrangements \cite{falk_dynamics_1998,maloney_amorphous_2006,tanguy_plastic_2006,gartner_nonlinear_2016}, dislocation \cite{shiba_plastic_2010, ispanovity_avalanches_2014,ben-zion_earthquake_1993}, or bond rupture \cite{tauber_stretchy_2022,ducrot_toughening_2014,Creton50th2017,vernereyStatisticalDamageMechanics2018,gong_why_2010} all of which reduce the total stored elastic energy. Rheologically, the sum of these microscopic deformations manifests as stress relaxation, yielding, and flow under sustained loading. 
 
-\subsubsection{Shear Banding} \label{sec:ShearBanding}
+\subsection*{Shear Banding} \label{sec:ShearBanding}
 
-While the resultant steady state flow of these materials has been widely studied, with a unifying picture of locally correlated plastic events forming avalanches of activity across the system \cite{liuDrivingRateDependence2016,puosi_time-dependent_2014,linDensityShearTransformations2014,tanguy_plastic_2006,lin_scaling_2014,maloney_amorphous_2006}, the onset of these bands remains debated. This initial yielding transition has been investigated through a range of approaches, including replica field theory \cite{jaiswalMechanicalYieldAmorphous2016}, as a critical point in an elastoplastic model \cite{linCriticalityApproachFailure2015,liuCreepDynamicsAthermal2018}, as a percolation transition \cite{shrivastavYieldingGlassShear2016}, within artificially seeded particle simulations \cite{ozawaRareEventsDisorder2022}, and also experimentally \cite{aimeMicroscopicDynamicsFailure2018,aimeStresscontrolledShearCell2016,knowltonMicroscopicViewYielding2014}.
+In the discussion so far, we have implicitly assumed that deformation is homogeneous across the material. However, this assumption can break down, and the strain may become spatially heterogeneous. An important example is shear banding, in which deformation localises into narrow bands that accommodate a large fraction of the total strain, while the surrounding material remains weakly deformed. Such shear bands are observed both experimentally \cite{manneville_recent_2008,divouxShearBandingComplex2016,berretTransientRheologyWormlike1997,berretNonlinearRheologyTelechelic2001,tapadiaBandingEntangledPolymer2006,goyonSpatialCooperativitySoft2008,besselingShearBandingFlowConcentration2010,divouxTransientShearBanding2010,rogersAgingYieldingShear2008} and theoretically  \cite{fielding_complex_2007,fielding_shear_2014,mfielding_shear_2009,fielding_triggers_2016,moorcroft_age-dependent_2011,carterShearBandingPolymeric,OlmstedShearBanding2008,doi_theory_1988} across a wide range of materials, including metallic glasses \cite{greer_shear_2013,SCHUH2007}, colloidal glasses \cite{aimeMicroscopicDynamicsFailure2018,besselingShearBandingFlowConcentration2010}, granular materials \cite{Shang2024,nessAbsorbingStateTransitionsGranular2020}, and polymeric materials \cite{carterShearBandingPolymeric,tapadiaBandingEntangledPolymer2006,moorcroft_shear_2014}.
 
-As most of the work in this thesis concerns the fracture of networks, we will generally use shear banding to denote localised bands of high deformation, as is done in metallic glasses. In places where it is important to distinguish between these localised bands and the macroscopic regions of different strain rates, and it is not clear from the context, we will state the distinction explicitly.
+In simple shear, with flow along $x$ and gradient along $y$, this localisation corresponds to a spatially varying shear strain,
+\begin{equation}
+    \gamma(y) = \frac{\partial u_x}{\partial y},
+\end{equation}
+which becomes strongly localised within the band. A schematic illustration contrasting homogeneous deformation and shear banding is shown in \cref{fig:shearBandSketch}. Under a simple shear deformation, the displacement field is heterogeneous, as illustrated in \cref{fig:HomogeneousShear}. However, in the presence of shear banding, the displacement field becomes localised within a narrow region, as shown as the red region in \cref{fig:ShearBanded}, where the shear strain $\gamma(y)$ is large, while the surrounding material experiences only a relativly small deformation.
+
+\begin{figure}
+    \centering
+        \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{chapters/2-Background/Figures/ShearBanding_Homogeneous.pdf}
+        \caption{Homogeneous deformation field}
+        \label{fig:HomogeneousShear}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.45\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{chapters/2-Background/Figures/ShearBanding_Localized.pdf}
+        \caption{Shear banded deformation field}
+        \label{fig:ShearBanded}
+    \end{subfigure}
+    \caption[Illustration of homogeneous shear and shear banding.]{Displacement profile examples for {\bf a)} a homogeneous displacement field and {\bf b)} a shear banded displacement field $u_x(y)$. Arrows indicate the direction and magnitude of the displacement. The cell is comprised of two parallel plates; the top plate is moved in the $x$ direction by a distance $\Delta x$, while the bottom plate is fixed. Spatial invariance in the $x$ and $z$ directions is assumed.
+    }
+    \label{fig:shearBandSketch}
+\end{figure}
+
+In many disordered solids, such as metallic glasses \cite{greer_shear_2013}, shear banding can be understood as the result of a mechanical instability of the homogeneous state. In particular, if the material exhibits strain softening, such that the stress decreases with increasing strain, $\partial_{\gamma}\sigma < 0$, then a uniformly deformed state becomes unstable \cite{barlow_ductile_2020}. Small spatial variations in strain are then amplified under continued loading, since regions that deform slightly more undergo local softening, resulting in a reduced stress required for further deformation and hence continued localisation. This positive feedback leads to the formation of a shear band, which is sustained under continued deformation.
+
+Depending on the applied deformation protocol and material properties, these localised regions may either persist or evolve in time. Of particular interest are transient shear bands, which form during the early stages of deformation but subsequently decay, leading to a return to a more homogeneous state \cite{moorcroft_age-dependent_2011,barlow_ductile_2020,divouxTransientShearBanding2010,adams_transient_2011}. These bands typically arise from an initial instability of the homogeneous deformation field. However, as the material evolves, the conditions that drive this instability are no longer satisfied, and the system relaxes towards a more uniform state. In experimental systems, the perturbations that trigger this instability may arise from structural heterogeneity or thermal fluctuations.
+
+Alternatively, in some cases, deformation becomes permanently concentrated within well-defined bands that accommodate most of the strain and act as precursors to macroscopic failure \cite{greer_shear_2013,hufnagel_deformation_2016,luo_dynamics_2023}. In such systems, once a dominant band has formed, subsequent deformation is largely confined to this region, leading to progressive weakening of the material along the band. 
 
 \section{Rheological protocol} \label{sec:Protocols}
 There are many deformation protocols by which flow can be induced in a material, each probing different features of its mechanical response. In this work, we adopt strain-controlled deformation protocols, in which a prescribed bulk deformation is imposed at all times during the simulation, and the resulting stress response is measured. By contrast, in a stress-controlled protocol, a fixed (though potentially time-dependent) stress is imposed, and the material is allowed to deform accordingly \cite{macoskoRheologyPrinciplesMeasurements1994}. 
