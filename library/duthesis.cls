@@ -161,7 +161,10 @@
 \renewcommand{\abstract}[1]{%                                               %
     \pagestyle{plain}                                                       %
     \chapter*{Abstract}                                                     %
-    \addcontentsline{toc}{chapter}{\numberline{}Abstract}                   %
+    % \addcontentsline{toc}{chapter}{\numberline{}Abstract}                   %
+        % \begin{spacing}{1.5}                                                %
+        %     \input{#1}                                                      %
+        % \end{spacing}                                                       %
         \begin{singlespace}                                                 %
             \input{#1}                                                      %
         \end{singlespace}                                                   %
@@ -176,7 +179,7 @@
 % ==========                                                                %
 \newcommand{\dedication}[2]{                                                %
     \chapter*{#2}                                                           %
-    \addcontentsline{toc}{chapter}{\numberline{}#2}                         %
+    % \addcontentsline{toc}{chapter}{\numberline{}#2}                         %
     \begin{singlespace}                                                     %
         \input{#1}                                                          %
     \end{singlespace}                                                       %
@@ -189,7 +192,7 @@
 % ===========                                                               %
 \newcommand{\declaration}{                                                  %
     \chapter*{Declaration}                                                  %
-    \addcontentsline{toc}{chapter}{\numberline{}Declaration}                %
+    % \addcontentsline{toc}{chapter}{\numberline{}Declaration}                %
     The work in this thesis is based on research carried out at the         %
     \du@dept, Durham University, United Kingdom. No part of this thesis     %
     has been submitted elsewhere for any other degree or qualification and  %
@@ -211,7 +214,7 @@
 % ===============                                                           %
 \newcommand{\acknowledgement}[1]{                                           %
     \chapter*{Acknowledgements}                                             %
-    \addcontentsline{toc}{chapter}{\numberline{}Acknowledgements}           % 
+    % \addcontentsline{toc}{chapter}{\numberline{}Acknowledgements}           % 
     \begin{spacing}{1.5}                                                    %
         \input{#1}                                                          %    
     \end{spacing}                                                           %
@@ -248,7 +251,7 @@
     \fi                                                                     %
     \chapter*{\listfigurename                                               %
       \@mkboth{\listfigurename}{\listfigurename}}%                          %
-    \addcontentsline{toc}{chapter}{\numberline{}List of Figures}            %
+    % \addcontentsline{toc}{chapter}{\numberline{}List of Figures}            %
     \@starttoc{lof}%                                                        %
     \if@restonecol\twocolumn\fi                                             %
 }                                                                           %
@@ -278,7 +281,7 @@
 % =========                                                                 %
 \newcommand{\notations}[1]{                                                %
     \chapter*{Notations}                                                    %
-    \addcontentsline{toc}{chapter}{\numberline{}Notations}                 %
+    % \addcontentsline{toc}{chapter}{\numberline{}Notations}                 %
     \begin{singlespace}                                                     %
         \input{#1}                                                          %
     \end{singlespace}                                                       %
