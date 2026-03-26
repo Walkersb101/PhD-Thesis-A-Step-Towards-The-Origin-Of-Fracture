@@ -332,7 +332,7 @@ The physics considered in this thesis concerns the slow deformation of soft diso
 \[
     \text{Re} = \frac{v L}{\nu} \to 0,
 \]
-where $v$ and $L$ are characteristic velocity and length scales and $\nu = \mu/\rho$ is the kinematic viscosity. In this limit, inertial terms become negligible and the equations reduce to the Stokes (force-balance) equations
+where $v$ and $L$ are characteristic velocity and length scales and $\nu$ is the kinematic viscosity. In this limit, inertial terms become negligible and the equations reduce to the Stokes (force-balance) equations
 \begin{subequations}
 \label{eq:StokesLimit}
 \begin{align}
@@ -844,6 +844,9 @@ To impose shear in the $x$ direction using Lees--Edwards boundary conditions, pa
 \end{equation}
 whilst periodic images are shifted by an amount $\gamma L_y$ between adjacent rows, as shown in \cref{fig:Lees-Edwards}. This construction is computationally advantageous because the primary simulation cell remains orthogonal. Implementation details can be found in Ref.~\cite{allen_computer_2017}.
 
+\section{Units and Parameters}
+For the network simulations considered in this thesis, we work in units where the drag coefficient and filament stretching modulus are set to $\zeta = 1$ and $\mu = 1$, respectively, thereby fixing the characteristic viscous and elastic scales used throughout the network models. The reference length scale depends on the network construction: for lattice-based networks, the bond rest length is taken to be unity, whereas for packing-derived networks, the system size is taken to be $L_x = L_y = \sqrt{N}$, where $N$ is the number of nodes used to generate the initial packing. Unless stated otherwise, these packings are generated at packing fraction $\phi = 1$ with bidispersity parameter $f = 1.4$, which yields unpruned single networks with average connectivity $z \approx 5.4$. For the adaptive time-stepping scheme introduced in \cref{sec:EulerHeun}, we use an absolute error tolerance of $\tau = 10^{-4}$ and impose a maximum time step of $\delta t_{\max} = 0.1$.
+
 \section{Conclusion}
 % \red{
     In this chapter, we have introduced the theoretical framework used throughout the remainder of this thesis. We began with a continuum description of stress and strain, establishing the tensorial quantities used to characterise deformation and internal forces, and introduced the linear elastic constitutive relation that serves as a reference point for identifying yielding, plasticity, and fracture. We also outlined the strain-controlled deformation protocols used in later chapters, namely oscillatory strain, step strain, and strain startup, each of which probes a different aspect of material response.
@@ -852,9 +855,6 @@ whilst periodic images are shifted by an amount $\gamma L_y$ between adjacent ro
     
     Finally, we introduced soft networks as model systems in which the coupling between structure, deformation, and failure can be resolved explicitly. We described the mechanics of semi-flexible filaments, the overdamped dynamics used to evolve the network, and the different notions of rigidity relevant to disordered systems. We then discussed how fracture emerges through heterogeneous stress concentration, non-affine rearrangements, and bond breakage, and introduced the network architectures and numerical methods used in later chapters, including lattice-based and packing-derived networks, pruning procedures, the virial stress tensor, and Lees--Edwards boundary conditions. Together, these concepts provide the basis for the analysis of damage accumulation under cyclic loading, delayed yielding following an imposed step strain, and stress redistribution and toughening in double-network materials.
 % }
-
-\section{Units and Parameters}
-For the network simulations considered in this thesis, we work in units where the drag coefficient and filament stretching modulus are set to $\zeta = 1$ and $\mu = 1$, respectively, thereby fixing the characteristic viscous and elastic scales used throughout the network models. The reference length scale depends on the network construction: for lattice-based networks, the bond rest length is taken to be unity, whereas for packing-derived networks, the system size is taken to be $L_x = L_y = \sqrt{N}$, where $N$ is the number of nodes used to generate the initial packing. Unless stated otherwise, these packings are generated at packing fraction $\phi = 1$ with bidispersity parameter $f = 1.4$, which yields unpruned single networks with average connectivity $z \approx 5.4$. For the adaptive time-stepping scheme introduced in \cref{sec:EulerHeun}, we use an absolute error tolerance of $\tau = 10^{-4}$ and impose a maximum time step of $\delta t_{\max} = 0.1$.
 
 \newpage
 \begin{subappendices}
@@ -870,39 +870,61 @@ This appendix provides the intermediate derivation for the results quoted in \cr
 \nabla \cdot \bm{u} &= 0,
 \end{align}
 \end{subequations}
-Applying the Fourier transform to \cref{eq:AppStokes} gives
+which must be solved with the appropriate boundary conditions. The solution may formally be written as
 \begin{equation}
-- i k_i \hat{p} - \mu k^2 \hat{u}_i = 2\mu i k_j \hat{\epsilon}_{ij}^{\mathrm{pl}}.
-\label{eq:AppStokesFourier}
+    u_i(\bm{r}) = -2\mu \int \mathbb{O}_{ij}(\bm{r}-\bm{r}^\prime)\,\partial_l^\prime \epsilon_{jl}^{\mathrm{pl}}(\bm{r}^\prime)\, d\bm{r}^\prime.
+\end{equation}
+Here, $\mathbb{O}_{ij}(\bm{r}-\bm{r}^\prime)$ is the Oseen tensor, which is the Green's function for the Stokes equations in an infinite medium. To determine it, we consider the auxiliary problem of a point force $\bm{F}$ applied at $\bm{r}^\prime$. The Oseen tensor therefore satisfies
+\begin{subequations}
+\label{eq:AppStokesPointForce}
+\begin{align}
+- \nabla p(\bm{r}) + \mu \nabla^2 \bm{u}(\bm{r}) &= -\bm{F} \delta(\bm{r} - \bm{r}^\prime), \label{eq:AppStokesPointForce1} \\
+\nabla \cdot \bm{u} &= 0. \label{eq:AppStokesPointForce2}
+\end{align}
+\end{subequations}
+
+Following Ref.~\cite{kim_microhydrodynamics_1991}, we impose that the deformation field $\bm{u}(\bm{r})$ in \cref{eq:AppStokesPointForce} vanishes at infinity, i.e. $\lim_{r \to \infty}|\bm{u}(\bm{r})| = 0$. Because the Stokes equations are linear in $p(\bm{r})$ and $\bm{u}(\bm{r})$, we may write the pressure field as the scalar product of the point force $\bm{F}$ with a vector field $\bm{P}(\bm{r})$, and the deformation field as the tensor $\mathbb{O}_{ij}$ acting on $\bm{F}$:
+\begin{equation}
+    p(\bm{r}) = P_j F_j, \qquad
+    u_i(\bm{r}) = \mathbb{O}_{ij} F_j.
+    \label{eq:OseenProducts}
 \end{equation}
 
-Using incompressibility in Fourier space,
+Applying the Fourier transform to \cref{eq:AppStokesPointForce}, we obtain
+\begin{equation*}
+- i k_i \hat{P}_j F_j 
+- \mu k^2 \hat{\mathbb{O}}_{ij} F_j 
+= -F_i = -F_j \delta_{ij}.
+\end{equation*}
+Introducing the Kronecker delta $\delta_{ij}$ allows us to rewrite this as a tensor equation independent of $F_j$:
+\begin{equation}
+    - i k_i \hat{P}_j 
+    - \mu k^2 \hat{\mathbb{O}}_{ij} 
+    = -\delta_{ij}.
+    \label{eq:StokesFourier2}
+\end{equation}
+The incompressibility condition $\nabla \cdot \bm{u} = 0$ reads in Fourier space
 \[
-    k_i\hat{u}_i = 0,
+    ik_i\hat{u}_i=ik_i\hat{\mathbb{O}}_{ij} F_j=0 \implies k_i\hat{\mathbb{O}}_{ij} = 0
 \]
-and multiplying \cref{eq:AppStokesFourier} by $k_i$, we obtain
+Multiplying \cref{eq:StokesFourier2} by $k_i$ and using the incompressibility relation eliminates the velocity-tensor contribution and gives
+\begin{equation*}
+    \hat{P}_j = -\frac{ik_j}{k^2}.
+\end{equation*}
+Substituting $\hat{P}_j$ back into \cref{eq:StokesFourier2}, we obtain the closed expression for the Oseen tensor in Fourier space,
 \begin{equation}
-    \hat{p} = -2\mu \frac{k_i k_j}{k^2}\hat{\epsilon}_{ij}^{\mathrm{pl}}.
-    \label{eq:AppPressureKernel}
+    \hat{\mathbb{O}}_{ij} = \frac{1}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right).
+    \label{eq:AppOseenPointForce}
 \end{equation}
-Substituting into \cref{eq:AppStokesFourier} gives
+From \cref{eq:OseenProducts}, the displacement field is
 \begin{equation}
-    \hat{u}_i = -\frac{2i}{k^2}\left(\delta_{ij} - \frac{k_i k_j}{k^2}\right)k_l \hat{\epsilon}_{jl}^{\mathrm{pl}}.
+    \hat{u}_i = \frac{1}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right)F_j.
+    \label{eq:AppFourierDeformationPointForce}
 \end{equation}
-Recognising the transverse projector then gives the Oseen tensor
+The corresponding deformation gradients ($\partial_l u_i$), expressed in Fourier space, are
 \begin{equation}
-    \hat{\mathbb{O}}_{ij} = \frac{1}{\mu k^2}\left(\delta_{ij} - \frac{k_i k_j}{k^2}\right),
-    \label{eq:AppOseen}
-\end{equation}
-which matches \cref{eq:Oseen}.
-
-Hence,
-\begin{equation}
-    \hat{u}_i = -2\mu \hat{\mathbb{O}}_{ij} i k_l \hat{\epsilon}_{jl}^{\mathrm{pl}},
-\end{equation}
-and
-\begin{equation}
-    i k_m \hat{u}_i = 2\mu k_m \hat{\mathbb{O}}_{ij} k_l \hat{\epsilon}_{jl}^{\mathrm{pl}},
+    ik_l\hat{u}_i = \frac{ik_l}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right)F_j
+    \label{eq:AppFourierDeformationGradientPointForce}
 \end{equation}
 which are the Fourier-space displacement and deformation-gradient fields used in \cref{sec:EshelbyPropogator}.
 
