@@ -46,8 +46,9 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % LOAD CLASS                                                                %
 % =======                                                                   % 
-\LoadClass[\@duthesisptsize,a4paper]{report}                                %
+\LoadClass[\@duthesisptsize,a4paper,twoside]{report}                        %
 \pagestyle{plain}                                                           %
+\raggedbottom                                                               %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
 
@@ -72,7 +73,7 @@
 \setlength{\marginparpush}{0in}                                             %
 \setlength{\hoffset}{-1in}                                                  %
 \setlength{\oddsidemargin}{3.8cm}                                           %
-\setlength{\evensidemargin}{0in}                                            %
+\setlength{\evensidemargin}{2.2cm}                                          %
 \setlength{\textwidth}{15cm}                                                %
 \setlength{\topmargin}{2cm}                                                 %
 \setlength{\headheight}{15pt}                                               %
@@ -309,6 +310,7 @@
 % ===========                                                               %
 \DeclareRobustCommand{\mainmatter}{                                         %
     \clearpage                                                              %
+    \pagestyle{fancy}                                                       %
     \pagenumbering{arabic}                                                  %
     \setcounter{page}{1}                                                    %
 }                                                                           %

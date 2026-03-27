@@ -19,7 +19,6 @@
 % ======== 
 % Place packages here.
 \usepackage{fancyhdr}                   % Fancy headers
-\usepackage[Sonny]{fncychap}            % Fancy chapter formatting.
 \usepackage{epsfig}                     % For Windows userss
 %\usepackage{cite}   
 
@@ -34,11 +33,18 @@
 \usepackage{eqlist}                     % Makes for a nice list of symbols.
 \usepackage{bookmark}
 \usepackage{subcaption}
+\captionsetup{
+      font=small,
+      labelfont=bf,
+      labelsep=period
+}
 \usepackage{appendix}
 \usepackage{enumitem}
 \usepackage{needspace}
+\usepackage{afterpage}
 
 \usepackage{xspace}
+\usepackage[final]{microtype}
 
 \usepackage{graphicx}
 
@@ -124,7 +130,65 @@
 
 % dont work break in titles
 \usepackage[raggedright]{titlesec}
+\newcommand{\chapteroverlaynumber}{%
+      \makebox[0pt][l]{%
+            \smash{%
+                  \raisebox{-1.42\baselineskip}[0pt][0pt]{%
+                        \hspace*{-0.28em}%
+                        \textcolor{black!11}{%
+                              \scalebox{4.7}[4.7]{\normalfont\bfseries\thechapter}%
+                        }%
+                  }%
+            }%
+      }%
+}
+\newcommand{\currentchapternumber}{}
+\newcommand{\currentchaptertitle}{}
+\newcommand{\currentchapterheader}{%
+      \ifx\currentchapternumber\empty
+            \currentchaptertitle
+      \else
+            \currentchapternumber\space-\space\currentchaptertitle
+      \fi
+}
+\titleformat{\chapter}[display]
+      {\normalfont\Huge\bfseries}
+      {\chapteroverlaynumber}
+      {0pt}
+      {\raggedright\leftskip=1.15em\relax}
+\titleformat{name=\chapter,numberless}[display]
+      {\normalfont\Huge\bfseries}
+      {}
+      {0pt}
+      {}
 \titleformat*{\section}{\normalfont\Large\bfseries\boldmath}
+\titlespacing*{\chapter}{0pt}{18pt}{34pt}
+\titlespacing*{name=\chapter,numberless}{0pt}{0pt}{18pt}
+\titlespacing*{\section}{0pt}{18pt}{8pt}
+\titlespacing*{\subsection}{0pt}{14pt}{6pt}
+\let\originalchapter\chapter
+\RenewDocumentCommand{\chapter}{s o m}{%
+      \IfBooleanTF{#1}{%
+            \gdef\currentchapternumber{}%
+            \gdef\currentchaptertitle{}%
+            \originalchapter*{#3}%
+      }{%
+            \IfNoValueTF{#2}{%
+                  \originalchapter{#3}%
+                  \xdef\currentchapternumber{\thechapter}%
+                  \gdef\currentchaptertitle{#3}%
+                  \markboth{#3}{}%
+            }{%
+                  \originalchapter[#2]{#3}%
+                  \xdef\currentchapternumber{\thechapter}%
+                  \gdef\currentchaptertitle{#2}%
+                  \markboth{#2}{}%
+            }%
+            \thispagestyle{chapteropening}%
+            \pagestyle{fancy}%
+            \afterpage{\pagestyle{fancy}}%
+      }%
+}
 
 \usepackage[colorinlistoftodos,prependcaption]{todonotes}    
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
@@ -160,22 +224,30 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 % FANCY HEADER
 % ============
-% Set fancy  header 
+% Show chapter title on each page; keep page number at top-right.
 \pagestyle{fancy}
-\renewcommand{\chaptermark}[1]{\markright{\chaptername\ \thechapter.\ #1}}
-\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}{}}
-\lhead[\fancyplain{}{}]%
-      {\fancyplain{}{\bfseries\rightmark}}
-\chead[\fancyplain{}{}]%
-      {\fancyplain{}{}}
-\rhead[\fancyplain{}{}]%
-      {\fancyplain{}{\bfseries\thepage}}
-\lfoot[\fancyplain{}{}]%
-      {\fancyplain{}{}}
-\cfoot[\fancyplain{}{}]%
-      {\fancyplain{}{}}
-% \rfoot[\fancyplain{}{}]%
-%       {\fancyplain{}{\bfseries\today}}
+\fancyhf{}
+\setlength{\headwidth}{\textwidth}
+\fancyhfoffset[LE,RO,LO,RE]{0pt}
+\renewcommand{\chaptermark}[1]{\markboth{#1}{}}
+\renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+\fancyhead[LO,RE]{\textsf{\currentchapterheader}}
+\fancyhead[LE,RO]{\textsf{\thepage}}
+\fancyfoot{}
+\fancypagestyle{plain}{
+      \fancyhf{}
+      \setlength{\headwidth}{\textwidth}
+      \fancyhfoffset[LE,RO,LO,RE]{0pt}
+      \fancyhead[LO,RE]{\textsf{\currentchapterheader}}
+      \fancyhead[LE,RO]{\textsf{\thepage}}
+}
+\fancypagestyle{chapteropening}{
+      \fancyhf{}
+      \setlength{\headwidth}{\textwidth}
+      \fancyhfoffset[LE,RO,LO,RE]{0pt}
+      \fancyhead[LO,RE]{}
+      \fancyhead[LE,RO]{\textsf{\thepage}}
+}
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 
 
@@ -256,55 +328,3 @@
 \newcommand{\red}[1]{{\color{red} #1}}
 
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-
-% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
-% FANCY HEADER
-% ============
-% Set fancy  header 
-\usepackage[Sonny]{fncychap}            % Fancy chapter formatting.
-
-\usepackage{fancyhdr}
-\pagestyle{fancy}   % Turn on the style
-\fancyhead{}    % Clear the header
-\fancyfoot{}    % Clear the and footer
-\renewcommand{\chaptermark}[1]{\markright{\textsf{\chaptername\ \thechapter.\ #1}}}
-\renewcommand{\sectionmark}[1]{\markright{\textsf{\thesection.\ #1}{}}}
-\lhead[\fancyplain{}{}]%
-      {\fancyplain{}{\rightmark}}
-\chead[\fancyplain{}{}]%
-      {\fancyplain{}{}}
-\rhead[\fancyplain{}{}]%
-      {\fancyplain{}{\textsf{\thepage}}}
-% \lfoot[\fancyplain{}{}]%
-%       {\fancyplain{}{}}
-% \cfoot[\fancyplain{}{}]%
-%       {\fancyplain{}{}}
-% \rfoot[\fancyplain{}{}]%
-%       {\fancyplain{}{\bfseries\today}}
-% \fancyfoot[R]{\textsf{\thepage}}
-
-
-% \usepackage{titleps}% http://ctan.org/pkg/titleps
-% \newpagestyle{main}{
-% \setheadrule{.4pt}% Header rule
-% \sethead{\textsf{Chapter \thechapter: \chaptertitle}}% left
-%         {}%                 center
-%         {\sectiontitle}%    right
-% }
-% \pagestyle{main}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
