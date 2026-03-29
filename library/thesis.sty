@@ -228,25 +228,43 @@
 \pagestyle{fancy}
 \fancyhf{}
 \setlength{\headwidth}{\textwidth}
-\fancyhfoffset[LE,RO,LO,RE]{0pt}
 \renewcommand{\chaptermark}[1]{\markboth{#1}{}}
 \renewcommand{\sectionmark}[1]{\markright{\thesection.\ #1}}
+\if@twoside
+\fancyhfoffset[LE,RO,LO,RE]{0pt}
 \fancyhead[LO,RE]{\textsf{\currentchapterheader}}
 \fancyhead[LE,RO]{\textsf{\thepage}}
+\else
+\fancyhfoffset[L,R]{0pt}
+\fancyhead[L]{\textsf{\currentchapterheader}}
+\fancyhead[R]{\textsf{\thepage}}
+\fi
 \fancyfoot{}
 \fancypagestyle{plain}{
       \fancyhf{}
       \setlength{\headwidth}{\textwidth}
+      \if@twoside
       \fancyhfoffset[LE,RO,LO,RE]{0pt}
       \fancyhead[LO,RE]{\textsf{\currentchapterheader}}
       \fancyhead[LE,RO]{\textsf{\thepage}}
+      \else
+      \fancyhfoffset[L,R]{0pt}
+      \fancyhead[L]{\textsf{\currentchapterheader}}
+      \fancyhead[R]{\textsf{\thepage}}
+      \fi
 }
 \fancypagestyle{chapteropening}{
       \fancyhf{}
       \setlength{\headwidth}{\textwidth}
+      \if@twoside
       \fancyhfoffset[LE,RO,LO,RE]{0pt}
       \fancyhead[LO,RE]{}
       \fancyhead[LE,RO]{\textsf{\thepage}}
+      \else
+      \fancyhfoffset[L,R]{0pt}
+      \fancyhead[L]{}
+      \fancyhead[R]{\textsf{\thepage}}
+      \fi
 }
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % 
 

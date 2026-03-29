@@ -35,9 +35,13 @@
 % PT SIZE                                                                   %
 % =======                                                                   % 
 \newcommand\@duthesisptsize{12pt}                                           %
+\newif\ifdu@symmetricmargins                                                %
+\du@symmetricmarginsfalse                                                    %
 \DeclareOption{12pt}{\renewcommand\@duthesisptsize{12pt}}                   %
 \DeclareOption{11pt}{\renewcommand\@duthesisptsize{11pt}}                   %
 \DeclareOption{10pt}{\renewcommand\@duthesisptsize{10pt}}                   %
+\DeclareOption{symmetricmargins}{\du@symmetricmarginstrue}                   %
+\DeclareOption{asymmetricmargins}{\du@symmetricmarginsfalse}                 %
 \ProcessOptions                                                             %
 % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
 
@@ -72,8 +76,13 @@
 \setlength{\marginparwidth}{2cm}                                            %
 \setlength{\marginparpush}{0in}                                             %
 \setlength{\hoffset}{-1in}                                                  %
+\ifdu@symmetricmargins                                                       %
+\setlength{\oddsidemargin}{3cm}                                             %
+\setlength{\evensidemargin}{3cm}                                            %
+\else                                                                        %
 \setlength{\oddsidemargin}{3.8cm}                                           %
 \setlength{\evensidemargin}{2.2cm}                                          %
+\fi                                                                          %
 \setlength{\textwidth}{15cm}                                                %
 \setlength{\topmargin}{2cm}                                                 %
 \setlength{\headheight}{15pt}                                               %
