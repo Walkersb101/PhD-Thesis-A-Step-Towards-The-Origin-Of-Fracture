@@ -64,13 +64,17 @@
             isbn=false]{biblatex}
 
 \AtEveryBibitem{%
-    \clearfield{note}%
+    \ifentrytype{misc}{}{%
+          \clearfield{note}%
+    }%
     \clearfield{language}%
       \ifentrytype{article}{%
             \clearfield{pages}%
             \clearfield{eid}%
       }{}%
 }
+
+\AtBeginBibliography{\sloppy}
 
 \newbibmacro*{linkedtitle}[1]{%
       \iffieldundef{doi}{%
@@ -98,6 +102,34 @@
          \printfield[titlecase]{subtitle}}}%
      \newunit}%
   \printfield{titleaddon}}
+
+\DeclareFieldFormat[misc]{title}{\mkbibquote{#1\isdot}}
+
+\newbibmacro*{preprintinfo}{%
+      \iffieldundef{note}{%
+            \iffieldundef{eprint}
+                  {}
+                  {\iffieldequalstr{eprinttype}{arXiv}
+                        {\printfield[eprint:arxiv]{eprint}}
+                        {\printfield{eprint}}}%
+      }{%
+            \printfield{note}%
+      }%
+}
+
+\DeclareBibliographyDriver{misc}{%
+      \usebibmacro{bibindex}%
+      \usebibmacro{begentry}%
+      \usebibmacro{author/editor+others/translator+others}%
+      \setunit{\labelnamepunct}\newblock
+      \usebibmacro{title}%
+      \newunit
+      \usebibmacro{preprintinfo}%
+      \setunit{\addspace}%
+      \printfield{year}%
+      \newunit\newblock
+      \usebibmacro{finentry}%
+}
 
 \renewbibmacro*{journal}{%
       \ifboolexpr{%
