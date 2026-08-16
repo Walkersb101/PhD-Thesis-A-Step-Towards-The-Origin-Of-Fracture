@@ -244,7 +244,7 @@ We consider two modes of deformation in this thesis: simple shear in \Cref{sec:F
 
 % We will consider two forms of deformation in this thesis: simple shear is used in \Cref{sec:Fatigue,sec:Ultradelayed} and elongational stretching in \Cref{sec:DoubleNetworks}. In addition, each chapter considers a different strain-controlled protocol, as illustrated in \cref{fig:ShearProtocols}.
 
-\subsection{Oscillatory Strain} \label{sec:lAOS}
+\subsection{Oscillatory Shear} \label{sec:lAOS}
 
 Oscillatory shear is a widely used protocol for characterising the rheology of soft materials, with large-amplitude oscillatory shear (LAOS) being particularly well studied \cite{rouyerLargeAmplitudeOscillatory2008a,yoshimuraResponseElasticBingham1987a,viasnoffHowAreColloidal2003,carterShearBandingPolymeric,ewoldtLargeAmplitudeOscillatory2010,renouYieldingProcessesColloidal2010}. In a conventional experiment, the strain is prescribed as a sinusoidal function of time,
 \[
@@ -252,7 +252,7 @@ Oscillatory shear is a widely used protocol for characterising the rheology of s
 \]
 where $\gamma_0$ is the strain amplitude and the frequency $\omega$ sets the inverse timescale over which the deformation is applied. For sufficiently small amplitudes, $\gamma_0 \ll 1$, the material responds in the linear viscoelastic regime, in which the stress is proportional to the applied strain. In this regime, it can be expressed in terms of the storage and loss moduli, which quantify the elastic and viscous contributions to the stress. At larger amplitudes, the response becomes nonlinear, leading to waveform distortion and the appearance of higher harmonics in the stress signal. These provide a sensitive probe of yielding and dissipative processes within the material \cite{ewoldtLargeAmplitudeOscillatory2010}.
 
-In addition to resolving the intra-cycle response, oscillatory shear provides access to the evolution of a material over successive cycles. In many amorphous systems, repeated driving leads to the emergence of either periodic, reversible responses in which the system returns to the same configuration stroboscopically in each cycle, or to progressively evolving dynamics associated with irreversible rearrangements. The former corresponds to absorbing or limit-cycle states, while the latter often reflects fatigue, in which plastic deformation accumulates over many cycles and can ultimately lead to yielding or failure \cite{liuFateShearoscillatedAmorphous2022,Leishangthem2017,Fiocco_memory_2014,Regev_onset_2013}. Oscillatory shear is therefore particularly well suited to probing the transition between reversible and irreversible behaviour in driven amorphous materials. 
+In addition to resolving the intra-cycle response, oscillatory shear provides access to the evolution of a material over successive cycles. In many amorphous systems, repeated driving leads to the emergence of either periodic, reversible responses in which the system returns to the same configuration stroboscopically in each cycle, or to progressively evolving dynamics associated with irreversible rearrangements. The former corresponds to absorbing or limit-cycle states, while the latter often reflects fatigue, in which plastic deformation accumulates over many cycles and can ultimately lead to yielding or failure \cite{liuFateShearoscillatedAmorphous2022,Leishangthem2017,Fiocco_memory_2014,Regev_onset_2013}. Oscillatory shear is therefore particularly well suited to probing the transition between reversible and irreversible behaviour in driven amorphous materials. Beyond its use as a rheological probe, oscillatory deformation also has practical relevance in materials science: cyclic loading forms the basis of many accelerated fatigue tests used to investigate damage accumulation and estimate material lifetimes \cite{Suresh1998,DowlingMechanical2013}.
 
 In \cref{sec:Fatigue}, we consider the quasi-static limit of this oscillatory shear protocol, in which the driving frequency is taken to be small compared to the intrinsic inverse relaxation timescales of the material, $\omega \to 0$. In this limit, inertial and rate-dependent effects are negligible and the system evolves through a sequence of mechanically equilibrated states, even as plastic events occur. In practice in our computational simulations, this corresponds to cycling the strain between $-\gamma_0$ and $\gamma_0$ over successive cycles, pausing at strains where any local yielding events occur within the material, and evolving the system to a new equilibrium state before proceeding to the next strain in the cycle at which any further yielding events occur. This protocol has become a common tool for probing the stability and memory of amorphous solids under repeated loading, because it emphasises the role of accumulated plastic activity while minimising rate-dependent effects \cite{liuFateShearoscillatedAmorphous2022,Leishangthem2017,Fiocco_memory_2014,Regev_onset_2013}.
 
@@ -312,7 +312,7 @@ The constitutive descriptions introduced above specify how local stress responds
 % \nabla \cdot (\mu \bm{\epsilon}) = \nabla \cdot \bm{\sigma} = 0.
 % \]
 
-\subsection{Navier-Stokes}
+\subsection{The Navier-Stokes equations}
 From conservation of mass and momentum, the Navier--Stokes equations for a generalised incompressible flow read
 \begin{subequations}
 \label{eq:NavierStokes}
@@ -369,8 +369,8 @@ where $\bm{u}(\bm{r})$ is the total displacement vector at a position $\bm{r}$. 
 % Under the assumption that the deformation is isotropic and incompressible ($\nabla \cdot \bm{u} = \bm{0}$) for any deformation at rest, we can express the left-hand side of \cref{eq:plasticStokes1} as 
 % \[\nabla \cdot \left( 2\mu \bm{\epsilon}^{\mathrm{el}1} - p^1 \bm{I} \right) = -\nabla p^1 + \mu \nabla^2 \bm{u}^1.\]
 
-\subsection{Oseen Tensor} \label{sec:Oseen}
-The solution to \cref{eq:StokesLimit} is well known and has been studied in a wide range of systems. For a local plastic eigenstrain, the displacement field in an unbounded medium obeys:
+\subsection{The Oseen Tensor} \label{sec:Oseen}
+Solutions to \cref{eq:StokesLimit} are well known and have been studied in a wide range of systems. For a local plastic eigenstrain, the displacement field in an unbounded medium obeys:
 \begin{subequations}
 \label{eq:Stokes}
 \begin{align}
@@ -384,7 +384,7 @@ where $(\nabla \cdot \bm{\epsilon}^{\mathrm{pl}})_i = \partial_j \epsilon^{\math
 \end{equation}
 The tensor $\bm{\mathbb{O}}$ was first derived by Oseen in 1927 \cite{oseen_neuere_1927} and refined by Burgers in 1939 \cite{Burgers1939}. In the present context, it provides the projection kernel that maps the eigenstrain source onto an incompressible displacement field. This Green-function structure is closely related to Eshelby's treatment of an inclusion with a prescribed internal transformation strain \cite{eshelby_determination_1997}.
 
-The Oseen tensor is obtained as
+The Fourier transform of the Oseen tensor is obtained as
 \begin{equation}
     \hat{\mathbb{O}}_{ij} = \frac{1}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right).
     \label{eq:Oseen}
@@ -418,7 +418,22 @@ and
     \tau_{ij} = 2\mu \epsilon^{\mathrm{el}}_{ij}
     \label{eq:eshelbyStress}
 \end{equation}
-These can then be expressed in terms of the deformation gradients found in \cref{eq:fourierDeformationGradient}. For simplicity, we consider a two-dimensional system and focus on the elastic stress redistribution associated with a local plastic shear event $\epsilon_{xy}^{\mathrm{pl}}$, characterised by the corresponding stress component $\tau_{xy}$. This choice is made for convenience, because the same analysis can be carried out for any component of the resulting stress and eigenstrain components. While the explicit form of the response differs between components and in three dimensions, the underlying mathematical structure of the formalism remains unchanged and extends straightforwardly to more general cases.
+These can then be expressed in terms of the deformation gradients found in \cref{eq:fourierDeformationGradient}.
+
+For simplicity, we consider a two-dimensional system and focus on the elastic stress redistribution $\tau_{xy}$ associated with a localised plastic event of simple-shear symmetry. Following Picard et al.~\cite{picard_elastic_2004}, we represent a point-like event centred at $\bm{r}_0$ as
+\begin{equation}
+    \epsilon_{xy}^{\mathrm{pl}}(\bm{r})
+    =
+    a^2\epsilon_0\delta^{(2)}(\bm{r}-\bm{r}_0),
+\end{equation}
+where $\epsilon_0$ is the dimensionless plastic-strain amplitude and $a^2$ is the microscopic area of the event. The coefficient $a^2\epsilon_0$ therefore has dimensions of area. Its Fourier transform is
+\[
+    \hat{\epsilon}_{xy}^{\mathrm{pl}}(\bm{k})
+    =
+    a^2\epsilon_0e^{-i\bm{k}\cdot\bm{r}_0}.
+\]
+For an event at the origin, $\bm{r}_0=\bm{0}$, this reduces to $\hat{\epsilon}_{xy}^{\mathrm{pl}}=a^2\epsilon_0$, equal to the coefficient multiplying the real-space delta function.
+This choice is made for convenience, because the same analysis can be carried out for any component of the resulting stress and eigenstrain components. While the explicit form of the response differs between components and in three dimensions, the underlying mathematical structure of the formalism remains unchanged and extends straightforwardly to more general cases.
 
 In two dimensions, the Fourier representations of the displacement components $u_x$ and $u_y$ take the form,
 \begin{subequations}
@@ -436,20 +451,20 @@ where we use the symmetry of the Oseen tensor $\hat{\mathbb{O}}_{xy}=\hat{\mathb
 
 By collecting terms, we obtain the shear stress propagator $\mathbb{G}_{xy}$, which describes the stress redistribution produced by a single plastic event in an infinite medium:
 \begin{equation}
-\tau_{xy}(\bm{r}) = \mu \int \mathbb{G}_{xy}(\bm{r}-\bm{r}') \epsilon_{xy}^{\mathrm{pl}}(\bm{r}') \, d\bm{r}',
+\tau_{xy}(\bm{r}) = 2\mu \int \mathbb{G}_{xy}(\bm{r}-\bm{r}') \epsilon_{xy}^{\mathrm{pl}}(\bm{r}') \, d^2\bm{r}',
 \end{equation}
 where the Fourier-space kernel is
 \begin{equation}
 \hat{\mathbb{G}}_{xy}(\bm{k}) = -4\frac{k_x^2 k_y^2}{k^4}.
 \label{eq:StressPropogator}
 \end{equation}
-We illustrate in \cref{fig:Propogator} the stress redistribution resulting from a single plastic event with $\epsilon_{xy}^{\mathrm{pl}} = -1$ at the origin.
+We illustrate in \cref{fig:Propogator} the response to a point plastic event centred at the origin, $\bm{r}_0=\bm{0}$. For this normalised plot, we use grid units in which the area of one element is unity and choose $a^2\epsilon_0=-1$. This unit value normalises the linear Green-function response and does not represent a physical strain of magnitude one; the response to a physical event with $|\epsilon_0| \ll 1$ is obtained by linear rescaling. Numerically, the plastic eigenstrain is assigned to the central grid element, Fourier transformed, multiplied by $2\mu\hat{\mathbb{G}}_{xy}(\bm{k})$, and transformed back to real space using the FFTW3 library \cite{Frigo2005}.
 
 \begin{figure}
     \centering
     \includegraphics[width=0.75\linewidth]{chapters/2-Background/Figures/Prop_512_inset17.pdf}
     %\missingfigure{Plot of Propagator}
-    \caption[Quadrupolar elastoplastic stress propagator]{Quadrupolar redistribution of shear stress $\tau_{xy}$ in two dimensions, after a single local plastic event in a system with $\mu=1$. The system is initialised with $\tau_{xy}=0$ everywhere; one central element is then yielded and set to $\tau_{xy}=-1$, after which mechanical equilibrium is enforced. The main panel shows the full $N_x\times N_y = 512\times512$ propagator, and the inset shows the central $17\times17$ region around the propagator.}
+    \caption[Quadrupolar elastoplastic stress propagator]{Quadrupolar redistribution of shear stress $\tau_{xy}$ in two dimensions following a normalised point plastic event in a system with $\mu=1$. The system is initially unstressed, and the discrete plastic eigenstrain is set to $-1$ at the central grid element and zero elsewhere. The plastic strain, rather than the stress, is prescribed at the central element; the resulting equilibrated stress field is calculated using the Fourier-space propagator. The main panel shows the full $N_x\times N_y=512\times512$ field, and the inset shows the central $17\times17$ region.}
     \label{fig:Propogator}
 \end{figure}
 
@@ -466,7 +481,7 @@ consistent with the quadrupolar Eshelby field for an elliptical inclusion \cite{
 
 The Eshelby stress propagator defined in \cref{eq:StressPropogator} is specified only up to an additive constant because of the singular mode at $\bm{k}=\bm{0}$. In practice, this constant is fixed by the boundary conditions. In a strain-controlled protocol, the total elastic strain is conserved. The zero mode is therefore chosen such that $\hat{\mathbb{G}}_{xy}(\bm{0}) = -1$, ensuring that the total stress relaxed by plastic events equals
 \[
-    \mu\int \epsilon_{xy}^{\mathrm{pl}}(\bm{r}^\prime) \, d\bm{r}^\prime.
+    2\mu\int \epsilon_{xy}^{\mathrm{pl}}(\bm{r}^\prime) \, d^2\bm{r}^\prime.
 \]
 
 By contrast, under stress-controlled conditions, we set $\hat{\mathbb{G}}_{xy}(\bm{0}) = 0$. In this case, no net stress is removed from the system; instead, the stress released by plastic deformation is compensated by elastic loading of the surrounding material \cite{nicolas_deformation_2018,martens_spontaneous_2012,jocteur_protocol_2025,lin_scaling_2014}.
@@ -697,7 +712,7 @@ The effects of these system-spanning force chains can be mitigated by a second f
 
 Packing-derived networks are computationally constructed from simulated packings of soft particles and are widely used as model disordered networks \cite{rens_rigidity_2019,wyart_elasticity_2008,lerner_unified_2012,shivers_normal_2019,shivers_scaling_2019,shivers_phase_2022}. In practice, these networks are generated numerically by minimising the total energy of a bidisperse ensemble of soft disks at densities above the jamming transition $\phi_J$ \cite{Hernjamming2003,BoyerJamming2011,ikeda_unified_2012}, after which the contact network of overlapping particles is extracted and used to define the network connectivity. This procedure provides an idealised disordered topology and does not correspond to a specific experimental realisation, but instead serves as a controlled model for studying generic features of fibre and elastic networks.
 
-Each disk is initially placed at a random position within a square periodic domain of size $L_x=L_y=\sqrt{N}$, with radii drawn from a bidisperse distribution with values $R_0$ and $fR_0$ in equal proportion. The bidispersity parameter $f$ is chosen to suppress crystallisation and inhibit the formation of long-range positional order; a commonly adopted value, and the one used throughout this thesis, is $f=1.4$. Such bidisperse mixtures are well known to produce amorphous packings with minimal macroscopic ordering \cite{van_hecke_jamming_2010, chacko_slow_2019, desmond_random_2009, koezeMappingJammingTransition2016}. 
+Each disk is initially placed at a random position within a square periodic domain of size $L_x=L_y=\sqrt{N}$, with radii drawn from a bidisperse distribution with values $R_0$ and $fR_0$ in equal proportion. The bidispersity parameter $f$ is chosen to suppress crystallisation and inhibit the formation of long-range positional order; a commonly adopted value, and the one used throughout this thesis, is $f=1.4$. Such bidisperse mixtures are well known to produce amorphous packings with minimal macroscopic ordering \cite{van_hecke_jamming_2010, chacko_slow_2019, desmond_random_2009, koezeMappingJammingTransition2016}. Bidispersity does not, however, make the packing completely structureless: the two discrete particle sizes introduce preferred microscopic length scales, and their size ratio and relative abundance influence short-range order, contact statistics, and the jamming point \cite{koezeMappingJammingTransition2016}. A continuously polydisperse construction would replace these two length scales with a broader distribution of particle and bond lengths and could therefore alter the local coordination statistics and the resulting network topology, although the same contact-network construction procedure would apply.
 
 The base radius $R_0$ is then rescaled so that the total particle area matches the prescribed packing fraction $\phi$ within the simulation box. While several forms of soft-disk interaction potentials have been proposed in the literature, we adopt the form used in Ref.~\cite{chacko_slow_2019}. In this model, overlapping disks interact via a purely repulsive pair potential given by
 \begin{equation}
@@ -755,7 +770,7 @@ Dangling components, shown in panel (a) of \cref{fig:PruningNetworks}, consist o
 
 Once a clean network has been generated, it can be pruned to reduce its average connectivity. This procedure is analogous to the bond dilution used in lattice-based networks to introduce disorder, although additional care is required due to the intrinsic positional disorder already present.
 
-Bonds are removed selectively based on the local pair connectivity $z_{ij}=z_i+z_j$, where $z_i$ and $z_j$ denote the coordination numbers (i.e. the number of bonds) of the nodes connected by bond $(i,j)$. Bonds associated with the most highly connected node pairs are preferentially pruned to minimise spatial heterogeneity in the coordination field \cite{wyart_elasticity_2008, lerner_breakdown_2014}. This process is repeated until the target average connectivity is reached. Any dangling or disconnected components that emerge during pruning are identified and removed as they are created.
+Bonds are removed selectively based on the local pair connectivity $z_{ij}=z_i+z_j$, where $z_i$ and $z_j$ denote the coordination numbers (i.e. the number of bonds) of the nodes connected by bond $(i,j)$. At each pruning step, $z_{ij}$ is recalculated for every remaining bond and the maximum value $z_{\max}$ is identified. One bond is then selected uniformly at random from the set of bonds satisfying $z_{ij}=z_{\max}$ and removed. The selection is therefore deterministic with respect to pair connectivity but stochastic among equally ranked candidate bonds. This preferential removal of bonds between highly connected nodes limits spatial heterogeneity in the coordination field \cite{wyart_elasticity_2008,lerner_breakdown_2014}. Following each removal, the coordination numbers are updated and any newly formed dangling or disconnected components are removed. The procedure is repeated until the target average connectivity is reached.
 
 \subsection{Calculating Stress} \label{sec:virialStress}
 
@@ -800,7 +815,7 @@ where $\bm{r}_{mn}=\bm{r}_n-\bm{r}_m$. The Heaviside factor in \cref{eq:virialDe
 
 The derivation above extends trivially to three dimensions, where instead force contributions above and below an arbitrary plane perpendicular to the $j$-axis are considered. Calculating the stress by this approach eliminates the computation of numerical derivatives and is more computationally efficient, because both $\bm{r}_{ij}$ and $\bm{f}_{ij}$ are already calculated at each timestep when evaluating the system's dynamics. A more thorough derivation of the virial stress tensor, including fluid effects, can be found in Ref.~\cite{yang_generalized_2012}.
 
-\subsection{Generalised Lees--Edwards Boundary Conditions} \label{sec:Lees-Edwards}
+\subsection{Lees--Edwards Boundary Conditions} \label{sec:Lees-Edwards}
 
 When studying rheology, we aim to characterise a material's response to an imposed bulk stress or strain. In experimental settings, this is typically achieved by placing a sample of the material in a rheometer and imposing the desired loading or deformation through the motion of one or more boundaries. To ensure that the measured response reflects the bulk behaviour, samples are typically made sufficiently large that edge effects do not dominate the physics.
 
@@ -831,12 +846,15 @@ While this method permits arbitrary homogeneous deformations, it can be computat
 
 To impose shear in the $x$ direction using Lees--Edwards boundary conditions, particle positions $\mathbf{r}_i=(x_i,y_i)$ are affinely transformed according to
 \begin{equation}
-    \begin{pmatrix}x_i \\ y_i
-    \end{pmatrix} \to 
-    \begin{pmatrix}x_i + \gamma y_i \\ y_i
+    \begin{pmatrix}
+        x_i \\ y_i
     \end{pmatrix}
+    \to
+    \begin{pmatrix}
+        x_i+\gamma y_i \\ y_i
+    \end{pmatrix},
 \end{equation}
-whilst periodic images are shifted by an amount $\gamma L_y$ between adjacent rows, as shown in \cref{fig:Lees-Edwards}. This construction is computationally advantageous because the primary simulation cell remains orthogonal. Implementation details can be found in Ref.~\cite{allen_computer_2017}.
+while periodic images in adjacent rows are displaced by $\gamma L_y$, as illustrated in \cref{fig:Lees-Edwards}. We use this representation as it retains the orthogonal primary simulation cell and allows periodic bond vectors, including those crossing the cell boundaries, to be calculated using simple shear-dependent image shifts. This avoids the complex basis transformations and increasingly skewed simulation cell associated with an explicitly triclinic representation needed to calculate minimum-image distances. The imposed therefore only changes the geometry of each bond but not the network connectivity; bonds are removed only when the relevant failure criterion is satisfied. Further implementation details can be found in Ref.~\cite{allen_computer_2017}.
 
 \section{Units and Parameters}
 For the network simulations considered in this thesis, we work in units where the drag coefficient and filament stretching modulus are set to $\zeta = 1$ and $\mu = 1$, respectively, thereby fixing the characteristic viscous and elastic scales used throughout the network models. The reference length scale depends on the network construction: for lattice-based networks, the bond rest length is taken to be unity, whereas for packing-derived networks, the system size is taken to be $L_x = L_y = \sqrt{N}$, where $N$ is the number of nodes used to generate the initial packing. Unless stated otherwise, these packings are generated at packing fraction $\phi = 1$ with bidispersity parameter $f = 1.4$, which yields unpruned single networks with average connectivity $z \approx 5.4$. For the adaptive time-stepping scheme introduced in \cref{sec:EulerHeun}, we use an absolute error tolerance of $\tau = 10^{-4}$ and impose a maximum time step of $\delta t_{\max} = 0.1$.
