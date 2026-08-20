@@ -2,7 +2,7 @@
 
 Generated from `Walker001052830_corrections.pdf`. Each source link points to the current likely edit location. Check the contextual extraction if an annotation covers a figure or a broad section.
 
-Progress: **44 / 61 corrections marked complete (17 remaining)**. Recheck these after rebuilding the thesis PDF.
+Progress: **48 / 63 corrections marked complete (15 remaining)**. Recheck these after rebuilding the thesis PDF.
 
 ## Theoretical Framework and Methods
 
@@ -74,7 +74,7 @@ Progress: **44 / 61 corrections marked complete (17 remaining)**. Recheck these 
 - [x] **C22 · PDF p. 78 · Methodology** — Credit Pollard and Fielding when introducing the base elastoplastic model.  
   Source: [`chapters/Fatigue/chapter.tex:63`](chapters/Fatigue/chapter.tex#L63)
 
-- [ ] **C23 · PDF p. 79 · Methodology** — Explain or qualify the assumption of affine loading between plastic events; cite prior model work if available.  
+- [x] **C23 · PDF p. 79 · Methodology** — Explain or qualify the assumption of affine loading between plastic events; cite prior model work if available.  
   Source: [`chapters/Fatigue/chapter.tex:79`](chapters/Fatigue/chapter.tex#L79)
 
 - [x] **C24 · PDF p. 79 · Methodology** — Add a sentence explaining how the unit yielding strain is compatible with the small-strain formulation.  
@@ -83,7 +83,7 @@ Progress: **44 / 61 corrections marked complete (17 remaining)**. Recheck these 
 - [x] **C25 · PDF p. 86 · Shear Startup** — State explicitly that convergence of the shear-startup response as N→∞ remains an open question and qualify any interpretation.  
   Source: [`chapters/Fatigue/chapter.tex:182`](chapters/Fatigue/chapter.tex#L182)
 
-- [ ] **C26 · PDF p. 88 · Oscillatory shear results** — Explain whether the conclusions depend on Gaussian tails and why a Gaussian initial distribution is appropriate.  
+- [x] **C26 · PDF p. 88 · Oscillatory shear results** — Explain whether the conclusions depend on Gaussian tails and why a Gaussian initial distribution is appropriate.  
   Source: [`chapters/Fatigue/chapter.tex:208`](chapters/Fatigue/chapter.tex#L208)
 
 - [x] **C27 · PDF p. 94 · Oscillatory shear results** — Reword the claim about long-lived failing trajectories so it agrees with the plotted absorption and yielding cycle counts.  
@@ -95,7 +95,7 @@ Progress: **44 / 61 corrections marked complete (17 remaining)**. Recheck these 
 - [x] **C29 · PDF p. 95 · Oscillatory shear results** — Move the formal definition of the survival function to its first mention.  
   Source: [`chapters/Fatigue/chapter.tex:278`](chapters/Fatigue/chapter.tex#L278)
 
-- [ ] **C30 · PDF p. 99 · Robustness to $$ and $N$** — Add a legend identifying the curves for each post-hop width l_w.  
+- [x] **C30 · PDF p. 99 · Robustness to $$ and $N$** — Add a legend identifying the curves for each post-hop width l_w.  
   Source: [`chapters/Fatigue/chapter.tex:310`](chapters/Fatigue/chapter.tex#L310)
 
 - [x] **C31 · PDF p. 101 · Robustness to $$ and $N$** — Add a legend identifying the curves for each system size N.  
@@ -154,7 +154,7 @@ Progress: **44 / 61 corrections marked complete (17 remaining)**. Recheck these 
 - [x] **C48 · PDF p. 144 · Direction of Fracture Propagation** — Do not call this a failure mechanism until the mechanism has been explained; rephrase or add the missing explanation.  
   Source: [`chapters/UltraDelayedFracture/chapter.tex:349`](chapters/UltraDelayedFracture/chapter.tex#L349)
 
-- [ ] **C49 · PDF p. 145 · Direction of Fracture Propagation** — Swap panel labels (a) and (b); consider adding affinely deformed-state panels showing maximally stretched bond directions and their perpendiculars.  
+- [x] **C49 · PDF p. 145 · Direction of Fracture Propagation** — Swap panel labels (a) and (b); consider adding affinely deformed-state panels showing maximally stretched bond directions and their perpendiculars.  
   Source: [`chapters/UltraDelayedFracture/chapter.tex:354`](chapters/UltraDelayedFracture/chapter.tex#L354)
 
 - [x] **C50 · PDF p. 146 · Conclusion** — Add any defensible qualitative or quantitative comparison with Lockwood et al. beyond the generic observation of delayed fracture.  
@@ -196,3 +196,8 @@ Progress: **44 / 61 corrections marked complete (17 remaining)**. Recheck these 
 
 - [ ] **C61 · Oscillatory-shear figures and appendix** — Populate the simulation-ensemble appendix with the exact number of independent realisations used for each parameter combination in the fatigue results. The chapter and figure captions currently give the scale (more than $10{,}000$ realisations for the principal sweeps, with $2{,}500$ for $N=2048$) and refer to the appendix.  
   Sources: [`chapters/Fatigue/chapter.tex:218`](chapters/Fatigue/chapter.tex#L218), [`appendices/FatigueSampleCounts/appendix.tex`](appendices/FatigueSampleCounts/appendix.tex)
+
+- [ ] **C62 · Bibliography** — Fix the Bibliography mistakes highlighted by andrew
+
+- [ ] **C63 · Bibliography** — Add in Convergence Data
+
