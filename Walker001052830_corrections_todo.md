@@ -2,7 +2,7 @@
 
 Generated from `Walker001052830_corrections.pdf`. Each source link points to the current likely edit location. Check the contextual extraction if an annotation covers a figure or a broad section.
 
-Progress: **38 / 60 corrections marked complete (22 remaining)**. Recheck these after rebuilding the thesis PDF.
+Progress: **44 / 61 corrections marked complete (17 remaining)**. Recheck these after rebuilding the thesis PDF.
 
 ## Theoretical Framework and Methods
 
@@ -86,7 +86,7 @@ Progress: **38 / 60 corrections marked complete (22 remaining)**. Recheck these 
 - [ ] **C26 · PDF p. 88 · Oscillatory shear results** — Explain whether the conclusions depend on Gaussian tails and why a Gaussian initial distribution is appropriate.  
   Source: [`chapters/Fatigue/chapter.tex:208`](chapters/Fatigue/chapter.tex#L208)
 
-- [ ] **C27 · PDF p. 94 · Oscillatory shear results** — Reword the claim about long-lived failing trajectories so it agrees with the plotted absorption and yielding cycle counts.  
+- [x] **C27 · PDF p. 94 · Oscillatory shear results** — Reword the claim about long-lived failing trajectories so it agrees with the plotted absorption and yielding cycle counts.  
   Source: [`chapters/Fatigue/chapter.tex:264`](chapters/Fatigue/chapter.tex#L264)
 
 - [x] **C28 · PDF p. 95 · Oscillatory shear results** — Define the survival function before first using it.  
@@ -119,8 +119,8 @@ Progress: **38 / 60 corrections marked complete (22 remaining)**. Recheck these 
 - [ ] **C37 · PDF p. 113 · The Dilute Model** — Describe how the dilute-model data in Fig. 3.15 were generated, including simulation procedure and parameters.  
   Source: [`chapters/Fatigue/chapter.tex:494`](chapters/Fatigue/chapter.tex#L494)
 
-- [x] **C38 · PDF p. 114 · The Dilute Model** — Clarify that the full-model curves include only trajectories ending in absorption, if that is the case.  
-  Source: [`chapters/Fatigue/chapter.tex:506`](chapters/Fatigue/chapter.tex#L506) — appears addressed in the current source; verify in rebuilt PDF
+- [ ] **C38 · PDF p. 114 · The Dilute Model** — Clarify that the full-model curves include only trajectories ending in absorption, if that is the case.  
+  Source: [`chapters/Fatigue/chapter.tex:506`](chapters/Fatigue/chapter.tex#L506)
 
 ## Ultradelayed Fracture After Step Strain
 
@@ -131,7 +131,7 @@ Progress: **38 / 60 corrections marked complete (22 remaining)**. Recheck these 
   Source: [`chapters/UltraDelayedFracture/chapter.tex:34`](chapters/UltraDelayedFracture/chapter.tex#L34)
 
 - [x] **C41 · PDF p. 125 · Introduction** — Replace or supplement the SGR citation with existing literature on thermally activated bond-breaking models; avoid implying SGR is the primary origin.  
-  Source: [`chapters/UltraDelayedFracture/chapter.tex:52`](chapters/UltraDelayedFracture/chapter.tex#L52) — appears addressed in the current source; verify in rebuilt PDF
+  Source: [`chapters/UltraDelayedFracture/chapter.tex:52`](chapters/UltraDelayedFracture/chapter.tex#L52)
 
 - [x] **C42 · PDF p. 126 · Rate Dependent Fracture** — Optionally note that a Gillespie-style event-driven algorithm could improve computational efficiency.  
   Source: [`chapters/UltraDelayedFracture/chapter.tex:126`](chapters/UltraDelayedFracture/chapter.tex#L126)
@@ -145,19 +145,19 @@ Progress: **38 / 60 corrections marked complete (22 remaining)**. Recheck these 
 - [x] **C45 · PDF p. 132 · Stress Response** — Write log(t*)∼1/T or, dimensionally, t*∼exp(A/T) with an activation parameter A.  
   Source: [`chapters/UltraDelayedFracture/chapter.tex:184`](chapters/UltraDelayedFracture/chapter.tex#L184)
 
-- [ ] **C46 · PDF p. 133 · Stress Response** — Consider extracting and reporting an apparent activation energy from the temperature dependence.  
+- [x] **C46 · PDF p. 133 · Stress Response** — Consider extracting and reporting an apparent activation energy from the temperature dependence.  
   Source: [`chapters/UltraDelayedFracture/chapter.tex:189`](chapters/UltraDelayedFracture/chapter.tex#L189)
 
-- [ ] **C47 · PDF p. 135 · Low Strain Regime** — Check panel (d): relabel it as the number of broken bonds if it is not a fraction.  
+- [x] **C47 · PDF p. 135 · Low Strain Regime** — Check panel (d): relabel it as the number of broken bonds if it is not a fraction.  
   Source: [`chapters/UltraDelayedFracture/chapter.tex:213`](chapters/UltraDelayedFracture/chapter.tex#L213)
 
-- [ ] **C48 · PDF p. 144 · Direction of Fracture Propagation** — Do not call this a failure mechanism until the mechanism has been explained; rephrase or add the missing explanation.  
+- [x] **C48 · PDF p. 144 · Direction of Fracture Propagation** — Do not call this a failure mechanism until the mechanism has been explained; rephrase or add the missing explanation.  
   Source: [`chapters/UltraDelayedFracture/chapter.tex:349`](chapters/UltraDelayedFracture/chapter.tex#L349)
 
 - [ ] **C49 · PDF p. 145 · Direction of Fracture Propagation** — Swap panel labels (a) and (b); consider adding affinely deformed-state panels showing maximally stretched bond directions and their perpendiculars.  
   Source: [`chapters/UltraDelayedFracture/chapter.tex:354`](chapters/UltraDelayedFracture/chapter.tex#L354)
 
-- [ ] **C50 · PDF p. 146 · Conclusion** — Add any defensible qualitative or quantitative comparison with Lockwood et al. beyond the generic observation of delayed fracture.  
+- [x] **C50 · PDF p. 146 · Conclusion** — Add any defensible qualitative or quantitative comparison with Lockwood et al. beyond the generic observation of delayed fracture.  
   Source: [`chapters/UltraDelayedFracture/chapter.tex:368`](chapters/UltraDelayedFracture/chapter.tex#L368)
 
 ## Toughness of Double-Network Materials
@@ -191,3 +191,8 @@ Progress: **38 / 60 corrections marked complete (22 remaining)**. Recheck these 
 
 - [ ] **C60 · PDF p. 180 · Conclusion** — Qualify the claim that the model isolates the “key” fracture mechanisms and relate it to pre-notched fracture-toughness tests and large crack-tip damage zones.  
   Source: [`chapters/DoubleNetworkFracture/chapter.tex:274`](chapters/DoubleNetworkFracture/chapter.tex#L274)
+
+## Additional correction
+
+- [ ] **C61 · Oscillatory-shear figures and appendix** — Populate the simulation-ensemble appendix with the exact number of independent realisations used for each parameter combination in the fatigue results. The chapter and figure captions currently give the scale (more than $10{,}000$ realisations for the principal sweeps, with $2{,}500$ for $N=2048$) and refer to the appendix.  
+  Sources: [`chapters/Fatigue/chapter.tex:218`](chapters/Fatigue/chapter.tex#L218), [`appendices/FatigueSampleCounts/appendix.tex`](appendices/FatigueSampleCounts/appendix.tex)
