@@ -171,25 +171,25 @@ Progress: **51 / 63 corrections marked complete (12 remaining)**. Recheck these 
 - [x] **C53 · PDF p. 165 · Stress-Strain Response** — Correct the comparison: double networks can have greater toughness and failure strain than either constituent single network.  
   Source: [`chapters/DoubleNetworkFracture/chapter.tex:90`](chapters/DoubleNetworkFracture/chapter.tex#L90)
 
-- [ ] **C54 · PDF p. 167 · Stress-Strain Response** — Revisit criterion I against Ref. 28 and the much larger experimental failure strains of double networks.  
+- [x] **C54 · PDF p. 167 · Stress-Strain Response** — Revisit criterion I against Ref. 28 and the much larger experimental failure strains of double networks.  
   Source: [`chapters/DoubleNetworkFracture/chapter.tex:126`](chapters/DoubleNetworkFracture/chapter.tex#L126)
 
-- [ ] **C55 · PDF p. 171 · Stress Propagation** — Explain why the double network is tougher than a matrix-only single network, not only why it outperforms the sacrificial network.  
+- [] **C55 · PDF p. 171 · Stress Propagation** — Explain why the double network is tougher than a matrix-only single network, not only why it outperforms the sacrificial network.  
   Source: [`chapters/DoubleNetworkFracture/chapter.tex:182`](chapters/DoubleNetworkFracture/chapter.tex#L182)
 
-- [ ] **C56 · PDF p. 173 · Stress Propagation** — Include the matrix-only single network in the stress-propagation comparison or explain the limitation.  
+- [] **C56 · PDF p. 173 · Stress Propagation** — Include the matrix-only single network in the stress-propagation comparison or explain the limitation.  
   Source: [`chapters/DoubleNetworkFracture/chapter.tex:202`](chapters/DoubleNetworkFracture/chapter.tex#L202)
 
 - [ ] **C57 · PDF p. 177 · Conclusion** — Reframe the conclusion around why the double network outperforms the matrix-only network as well as the sacrificial network.  
   Source: [`chapters/DoubleNetworkFracture/chapter.tex:251`](chapters/DoubleNetworkFracture/chapter.tex#L251)
 
-- [ ] **C58 · PDF p. 177 · Conclusion** — Discuss whether moving from two to three dimensions is expected to alter the conclusions.  
+- [x] **C58 · PDF p. 177 · Conclusion** — Discuss whether moving from two to three dimensions is expected to alter the conclusions.  
   Source: [`chapters/DoubleNetworkFracture/chapter.tex:253`](chapters/DoubleNetworkFracture/chapter.tex#L253)
 
-- [ ] **C59 · PDF p. 178 · Conclusion** — Discuss how entropic elasticity in real gels may change the model predictions.  
+- [x] **C59 · PDF p. 178 · Conclusion** — Discuss how entropic elasticity in real gels may change the model predictions.  
   Source: [`chapters/DoubleNetworkFracture/chapter.tex:255`](chapters/DoubleNetworkFracture/chapter.tex#L255)
 
-- [ ] **C60 · PDF p. 180 · Conclusion** — Qualify the claim that the model isolates the “key” fracture mechanisms and relate it to pre-notched fracture-toughness tests and large crack-tip damage zones.  
+- [x] **C60 · PDF p. 180 · Conclusion** — Qualify the claim that the model isolates the “key” fracture mechanisms and relate it to pre-notched fracture-toughness tests and large crack-tip damage zones.  
   Source: [`chapters/DoubleNetworkFracture/chapter.tex:274`](chapters/DoubleNetworkFracture/chapter.tex#L274)
 
 ## Additional correction
