@@ -2,7 +2,7 @@
 
 Generated from `Walker001052830_corrections.pdf`. Each source link points to the current likely edit location. Check the contextual extraction if an annotation covers a figure or a broad section.
 
-Progress: **48 / 63 corrections marked complete (15 remaining)**. Recheck these after rebuilding the thesis PDF.
+Progress: **51 / 63 corrections marked complete (12 remaining)**. Recheck these after rebuilding the thesis PDF.
 
 ## Theoretical Framework and Methods
 
@@ -110,16 +110,16 @@ Progress: **48 / 63 corrections marked complete (15 remaining)**. Recheck these 
 - [x] **C34 · PDF p. 105 · Path to a Single Active Element** — Check why all plotted curves appear to end at C*=200 and extend or explain the y-axis range.  
   Source: [`chapters/Fatigue/chapter.tex:393`](chapters/Fatigue/chapter.tex#L393)
 
-- [ ] **C35 · PDF p. 108 · Path to a Single Active Element** — Elaborate on the condition under which an element yields again on the next half-cycle.  
+- [x] **C35 · PDF p. 108 · Path to a Single Active Element** — Elaborate on the condition under which an element yields again on the next half-cycle.  
   Source: [`chapters/Fatigue/chapter.tex:434`](chapters/Fatigue/chapter.tex#L434)
 
-- [ ] **C36 · PDF p. 108 · Path to a Single Active Element** — Explain the evolution of the local strain over a full cycle, first for zero post-hop noise and then with noise; state when one or both half-cycles yield and when absorption occurs.  
+- [x] **C36 · PDF p. 108 · Path to a Single Active Element** — Explain the evolution of the local strain over a full cycle, first for zero post-hop noise and then with noise; state when one or both half-cycles yield and when absorption occurs.  
   Source: [`chapters/Fatigue/chapter.tex:434`](chapters/Fatigue/chapter.tex#L434)
 
-- [ ] **C37 · PDF p. 113 · The Dilute Model** — Describe how the dilute-model data in Fig. 3.15 were generated, including simulation procedure and parameters.  
+- [x] **C37 · PDF p. 113 · The Dilute Model** — Describe how the dilute-model data in Fig. 3.15 were generated, including simulation procedure and parameters.  
   Source: [`chapters/Fatigue/chapter.tex:494`](chapters/Fatigue/chapter.tex#L494)
 
-- [ ] **C38 · PDF p. 114 · The Dilute Model** — Clarify that the full-model curves include only trajectories ending in absorption, if that is the case.  
+- [x] **C38 · PDF p. 114 · The Dilute Model** — Clarify that the full-model curves include only trajectories ending in absorption, if that is the case.  
   Source: [`chapters/Fatigue/chapter.tex:506`](chapters/Fatigue/chapter.tex#L506)
 
 ## Ultradelayed Fracture After Step Strain

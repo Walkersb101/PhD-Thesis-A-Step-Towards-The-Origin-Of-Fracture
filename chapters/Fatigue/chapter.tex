@@ -410,7 +410,6 @@ progressively smaller values. Samples that survive many cycles typically contain
 
 The same qualitative behaviour is observed across different levels of annealing, as shown in \cref{fig:Pathto1}b for parameter sets chosen such that $\CycleNineFive \approx 200$ (the closest value in the dataset). In all cases, the dynamics consist of a rapid initial depletion of active elements followed by a much slower decay at an approximately constant rate. The initial fraction of active elements is determined by the portion of the initial strain distribution that lies within the active region, which depends on both the oscillation amplitude $\gammaMax$ and the initial width of the distribution $l_0$. The ultimate decay rate is therefore controlled by three parameters: the imposed strain amplitude $\gammaMax$, which sets the width of the active region; the post-hop width $\lw$, which controls the typical step size; and the initial disorder $l_0$, which determines the width of the initial strain distribution.
 
-
 This behaviour admits a simple physical interpretation. Once the number of active elements becomes sufficiently small, plastic events are well separated in space, so the elastic interactions between them are weak due to the $1/r^D$ decay of the Eshelby propagator. In this regime, the cumulative stress increments induced by distant events are small compared to the local stochastic updates from yielding, so the dynamics of different active elements become approximately independent. This justifies treating the late-time dynamics in a dilute limit, in which the decay of $\Factive$ reflects the stochastic evolution of effectively independent elements governed by the post-hop strain distribution.
 
 \subsection*{Self-Interaction of an Active Element}
@@ -423,7 +422,7 @@ When an element yields, the stress released by the event is redistributed elasti
 \]
 in the thermodynamic limit $N\to\infty$, although this quickly converges as shown in \cref{fig:PropogatorConvergence}.
 
-In our model, the local yield thresholds correspond to $l_c=\pm 1$. For clarity, the discussion which follows considers the $l_c= 1$ threshold; the cases for $l_c=-1$ follow by symmetry. When an element yields, its local strain $\eta$ is redrawn from the post-hop distribution, which we take to be Gaussian of width $\lw$ and mean $0$,
+In our model, the local yield thresholds correspond to $l_c=\pm 1$. For clarity, the discussion which follows considers the $l_c=1$ threshold; the case for $l_c=-1$ follows by symmetry. When an element yields, its local strain $\eta$ is redrawn from the post-hop distribution, which we take to be Gaussian of width $\lw$ and mean $0$,
 \[
  \eta \sim \mathcal{N}(0,\lw^2).
 \]
@@ -431,18 +430,76 @@ Immediately after the yielding event (before force balance), the element therefo
 \[
 \Delta l = |\Origin|(1-\eta)
 \]
-and the element will then have a local strain,
+and the element will then have a local strain
 \[
 l = 1 - |\Origin|(1-\eta).
 \]
 
-If this yielding event does not cause the element to be absorbed, the element will yield again on the next half-cycle. This second event occurs at the opposite threshold $l_c=-1$, and therefore produces a stress change of opposite sign. Over one full oscillation cycle, the net stress increment is therefore
+To understand when this element will yield again during the same oscillation cycle, it is useful first to consider the deterministic limit $\lw=0$. Consider an element with value $\ltilde_0$ at the start of a cycle, where $\gamma=0$, on the positive side of the strain distribution. During the forward stroke, the global strain increases to $\gammaMax$, and the element reaches the positive yield threshold if
 \[
-    \Delta l = |\Origin|(\eta_1-\eta_2) \sim \mathcal{N}(0, 2|\Origin|^2\lw^2)
+    \ltilde_0+\gammaMax \geq 1,
+\]
+or equivalently
+\[
+    \ltilde_0 \geq 1-\gammaMax.
+\]
+In the absence of post-hop noise, $\eta=0$, so after yielding the self-interaction shifts the element to
+\[
+    \ltilde_1=\ltilde_0-|\Origin|.
+\]
+As the applied strain is subsequently reversed, this element will reach the opposite threshold $l_c=-1$ provided
+\[
+    \ltilde_1-\gammaMax\leq -1.
+\]
+Combining these conditions, an element yields once on both the positive and negative strokes when
+\[
+    1-\gammaMax
+    \leq \ltilde_0
+    \leq -1+\gammaMax+|\Origin|.
+\]
+
+\begin{figure}[t!]
+    \centering
+    \includegraphics[width=0.95\linewidth]{chapters/Fatigue/RandomWalk/YieldRegions.pdf}
+    \caption[Regions governing the evolution of an active element under oscillatory strain.]{ Distinct regions of $\ltilde$ governing the evolution of an element under oscillatory strain in the deterministic limit $\lw=0$. Elements in the central green region cannot be strained sufficiently to yield and are therefore absorbed. Elements in the blue regions yield on one half-cycle and are mapped into the opposite blue region, allowing them to yield again on the following half-cycle. Elements in the yellow regions yield but are mapped into the central absorbed region. Elements in the red regions have sufficiently large $|\ltilde|$ to yield more than once during a single stroke, with repeated yielding reducing $|\ltilde|$ until the element enters either a blue or yellow region. The Gaussian profile is shown schematically for clarity and is not intended to represent the instantaneous distribution of $\ltilde$, which will in general be non-Gaussian and vary throughout the oscillation cycle. }
+    \label{fig:YieldRegions}
+\end{figure}
+
+The different possible trajectories are illustrated in \cref{fig:YieldRegions}. Elements in the central green region,
+\[
+    -1+\gammaMax < \ltilde < 1-\gammaMax,
+\]
+cannot reach either yield threshold under the imposed strain and are therefore absorbed. Elements in the blue regions can yield and are mapped by their self-interaction into the corresponding blue region of opposite sign. An element starting in the positive blue region therefore yields during the forward stroke and again during the negative stroke. In the deterministic limit, the two self-interactions have equal magnitude and opposite sign, returning the element to its initial value of $\ltilde$ after a complete cycle.
+
+By contrast, an element in one of the yellow regions yields but is mapped into the central absorbed region. For example, following a yielding event at the positive threshold, if
+\[
+    -1+\gammaMax < \ltilde_1 < 1-\gammaMax,
+\]
+the remaining negative stroke is insufficient to bring the element to $l_c=-1$. It therefore yields only on the first half-cycle and subsequently remains absorbed. Elements in the red regions have sufficiently large $|\ltilde|$ that a single yielding event does not move them out of the active region on the same side. They can therefore yield multiple times during a single stroke, with each event reducing $|\ltilde|$ until they enter either a blue region, where they subsequently oscillate between the two thresholds, or a yellow region, where they become absorbed.
+
+For the long-lived trajectories of interest here, an element in the positive blue region therefore occupies the interval
+\[
+    1-\gammaMax
+    \leq \ltilde
+    \leq -1+\gammaMax+|\Origin|
+\]
+when viewed stroboscopically at the start of each cycle. In the deterministic limit, an element within this interval follows the same trajectory indefinitely. Crossing the lower boundary places it in the central region where it can no longer reach the positive threshold, while crossing the upper boundary causes the next yielding event to map it into the absorbed region. These two routes provide the two boundaries through which the single-element dynamics can terminate.
+
+For a finite post-hop width $\lw$, this simple mapping becomes stochastic. Following a yielding event at the positive threshold,
+\[
+    \ltilde_1
+    =
+    \ltilde_0-|\Origin|(1-\eta_1),
+\]
+so whether the element is mapped into the opposite active region or into the absorbed region depends on the particular post-hop sample $\eta_1$. An element close to the boundaries between the regions in \cref{fig:YieldRegions} can therefore either continue to yield or become absorbed. If the first event maps the element into the opposite active region, it reaches $l_c=-1$ during the subsequent negative stroke and yields for a second time. The second post-hop sample then introduces a further stochastic displacement and can likewise move the element towards, or into, the absorbed region.
+
+Conditional on the element yielding on both half-cycles, the second event occurs at the opposite threshold $l_c=-1$ and therefore produces a stress change of opposite sign. Over one full oscillation cycle, the net stress increment is
+\[
+    \Delta l = |\Origin|(\eta_1+\eta_2) \sim \mathcal{N}(0, 2|\Origin|^2\lw^2),
 \] 
 where $\eta_1$ and $\eta_2$ are independent post-hop samples drawn on the positive and negative half-cycles, respectively. Since both are independent zero-mean Gaussian variables, their difference is also Gaussian with variance $2\lw^2|\Origin|^2$.
 
-The key consequence is that the deterministic stress relaxation over the two half-cycles cancels, while the stochastic contributions from the post-hop distribution accumulate. The strain of the element therefore performs a random walk when viewed stroboscopically from cycle to cycle.
+The key consequence is that the deterministic stress relaxation over the two half-cycles cancels, while the stochastic contributions from the post-hop distribution accumulate. The strain of an element that remains active therefore performs a random walk when viewed stroboscopically from cycle to cycle.
 
 \begin{figure}[t!]
     \centering
