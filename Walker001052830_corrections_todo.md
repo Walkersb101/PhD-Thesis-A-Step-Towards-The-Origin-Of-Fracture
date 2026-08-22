@@ -2,7 +2,7 @@
 
 Generated from `Walker001052830_corrections.pdf`. Each source link points to the current likely edit location. Check the contextual extraction if an annotation covers a figure or a broad section.
 
-Progress: **51 / 63 corrections marked complete (12 remaining)**. Recheck these after rebuilding the thesis PDF.
+Progress: **60 / 63 corrections marked complete (3 remaining)**.
 
 ## Theoretical Framework and Methods
 
@@ -162,7 +162,7 @@ Progress: **51 / 63 corrections marked complete (12 remaining)**. Recheck these 
 
 ## Toughness of Double-Network Materials
 
-- [ ] **C51 · PDF p. 156 · Toughness of Double Network Hydrogels** — Reframe the chapter against fracture-toughness literature: compare the double network with both constituent single networks and discuss crack-tip damage zones and missing multiscale crack propagation.  
+- [x] **C51 · PDF p. 156 · Toughness of Double Network Hydrogels** — Reframe the chapter against fracture-toughness literature: compare the double network with both constituent single networks and discuss crack-tip damage zones and missing multiscale crack propagation.  
   Source: [`chapters/DoubleNetworkFracture/chapter.tex:4`](chapters/DoubleNetworkFracture/chapter.tex#L4)
 
 - [x] **C52 · PDF p. 160 · Packing-Derived Double Networks** — Explain what was done operationally to “ensure a homogeneous distribution”, or remove “taking care”.  
@@ -174,13 +174,13 @@ Progress: **51 / 63 corrections marked complete (12 remaining)**. Recheck these 
 - [x] **C54 · PDF p. 167 · Stress-Strain Response** — Revisit criterion I against Ref. 28 and the much larger experimental failure strains of double networks.  
   Source: [`chapters/DoubleNetworkFracture/chapter.tex:126`](chapters/DoubleNetworkFracture/chapter.tex#L126)
 
-- [] **C55 · PDF p. 171 · Stress Propagation** — Explain why the double network is tougher than a matrix-only single network, not only why it outperforms the sacrificial network.  
+- [x] **C55 · PDF p. 171 · Stress Propagation** — Explain why the double network is tougher than a matrix-only single network, not only why it outperforms the sacrificial network.  
   Source: [`chapters/DoubleNetworkFracture/chapter.tex:182`](chapters/DoubleNetworkFracture/chapter.tex#L182)
 
-- [] **C56 · PDF p. 173 · Stress Propagation** — Include the matrix-only single network in the stress-propagation comparison or explain the limitation.  
+- [x] **C56 · PDF p. 173 · Stress Propagation** — Include the matrix-only single network in the stress-propagation comparison or explain the limitation.  
   Source: [`chapters/DoubleNetworkFracture/chapter.tex:202`](chapters/DoubleNetworkFracture/chapter.tex#L202)
 
-- [ ] **C57 · PDF p. 177 · Conclusion** — Reframe the conclusion around why the double network outperforms the matrix-only network as well as the sacrificial network.  
+- [x] **C57 · PDF p. 177 · Conclusion** — Reframe the conclusion around why the double network outperforms the matrix-only network as well as the sacrificial network.  
   Source: [`chapters/DoubleNetworkFracture/chapter.tex:251`](chapters/DoubleNetworkFracture/chapter.tex#L251)
 
 - [x] **C58 · PDF p. 177 · Conclusion** — Discuss whether moving from two to three dimensions is expected to alter the conclusions.  
