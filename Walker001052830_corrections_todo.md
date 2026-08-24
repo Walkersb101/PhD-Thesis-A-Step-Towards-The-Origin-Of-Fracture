@@ -194,10 +194,10 @@ Progress: **60 / 63 corrections marked complete (3 remaining)**.
 
 ## Additional correction
 
-- [ ] **C61 · Oscillatory-shear figures and appendix** — Populate the simulation-ensemble appendix with the exact number of independent realisations used for each parameter combination in the fatigue results. The chapter and figure captions currently give the scale (more than $10{,}000$ realisations for the principal sweeps, with $2{,}500$ for $N=2048$) and refer to the appendix.  
+- [x] **C61 · Oscillatory-shear figures and appendix** — Populate the simulation-ensemble appendix with the exact number of independent realisations used for each parameter combination in the fatigue results. The chapter and figure captions currently give the scale (more than $10{,}000$ realisations for the principal sweeps, with $2{,}500$ for $N=2048$) and refer to the appendix.  
   Sources: [`chapters/Fatigue/chapter.tex:218`](chapters/Fatigue/chapter.tex#L218), [`appendices/FatigueSampleCounts/appendix.tex`](appendices/FatigueSampleCounts/appendix.tex)
 
-- [ ] **C62 · Bibliography** — Fix the Bibliography mistakes highlighted by andrew
+- [x] **C62 · Bibliography** — Fix the Bibliography mistakes highlighted by andrew
 
-- [ ] **C63 · Bibliography** — Add in Convergence Data
+- [x] **C63 · Convergence** — Add in Convergence Data, update Intergration methods section to justify anwsers. Which are taken from the paper compare with verification
 

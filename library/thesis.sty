@@ -48,6 +48,9 @@
 
 \usepackage{graphicx}
 
+\usepackage{booktabs}
+\usepackage{longtable}
+
 \usepackage[backend=biber, 
             citestyle=numeric-comp,
             bibstyle=phys,
@@ -64,14 +67,16 @@
             isbn=false]{biblatex}
 
 \AtEveryBibitem{%
+    % Keep editor metadata in the .bib files, but omit editor names from the
+    % rendered bibliography.
+    \clearname{editor}%
+    % Electronic article locators remain in the .bib metadata but are omitted
+    % from the compact rendered bibliography.
+    \clearfield{eid}%
     \ifentrytype{misc}{}{%
           \clearfield{note}%
     }%
     \clearfield{language}%
-      \ifentrytype{article}{%
-            \clearfield{pages}%
-            \clearfield{eid}%
-      }{}%
 }
 
 \AtBeginBibliography{\sloppy}
