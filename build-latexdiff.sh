@@ -795,6 +795,7 @@ report_preamble = rf"""
 % ---------------------------------------------------------------------------
 \usepackage{{geometry}}
 \usepackage{{float}}
+\usepackage{{needspace}}
 % duthesis sets both offsets to -1in for its own hand-built page layout.
 % geometry calculates margins independently of those offsets, so reset them
 % before applying the report layout or the page is shifted off its left edge.
@@ -820,6 +821,7 @@ report_preamble = rf"""
 }}
 
 \newcommand{{\DiffReportFile}}[2]{{%
+  \Needspace{{5\baselineskip}}%
   \par\bigskip
   {{\DiffReportFileFont #1\par}}
   {{\DiffReportMetaFont \detokenize{{#2}}\par}}
@@ -827,11 +829,13 @@ report_preamble = rf"""
 }}
 
 \newcommand{{\DiffReportLocation}}[1]{{%
+  \Needspace{{4\baselineskip}}%
   \par\medskip
   {{\DiffReportLocationFont #1\par}}
 }}
 
 \newcommand{{\DiffReportChange}}[1]{{%
+  \Needspace{{4\baselineskip}}%
   \par\smallskip
   {{\DiffReportMetaFont Change #1\par}}
   \smallskip
@@ -894,6 +898,9 @@ def build_document(which: str) -> str:
             last_path = path
 
         pieces.append(f"\\DiffReportLocation{{{location}}}\n")
+        # Keep the visible numbering a contiguous 1->n sequence in both
+        # temporary documents; the post-diff pass repeats this after empty
+        # blocks are removed.
         pieces.append(f"\\DiffReportChange{{{number}}}\n")
         pieces.append("\\begin{DiffReportContent}\n")
 
