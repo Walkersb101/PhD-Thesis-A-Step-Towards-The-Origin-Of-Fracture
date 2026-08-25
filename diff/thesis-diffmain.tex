@@ -1,6 +1,6 @@
 % % % % % % % % % % % % % % % % % % % % % % % % % % %
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /tmp/cQYtvIKklH/latexdiff-vc-main/thesis.tex   Sun Apr  5 20:34:45 2026
+%DIF DEL /tmp/0Epu3dmFbV/latexdiff-vc-main/thesis.tex   Sun Apr  5 20:34:45 2026
 %DIF ADD thesis.tex                                     Mon Aug 24 17:48:37 2026
 %         ____          _                           %
 %        |    \ _ _ ___| |_ ___ _____               %
@@ -113,7 +113,7 @@ A final class of amorphous materials that is particularly relevant to the work c
 
 The work presented in this thesis consists of three main investigations, which can be grouped into two broader themes. The first theme focuses on yielding and fatigue in amorphous materials under cyclic deformation. The second concerns the fracture of soft network materials, first in a single disordered network and then in composite double-network systems. 
 
-The overall structure of the thesis reflects this progression. \Cref{sec:Background} introduces the basic concepts and theoretical frameworks that are used throughout this thesis. This is followed by \Cref{sec:Fatigue}, which studies absorption and failure under oscillatory shear in an elastoplastic model. The next two chapters, \cref{sec:Ultradelayed,sec:DoubleNetworks}, turn to fracture in soft network materials, first under step strain and then in double-networks under extension. The thesis concludes with a final chapter that synthesises the main results and discusses their broader implications.
+The overall structure of the thesis reflects this progression. \Cref{sec:Background} introduces the basic concepts and theoretical frameworks that are used throughout\DIFdelbegin \DIFdel{this thesis}\DIFdelend . This is followed by \Cref{sec:Fatigue}, which studies absorption and failure under oscillatory shear in an elastoplastic model. The next two chapters, \cref{sec:Ultradelayed,sec:DoubleNetworks}, turn to fracture in soft network materials, first under step strain and then in double-networks under extension. The thesis concludes with a final chapter that synthesises the main results and discusses their broader implications.
 
 \subsection*{Theoretical Framework and Methods}
 In \cref{sec:Background}, we introduce the concepts and theoretical frameworks used throughout this thesis. The chapter provides a common language for subsequent work, allowing the research chapters to focus on their specific physical problems without repeatedly reintroducing definitions and assumptions. In particular, it establishes the continuum and mesoscopic ideas needed to discuss deformation, yielding, and fracture in disordered soft materials.
@@ -639,7 +639,7 @@ where the Fourier-space kernel is
 \hat{\mathbb{G}}_{xy}(\bm{k}) = -4\frac{k_x^2 k_y^2}{k^4}.
 \label{eq:StressPropogator}
 \end{equation}
-We illustrate in \cref{fig:Propogator} the \DIFdelbegin \DIFdel{stress redistribution resulting from a single plastic event with $\epsilon_{xy}^{\mathrm{pl}} = -1$ }\DIFdelend \DIFaddbegin \DIFadd{response to a point plastic event centred }\DIFaddend at the origin\DIFaddbegin \DIFadd{, $\bm{r}_0=\bm{0}$. For this normalised plot, we use grid units in which the area of one element is unity and choose $a^2\epsilon_0=-1$. This unit value normalises the linear Green-function response and does not represent a physical strain of magnitude one; the response to a physical event with $|\epsilon_0| \ll 1$ is obtained by linear rescaling. Numerically, the plastic eigenstrain is assigned to the central grid element, Fourier transformed, multiplied by $2\mu\hat{\mathbb{G}}_{xy}(\bm{k})$, and transformed back to real space using the FFTW3 library \mbox{%DIFAUXCMD
+We illustrate in \cref{fig:Propogator} the \DIFdelbegin \DIFdel{stress redistribution resulting from a single plastic event with $\epsilon_{xy}^{\mathrm{pl}} = -1$ }\DIFdelend \DIFaddbegin \DIFadd{response to a point plastic event centred }\DIFaddend at the origin\DIFaddbegin \DIFadd{, $\bm{r}_0=\bm{0}$. For this normalised plot, we use grid units in which the area of one element is unity and choose $a^2\epsilon_0=-1$. This unit value normalises the linear Green-function response and does not represent a physical strain of magnitude one; the response to a physical event with $|\epsilon_0| \ll 1$ is obtained by linear rescaling. Numerically, the plastic eigenstrain is assigned to the central grid element, Fourier transformed, multiplied by the propogator $2\mu\hat{\mathbb{G}}_{xy}(\bm{k})$, and transformed back to real space using the FFTW3 library \mbox{%DIFAUXCMD
 \cite{Frigo2005}}\hskip0pt%DIFAUXCMD
 }\DIFaddend .
 
@@ -767,9 +767,9 @@ First, each node position, together with the system unit cell (see \cref{sec:Lee
     \bm{r}_i' = \bm{r}_i(t) + \delta t \bm{v}_f(\bm{r}_i(t)).
 \end{equation*}
 
-In this thesis, deformations are either imposed instantaneously, as in \cref{sec:Ultradelayed}, or applied quasi-statically, as in \cref{sec:DoubleNetworks}. Under these conditions, the dynamics are effectively overdamped, and a first-order integration scheme is sufficient to capture the solvent drag and resulting node motion.
+In this thesis, deformations are either imposed instantaneously, as in \cref{sec:Ultradelayed}, or applied quasi-statically, as in \cref{sec:DoubleNetworks}. \DIFdelbegin \DIFdel{Under these conditions, the dynamics are effectively overdamped, and }\DIFdelend \DIFaddbegin \DIFadd{The subsequent dynamics are assumed to be overdamped, so that the node motion is governed by }\DIFaddend a first-order \DIFdelbegin \DIFdel{integration scheme is sufficient to capture the solvent drag and resulting node motion}\DIFdelend \DIFaddbegin \DIFadd{equation in time and no inertial dynamics need to be resolved. The numerical scheme must nevertheless resolve the transient relaxation and the evolution of fracture events accurately. We therefore employ an adaptive Euler--Heun method, in which a first-order predictor and second-order corrected solution provide an estimate of the local discretisation error and allow the timestep to be reduced when the dynamics vary rapidly. A maximum timestep is additionally imposed to maintain sufficient temporal resolution of fracture events}\DIFaddend .
 
-In the second substep, we employ an adaptive Euler--Heun method (also known as a Runge–Kutta 1(2) scheme) inspired by Ref.~\cite{sammullerAdaptiveBrownianDynamics2021}. This method uses an embedded Runge–Kutta pair, in which two solutions of different order are computed from the same intermediate evaluations to estimate the local discretisation error and adapt the time step $\delta t$. 
+In the second substep, we employ an adaptive Euler--Heun method (also known as a Runge–\DIFdelbegin \DIFdel{Kutta }\DIFdelend \DIFaddbegin \DIFadd{-Kutta }\DIFaddend 1(2) scheme) inspired by Ref.~\cite{sammullerAdaptiveBrownianDynamics2021}. This method uses an embedded Runge–\DIFdelbegin \DIFdel{Kutta }\DIFdelend \DIFaddbegin \DIFadd{-Kutta }\DIFaddend pair, in which two solutions of different order are computed from the same intermediate evaluations to estimate the local discretisation error and adapt the time step $\delta t$. 
 
 Starting from the advected position $\bm{r}^\prime_i$, we first compute the predictor estimate $\tilde{\bm{r}}_i$,
 \begin{equation*}
@@ -790,16 +790,21 @@ where $\Delta\tilde{\bm{r}}_i = \tilde{\bm{r}}_i - \bm{r}_i'$ and $\Delta\bm{r}_
 \end{equation*}
 where $\|\cdot\|_\infty$ denotes the maximum norm.
 
-Following Ref.~\cite{sammullerAdaptiveBrownianDynamics2021}, we define the timestep scaling factor
-\begin{equation*}
-    q = \left( \frac{1}{2\mathcal{E}} \right)^2,
-\end{equation*}
-which is restricted to the interval $[0.001, 1.2]$. Two cases are then distinguished:
+Following Ref.~\cite{sammullerAdaptiveBrownianDynamics2021}, we \DIFdelbegin \DIFdel{define the timestep scaling factor
+}\DIFdelend \DIFaddbegin \DIFadd{adopt the conservative timestep scaling
+}\DIFaddend \begin{equation*}
+    q = \left( \frac{1}{2\mathcal{E}} \right)^2\DIFdelbegin \DIFdel{,
+}\DIFdelend \DIFaddbegin \DIFadd{.
+}\DIFaddend \end{equation*}
+\DIFdelbegin \DIFdel{which is restricted }\DIFdelend \DIFaddbegin \DIFadd{This choice includes a safety factor of two and causes the timestep to decrease rapidly when the estimated error exceeds the prescribed tolerance, while allowing only gradual increases when the error is small. We additionally restrict $q$ }\DIFaddend to the interval $[0.001, 1.2]$\DIFaddbegin \DIFadd{, following the same reference, to prevent excessively large changes in timestep between successive updates}\DIFaddend . Two cases are then distinguished:
 \begin{enumerate}
     \item $q \geq 1$: accept $\bm{r}_i(t+\delta t)$.
-    \item $q < 1$: reject the step and restore the configuration to time $t$ before retrying with a smaller timestep.
+    \item $q < 1$: reject the step and restore the configuration to time $t$\DIFdelbegin \DIFdel{before retrying with a smaller timestep}\DIFdelend .
 \end{enumerate}
-In both cases, the time step is updated via $\delta t \gets q \delta t$. We additionally impose a maximum time step $\delta t_{\max}$ to ensure adequate temporal resolution of fracture events.
+In both cases, the time step is updated via $\delta t \gets q \delta t$. \DIFaddbegin \DIFadd{For a rejected step, $q < 1$, so the integration is retried using the resulting smaller timestep.
+}
+
+\DIFaddend We additionally impose a maximum time step \DIFdelbegin \DIFdel{$\delta t_{\max}$ to ensure adequate temporal resolution of fracture events}\DIFdelend \DIFaddbegin \DIFadd{$\delta t_{\max} = 0.1$ in all simulations, which limits the timestep when the estimated local error is small. The numerical accuracy of the integration is controlled primarily through the error tolerance. The values of $\tau$ used throughout this thesis was selected from convergence tests, presented in }\cref{app:stepStrainConvergence} \DIFadd{, in which the simulated dynamics were compared for progressively smaller tolerances and first order fixed timestep simulation and verified for each scenario separately }\DIFaddend .  
 
 \subsection{Rigidity} \label{sec:Rigidity}
 
@@ -971,8 +976,7 @@ Dangling components, shown in panel (a) of \cref{fig:PruningNetworks}, consist o
         \includegraphics[width=\linewidth]{chapters/2-Background/Figures/network_disconnected_cluster_400.pdf}
         \textbf{(b)}
     \end{subfigure}
-    \caption[Dangling and disconnected clusters.]{{\bf a)} A dangling cluster (blue) is defined as a cluster of bonds connected to the rest of the network by only one bond (a bridge, shown in red). These are detected and removed by removing bridges, i.e., bonds that disconnect the graph when cut. {\DIFdelbeginFL %DIFDELCMD < \bf %%%
-\DIFdelendFL \DIFaddbeginFL \textbf \DIFaddendFL b)} A disconnected cluster (red) is a cluster of bonds that is disconnected from the bulk network. These are removed by identifying all connected components and retaining only the largest one.}
+    \caption[Dangling and disconnected clusters.]{{\bf a)} A dangling cluster (blue) is defined as a cluster of bonds connected to the rest of the network by only one bond (a bridge, shown in red). These are detected and removed by removing bridges, i.e., bonds that disconnect the graph when cut. {\bf b)} A disconnected cluster (red) is a cluster of bonds that is disconnected from the bulk network. These are removed by identifying all connected components and retaining only the largest one.}
     \label{fig:PruningNetworks}
 \end{figure}
 
@@ -1294,8 +1298,7 @@ To solve the dynamics of \cref{eq:fatigueForceBalance}, we introduce a square la
 
 \DIFaddend Each element in the lattice is assumed to follow the following set of rules. \DIFdelbegin \DIFdel{Between each plastic event, the strain of each element is assumed to follow affinely}\DIFdelend \DIFaddbegin \DIFadd{Following the scalar elastoplastic model of Pollard and Fielding \mbox{%DIFAUXCMD
 \cite{pollard_yielding_2022}}\hskip0pt%DIFAUXCMD
-, between plastic events we assume that the externally imposed shear loads all elements affinely, such that a change $\Delta\gamma$ in }\DIFaddend the globally applied \DIFdelbegin \DIFdel{elastic strain $\gamma$, corresponding to elastic loading in the material.
-}\DIFdelend \DIFaddbegin \DIFadd{strain shifts the local strains uniformly as $l_{ij}\to l_{ij}+\Delta\gamma$. This treatment is consistent with the homogeneous linear-elastic formulation commonly adopted in elastoplastic models \mbox{%DIFAUXCMD
+, between plastic events we assume that the externally imposed shear loads all elements affinely, such that a change $\Delta\gamma$ in }\DIFaddend the globally applied \DIFdelbegin \DIFdel{elastic strain $\gamma$, corresponding to elastic loading in the material. }\DIFdelend \DIFaddbegin \DIFadd{strain shifts the local strains uniformly as $l_{ij}\to l_{ij}+\Delta\gamma$. This treatment is consistent with the homogeneous linear-elastic formulation commonly adopted in elastoplastic models \mbox{%DIFAUXCMD
 \cite{nicolas_deformation_2018}}\hskip0pt%DIFAUXCMD
 . Within the small-deformation framework, the displacement gradient can be decomposed as $\nabla\bm{u}=\bm{\epsilon}+\bm{\omega}$, where $\bm{\epsilon}$ is the symmetric strain tensor and $\bm{\omega}$ is the antisymmetric rotational part. At linear order, the elastic deviatoric stress depends on $\bm{\epsilon}$, but not on $\bm{\omega}$. The heterogeneous residual stresses generated by previous plastic events are therefore retained through the heterogeneous local shear strain field $l_{ij}$, while couplings between these residual stresses and local rotations, which arise beyond the linear small-deformation description, are neglected. Although more complete tensorial elastoplastic models retain additional stress components neglected here, previous studies have found that, under uniform loading, their qualitative flow and avalanche behaviour is similar to that obtained from scalar models \mbox{%DIFAUXCMD
 \cite{nicolas_deformation_2018,Budrikis2017,Nicolas2014}}\hskip0pt%DIFAUXCMD
@@ -1681,9 +1684,9 @@ The relaxation towards an absorbing state can be understood in terms of the prog
 \begin{figure}
     \centering
     \includegraphics[width=0.99\textwidth]{chapters/Fatigue/Figures/ActiveDecay_Path21Osc.pdf}
-    \caption[Decay of number of active elements remaining in the system.]{Example decay of the number of active elements as a function of the number of cycles. Curves show the ensemble-averaged value of $\Factive$ over $1000$ trajectories. We distinguish between trajectories in which the system eventually reaches an absorbing state (solid lines) and those in which it eventually yields (dashed lines). \newline
+    \caption[Decay of number of active elements remaining in the system.]{Example decay of the number of active elements as a function of the number of cycles. Curves show the ensemble-averaged value of $\Factive$ over \DIFdelbeginFL \DIFdelFL{$1000$ }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$1{,}000$ }\DIFaddendFL trajectories. We distinguish between trajectories in which the system eventually reaches an absorbing state (solid lines) and those in which it eventually yields (dashed lines). \newline
     {\bf a)} $l_0 = 0.075$, $\lw = 0.02$, and $N = 1024$. \newline
-    {\bf Inset)} binned mean of the fraction of active elements in the final cycle $\CStar$ taken across more than \DIFdelbeginFL \DIFdelFL{$10{,}000$ }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$2{,}500$ }\DIFaddendFL samples for each $\gammaMax$. \newline
+    {\bf Inset)} binned mean of the fraction of active elements in the final cycle $\CStar$ taken across more than \DIFdelbeginFL \DIFdelFL{$10{,}000$ }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$1{,}000$ }\DIFaddendFL samples for each $\gammaMax$. \newline
     {\bf b)} Parameter sets for which the number of cycles to an absorbed state satisfies $\CycleNineFive \approx 200$. From bottom to top: $(l_0,\gamma_{\max})=(0.0375,0.882)$, $(0.05,0.848)$, $(0.075,0.802)$, $(0.1,0.784)$ and $(0.125,0.775)$. \newline
     }
     \label{fig:Pathto1}
@@ -1813,7 +1816,7 @@ This behaviour is illustrated schematically in \cref{fig:IdealElement}. For a de
     {\bf a)} Example trajectory of an active element in a sample that ultimately absorbs. The red dashed line denotes the absorbing boundary; the blue trajectory crosses this threshold, leading to absorption. \newline
     {\bf b)} Example trajectory in a sample that ultimately yields. The blue curve shows the active element, while the orange curve shows a neighbouring element. In this case, the neighbouring element crosses the red boundary into the active region, triggering yielding. \newline
     {\bf c)} Ensemble of trajectories of the oscillating element, each terminated at the first crossing of the absorbing boundary (red dashed line). \newline
-    {\bf d)} Standard deviation of an ensemble of \DIFdelbeginFL \DIFdelFL{$1{,}000$ }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{$2{,}500$ }\DIFaddendFL active element displacements, $\sigma(\Delta l)$, as a function of cycle number, demonstrating the expected diffusive scaling. \newline
+    {\bf d)} Standard deviation of an ensemble of $1{,}000$ active element displacements, $\sigma(\Delta l)$, as a function of cycle number, demonstrating the expected diffusive scaling. \newline
     Parameters: $l_0=0.075$, $\gammaMax=0.823$, $\lw=0.02$, $N=1024$
     }
     \label{fig:RandomWalkExamples}
@@ -3038,7 +3041,8 @@ To quantify how effectively a double network characterised by the parameters $M$
 \item It inherits the large failure strain of \DIFaddbegin \DIFadd{its }\DIFaddend soft and ductile matrix \DIFdelbegin \DIFdel{components}\DIFdelend \DIFaddbegin \DIFadd{component}\DIFaddend , such that the overall failure strain satisfies \DIFdelbegin \DIFdel{$\epsilon^*_D \approx \epsilon^*_m \gg \epsilon^*_s$}\DIFdelend \DIFaddbegin \DIFadd{$\epsilon^*_d \gtrsim \epsilon^*_m \gg \epsilon^*_s$}\DIFaddend .
 \item It \DIFdelbegin \DIFdel{inherits }\DIFdelend \DIFaddbegin \DIFadd{retains }\DIFaddend the stiffness of its stiff but brittle sacrificial component, with modulus $G_d \approx G_s \gg G_m$.
 \end{enumerate}
-Together, these \DIFdelbegin \DIFdel{requirements }\DIFdelend \DIFaddbegin \DIFadd{provide }\DIFaddend serve as the criteria \DIFdelbegin \DIFdel{by which we assess the success of the double networks across parameter space. }\DIFdelend \DIFaddbegin \DIFadd{for assessing the balance between stiffness and extensibility within the model considered here. They should not be interpreted as a complete definition of an optimal experimental double network. In particular, experimental double networks can exhibit failure strains and fracture energies significantly greater than those of either constituent single network \mbox{%DIFAUXCMD
+Together, these \DIFdelbegin \DIFdel{requirements }\DIFdelend \DIFaddbegin \DIFadd{provide }\DIFaddend serve as the criteria \DIFdelbegin \DIFdel{by which we assess the success of the double networks across parameter space.
+}\DIFdelend \DIFaddbegin \DIFadd{for assessing the balance between stiffness and extensibility within the model considered here. They should not be interpreted as a complete definition of an optimal experimental double network. In particular, experimental double networks can exhibit failure strains and fracture energies significantly greater than those of either constituent single network \mbox{%DIFAUXCMD
 \cite{gong_why_2010,ahmedBrittleDuctileTransition2014}}\hskip0pt%DIFAUXCMD
 . Fully capturing this enhancement beyond the response of the isolated matrix would require resolving fracture across a broad range of length and time scales, from local bond breaking to the development of an extended damage zone and the propagation of a macroscopic crack. The present simulations are not able to access all of these scales simultaneously and should therefore be viewed as addressing only part of this multiscale fracture process.
 }
