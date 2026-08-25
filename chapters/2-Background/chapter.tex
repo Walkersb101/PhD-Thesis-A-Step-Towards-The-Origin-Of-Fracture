@@ -468,7 +468,7 @@ where the Fourier-space kernel is
 \hat{\mathbb{G}}_{xy}(\bm{k}) = -4\frac{k_x^2 k_y^2}{k^4}.
 \label{eq:StressPropogator}
 \end{equation}
-We illustrate in \cref{fig:Propogator} the response to a point plastic event centred at the origin, $\bm{r}_0=\bm{0}$. For this normalised plot, we use grid units in which the area of one element is unity and choose $a^2\epsilon_0=-1$. This unit value normalises the linear Green-function response and does not represent a physical strain of magnitude one; the response to a physical event with $|\epsilon_0| \ll 1$ is obtained by linear rescaling. Numerically, the plastic eigenstrain is assigned to the central grid element, Fourier transformed, multiplied by $2\mu\hat{\mathbb{G}}_{xy}(\bm{k})$, and transformed back to real space using the FFTW3 library \cite{Frigo2005}.
+We illustrate in \cref{fig:Propogator} the response to a point plastic event centred at the origin, $\bm{r}_0=\bm{0}$. For this normalised plot, we use grid units in which the area of one element is unity and choose $a^2\epsilon_0=-1$. This unit value normalises the linear Green-function response and does not represent a physical strain of magnitude one; the response to a physical event with $|\epsilon_0| \ll 1$ is obtained by linear rescaling. Numerically, the plastic eigenstrain is assigned to the central grid element, Fourier transformed, multiplied by the propogator $2\mu\hat{\mathbb{G}}_{xy}(\bm{k})$, and transformed back to real space using the FFTW3 library \cite{Frigo2005}.
 
 \begin{figure}[t]
     \centering
@@ -592,9 +592,9 @@ First, each node position, together with the system unit cell (see \cref{sec:Lee
     \bm{r}_i' = \bm{r}_i(t) + \delta t \bm{v}_f(\bm{r}_i(t)).
 \end{equation*}
 
-In this thesis, deformations are either imposed instantaneously, as in \cref{sec:Ultradelayed}, or applied quasi-statically, as in \cref{sec:DoubleNetworks}. Under these conditions, the dynamics are effectively overdamped, and a first-order integration scheme is sufficient to capture the solvent drag and resulting node motion.
+In this thesis, deformations are either imposed instantaneously, as in \cref{sec:Ultradelayed}, or applied quasi-statically, as in \cref{sec:DoubleNetworks}. The subsequent dynamics are assumed to be overdamped, so that the node motion is governed by a first-order equation in time and no inertial dynamics need to be resolved. The numerical scheme must nevertheless resolve the transient relaxation and the evolution of fracture events accurately. We therefore employ an adaptive Euler--Heun method, in which a first-order predictor and second-order corrected solution provide an estimate of the local discretisation error and allow the timestep to be reduced when the dynamics vary rapidly. A maximum timestep is additionally imposed to maintain sufficient temporal resolution of fracture events.
 
-In the second substep, we employ an adaptive Euler--Heun method (also known as a Runge–Kutta 1(2) scheme) inspired by Ref.~\cite{sammullerAdaptiveBrownianDynamics2021}. This method uses an embedded Runge–Kutta pair, in which two solutions of different order are computed from the same intermediate evaluations to estimate the local discretisation error and adapt the time step $\delta t$. 
+In the second substep, we employ an adaptive Euler--Heun method (also known as a Runge–-Kutta 1(2) scheme) inspired by Ref.~\cite{sammullerAdaptiveBrownianDynamics2021}. This method uses an embedded Runge–-Kutta pair, in which two solutions of different order are computed from the same intermediate evaluations to estimate the local discretisation error and adapt the time step $\delta t$. 
 
 Starting from the advected position $\bm{r}^\prime_i$, we first compute the predictor estimate $\tilde{\bm{r}}_i$,
 \begin{equation*}
@@ -615,16 +615,18 @@ where $\Delta\tilde{\bm{r}}_i = \tilde{\bm{r}}_i - \bm{r}_i'$ and $\Delta\bm{r}_
 \end{equation*}
 where $\|\cdot\|_\infty$ denotes the maximum norm.
 
-Following Ref.~\cite{sammullerAdaptiveBrownianDynamics2021}, we define the timestep scaling factor
+Following Ref.~\cite{sammullerAdaptiveBrownianDynamics2021}, we adopt the conservative timestep scaling
 \begin{equation*}
-    q = \left( \frac{1}{2\mathcal{E}} \right)^2,
+    q = \left( \frac{1}{2\mathcal{E}} \right)^2.
 \end{equation*}
-which is restricted to the interval $[0.001, 1.2]$. Two cases are then distinguished:
+This choice includes a safety factor of two and causes the timestep to decrease rapidly when the estimated error exceeds the prescribed tolerance, while allowing only gradual increases when the error is small. We additionally restrict $q$ to the interval $[0.001, 1.2]$, following the same reference, to prevent excessively large changes in timestep between successive updates. Two cases are then distinguished:
 \begin{enumerate}
     \item $q \geq 1$: accept $\bm{r}_i(t+\delta t)$.
-    \item $q < 1$: reject the step and restore the configuration to time $t$ before retrying with a smaller timestep.
+    \item $q < 1$: reject the step and restore the configuration to time $t$.
 \end{enumerate}
-In both cases, the time step is updated via $\delta t \gets q \delta t$. We additionally impose a maximum time step $\delta t_{\max}$ to ensure adequate temporal resolution of fracture events.
+In both cases, the time step is updated via $\delta t \gets q \delta t$. For a rejected step, $q < 1$, so the integration is retried using the resulting smaller timestep.
+
+We additionally impose a maximum time step $\delta t_{\max} = 0.1$ in all simulations, which limits the timestep when the estimated local error is small. The numerical accuracy of the integration is controlled primarily through the error tolerance. The values of $\tau$ used throughout this thesis was selected from convergence tests, presented in \cref{app:stepStrainConvergence} , in which the simulated dynamics were compared for progressively smaller tolerances and first order fixed timestep simulation and verified for each scenario separately .  
 
 \subsection{Rigidity} \label{sec:Rigidity}
 
