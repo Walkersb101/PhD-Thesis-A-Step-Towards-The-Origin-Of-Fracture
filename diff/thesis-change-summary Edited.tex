@@ -62,8 +62,6 @@
 \newcommand{\DiffReportMakeTitle}{%
   \begin{center}
     {\DiffReportTitleFont Thesis change summary\par}
-    \vspace{0.5em}
-    {\DiffReportMetaFont Relative to \detokenize{main}\par}
   \end{center}
   \vspace{1em}
 }
@@ -437,7 +435,7 @@ To impose shear in the $x$ direction using Lees--Edwards boundary conditions, pa
         x_i+\gamma y_i \\ y_i
     \end{pmatrix},
 }\end{equation}\DIFaddend 
-\DIFdelbegin \DIFdel{whilst periodic images are shifted by an amount }\DIFdelend \DIFaddbegin \DIFadd{while periodic images in adjacent rows are displaced by }\DIFaddend $\gamma L_y$\DIFdelbegin \DIFdel{between adjacent rows, as shown }\DIFdelend \DIFaddbegin \DIFadd{, as illustrated }\DIFaddend in \cref{fig:Lees-Edwards}. \DIFdelbegin \DIFdel{This construction is computationally advantageous because the }\DIFdelend \DIFaddbegin \DIFadd{We use this representation as it retains the orthogonal }\DIFaddend primary simulation cell \DIFdelbegin \DIFdel{remains orthogonal. Implementation }\DIFdelend \DIFaddbegin \DIFadd{and allows periodic bond vectors, including those crossing the cell boundaries, to be calculated using simple shear-dependent image shifts. This avoids the complex basis transformations and increasingly skewed simulation cell associated with an explicitly triclinic representation needed to calculate minimum-image distances. The imposed therefore only changes the geometry of each bond but not the network connectivity; bonds are removed only when the relevant failure criterion is satisfied. Further implementation }\DIFaddend details can be found in Ref.~\cite{allen_computer_2017}.
+\DIFdelbegin \DIFdel{whilst periodic images are shifted by an amount }\DIFdelend \DIFaddbegin \DIFadd{while periodic images in adjacent rows are displaced by }\DIFaddend $\gamma L_y$\DIFdelbegin \DIFdel{between adjacent rows, as shown }\DIFdelend \DIFaddbegin \DIFadd{, as illustrated }\DIFaddend in \cref{fig:Lees-Edwards}. \DIFdelbegin \DIFdel{This construction is computationally advantageous because the }\DIFdelend \DIFaddbegin \DIFadd{We use this representation as it retains the orthogonal }\DIFaddend primary simulation cell \DIFdelbegin \DIFdel{remains orthogonal. Implementation }\DIFdelend \DIFaddbegin \DIFadd{and allows periodic bond vectors, including those crossing the cell boundaries, to be calculated using simple shear-dependent image shifts. This avoids the complex basis transformations and increasingly skewed simulation cell, associated with an explicitly triclinic representation needed to calculate minimum-image distances. The imposed boundary conditions therefore only changes the geometry of each bond but not the network connectivity; bonds are removed only when the relevant failure criterion is satisfied. Further implementation }\DIFaddend details can be found in Ref.~\cite{allen_computer_2017}.
 
 \end{DiffReportContent}
 \DiffReportLocation{Conclusion}
@@ -782,6 +780,62 @@ More generally, although the present work has been able to quantify and characte
 \DIFadd{For each parameter tuple $(N,l_0,l_w,\gamma_0)$, we define the ensemble size $n_{\mathrm{ens}}$ as the number of independently seeded simulation trajectories included in the analysis.The reported $n_{\mathrm{ens}}$ is the total number of trajectories for each parameter tuple, irrespective of whether they ultimately absorb or yield. The ensemble sizes used for the annealing, post-hop-width, and system-size sweeps are reported in }\cref{tab:FatigueSampleCountsL0,tab:FatigueSampleCountsLw,tab:FatigueSampleCountsN}\DIFadd{, respectively. These values give the number of samples available for each parameter tuple used in the corresponding figures. Here $N=N_x=N_y$ denotes the lattice size.
 }
 
+
+\DIFaddbegin
+\begingroup
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{0.9}
+\setlength{\LTcapwidth}{\textwidth}
+\begin{singlespace}
+\begin{longtable}{@{}rrr@{\hspace{2.2em}}rrr@{\hspace{2.2em}}rrr@{}}
+\caption[Exact ensemble sizes for the annealing sweep.]{Exact ensemble sizes for the parameter combinations with $N=1024$ and $l_w=0.02$, used in \cref{fig:EndStates,fig:LogisticsL0,fig:FailureCyclel0}. Entries are ordered by $l_0$ and then $\gamma_0$, read from left to right across each row.}
+\label{tab:FatigueSampleCountsL0}\\
+\toprule
+$l_0$ & $\gamma_0$ & $n_{\mathrm{ens}}$ & $l_0$ & $\gamma_0$ & $n_{\mathrm{ens}}$ & $l_0$ & $\gamma_0$ & $n_{\mathrm{ens}}$ \\
+\midrule
+\endfirsthead
+
+\multicolumn{9}{c}{\tablename~\thetable\ continued} \\
+\toprule
+$l_0$ & $\gamma_0$ & $n_{\mathrm{ens}}$ & $l_0$ & $\gamma_0$ & $n_{\mathrm{ens}}$ & $l_0$ & $\gamma_0$ & $n_{\mathrm{ens}}$ \\
+\midrule
+\endhead
+
+\midrule
+\multicolumn{9}{r}{Continued on next page} \\
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+0.025 & 0.9 & $10{,}115$ & 0.025 & 0.903 & $10{,}116$ & 0.025 & 0.906 & $23{,}156$ \\
+0.025 & 0.909 & $114{,}311$ & 0.025 & 0.912 & $42{,}120$ & 0.025 & 0.915 & $15{,}324$ \\
+0.025 & 0.918 & $12{,}516$ & 0.025 & 0.921 & $47{,}493$ & 0.025 & 0.924 & $10{,}116$ \\
+0.025 & 0.927 & $9{,}997$ & 0.025 & 0.93 & $9{,}997$ & 0.0375 & 0.864 & $12{,}517$ \\
+0.0375 & 0.867 & $13{,}472$ & 0.0375 & 0.87 & $23{,}559$ & 0.0375 & 0.873 & $26{,}503$ \\
+0.0375 & 0.876 & $17{,}955$ & 0.0375 & 0.879 & $49{,}492$ & 0.0375 & 0.882 & $24{,}997$ \\
+0.0375 & 0.885 & $74{,}099$ & 0.0375 & 0.888 & $24{,}997$ & 0.0375 & 0.891 & $21{,}565$ \\
+0.0375 & 0.894 & $10{,}118$ & 0.05 & 0.839 & $25{,}000$ & 0.05 & 0.842 & $25{,}000$ \\
+0.05 & 0.845 & $25{,}000$ & 0.05 & 0.848 & $25{,}000$ & 0.05 & 0.851 & $25{,}000$ \\
+0.05 & 0.854 & $25{,}000$ & 0.05 & 0.857 & $25{,}000$ & 0.05 & 0.86 & $25{,}000$ \\
+0.05 & 0.863 & $25{,}000$ & 0.05 & 0.866 & $25{,}000$ & 0.05 & 0.869 & $25{,}000$ \\
+0.075 & 0.805 & $83{,}959$ & 0.075 & 0.808 & $25{,}000$ & 0.075 & 0.811 & $25{,}000$ \\
+0.075 & 0.814 & $25{,}000$ & 0.075 & 0.817 & $25{,}000$ & 0.075 & 0.82 & $25{,}000$ \\
+0.075 & 0.823 & $25{,}000$ & 0.075 & 0.826 & $74{,}065$ & 0.075 & 0.829 & $84{,}148$ \\
+0.075 & 0.832 & $25{,}000$ & 0.075 & 0.835 & $25{,}000$ & 0.1 & 0.781 & $3{,}997$ \\
+0.1 & 0.784 & $3{,}997$ & 0.1 & 0.787 & $3{,}996$ & 0.1 & 0.79 & $3{,}997$ \\
+0.1 & 0.793 & $3{,}998$ & 0.1 & 0.796 & $8{,}179$ & 0.1 & 0.799 & $24{,}981$ \\
+0.1 & 0.802 & $7{,}241$ & 0.1 & 0.805 & $3{,}994$ & 0.1 & 0.808 & $3{,}997$ \\
+0.1 & 0.811 & $3{,}997$ & 0.125 & 0.775 & $3{,}438$ & 0.125 & 0.778 & $3{,}428$ \\
+0.125 & 0.781 & $3{,}955$ & 0.125 & 0.784 & $4{,}483$ & 0.125 & 0.787 & $3{,}412$ \\
+0.125 & 0.79 & $3{,}440$ & 0.125 & 0.793 & $3{,}463$ & 0.125 & 0.796 & $3{,}470$ \\
+0.125 & 0.799 & $3{,}474$ & 0.125 & 0.802 & $3{,}479$ & 0.125 & 0.805 & $3{,}477$ \\
+\end{longtable}
+\end{singlespace}
+\endgroup
+\DIFaddend
+
 \DIFaddbegin \begingroup
 \footnotesize
 \setlength{\tabcolsep}{14pt}
@@ -1018,7 +1072,7 @@ The step-strain protocol \DIFdelbegin \DIFdel{, in which a }\DIFdelend \DIFaddbe
 extends beyond the generic occurrence of delayed failure. Their constitutive models and the network model considered here employ the same basic strain-assisted activated dynamics, in which stored local elastic energy lowers the barrier to a yielding or bond-breaking event. In }\DIFaddend the \DIFdelbegin \DIFdel{model, we have captured the essential physical ingredients underlying ultra-delayed fracture driven by thermal effects. In these disordered networks, the interplay between non-affine deformations, thermally activated bond failures, and stress redistribution controls their mechanical response. The fact that qualitatively similar behaviour emerges across different parameter regimes, as well as in the broader class of models studied by Lockwood }%DIFDELCMD < \etal%%%
 \DIFdel{, indicates that delayed post-strain failure may be a robust phenomenon}\DIFdelend \DIFaddbegin \DIFadd{small-strain affine limit, the most highly loaded bonds in our network have $|\epsilon_b|\simeq\gamma_0/2$, so }\cref{eq:SGRRate} \DIFadd{gives the estimate $\log t^*\sim(E-\mu\gamma_0^2/8)/T$. This has the same functional dependence, $\log t^*\propto-\gamma_0^2/T$, as the scaling reported for the SGR model in Ref.~\mbox{%DIFAUXCMD
 \cite{lockwood_ultradelayed_2025}}\hskip0pt%DIFAUXCMD
-. The difference in the numerical coefficient is likely to reflect both the projection of the applied shear strain onto the axial strain of an individual bond and differences in how stress is redistributed following a local plastic event. The critical-bond cascade described above is also the network counterpart of their positive-feedback instability, in which local stress relaxation redistributes load and promotes further nearby events. In their constitutive models this feedback produces a shear band, whereas irreversible bond removal here converts it into a macroscopic crack}\DIFaddend .
+. The difference in the numerical coefficient is likely to reflect both the projection of the applied shear strain onto the axial strain of an individual bond and differences in how stress is redistributed following a local plastic event. The critical-bond cascade described above is also the network counterpart of their positive-feedback instability, in which local stress relaxation redistributes load and promotes further nearby events. In their constitutive models this feedback produces a shear band, whereas irreversible bond removal here resolves into a macroscopic crack.}\DIFaddend .
 \end{DiffReportContent}
 \DiffReportLocation{Conclusion}
 \DiffReportChange{43}
@@ -1057,7 +1111,7 @@ and exhibit fracture energies substantially larger than those of single networks
 \DiffReportChange{45}
 \begin{DiffReportContent}
 This section explores how differing network length scales affect the fracture and failure behaviour of double networks. In particular, we focus on how stress is redistributed across the networks following a plastic event. The first key result of this work is shown in \cref{fig:JammedStressStrain}, where we compare the stress-strain response of a double network material with its sacrificial and matrix components simulated individually. We illustrate that the simple model described above, under a quasi-static elongational stretching protocol, can capture \DIFdelbegin \DIFdel{the }\DIFdelend qualitative features of the stress-strain response \DIFdelbegin \DIFdel{found in experimental systems }\DIFdelend \DIFaddbegin \DIFadd{observed experimentally, }\DIFaddend such as those shown in Ref.~\cite{gong_why_2010}. \DIFdelbegin \DIFdel{By comparing the stress-strain response of the double network shown in }%DIFDELCMD < \cref{fig:JammedStressStrain}%%%
-\DIFdel{b to the single networks }\DIFdelend \DIFaddbegin \DIFadd{For the representative parameter set }\DIFaddend shown in \cref{fig:JammedStressStrain}a, \DIFdelbegin \DIFdel{we illustrate that it is possible within our model to create a double network that retains }\DIFdelend \DIFaddbegin \DIFadd{the double network retains approximately }\DIFaddend the failure strain of the matrix network while maintaining a stiffness comparable to that of the sacrificial network, particularly during the early elastic regime of deformation. \DIFaddbegin \DIFadd{Experimental double networks can exhibit an even stronger synergistic response, with both a greater toughness, corresponding to a larger work to fracture, and a failure strain exceeding that of either constituent network alone. The present model therefore captures the combined stiff and ductile response of experimental double networks, but not the full enhancement in failure strain observed relative to both isolated constituents. }\DIFaddend .
+\DIFdel{b to the single networks }\DIFdelend \DIFaddbegin \DIFadd{For the representative parameter set }\DIFaddend shown in \cref{fig:JammedStressStrain}a, \DIFdelbegin \DIFdel{we illustrate that it is possible within our model to create a double network that retains }\DIFdelend \DIFaddbegin \DIFadd{the double network retains approximately }\DIFaddend the failure strain of the matrix network while maintaining a stiffness comparable to that of the sacrificial network, particularly during the early elastic regime of deformation. \DIFaddbegin \DIFadd{Experimental double networks can exhibit an even stronger synergistic response, with both a greater toughness, corresponding to a larger work to fracture, and a failure strain exceeding that of either constituent network alone. The present model therefore captures the combined stiff and ductile response of experimental double networks, but not the full enhancement in failure strain observed relative to both isolated constituents. }\DIFaddend
 \end{DiffReportContent}
 \DiffReportLocation{Stress-Strain Response}
 
@@ -1079,7 +1133,7 @@ In the intermediate regime, after the first sacrificial bond breaks but before m
 \item It inherits the large failure strain of \DIFaddbegin \DIFadd{its }\DIFaddend soft and ductile matrix \DIFdelbegin \DIFdel{components}\DIFdelend \DIFaddbegin \DIFadd{component}\DIFaddend , such that the overall failure strain satisfies \DIFdelbegin \DIFdel{$\epsilon^*_D \approx \epsilon^*_m \gg \epsilon^*_s$}\DIFdelend \DIFaddbegin \DIFadd{$\epsilon^*_d \gtrsim \epsilon^*_m \gg \epsilon^*_s$}\DIFaddend .
 \item It \DIFdelbegin \DIFdel{inherits }\DIFdelend \DIFaddbegin \DIFadd{retains }\DIFaddend the stiffness of its stiff but brittle sacrificial component, with modulus $G_d \approx G_s \gg G_m$.
 \end{enumerate}
-Together, these \DIFdelbegin \DIFdel{requirements }\DIFdelend \DIFaddbegin \DIFadd{provide }\DIFaddend serve as the criteria \DIFdelbegin \DIFdel{by which we assess the success of the double networks across parameter space. }\DIFdelend \DIFaddbegin \DIFadd{for assessing the balance between stiffness and extensibility within the model considered here. They should not be interpreted as a complete definition of an optimal experimental double network. In particular, experimental double networks can exhibit failure strains and fracture energies significantly greater than those of either constituent single network \mbox{%DIFAUXCMD
+Together, these requirements serve as the criteria \DIFdelbegin \DIFdel{by which we assess the success of the double networks across parameter space. }\DIFdelend \DIFaddbegin \DIFadd{for assessing the balance between stiffness and extensibility within the model considered here. They should not be interpreted as a complete definition of an optimal experimental double network. In particular, experimental double networks can exhibit failure strains and fracture energies significantly greater than those of either constituent single network \mbox{%DIFAUXCMD
 \cite{gong_why_2010,ahmedBrittleDuctileTransition2014}}\hskip0pt%DIFAUXCMD
 . Fully capturing this enhancement beyond the response of the isolated matrix would require resolving fracture across a broad range of length and time scales, from local bond breaking to the development of an extended damage zone and the propagation of a macroscopic crack. The present simulations are not able to access all of these scales simultaneously and should therefore be viewed as addressing only part of this multiscale fracture process.
 }
