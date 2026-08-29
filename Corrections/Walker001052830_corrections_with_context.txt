@@ -1,0 +1,1306 @@
+Corrections with source context: Walker001052830_corrections_extracted.txt
+Total corrections: 60
+PDF page numbers are physical pages; source line numbers refer to the current workspace files.
+
+==========================================================================================
+Correction 1 — PDF page 33 (Text)
+Source: chapters/2-Background/chapter.tex:226
+Section: Rheological protocol
+
+Action:
+Correct the dashed red stress-response schematic so that it is causal and, after startup, leads the imposed strain as appropriate.
+
+Relevant PDF text:
+Figure 2.4. Schematics of the three deformation protocols studied in this thesis. The
+imposed strain is shown by the solid black line, and a representative stress response is
+shown by the dashed red line. The strain is defined according to the relevant deformation
+
+Reviewer comment:
+As discussed in the viva, this red dotted line is not a realistic stress response, and should typically settle down to lead the strain (though it should obey causality, so should be zero whilst the strain remains at zero!)
+
+Current LaTeX context:
+ 224: \begin{figure}[p]
+ 225:     \centering
+ 226:     \includegraphics[width=0.8\linewidth]{chapters/2-Background/Figures/ShearProtocols.pdf}
+ 227:     \caption[Schematics of deformation protocols]{Schematics of the three deformation protocols studied in this thesis. The imposed strain is shown by the solid black line, and a representative stress response is shown by the dashed red line. The strain is defined according to the relevant deformation mode in each chapter: $\gamma$ denotes the shear strain in \Cref{sec:Fatigue,sec:Ultradelayed}, and $\epsilon$ denotes the extensional strain in \Cref{sec:DoubleNetworks}. The protocols are as follows: \newline
+ 228:     {\bf a)} Large-amplitude oscillatory shear (LAOS), in which the strain varies periodically between $-\gamma_0$ and $\gamma_0$. \newline
+
+==========================================================================================
+Correction 2 — PDF page 35 (Text)
+Source: chapters/2-Background/chapter.tex:255
+Section: Oscillatory Strain
+
+Action:
+Add one sentence connecting oscillatory deformation to accelerated fatigue testing in materials science, with existing fatigue references.
+
+Relevant PDF text:
+The former corresponds to absorbing or limit-cycle states, while the latter often
+reflects fatigue, in which plastic deformation accumulates over many cycles and can
+ultimately lead to yielding or failure [42, 44, 48, 136]. Oscillatory shear is therefore
+particularly well suited to probing the transition between reversible and irreversible
+behaviour in driven amorphous materials.
+
+Reviewer comment:
+you might add a comment: in a more practical materials science setting, oscillatory strain forms the basis of many accelerated failure tests
+
+Current LaTeX context:
+ 253: where $\gamma_0$ is the strain amplitude and the frequency $\omega$ sets the inverse timescale over which the deformation is applied. For sufficiently small amplitudes, $\gamma_0 \ll 1$, the material responds in the linear viscoelastic regime, in which the stress is proportional to the applied strain. In this regime, it can be expressed in terms of the storage and loss moduli, which quantify the elastic and viscous contributions to the stress. At larger amplitudes, the response becomes nonlinear, leading to waveform distortion and the appearance of higher harmonics in the stress signal. These provide a sensitive probe of yielding and dissipative processes within the material \cite{ewoldtLargeAmplitudeOscillatory2010}.
+ 255: In addition to resolving the intra-cycle response, oscillatory shear provides access to the evolution of a material over successive cycles. In many amorphous systems, repeated driving leads to the emergence of either periodic, reversible responses in which the system returns to the same configuration stroboscopically in each cycle, or to progressively evolving dynamics associated with irreversible rearrangements. The former corresponds to absorbing or limit-cycle states, while the latter often reflects fatigue, in which plastic deformation accumulates over many cycles and can ultimately lead to yielding or failure \cite{liuFateShearoscillatedAmorphous2022,Leishangthem2017,Fiocco_memory_2014,Regev_onset_2013}. Oscillatory shear is therefore particularly well suited to probing the transition between reversible and irreversible behaviour in driven amorphous materials. Beyond its use as a rheological probe, oscillatory deformation also has practical relevance in materials science: cyclic loading forms the basis of many accelerated fatigue tests used to investigate damage accumulation and estimate material lifetimes \cite{Suresh1998,DowlingMechanical2013}.
+ 257: In \cref{sec:Fatigue}, we consider the quasi-static limit of this oscillatory shear protocol, in which the driving frequency is taken to be small compared to the intrinsic inverse relaxation timescales of the material, $\omega \to 0$. In this limit, inertial and rate-dependent effects are negligible and the system evolves through a sequence of mechanically equilibrated states, even as plastic events occur. In practice in our computational simulations, this corresponds to cycling the strain between $-\gamma_0$ and $\gamma_0$ over successive cycles, pausing at strains where any local yielding events occur within the material, and evolving the system to a new equilibrium state before proceeding to the next strain in the cycle at which any further yielding events occur. This protocol has become a common tool for probing the stability and memory of amorphous solids under repeated loading, because it emphasises the role of accumulated plastic activity while minimising rate-dependent effects \cite{liuFateShearoscillatedAmorphous2022,Leishangthem2017,Fiocco_memory_2014,Regev_onset_2013}.
+
+==========================================================================================
+Correction 3 — PDF page 38 (Highlight)
+Source: chapters/2-Background/chapter.tex:315
+Section: The Navier-Stokes equations
+
+Action:
+Rename the subsection “The Navier--Stokes Equations”.
+
+Relevant PDF text:
+2.3.1 Navier-Stokes
+
+Reviewer comment:
+Consider a better title here: "The Navier-Stokes equations"?
+
+Current LaTeX context:
+ 313: % \]
+ 315: \subsection{The Navier-Stokes equations}
+ 316: From conservation of mass and momentum, the Navier--Stokes equations for a generalised incompressible flow read
+ 317: \begin{subequations}
+
+==========================================================================================
+Correction 4 — PDF page 39 (Highlight)
+Source: chapters/2-Background/chapter.tex:373
+Section: Oseen Tensor
+
+Action:
+Change “The solution ... is well known” to “Solutions ... are well known”.
+
+Relevant PDF text:
+The solution to eq. (2.12) is well known
+
+Reviewer comment:
+Perhaps change to "Solutions to eq. (2.12) are well known" ?
+
+Current LaTeX context:
+ 372: \subsection{Oseen Tensor} \label{sec:Oseen}
+ 373: The solution to \cref{eq:StokesLimit} is well known and has been studied in a wide range of systems. For a local plastic eigenstrain, the displacement field in an unbounded medium obeys:
+ 374: \begin{subequations}
+ 375: \label{eq:Stokes}
+
+==========================================================================================
+Correction 5 — PDF page 39 (Highlight)
+Source: chapters/2-Background/chapter.tex:372
+Section: Oseen Tensor
+
+Action:
+Rename the subsection “The Oseen Tensor”.
+
+Relevant PDF text:
+Oseen Tensor
+
+Reviewer comment:
+Suggest "The Oseen Tensor"
+
+Current LaTeX context:
+ 370: % \[\nabla \cdot \left( 2\mu \bm{\epsilon}^{\mathrm{el}1} - p^1 \bm{I} \right) = -\nabla p^1 + \mu \nabla^2 \bm{u}^1.\]
+ 372: \subsection{Oseen Tensor} \label{sec:Oseen}
+ 373: The solution to \cref{eq:StokesLimit} is well known and has been studied in a wide range of systems. For a local plastic eigenstrain, the displacement field in an unbounded medium obeys:
+ 374: \begin{subequations}
+
+==========================================================================================
+Correction 6 — PDF page 39 (Highlight)
+Source: chapters/2-Background/chapter.tex:373
+Section: Oseen Tensor
+
+Action:
+Change the associated singular verb “has” to “have” after pluralising “Solutions”.
+
+Relevant PDF text:
+has
+
+Reviewer comment:
+have
+
+Current LaTeX context:
+ 372: \subsection{Oseen Tensor} \label{sec:Oseen}
+ 373: The solution to \cref{eq:StokesLimit} is well known and has been studied in a wide range of systems. For a local plastic eigenstrain, the displacement field in an unbounded medium obeys:
+ 374: \begin{subequations}
+ 375: \label{eq:Stokes}
+
+==========================================================================================
+Correction 7 — PDF page 40 (Highlight)
+Source: chapters/2-Background/chapter.tex:421
+Section: Eshelby Stress Propagator
+
+Action:
+Define the local plastic shear event explicitly when it is introduced.
+
+Relevant PDF text:
+local plastic shear event ϵ pl
+xy
+
+Reviewer comment:
+define this?
+
+Current LaTeX context:
+ 419:     \label{eq:eshelbyStress}
+ 420: \end{equation}
+ 421: These can then be expressed in terms of the deformation gradients found in \cref{eq:fourierDeformationGradient}. For simplicity, we consider a two-dimensional system and focus on the elastic stress redistribution associated with a local plastic shear event $\epsilon_{xy}^{\mathrm{pl}}$, characterised by the corresponding stress component $\tau_{xy}$. This choice is made for convenience, because the same analysis can be carried out for any component of the resulting stress and eigenstrain components. While the explicit form of the response differs between components and in three dimensions, the underlying mathematical structure of the formalism remains unchanged and extends straightforwardly to more general cases.
+ 423: In two dimensions, the Fourier representations of the displacement components $u_x$ and $u_y$ take the form,
+
+==========================================================================================
+Correction 8 — PDF page 40 (Highlight)
+Source: chapters/2-Background/chapter.tex:387
+Section: Oseen Tensor
+
+Action:
+Replace “The Oseen tensor is obtained” with “The Fourier transform of the Oseen tensor is obtained”.
+
+Relevant PDF text:
+The Oseen tensor is obtained
+
+Reviewer comment:
+The Fourier Transform of the Oseen tensor is obtained
+
+Current LaTeX context:
+ 385: The tensor $\bm{\mathbb{O}}$ was first derived by Oseen in 1927 \cite{oseen_neuere_1927} and refined by Burgers in 1939 \cite{Burgers1939}. In the present context, it provides the projection kernel that maps the eigenstrain source onto an incompressible displacement field. This Green-function structure is closely related to Eshelby's treatment of an inclusion with a prescribed internal transformation strain \cite{eshelby_determination_1997}.
+ 387: The Oseen tensor is obtained as
+ 388: \begin{equation}
+ 389:     \hat{\mathbb{O}}_{ij} = \frac{1}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right).
+
+==========================================================================================
+Correction 9 — PDF page 40 (Text)
+Source: chapters/2-Background/chapter.tex:421
+Section: Eshelby Stress Propagator
+
+Action:
+Write the local plastic shear as a spatial delta-function field; explain that its amplitude is strain times event area and therefore has dimensions of area.
+
+Relevant PDF text:
+and
+τ = 2µϵ el (2.21)
+ij ij
+
+Reviewer comment:
+In this section please be a little bit more careful about the idea of a "plastic shear event at the origin" and what you mean by that. As we discussed in the viva, the relevant quantity is the magnitude of the plastic shear multiplied by the (small) area over which is is applied: this is the parameter in front of the delta function, and has dimensions of area (it is also equal to the Fourier transformed plastic strain in eqs 2.22). It might be useful to write out the plastic shear as a function of position explicitly, with the delta function.
+
+Current LaTeX context:
+ 419:     \label{eq:eshelbyStress}
+ 420: \end{equation}
+ 421: These can then be expressed in terms of the deformation gradients found in \cref{eq:fourierDeformationGradient}. For simplicity, we consider a two-dimensional system and focus on the elastic stress redistribution associated with a local plastic shear event $\epsilon_{xy}^{\mathrm{pl}}$, characterised by the corresponding stress component $\tau_{xy}$. This choice is made for convenience, because the same analysis can be carried out for any component of the resulting stress and eigenstrain components. While the explicit form of the response differs between components and in three dimensions, the underlying mathematical structure of the formalism remains unchanged and extends straightforwardly to more general cases.
+ 423: In two dimensions, the Fourier representations of the displacement components $u_x$ and $u_y$ take the form,
+
+==========================================================================================
+Correction 10 — PDF page 41 (Highlight)
+Source: chapters/2-Background/chapter.tex:394
+Section: Oseen Tensor
+
+Action:
+State that the Fourier-transformed plastic event equals the coefficient multiplying the real-space delta function.
+
+Relevant PDF text:
+ϵ̂ pl ,
+xy
+
+Reviewer comment:
+here you have the FT of the plastic event.... which equals the number in front of the delta function
+
+Current LaTeX context:
+ 392: This yields the displacement field in Fourier space,
+ 393: \begin{equation}
+ 394:     \hat{u}_i = -2\mu \hat{\mathbb{O}}_{ij} i k_l \hat{\epsilon}_{jl}^{\mathrm{pl}}
+ 395:     = -\frac{2i}{k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right) k_l \hat{\epsilon}_{jl}^{\mathrm{pl}}
+ 396:     \label{eq:fourierDeformation}
+
+==========================================================================================
+Correction 11 — PDF page 41 (Highlight)
+Source: chapters/2-Background/chapter.tex:446
+Section: Eshelby Stress Propagator
+
+Action:
+Clarify “at the origin” and reconcile the unit event amplitude with the small-strain assumption.
+
+Relevant PDF text:
+ϵ pl = −1 at the origin.
+xy
+
+Reviewer comment:
+You should explain what you mean by "at the origin". (You might also clarify how this relates to a "small strain" assumption!)
+
+Current LaTeX context:
+ 444: \label{eq:StressPropogator}
+ 445: \end{equation}
+ 446: We illustrate in \cref{fig:Propogator} the stress redistribution resulting from a single plastic event with $\epsilon_{xy}^{\mathrm{pl}} = -1$ at the origin.
+ 448: \begin{figure}
+
+==========================================================================================
+Correction 12 — PDF page 42 (Highlight)
+Source: chapters/2-Background/chapter.tex:452
+Section: Eshelby Stress Propagator
+
+Action:
+Clarify whether the central element is assigned stress, strain, or both equal to -1, and describe the numerical yielding operation.
+
+Relevant PDF text:
+one central element is then yielded and set to τ = −1,
+xy
+
+Reviewer comment:
+Is this stress or stain =-1 (or both?) You also need to explain what you mean by "one central element is yielded", c.f. the text? How is this obtained, numerically?
+
+Current LaTeX context:
+ 450:     \includegraphics[width=0.75\linewidth]{chapters/2-Background/Figures/Prop_512_inset17.pdf}
+ 451:     %\missingfigure{Plot of Propagator}
+ 452:     \caption[Quadrupolar elastoplastic stress propagator]{Quadrupolar redistribution of shear stress $\tau_{xy}$ in two dimensions, after a single local plastic event in a system with $\mu=1$. The system is initialised with $\tau_{xy}=0$ everywhere; one central element is then yielded and set to $\tau_{xy}=-1$, after which mechanical equilibrium is enforced. The main panel shows the full $N_x\times N_y = 512\times512$ propagator, and the inset shows the central $17\times17$ region around the propagator.}
+ 453:     \label{fig:Propogator}
+ 454: \end{figure}
+
+==========================================================================================
+Correction 13 — PDF page 42 (Highlight)
+Source: chapters/2-Background/chapter.tex:452
+Section: Eshelby Stress Propagator
+
+Action:
+Briefly state the numerical method used to calculate the 512×512 propagator.
+
+Relevant PDF text:
+N × N = 512 × 512 propagator,
+x y
+and the inset shows the central 17 × 17 region around the propagator.
+
+Reviewer comment:
+Obviously some numerical method has been used here... you should briefly explain it in the text.
+
+Current LaTeX context:
+ 450:     \includegraphics[width=0.75\linewidth]{chapters/2-Background/Figures/Prop_512_inset17.pdf}
+ 451:     %\missingfigure{Plot of Propagator}
+ 452:     \caption[Quadrupolar elastoplastic stress propagator]{Quadrupolar redistribution of shear stress $\tau_{xy}$ in two dimensions, after a single local plastic event in a system with $\mu=1$. The system is initialised with $\tau_{xy}=0$ everywhere; one central element is then yielded and set to $\tau_{xy}=-1$, after which mechanical equilibrium is enforced. The main panel shows the full $N_x\times N_y = 512\times512$ propagator, and the inset shows the central $17\times17$ region around the propagator.}
+ 453:     \label{fig:Propogator}
+ 454: \end{figure}
+
+==========================================================================================
+Correction 14 — PDF page 62 (Text)
+Source: chapters/2-Background/chapter.tex:729
+Section: Packing-Derived Networks
+
+Action:
+Add a short comment on whether bidispersity imposes structure and how a polydisperse construction might differ.
+
+Relevant PDF text:
+configuration.
+After all contacts have been processed, the disks themselves are removed, leaving
+a network composed solely of nodes and bonds. This construction procedure is
+illustrated in Fig. 2.7.
+In this work, we take ϕ = 1  ϕ ≈ 0.84 unless stated otherwise [157, 218]. For
+
+Reviewer comment:
+A question I did not ask, but you might add a brief comment: Does bidispersity itself impose a certain kind of structure? What if we used a polydisperse set of disks?
+
+Current LaTeX context:
+ 727: Network bonds are constructed from the contact network of an equilibrated packing \cite{lerner_simulations_2013,ellenbroek_non-affine_2009,mangal_topological_2023}. A network node is placed at the centre of each disk. For every overlapping pair of disks, the corresponding nodes are connected by a bond whose natural length is given by their centre-to-centre distance in the energy-minimised configuration.
+ 729: After all contacts have been processed, the disks themselves are removed, leaving a network composed solely of nodes and bonds. This construction procedure is illustrated in \cref{fig:SingleNetworkGeneration}.
+ 731: In this work, we take $\phi = 1 > \phi_J \approx 0.84$ unless stated otherwise \cite{chacko_slow_2019,ikeda_unified_2012}. For single networks, this corresponds to an average connectivity $z \approx 5.4$, which lies well above the isostatic threshold. In principle, networks with lower connectivity (while remaining above the isostatic threshold $z=4$) could be generated by preparing packings at $\phi$ closer to $\phi_J$. Instead, we obtain lower-connectivity networks by iteratively pruning bonds from an initially highly connected network constructed at $\phi=1$, following the procedure described below. This allows for tighter control of the network connectivity when studying systems with lower coordination.
+
+==========================================================================================
+Correction 15 — PDF page 63 (Highlight)
+Source: chapters/2-Background/chapter.tex:758
+Section: Pruning Networks
+
+Action:
+Define the pruning rule more precisely, including whether removal is deterministic or probabilistic among candidate bonds.
+
+Relevant PDF text:
+pairs are preferentially pruned
+
+Reviewer comment:
+Can you say more - presumably there is still some probability of removal?
+
+Current LaTeX context:
+ 756: Once a clean network has been generated, it can be pruned to reduce its average connectivity. This procedure is analogous to the bond dilution used in lattice-based networks to introduce disorder, although additional care is required due to the intrinsic positional disorder already present.
+ 758: Bonds are removed selectively based on the local pair connectivity $z_{ij}=z_i+z_j$, where $z_i$ and $z_j$ denote the coordination numbers (i.e. the number of bonds) of the nodes connected by bond $(i,j)$. Bonds associated with the most highly connected node pairs are preferentially pruned to minimise spatial heterogeneity in the coordination field \cite{wyart_elasticity_2008, lerner_breakdown_2014}. This process is repeated until the target average connectivity is reached. Any dangling or disconnected components that emerge during pruning are identified and removed as they are created.
+ 760: \subsection{Calculating Stress} \label{sec:virialStress}
+
+==========================================================================================
+Correction 16 — PDF page 65 (Highlight)
+Source: chapters/2-Background/chapter.tex:803
+Section: Generalised Lees--Edwards Boundary Conditions
+
+Action:
+Explain why the Lees--Edwards construction is described as “generalised”, or remove that adjective.
+
+Relevant PDF text:
+Generalised
+
+Reviewer comment:
+Why Generalised ?
+
+Current LaTeX context:
+ 801: The derivation above extends trivially to three dimensions, where instead force contributions above and below an arbitrary plane perpendicular to the $j$-axis are considered. Calculating the stress by this approach eliminates the computation of numerical derivatives and is more computationally efficient, because both $\bm{r}_{ij}$ and $\bm{f}_{ij}$ are already calculated at each timestep when evaluating the system's dynamics. A more thorough derivation of the virial stress tensor, including fluid effects, can be found in Ref.~\cite{yang_generalized_2012}.
+ 803: \subsection{Generalised Lees--Edwards Boundary Conditions} \label{sec:Lees-Edwards}
+ 805: When studying rheology, we aim to characterise a material's response to an imposed bulk stress or strain. In experimental settings, this is typically achieved by placing a sample of the material in a rheometer and imposing the desired loading or deformation through the motion of one or more boundaries. To ensure that the measured response reflects the bulk behaviour, samples are typically made sufficiently large that edge effects do not dominate the physics.
+
+==========================================================================================
+Correction 17 — PDF page 66 (Text)
+Source: chapters/2-Background/chapter.tex:830
+Section: Generalised Lees--Edwards Boundary Conditions
+
+Action:
+Explain why Lees--Edwards boundary conditions are needed for a bond-breaking network with no bond reconnection.
+
+Relevant PDF text:
+(a) Triclinic Boundary Conditions (b) Lees Edwards Boundary Conditions
+Figure 2.9. Illustration of two equivalent boundary conditions used in simulations to
+apply macroscopic stress to a system.
+
+Reviewer comment:
+A question I did not ask but which you might comment on: I could understand using Lees-Edwards if you were reconnecting network bonds after large strain in a fluid simulation, but I can't see it makes any practical difference as all if you are just breaking bonds. Are Lees-Edwards really necessary?
+
+Current LaTeX context:
+ 828: In periodic simulations, macroscopic deformation is imposed by modifying the lattice vectors, which define the mapping between the unit cell and its periodic images. Simple loading protocols can therefore be implemented by appropriately deforming the simulation box and its lattice vectors, as illustrated in \cref{fig:Tri-Clinic}. This approach is commonly referred to as the use of triclinic boundary conditions, with the terminology derived from the triclinic crystal lattice.
+ 830: While this method permits arbitrary homogeneous deformations, it can be computationally costly in practice due to the need to transform between bases when evaluating minimum-image distances. Moreover, at large strains, the unit cell can become highly skewed, which may lead to numerical inefficiencies. To address these issues, Lees and Edwards proposed a modified set of periodic boundary conditions that achieves the same macroscopic shear while remaining computationally efficient \cite{lees_computer_1972}.
+ 832: To impose shear in the $x$ direction using Lees--Edwards boundary conditions, particle positions $\mathbf{r}_i=(x_i,y_i)$ are affinely transformed according to
+
+==========================================================================================
+Correction 18 — PDF page 72 (Highlight)
+Source: chapters/Fatigue/chapter.tex:21
+Section: Introduction
+
+Action:
+Split or simplify the long sentence contrasting metallic glasses with softer amorphous solids.
+
+Relevant PDF text:
+How-
+ever, unlike softer amorphous solids, such as yield stress fluids, which continue to flow
+and subsequently recover solidity when unloaded, shear banding in metallic glasses
+commonly leads to brittle failure and catastrophic fracture, limiting the material’s
+strength.
+
+Reviewer comment:
+Consider revising this compound sentence: there are too many clauses!
+
+Current LaTeX context:
+  19: Consistent with the theme of this thesis, we will consider this phenomenon in the context of amorphous materials, which, unlike crystalline solids, lack any long-range order in the arrangements of their microscopic constituents (grains, bonds, droplets, etc.). Amorphous materials \cite{nicolas_deformation_2018,Berthier2011,Berthier2025} encompass a broad class of disordered solids, including soft materials such as gels and foams \cite{bonn_yield_2017}, as well as granular materials \cite{liuJammingNotJust1998} and metallic glasses \cite{SCHUH2007}. When subject to sufficiently small loads or deformations, such materials typically show an initial solid-like elastic response, with stress increasing approximately linearly with strain. At larger loads, however, this elastic response eventually breaks down, and the material yields plastically, undergoing irreversible rearrangements of its microscopic structure. Recent developments in experimental methods for tracking motion inside amorphous solids have made it possible to resolve the complex spatiotemporal dynamics that accompany yielding and flow \cite{porr_probing_2025,manneville_recent_2008,Besseling2009,Dutta2013,divoux_stress_2011,divouxTransientShearBanding2010,divoux_yielding_2012,grenard_timescales_2014,gibaud_heterogeneous_2010,kurokawa_avalanche-like_2015,Chan2013,Schott2025,Zhang2025,Shang2024,Aime2025}. Correspondingly, it has been shown that the yielding behaviour of amorphous materials can occur through different mechanisms. In some cases, yielding proceeds gradually and relatively homogeneously through the accumulation of many distributed plastic rearrangements \cite{Malandro1999,pollard_yielding_2022,falk_dynamics_1998,divoux_stress_2011,divoux_yielding_2012,divouxTransientShearBanding2010,grenard_timescales_2014,Gibaud2009,gibaud_heterogeneous_2010,kurokawa_avalanche-like_2015,Sentjabrskaja2015}. In other cases, yielding occurs more abruptly through the nucleation and propagation of localised shear bands that can span the system and precipitate failure \cite{divoux_stress_2011,pollard_yielding_2022,SCHUH2007,barlow_ductile_2020,Huang2016,bonnDelayedFractureInhomogeneous1998,leocmach_creep_2014,Tabuteau2009,fieldingTriggersSignaturesShear2016}. Despite the diversity of materials in which these phenomena occur, the similarities in their macroscopic behaviour have motivated the search for general theoretical descriptions of yielding in disordered solids \cite{cabriolu_precursors_2019}.
+  21: Similar phenomenology is also observed in harder amorphous materials such as polymeric and metallic glasses \cite{hufnagel_deformation_2016,chen_mechanical_2008,boyce_large_1988,anand_large-deformation_2012,Argon1979}. These materials also typically exhibit elastic, solid-like behaviour at small strains before yielding at larger deformations, often accompanied by strain localisation and shear band formation \cite{greer_shear_2013,Maa2015}. However, unlike softer amorphous solids, such as yield stress fluids, which continue to flow and subsequently recover solidity when unloaded, shear banding in metallic glasses commonly leads to brittle failure and catastrophic fracture, limiting the material’s strength. The mechanisms underlying shear band formation in these hard materials remain an active topic of study \cite{greer_shear_2013,Cheng2011,Shi2006}. Homogeneous nucleation has been proposed as one route, in which correlated plastic rearrangements cooperatively evolve into a sy […]
+
+==========================================================================================
+Correction 19 — PDF page 73 (Text)
+Source: chapters/Fatigue/chapter.tex:29
+Section: Introduction
+
+Action:
+Mention accelerated lifetime/fatigue testing in the oscillatory-shear introduction, reusing existing fatigue references.
+
+Relevant PDF text:
+As a result, oscillatory shear has been widely used as a powerful probe of the non-
+linear rheology of amorphous materials, revealing several characteristic signatures of
+their deformation and yielding dynamics. These include nonlinear stress responses
+[132, 134, 135, 277, 278], progressive structural changes [279–282], and the localisation
+of deformation into shear bands [109, 271, 283–285].
+
+Reviewer comment:
+As noted earlier, you might mention accelerated testing protocols for assessing material lifetime.
+
+Current LaTeX context:
+  27: Although the early stages of this fatigue process often produce little observable macroscopic change, the progressive evolution of the microstructure can ultimately destabilise the material, leading to a higher-energy state characterised by chaotic, irreversible dynamics from cycle to cycle \cite{Regev_onset_2013,pineChaosThresholdIrreversibility2005,Das2020}.
+  29: As a result, oscillatory shear has been widely used as a powerful probe of the non-linear rheology of amorphous materials, revealing several characteristic signatures of their deformation and yielding dynamics. These include nonlinear stress responses \cite{yoshimuraResponseElasticBingham1987a,ewoldtLargeAmplitudeOscillatory2010,renouYieldingProcessesColloidal2010,rogersSequencePhysicalProcesses2012,blackwellSimpleThixotropicViscoelastic2014}, progressive structural changes \cite{Koumakis2013,Poulos2013,Poulos2015,vandoornStrandPlasticityGoverns2018}, and the localisation of deformation into shear bands \cite{radhakrishnan_shear_2016,radhakrishnan_shear_2018,rogersAgingYieldingShear2008,yehGlassStabilityChanges2020,Parmar2019}.
+  31: Unlike in crystalline solids, where fatigue is often interpreted in terms of the gradual growth of microscopic cracks or defects, the mechanisms underlying failure in amorphous materials remain less well understood. Experiments on colloidal gels under oscillatory loading provide one such example \cite{Perge2014,Gibaud2016,SaintMichel2017}. These studies reveal a multistage yielding process: the material initially retains a solid-like response over many cycles, before wall slip develops at the boundaries. The deformation then becomes heterogeneous, with the emergence of coexisting solid–fluid shear bands in the bulk, before the system ultimately fluidises completely \cite{Gibaud2016}. Such observations highlight the complex and history-dependent processes by which amorphous materials evolve under cyclic deformation.
+
+==========================================================================================
+Correction 20 — PDF page 74 (Highlight)
+Source: chapters/Fatigue/chapter.tex:35
+Section: Introduction
+
+Action:
+Check the grammar around “dynamics associated”; add a comma only if the phrase is parenthetical.
+
+Relevant PDF text:
+dynamics associated
+
+Reviewer comment:
+Should there be a comma between "dynamics" and "associated" ?
+
+Current LaTeX context:
+  33: In addition to the initial state of the material, determined by its preparation history, the response of amorphous materials under oscillatory shear has been shown to depend strongly on the imposed strain amplitude $\gammaMax$ relative to a critical amplitude $\gamma_c$ \cite{bhaumikRoleAnnealingDetermining2021,Cort2008,Das2020,Fiocco2013,kawasakiMacroscopicYieldingJammed2016,KhirallahIntegerModel2021,knowltonMicroscopicViewYielding2014,kumarMappingOutGlassy2022,lavrentovichPeriodProliferationPeriodic2017,bhardwajSituClickChemistry2017,liuFateShearoscillatedAmorphous2022,munganMetastabilityMechanismYielding2021,himanagamanasaExperimentalSignaturesNonequilibrium2014,nessAbsorbingStateTransitionsGranular2020,pineChaosThresholdIrreversibility2005,priezjevMolecularDynamicsSimulations2018,Regev_onset_2013,sastryModelsYieldingBehavior2021,szulcForcedDeterministicDynamics2020,yehGlassStabilityChanges2020}. For sufficiently small strain amplitudes, $\gammaMax < \gamma_c$, the system can evolve towards a quiescent state in which plastic rearrangements eventually cease. In this regime, repeated deformation drives the system to self-organise into configurations that avoid further irreversible plastic events, such that after an initial period, the microscopic configuration repeats exactly after each deformation cycle \cite{Regev_onset_2013,kawasakiMacroscopicYieldingJammed2016,Leishangthem2017}. This quiescent regime is commonly described as an absorbing state, since once the system reaches this configuration, no further plastic activity can occur under the imposed oscillation.
+  35: As the strain amplitude approaches the critical value, $\gammaMax\to\gamma_c^-$, the number of cycles required to reach this quiescent steady state increases rapidly and can diverge at the critical point $\gammaMax$ \cite{Regev_onset_2013,kawasakiMacroscopicYieldingJammed2016}. This behaviour has been interpreted as critical slowing down in the dynamics associated with a nonequilibrium phase transition between reversible and irreversible dynamical states. Evidence for this phenomenon has been observed across a wide range of experimental and numerical systems. In periodically driven suspensions, for example, particles can self-organise under cyclic shear into configurations that avoid further collisions, producing a reversible steady state in which trajectories form closed, periodic loops, and diffusion vanishes \cite{pineChaosThresholdIrreversibility2005,Cort2008}. Similar behaviour has been reported in experiments on colloidal glasses and dense granular materials subjected to oscillatory shear, where the reversible regime is characterised by vanishing stroboscopic diffusion and the absence of sustained rearrangements \cite{himanagamanasaExperimentalSignaturesNonequilibrium2014,knowltonMicroscopicViewYielding2014}.
+  37: Particle-based simulations of amorphous solids reveal closely related behaviour. Athermal quasi-static simulations of model glasses subjected to cyclic shear show that, for strain amplitudes below yield, the system evolves towards periodic trajectories in configuration space, in which the same sequence of reversible rearrangements repeats every cycle \cite{Fiocco2013,Regev_onset_2013,Leishangthem2017,nessAbsorbingStateTransitionsGranular2020}. Near the transition, the transient time required for the system to reach this periodic state grows rapidly with strain amplitude, while above the transition, the system instead exhibits persistent […]
+
+==========================================================================================
+Correction 21 — PDF page 74 (Highlight)
+Source: chapters/Fatigue/chapter.tex:35
+Section: Introduction
+
+Action:
+Move the periodically driven suspensions/colloids paragraph earlier so it follows the discussion of reversible and irreversible states.
+
+Relevant PDF text:
+In
+periodically driven suspensions, for example, particles can self-organise under cyclic
+shear into configurations that avoid further collisions, producing a reversible steady
+state in which trajectories form closed, periodic loops, and diffusion vanishes [39,
+40]. Similar behaviour has been reported in experiments on colloidal glasses and
+dense granular materials subjected to oscillatory shear, where the reversible regime
+is characterised by vanishing stroboscopic diffusion and the absence of sustained
+rearrangements [290, 294].
+
+Reviewer comment:
+Does this belong in the paragraph before? It seems more related to that paragraph.
+
+Current LaTeX context:
+  33: In addition to the initial state of the material, determined by its preparation history, the response of amorphous materials under oscillatory shear has been shown to depend strongly on the imposed strain amplitude $\gammaMax$ relative to a critical amplitude $\gamma_c$ \cite{bhaumikRoleAnnealingDetermining2021,Cort2008,Das2020,Fiocco2013,kawasakiMacroscopicYieldingJammed2016,KhirallahIntegerModel2021,knowltonMicroscopicViewYielding2014,kumarMappingOutGlassy2022,lavrentovichPeriodProliferationPeriodic2017,bhardwajSituClickChemistry2017,liuFateShearoscillatedAmorphous2022,munganMetastabilityMechanismYielding2021,himanagamanasaExperimentalSignaturesNonequilibrium2014,nessAbsorbingStateTransitionsGranular2020,pineChaosThresholdIrreversibility2005,priezjevMolecularDynamicsSimulations2018,Regev_onset_2013,sastryModelsYieldingBehavior2021,szulcForcedDeterministicDynamics2020,yehGlassStabilityChanges2020}. For sufficiently small strain amplitudes, $\gammaMax < \gamma_c$, the system can evolve towards a quiescent state in which plastic rearrangements eventually cease. In this regime, repeated deformation drives the system to self-organise into configurations that avoid further irreversible plastic events, such that after an initial period, the microscopic configuration repeats exactly after each deformation cycle \cite{Regev_onset_2013,kawasakiMacroscopicYieldingJammed2016,Leishangthem2017}. This quiescent regime is commonly described as an absorbing state, since once the system reaches this configuration, no further plastic activity can occur under the imposed oscillation.
+  35: As the strain amplitude approaches the critical value, $\gammaMax\to\gamma_c^-$, the number of cycles required to reach this quiescent steady state increases rapidly and can diverge at the critical point $\gammaMax$ \cite{Regev_onset_2013,kawasakiMacroscopicYieldingJammed2016}. This behaviour has been interpreted as critical slowing down in the dynamics associated with a nonequilibrium phase transition between reversible and irreversible dynamical states. Evidence for this phenomenon has been observed across a wide range of experimental and numerical systems. In periodically driven suspensions, for example, particles can self-organise under cyclic shear into configurations that avoid further collisions, producing a reversible steady state in which trajectories form closed, periodic loops, and diffusion vanishes \cite{pineChaosThresholdIrreversibility2005,Cort2008}. Similar behaviour has been reported in experiments on colloidal glasses and dense granular materials subjected to oscillatory shear, where the reversible regime is characterised by vanishing stroboscopic diffusion and the absence of sustained rearrangements \cite{himanagamanasaExperimentalSignaturesNonequilibrium2014,knowltonMicroscopicViewYielding2014}.
+  37: Particle-based simulations of amorphous solids reveal closely related behaviour. Athermal quasi-static simulations of model glasses subjected to cyclic shear show that, for strain amplitudes below yield, the system evolves towards periodic trajectories in configuration space, in which the same sequence of reversible rearrangements repeats every cycle \cite{Fiocco2013,Regev_onset_2013,Leishangthem2017,nessAbsorbingStateTransitionsGranular2020}. Near the transition, the transient time required for the system to reach this periodic state grows rapidly with strain amplitude, while above the transition, the system instead exhibits persistent […]
+
+==========================================================================================
+Correction 22 — PDF page 78 (Text)
+Source: chapters/Fatigue/chapter.tex:63
+Section: Methodology
+
+Action:
+Credit Pollard and Fielding when introducing the base elastoplastic model.
+
+Relevant PDF text:
+3.2 Methodology
+
+Reviewer comment:
+At some point in this section you should say that that basic model is the one introduced by Pollard and Fielding [49] (otherwise it looks like this is your own model)
+
+Current LaTeX context:
+  61: \section{Methodology} \label{sec:fatigueMethodology}
+  63: As a starting point for the model used in this work, we adopt the framework introduced in \cref{sec:Hydrodynamics}. We briefly restate it here to fix notation. Physically, the governing equations describe the slow deformation of an incompressible viscoelastic material in the overdamped limit, where elastic and viscous stresses dominate over inertia. The total stress tensor is therefore decomposed as
+  64: \[
+  65:     \bm{\sigma} = \bm{\tau} - p\bm{I},
+
+==========================================================================================
+Correction 23 — PDF page 79 (Highlight)
+Source: chapters/Fatigue/chapter.tex:79
+Section: Methodology
+
+Action:
+Explain or qualify the assumption of affine loading between plastic events; cite prior model work if available.
+
+Relevant PDF text:
+Between each plastic event, the strain of each element is assumed to follow
+affinely the globally applied elastic strain γ,
+
+Reviewer comment:
+We discussed this in the viva: This assumption is not obvious to me. Between plastic events, the material is in a state with various "frozen in" local stresses induced by previous plastic events. Given these, would deformation be affine? There could additionally be local rotations that are favoured by the frozen in stresses. It might be this is all OK. For the purposes of making corrections to the thesis, I suggest having a little dig into previous papers using this model to see whether it has been discussed and/or asking your supervisor to comment. If these is a neat and quick explanation, or a reference that can be given, then add that. If in fact you aren't sure, you might simply state that you are using a model developed by others, but that this aspect is an assumption.
+
+Current LaTeX context:
+  77: Throughout this chapter, we further specialise to the quasi-static shear limit, so that elastic propagation and plastic relaxation are treated as instantaneous compared to the timescale of the applied deformation and the material regains mechanical equilibrium after each strain increment. This assumption motivates, as in \cref{sec:Hydrodynamics} the use of a displacement-based formulation in which the displacement field $\bm{u}(\bm{r},t)$ is defined through $\bm{v} = \partial_t \bm{u}$.
+  79: To solve the dynamics of \cref{eq:fatigueForceBalance}, we introduce a square lattice of $i=1,2,\ldots,N$ by $j=1,2,\ldots,N$ elements. While each element could be associated with a mesoscopic conformation tensor which fully defines the material's state, instead we consider a scalar model where each element is assigned a local elastic shear strain $l$, a corresponding local shear stress $\mu l$ and a local yield energy $E$. In this way we neglect normal stresses. Each element in the lattice is assumed to follow the following set of rules. Between each plastic event, the strain of each element is assumed to follow affinely the globally applied elastic strain $\gamma$, corresponding to elastic loading in the material. Each element is assumed to continue this elastic loading until its strain energy reaches the yield threshold
+  80: \[
+  81:     E=\frac{1}{2}\mu l_c^2.
+
+==========================================================================================
+Correction 24 — PDF page 79 (Text)
+Source: chapters/Fatigue/chapter.tex:83
+Section: Methodology
+
+Action:
+Add a sentence explaining how the unit yielding strain is compatible with the small-strain formulation.
+
+Relevant PDF text:
+we will work in units where µ = 1 and E = 0.5, such that the yielding threshold for
+elements reduces to
+|l|  ℓ := p 2E/µ = 1.
+c
+
+Reviewer comment:
+The overall assumption is "small strain"... so this set of units don't make full sense! A brief comment might be helpful.
+
+Current LaTeX context:
+  81:     E=\frac{1}{2}\mu l_c^2.
+  82: \]
+  83: Beyond this threshold, the element is assumed to immediately yield. For this work we will work in units where $\mu=1$ and $E=0.5$, such that the yielding threshold for elements reduces to
+  84: \[
+  85:     |l| > \lc := \sqrt{2E/\mu}=1.
+
+==========================================================================================
+Correction 25 — PDF page 86 (Text)
+Source: chapters/Fatigue/chapter.tex:182
+Section: Shear Startup
+
+Action:
+State explicitly that convergence of the shear-startup response as N→∞ remains an open question and qualify any interpretation.
+
+Relevant PDF text:
+Figure 3.3. Stress-strain curves of the lattice elastoplastic model under shear startup.
+a) Responses for a lattice size N × N = 1024 × 1024, with decreasing levels of sample
+annealing in curves downwards: l = 0.025, 0.05, 0.075, . . . , 0.2. b) Finite-size dependence
+
+Reviewer comment:
+In the viva we discussed whether this converges as N -> \infty ? Your answer was that no-one knows. In this case, I think it would be useful to say that this is an open question (and if you want to give your opinion, do that too).
+
+Current LaTeX context:
+ 180:     \centering
+ 181:     \includegraphics[width=0.99\linewidth]{chapters/Fatigue/Figures/pollard.pdf}
+ 182:     \caption[Stress-strain curves of the lattice elastoplastic model under shear startup.]{Stress-strain curves of the lattice elastoplastic model under shear startup. {\bf a)} Responses for a lattice size $N \times N = 1024 \times 1024$, with decreasing levels of sample annealing in curves downwards: $l_0=0.025, 0.05, 0.075, \ldots, 0.2$. {\bf b)} Finite-size dependence for two different annealing levels $l_0=0.05$ (dashed curves) and $l_0=0.125$ (solid curves) for system sizes $N=64, 128, 256, 512, 1024, 2048, 4096$.}
+ 183:     \label{fig:ShearStarup}
+ 184: \end{figure}
+
+==========================================================================================
+Correction 26 — PDF page 88 (Text)
+Source: chapters/Fatigue/chapter.tex:208
+Section: Oscillatory shear results
+
+Action:
+Explain whether the conclusions depend on Gaussian tails and why a Gaussian initial distribution is appropriate.
+
+Relevant PDF text:
+elements with very large initial strains |l|  1 would already have yielded during
+preparation and are therefore truncated, the probability of finding elements arbitrarily
+close to threshold l = ±1 remains finite. Consequently, in sufficiently large systems,
+c
+near-critical elements are statistically unavoidable, so even at small imposed strain
+
+Reviewer comment:
+It may be worth a comment on whether the results rely on tails of the distribution. Why is Gaussian appropriate? We discussed this point in the viva, and my understanding is that these tails affect only how many elements are initially in the yielding state.
+
+Current LaTeX context:
+ 206: In this limit, no element is driven beyond its local yield threshold during the first cycle or any subsequent cycle, so no plastic activity occurs and the system is immediately classified as absorbing.
+ 208: However, after force balance is imposed, the initial distribution of local strain values is a Gaussian distribution of width $l_0\Norm$. In the thermodynamic limit $N \to \infty$, the extreme tails of the initial distribution are inevitably sampled. Although elements with very large initial strains $|l|>1$ would already have yielded during preparation and are therefore truncated, the probability of finding elements arbitrarily close to threshold $l_c = \pm 1$ remains finite. Consequently, in sufficiently large systems, near-critical elements are statistically unavoidable, so even at small imposed strain amplitudes the dynamics generally involve plastic activity, at least during the early cycles.
+ 210: At the opposite extreme, when the imposed amplitude $\gammaMax$ is large, the applied deformation immediately drives elements beyond their yield threshold within the first cycle. In this limit, the dynamics closely resemble those of shear start-up: plastic activity rapidly organises during monotonic deformation, damage accumulates cooperatively, and a shear band forms within the first cycle, leading to immediate failure. While in the large-$\gammaMax$ limit, this failure would be expected to occur during the first half cycle, $\gamma \to \gammaMax$, for intermediate values of $\gammaMax$ it may instead arise from statistical sampling of the initial distribution of $l$ during the second half-cycle, $\gamma \to -\gammaMax$.
+
+==========================================================================================
+Correction 27 — PDF page 94 (Highlight)
+Source: chapters/Fatigue/chapter.tex:264
+Section: Oscillatory shear results
+
+Action:
+Reword the claim about long-lived failing trajectories so it agrees with the plotted absorption and yielding cycle counts.
+
+Relevant PDF text:
+In these cases, the trajectories that eventually fail are typically those that
+persist for many cycles while gradually accumulating damage before a shear band
+nucleates.
+
+Reviewer comment:
+It appears to me that C* for yield never seems bigger than C* for absorbtion ? So perhaps this needs a slight rewording.
+
+Current LaTeX context:
+ 262: In Ref.~\cite{khandareElastoplasticModellingCyclic2026}, the midpoint $\gamma_{0,1/2}$ was identified with the critical strain amplitude $\gamma_c$, and the subsequent analysis reported time-divergence data only outside the coexistence region, considering yielding cases for $\gammaMax > \gamma_{0,1/2}$ and absorbing cases for $\gammaMax < \gamma_{0,1/2}$. By contrast, our data in \cref{fig:FailureCyclel0} show that the number of cycles required for both absorption and yielding extends across the entire transition region. Consequently, this choice obscures part of the underlying physics of the transition.
+ 264: Interestingly, the longest-lived trajectories tend to correspond to the least probable outcomes at a given strain amplitude. For example, at strain amplitudes slightly above the midpoint of the transition $\gamma_{0,1/2}$, the probability of reaching an absorbing state becomes small. When, in the rare cases, absorption does occur in this regime, it therefore requires an unusually long sequence of plastic rearrangements before the system eventually organises into a configuration that avoids further yielding. As a result, these rare absorbing trajectories are associated with the largest values of $\CStar$. Conversely, for amplitudes slightly below, yielding becomes the less probable outcome. In these cases, the trajectories that eventually fail are typically those that persist for many cycles while gradually accumulating damage before a shear band nucleates.
+ 266: As a consequence, sampling such rare events becomes increasingly challenging, particularly given the sensitivity of the dynamics to the initial strain configuration. To obtain reliable statistics, we therefore sample at least $10{,}000$ realisations for each pair of parameters ($l_0$, $\gammaMax$). For strain amplitudes within the transition region identified in \cref{fig:LogisticsL0}, additional samples were generated to construct the survival functions shown in \cref{fig:SurvivalDistrbutions}. These survival distributions are computed separately for trajectories that terminate in absorbing and yielding end states.
+
+==========================================================================================
+Correction 28 — PDF page 95 (Text)
+Source: chapters/Fatigue/chapter.tex:266
+Section: Oscillatory shear results
+
+Action:
+Define the survival function before first using it.
+
+Relevant PDF text:
+each pair of parameters (l , γ ). For strain amplitudes within the transition region
+0 0
+identified in Fig. 3.5, additional samples were generated to construct the survival
+functions shown in Fig. 3.7. These survival distributions are computed separately
+for trajectories that terminate in absorbing and yielding end states.
+
+Reviewer comment:
+Define a survival function?
+
+Current LaTeX context:
+ 264: Interestingly, the longest-lived trajectories tend to correspond to the least probable outcomes at a given strain amplitude. For example, at strain amplitudes slightly above the midpoint of the transition $\gamma_{0,1/2}$, the probability of reaching an absorbing state becomes small. When, in the rare cases, absorption does occur in this regime, it therefore requires an unusually long sequence of plastic rearrangements before the system eventually organises into a configuration that avoids further yielding. As a result, these rare absorbing trajectories are associated with the largest values of $\CStar$. Conversely, for amplitudes slightly below, yielding becomes the less probable outcome. In these cases, the trajectories that eventually fail are typically those that persist for many cycles while gradually accumulating damage before a shear band nucleates.
+ 266: As a consequence, sampling such rare events becomes increasingly challenging, particularly given the sensitivity of the dynamics to the initial strain configuration. To obtain reliable statistics, we therefore sample at least $10{,}000$ realisations for each pair of parameters ($l_0$, $\gammaMax$). For strain amplitudes within the transition region identified in \cref{fig:LogisticsL0}, additional samples were generated to construct the survival functions shown in \cref{fig:SurvivalDistrbutions}. These survival distributions are computed separately for trajectories that terminate in absorbing and yielding end states.
+ 268: The value of $\CycleNineFive$, used in \cref{fig:FailureCyclel0} to quantify the number of cycles required for the sample to reach an end state, is defined as the value of $C^*$ at the $95^\textrm{th}$ percentile of the distribution of failure cycles across the ensemble. It is reported only when the corresponding end state is represented by more than $1{,}000$ realisations in the sampled ensemble. This threshold ensures that the reported statistics are not dominated by rare events with insufficient sampling. Accordingly, near the edges of the coexistence region, where yielding or absorption occurs only in a minority of samples relative to the competing end state, the reported curves are based on fewer contributing realisations than in regimes where all sampled seeds converge to the same outcome. Nevertheless, the underlying behaviours are robust.
+
+==========================================================================================
+Correction 29 — PDF page 95 (Highlight)
+Source: chapters/Fatigue/chapter.tex:278
+Section: Oscillatory shear results
+
+Action:
+Move the formal definition of the survival function to its first mention.
+
+Relevant PDF text:
+In Fig. 3.7 we plot the survival function S(C ∗ ) = 1 − F (C ∗ ), where
+F (C ∗ ) is the cumulative distribution of C ∗ . This survival function represents the
+probability that a trajectory remains active for at least C ∗ cycles before reaching
+its final state.
+
+Reviewer comment:
+Perhaps this should have been written earlier?
+
+Current LaTeX context:
+ 276: \end{figure}
+ 278: To examine the dynamics of these trajectories in more detail, we now consider the full distribution of the number of cycles to reach either a yielded or absorbed end state $\CStar$. In \cref{fig:SurvivalDistrbutions} we plot the survival function $S(\CStar)=1-F(\CStar)$, where $F(\CStar)$ is the cumulative distribution of $\CStar$. This survival function represents the probability that a trajectory remains active for at least $\CStar$ cycles before reaching its final state. We plot these distributions separately for absorbing and yielding trajectories, allowing the statistics of the two end states to be compared directly.
+ 280: The survival distributions exhibit two distinct regimes. At small values of $\CStar$, many curves show a rapid initial drop, reflecting the significant fraction of trajectories that terminate within the first cycle. These correspond to cases in which
+
+==========================================================================================
+Correction 30 — PDF page 99 (Text)
+Source: chapters/Fatigue/chapter.tex:310
+Section: Robustness to $$ and $N$
+
+Action:
+Add a legend identifying the curves for each post-hop width l_w.
+
+Relevant PDF text:
+Figure 3.9. Effect of changing the width l of the post-hop distribution, with the anneal-
+w
+ing parameter fixed at l = 0.075 and system size N = 1024.
+
+Reviewer comment:
+In this graph, which curve is for is which l_w? A legend is needed.
+
+Current LaTeX context:
+ 308:     \centering
+ 309:     \includegraphics[width=0.99\textwidth]{chapters/Fatigue/Figures/lw.pdf}
+ 310:     \caption[Effect of changing the width $\lw$ of the post-hop distribution, with the annealing parameter fixed at $l_0 = 0.075$ and system size $N=1024$.]{Effect of changing the width $\lw$ of the post-hop distribution, with the annealing parameter fixed at $l_0 = 0.075$ and system size $N=1024$. \newline
+ 311:     {\bf a)} The $95^\mathrm{th}$ percentile failure cycle $\CStar_{95\%}$ as a function of imposed strain $\gamma_0$. Results are shown for $\lw=0.01, 0.02, 0.03, 0.04$ and for trajectories that yield, absorb, or exhibit either of these behaviours, indicated by solid, dotted, and dashed lines, respectively. The inset shows a rescaling of the data showing the failure cycle scales approximately as the square of the maximum strain. \newline
+ 312:     {\bf b)} The corresponding distribution of end states: delayed yielding (blue), immediate yielding (purple), delayed absorption (orange), and immediate absorption (brown). \newline
+
+==========================================================================================
+Correction 31 — PDF page 101 (Text)
+Source: chapters/Fatigue/chapter.tex:328
+Section: Robustness to $$ and $N$
+
+Action:
+Add a legend identifying the curves for each system size N.
+
+Relevant PDF text:
+Figure 3.10. Effect of system size N at fixed parameters l = 0.075 and l = 0.02.
+0 w
+a) The 95 th percentile failure cycle C ∗ as a function of imposed strain. Results are shown
+
+Reviewer comment:
+In this graph, which curve is for which N ?
+
+Current LaTeX context:
+ 326:     \centering
+ 327:     \includegraphics[width=0.99\textwidth]{chapters/Fatigue/Figures/N.pdf}
+ 328:     \caption[Effect of varying system size $N$ at fixed parameters $l_0 = 0.075$ and $\lw = 0.02$.]{Effect of system size $N$ at fixed parameters $l_0 = 0.075$ and $\lw = 0.02$. \newline
+ 329:     {\bf a)} The $95^\mathrm{th}$ percentile failure cycle $\CStar_{95\%}$ as a function of imposed strain. Results are shown for system sizes $N = 64, 128, 256, 512, 1024, 2048$, indicated in blue, orange, green, and red, purple and brown, respectively (top to bottom). The inset shows the curves shifted to align the peak of $C^*_{95\%}$, evaluated across all samples and end states, at $\gamma_0 - \gamma_{0,\mathrm{peak}} = 0$. \newline
+ 330:     {\bf b)}  shows the corresponding value of $\CStar_{95\%}$ at $\gammaMax=0.799$, the closest sampled point to $0.8$ in our dataset, as a function of system size $N$. \newline
+
+==========================================================================================
+Correction 32 — PDF page 103 (Highlight)
+Source: chapters/Fatigue/chapter.tex:370
+Section: Robustness to $$ and $N$
+
+Action:
+Qualify the N→∞ extrapolation and state that the limited system-size range makes 0.78 unreliable.
+
+Relevant PDF text:
+obtaining γ (N → ∞) = 0.78,
+0,1/2
+
+Reviewer comment:
+Do you trust this, given the limited N range? (c.f. fig 3.11b ). Your answer in the viva was "no"... so I think you should say something about this.
+
+Current LaTeX context:
+ 368:     \gamma_{0,1/2}(N)=aN^{-\nu}+\gamma_{0,1/2}(N\to\infty),
+ 369: \]
+ 370: obtaining $\gamma_{0,1/2}(N\to\infty)=0.78$, $\nu=0.16$, and $a=1.27\times10^{-1}$. The power-law decay of the finite-size correction indicates that the midpoint converges slowly towards a well-defined value in the thermodynamic limit. Physically, this reflects the gradual saturation of the tails of the initial distribution: as the system size increases, the probability of finding elements arbitrarily close to the instability threshold increases, but with diminishing returns as the system approaches the large-$N$ limit. The numerical values differ from those reported in Ref.~\cite{khandareElastoplasticModellingCyclic2026}, which is expected given the different choice of units used here.
+ 372: Of particular interest is the behaviour of the transition width $w$, shown in \cref{fig:LogisticsN}c. We find a power-law dependence $w\propto N^{-\nu}$ with $\nu=0.17$, indicating that the transition region between yielding and absorbing behaviour becomes increasingly sharp with increasing system size. This suggests that in the thermodynamic limit $N\to\infty$ the transition may become effectively discontinuous. Such convergence was not reported in Ref.~\cite{khandareElastoplasticModellingCyclic2026}. However, the present data do not allow us to determine whether, in the thermodynamic limit, the system exhibits a sharp transition directly between delayed absorption and delayed yielding, or whether the onset of yielding remains gradual, with a crossover from delayed to immediate yielding.
+
+==========================================================================================
+Correction 33 — PDF page 105 (Text)
+Source: chapters/Fatigue/chapter.tex:393
+Section: Path to a Single Active Element
+
+Action:
+State the value of γ₀ corresponding to each decay curve.
+
+Relevant PDF text:
+Figure 3.12. Example decay of the number of active elements as a function of the number
+of cycles. Curves show the ensemble-averaged value of f over 1000 trajectories. We
+active
+
+Reviewer comment:
+What value of gamma_0 for each curve?
+
+Current LaTeX context:
+ 391:     \centering
+ 392:     \includegraphics[width=0.99\textwidth]{chapters/Fatigue/Figures/ActiveDecay_Path21Osc.pdf}
+ 393:     \caption[Decay of number of active elements remaining in the system.]{Example decay of the number of active elements as a function of the number of cycles. Curves show the ensemble-averaged value of $\Factive$ over $1000$ trajectories. We distinguish between trajectories in which the system eventually reaches an absorbing state (solid lines) and those in which it eventually yields (dashed lines). \newline
+ 394:     {\bf a)} $l_0 = 0.075$, $\lw = 0.02$, and $N = 1024$. \newline
+ 395:     {\bf Inset)} binned mean of the fraction of active elements in the final cycle $\CStar$ taken across more than $10{,}000$ samples for each $\gammaMax$. \newline
+
+==========================================================================================
+Correction 34 — PDF page 105 (Text)
+Source: chapters/Fatigue/chapter.tex:393
+Section: Path to a Single Active Element
+
+Action:
+Check why all plotted curves appear to end at C*=200 and extend or explain the y-axis range.
+
+Relevant PDF text:
+Figure 3.12. Example decay of the number of active elements as a function of the number
+of cycles. Curves show the ensemble-averaged value of f over 1000 trajectories. We
+active
+
+Reviewer comment:
+It seems weird that all these correspond to C*=200 ?? Should you extend the y scale?
+
+Current LaTeX context:
+ 391:     \centering
+ 392:     \includegraphics[width=0.99\textwidth]{chapters/Fatigue/Figures/ActiveDecay_Path21Osc.pdf}
+ 393:     \caption[Decay of number of active elements remaining in the system.]{Example decay of the number of active elements as a function of the number of cycles. Curves show the ensemble-averaged value of $\Factive$ over $1000$ trajectories. We distinguish between trajectories in which the system eventually reaches an absorbing state (solid lines) and those in which it eventually yields (dashed lines). \newline
+ 394:     {\bf a)} $l_0 = 0.075$, $\lw = 0.02$, and $N = 1024$. \newline
+ 395:     {\bf Inset)} binned mean of the fraction of active elements in the final cycle $\CStar$ taken across more than $10{,}000$ samples for each $\gammaMax$. \newline
+
+==========================================================================================
+Correction 35 — PDF page 108 (Highlight)
+Source: chapters/Fatigue/chapter.tex:434
+Section: Path to a Single Active Element
+
+Action:
+Elaborate on the condition under which an element yields again on the next half-cycle.
+
+Relevant PDF text:
+on the next half-cycle.
+
+Reviewer comment:
+can you elaborate a little bit?
+
+Current LaTeX context:
+ 432: \]
+ 434: If this yielding event does not cause the element to be absorbed, the element will yield again on the next half-cycle. This second event occurs at the opposite threshold $l_c=-1$, and therefore produces a stress change of opposite sign. Over one full oscillation cycle, the net stress increment is therefore
+ 435: \[
+ 436:     \Delta l = |\Origin|(\eta_1-\eta_2) \sim \mathcal{N}(0, 2|\Origin|^2\lw^2)
+
+==========================================================================================
+Correction 36 — PDF page 108 (Text)
+Source: chapters/Fatigue/chapter.tex:434
+Section: Path to a Single Active Element
+
+Action:
+Explain the evolution of the local strain over a full cycle, first for zero post-hop noise and then with noise; state when one or both half-cycles yield and when absorption occurs.
+
+Relevant PDF text:
+If this yielding event does not cause the element to be absorbed, the element
+will yield again on the next half-cycle. This second event occurs at the opposite
+threshold l = −1, and therefore produces a stress change of opposite sign. Over one
+
+Reviewer comment:
+As we discussed in the viva, in this section it would be helpful to explain in a bit more detail how \tilde{l} evolves over a complete cycle, and how this depends on its initial value \tilde{l}_0. It wasn't immediately obvious to me what the conditions were for a cell to yield on both the forward and backward strokes. you might start with what happens when l_w =0, and then add the noise. This would then help you later, when you start to discuss the two absorbing boundary conditions of the random walks. It sounds as though you have material for several pages on this, but that might be a bit too much... really just add enough so that the reader understands when a cell might yield on both forward and backward strokes, or when it might get stuck and end up in the absorbed state.
+
+Current LaTeX context:
+ 432: \]
+ 434: If this yielding event does not cause the element to be absorbed, the element will yield again on the next half-cycle. This second event occurs at the opposite threshold $l_c=-1$, and therefore produces a stress change of opposite sign. Over one full oscillation cycle, the net stress increment is therefore
+ 435: \[
+ 436:     \Delta l = |\Origin|(\eta_1-\eta_2) \sim \mathcal{N}(0, 2|\Origin|^2\lw^2)
+
+==========================================================================================
+Correction 37 — PDF page 113 (Text)
+Source: chapters/Fatigue/chapter.tex:494
+Section: The Dilute Model
+
+Action:
+Describe how the dilute-model data in Fig. 3.15 were generated, including simulation procedure and parameters.
+
+Relevant PDF text:
+To verify that the dilute model reproduces behaviour qualitatively similar to the
+full elastoplastic model, we compare the predicted decay curves for the fraction of
+active elements. As shown in Fig. 3.15, the dilute model shows excellent agreement
+with the full elastoplastic model for high levels of annealing (low l ). In this regime,
+0
+
+Reviewer comment:
+Can you say how the dilute model results were generated in fig 3.15? As discussed in the viva it sounds as though a simulation was run, but you need to give details.
+
+Current LaTeX context:
+ 492: \end{figure}
+ 494: To verify that the dilute model reproduces behaviour qualitatively similar to the full elastoplastic model, we compare the predicted decay curves for the fraction of active elements. As shown in \cref{fig:ElementDecayComp}, the dilute model shows excellent agreement with the full elastoplastic model for high levels of annealing (low $l_0$). In this regime, the dilute model captures both the initial rapid drop and the subsequent slow decay. As the level of annealing decreases (increasing $l_0$), the numerical results from the dilute model begin to diverge from the full elastoplastic simulations. In this regime, the effective diffusion coefficients governing the rate at which elements are absorbed differ between the two models, leading to increasingly noticeable deviations.
+ 496: In the dilute limit, the exponential decay observed in $\Factive$ depends only on the characteristic step size of the random walk, set here by $\lw$, and on the size of the active region determined by the imposed strain amplitude $\gammaMax$. This occurs because, once the dynamics become dilute, the remaining active elements evolve essentially independently, and their evolution reduces to a first-passage problem for a random walk between fixed boundaries. The decay rate is therefore controlled only by the diffusion scale of the walk and the distance to the absorbing boundary, and is insensitive to the initial distribution set by $l_0$. This behaviour can be seen in the inset of \cref{fig:ElementDecayComp}, which shows that the gradients for the two cases at $\gammaMax = 0.775$ converge independently of the level of annealing $l_0$. The initial fraction of active elements and the magnitude of the initial drop, however, remain dependent on $l_0$.
+
+==========================================================================================
+Correction 38 — PDF page 114 (Text)
+Source: chapters/Fatigue/chapter.tex:506
+Section: The Dilute Model
+
+Action:
+Clarify that the full-model curves include only trajectories ending in absorption, if that is the case.
+
+Relevant PDF text:
+Figure 3.16. Comparison of the final cycle C ∗ as a function of the imposed strain
+amplitude γ for the full and dilute models at fixed annealing levels l . The full model
+0 0
+
+Reviewer comment:
+Are the "full model" results here only those that end up in an absorbing state?
+
+Current LaTeX context:
+ 504:     \centering
+ 505:     \includegraphics[width=0.99\linewidth]{chapters/Fatigue/Figures/Comparison.pdf}
+ 506:     \caption[Comparison of $\CStar$ against $\gammaMax$ for the full and dilute models at fixed annealing levels.]{Comparison of the final cycle $\CStar$ as a function of the imposed strain amplitude $\gammaMax$ for the full and dilute models at fixed annealing levels $l_0$. The full model corresponds to the absorbed cases shown in \cref{fig:FailureCyclel0}, and the dilute model is evaluated at the same set of parameters. Coloured markers indicate the position of the decay curves in \cref{fig:ElementDecayComp}. Parameters: $N=1024$ and $\lw=0.02$.}
+ 507:     \label{fig:Comparison}
+ 508: \end{figure}
+
+==========================================================================================
+Correction 39 — PDF page 122 (Text)
+Source: chapters/UltraDelayedFracture/chapter.tex:43
+Section: Introduction
+
+Action:
+Broaden the motivation with an example of long-delayed failure from materials science, such as environmental stress cracking in polymers.
+
+Relevant PDF text:
+short-timescale failure processes have been observed in polymer melts [318–320].
+However, studies examining much longer-time dynamics after the system has reached
+an apparently quiescent state remain limited. A small number of works have reported
+delayed yielding or delayed fracture, in which materials subjected to subcritical
+loading remain macroscopically unchanged for extended periods before undergoing
+
+Reviewer comment:
+I think such phenomena are well known elsewhere in materials science, e.g. stress cracking in polymers, where e.g. a plastic pipe will suddenly fail after 25 years.
+
+Current LaTeX context:
+  42: % \red{
+  43:     This work aims to follow naturally from the work of Ref.~\cite{lockwood_ultradelayed_2025} and explore how introducing thermally induced bond breakage allows for the eventual delayed failure of these network materials. In attractive colloidal gels subjected to sustained loading, delayed catastrophic yielding under creep is well documented, with failure times that decrease rapidly with applied stress and often show an exponential sensitivity to the applied load and other control parameters \cite{sprakel_stress_2011,blindstrom_structures_2012,Landrum2016,Brenner2013}. Although these studies are most commonly performed under constant stress, the underlying mechanism, thermally activated bond rupture within a heterogeneous network, is intuitively aligned with the ideas we consider in this chapter. The same literature emphasises that microscopic dynamics and structural evolution can change substantially, a long time before the eventual macroscopic rupture, even when the bulk rheological signal is comparatively smooth \cite{blindstrom_structures_2012}. This suggests that step strain experiments in colloidal gels or soft glasses provide a realistic experimental setting in which the delayed-fracture scenario studied here could be observed. In particular, rheological X-ray photon correlation spectroscopy (rheo-XPCS) \cite{Leheny2015} has been implemented to directly link nanoscale dynamics to yielding and relaxation under step deformations, including in step-strain protocols that induce yielding and flow \cite{Chen2020,Bellour2003}. Notably, data reported by Harden \etal \cite{Chen2020} exhibit features consistent with strongly delayed failure, although this behaviour was not explicitly identified or analysed in that study.
+  45:     A second class of materials that shows promise for delayed fracture under imposed strain comprises soft network materials. Experiments on notched elastomers and soft polymer networks under step strain demonstrate delayed fracture following a substantial induction period, with characteristic times that decrease sharply as the imposed strain is increased \cite{van_der_kooij_laser_2018,wangDelayedFractureGels2012,Ju2023}. More generally, slow crack growth and delayed rupture under a fixed deformation have long been observed in highly elastic materials, where failure is governed by stress-induced bond breaking \cite{Fan2024,Sanoja2021,Creton2016} and thermally activated bond rupture \cite{Wang2023,Persson2024,Baumberger2009,Hui2004,Creton2016}. Crucially, full-field strain imaging via laser speckle strain imaging and related optical methods reveals the gradual development of an internal pre-fracture deformation zone well before catastrophic failure is evident in the global stress signal \cite{van_der_kooij_laser_2018,Wang2023,ju_role_nodate,Ju2023}. In these materials, a non-linear process zone forms at the crack tip and evolves gradually prior to rupture, even though the system appears macroscopically quiescent \cite{van_der_kooij_laser_2018,Wang2023}.
+
+==========================================================================================
+Correction 40 — PDF page 122 (Text)
+Source: chapters/UltraDelayedFracture/chapter.tex:34
+Section: Introduction
+
+Action:
+State the network preparation method and coordination z used throughout the chapter.
+
+Relevant PDF text:
+Figure 4.2. Stress relaxation of networks after a step strain of amplitude γ .
+0
+Left: Stress relaxation response under an imposed shear strain of γ at z = 3.5.
+
+Reviewer comment:
+Which network preparation method was used for the results in this chapter? (you list several in chapter 2)
+
+Current LaTeX context:
+  32:     \centering
+  33:     \includegraphics[width=1.0\linewidth]{chapters/UltraDelayedFracture/Figures/Relax.pdf}
+  34:     \caption[Stress relaxation of networks after a step strain of amplitude $\gamma_0$]{Stress relaxation of networks after a step strain of amplitude $\gamma_0$. \newline
+  35:     {\bf Left:} Stress relaxation response under an imposed shear strain of $\gamma_0$ at $z=3.5$. \newline
+  36:     {\bf Right:} Phase space of normalised steady state stress $\Sigma_\infty$ under changing $z$ and $\gamma_0$. We observe, in particular, a critical point $z_c=4.0$, where for $z \geq z_c$, all networks can hold a state of self-stress; below this, we observe the introduction of a strain stiffening transition.}
+
+==========================================================================================
+Correction 41 — PDF page 125 (Highlight)
+Source: chapters/UltraDelayedFracture/chapter.tex:52
+Section: Introduction
+
+Action:
+Replace or supplement the SGR citation with existing literature on thermally activated bond-breaking models; avoid implying SGR is the primary origin.
+
+Relevant PDF text:
+Taking inspiration from the Soft Glassy Rheology (SGR) model
+
+Reviewer comment:
+It seems to me that the SGR model is probably not the primary reference for this sort of activated bond breaking model... such models are much more widespread!
+
+Current LaTeX context:
+  50: % }
+  52: For computational efficiency, we adopt a thermal breakage condition analogous to the yielding rules used in soft glassy rheology \cite{sollich_rheological_1998,sollich_thermodynamic_2012} and thermally activated elasto-plastic models \cite{nicolas_deformation_2018,bonn_yield_2017,Rodney2011}. Specifically, we assign to each bond a failure rate governed by an Arrhenius (Boltzmann) factor that depends on its local stress. Within this framework, we explore how failure can be shifted to extremely long waiting times. In the remainder of this chapter, we introduce this thermally activated bond-failure rule and use it to study delayed fracture at both high and low strain. In particular, we examine how the characteristic failure time depends on the imposed strain $\gamma_0$ and temperature $T$.
+  54: % To explore the ultra-delayed failure of networks, we extend the network model outlined in \cref{sec:Networks}, specifically focusing on the Jamming-based networks defined in \cref{sec:PackingBasedNetworks}. We will introduce temperature through two methods, a Brownian simulation where node positions are randomly \quotes{kicked}, and a Boltzmann-like breakage rate for the network bonds inspired by the soft glassy rheology model\cite{sollich_rheology_1997,sollich_soft_2006}.
+
+==========================================================================================
+Correction 42 — PDF page 126 (Text)
+Source: chapters/UltraDelayedFracture/chapter.tex:126
+Section: Rate Dependent Fracture
+
+Action:
+Optionally note that a Gillespie-style event-driven algorithm could improve computational efficiency.
+
+Relevant PDF text:
+Bond failure is assumed to occur as a Poisson process with rate Γ(ϵ ). At the
+b
+end of each discrete time step δt, each bond undergoes a Bernoulli trial with failure
+probability
+p(E ) = 1 − exp [−Γ(ϵ )δt] .
+
+Reviewer comment:
+Not necessarily a correction: As we discussed in the viva a variant on the Gillespie algorithm might give much more efficient computation.
+
+Current LaTeX context:
+ 124: \end{figure}
+ 126: Bond failure is assumed to occur as a Poisson process with rate $\Gamma(\epsilon_b)$. At the end of each discrete time step $\delta t$, each bond undergoes a Bernoulli trial with failure probability
+ 127: \begin{equation*}
+ 128:     p(E_b) = 1 - \exp\left[ -\Gamma(\epsilon_b)\delta t \right].
+
+==========================================================================================
+Correction 43 — PDF page 127 (Text)
+Source: chapters/UltraDelayedFracture/chapter.tex:134
+Section: Rate Dependent Fracture
+
+Action:
+Explain that parameters are tuned to access a narrow non-trivial regime, while most parameter choices give rapid failure or no failure.
+
+Relevant PDF text:
+b
+the strain range of interest, multiplying by a factor of two to allow for the non-affine
+relaxations neglected by this estimate. We then estimate T from the mean affine
+bond energy by substituting it into the rate eq. (4.1) and choosing the corresponding
+typical bond lifetime to be very long, before refining the parameters through direct
+
+Reviewer comment:
+It would help here to say something about what you are trying to achieve by this process. As we discussed in the viva, the motivation was that the effects that you are seeking are only evident for a small window of parameter space (which is a significant observation in and of itself!). Here you are actually trying to tune the parameters so as to be able to observe interesting behaviour. But, for the majority of parameter space, the behaviour is trivial (rapid yield or nothing at all)... this is important to say.
+
+Current LaTeX context:
+ 132: We choose units in which the microscopic attempt rate $\Gamma_0=1$, the drag coefficient $\zeta=1$ (see \cref{sec:NetworkDynamics}), the bond stiffness $\mu=1$ and the system size $L_x=L_y=\sqrt{N}$ such that the characteristic bond length $\sim O(1)$ (detailed in \cref{sec:PackingBasedNetworks}). Additionally, the form of the fracture rate given in \cref{eq:SGRRate} gives two free variables $E$ and $T$. Analogous to the failure threshold $\lambda$ used in Refs.~\cite{tauber_role_2020,tauber_sharing_2021,tauber_microscopic_2020}, the parameter $E=\frac{\mu}{2}\epsilon_b^2$, sets the units of strain $ \sim \sqrt{2E / \mu}$ at which a bond is most likely to break. Since the rigidity transition point $\gamma_c(z)$ is fixed by structure alone, rather than any parameters specific to the dynamics ($\zeta$, $\mu$, $\sqrt{N}$) or failure rate ($\Gamma_0$, $E$, $T$), the relevant control parameter governing the point of failure is the relative magnitude of $E$ with respect to $\gamma_c$. The qualitative failure behaviour therefore depends on whether the strain scale $\sqrt{2E / \mu}$ is reached in the floppy or rigid regime of the network and by the nature of the load-bearing structures that have emerged. Furthermore, the temperature $T$ then in combination with the failure threshold $E$ sets the characteristic failure time of the network's bonds.
+ 134: In this work, we examine two representative strain amplitudes: a small strain ($\gamma_0=0.01$) and a large strain ($\gamma_0=1.0$), using networks containing $N=64{,}000$ nodes. To obtain initial estimates for the free parameters in the breakage rate, we first approximate the network immediately after the imposed step strain by an affine deformation. In this approximation, a bond that initially makes an angle $\theta$ to the horizontal has strain $\epsilon_b(\theta|\gamma_0)=\sqrt{(\cos\theta+\gamma_0\sin\theta)^2+\sin^2\theta}-1$. Assuming the bond orientations are approximately uniformly distributed, we estimate the largest bond energy from the maximum value of $\mu\epsilon_b^2/2$ and then evaluate it at the midpoint of the strain range of interest, multiplying by a factor of two to allow for the non-affine relaxations neglected by this estimate. We then estimate $T$ from the mean affine bond energy by substituting it into the rate \cref{eq:SGRRate} and choosing the corresponding typical bond lifetime to be very long, before refining the parameters through direct exploration of the response. This gives, for the small-strain case $\gamma_0=0.01$, the values $E=5.025\times10^{-5}$ and $T=10^{-6}$, and for the large-strain case $\gamma_0=1.0$, the values $E=0.35$ and $T=0.0062$.
+
+==========================================================================================
+Correction 44 — PDF page 128 (Text)
+Source: chapters/UltraDelayedFracture/chapter.tex:139
+Section: Stress Response
+
+Action:
+State the network preparation method and z value for these results.
+
+Relevant PDF text:
+applied and then held constant for time t ≥ 0, was simulated within our network
+model using the dynamics described in section 2.4.3, together with the bond failure
+rate defined in section 4.2. Results for a fixed strain amplitude γ = 0.01 and a set of
+0
+temperatures spaced logarithmically in the range T ∈ [5 × 10 −7 , 5 × 10 −6 ] are shown
+
+Reviewer comment:
+For which network preparation and what z value ??
+
+Current LaTeX context:
+ 137: \section{Stress Response} \label{sec:lowStrainResponse}
+ 139: The step-strain protocol, in which a shear strain of amplitude $\gamma_0$ is instantaneously applied and then held constant for time $t\geq 0$, was simulated within our network model using the dynamics described in \cref{sec:NetworkDynamics}, together with the bond failure rate defined in \cref{sec:BoltzmanFracture}. Results for a fixed strain amplitude $\gamma_0 = 0.01$ and a set of temperatures spaced logarithmically in the range $T \in [5\times10^{-7}, 5\times10^{-6}]$ are shown in \cref{fig:LowGammaTempResponse}.
+ 141: We report the decay of the shear stress $\Sigma_{xy}(t)$ as a function of time $t$ since the imposition of the strain, normalised by its initial value $\Sigma_0 = \Sigma_{xy}(t=0^+)$. At $t=0^+$, the stress is given by the linear elastic response, $\Sigma_0 = G_{xy}\gamma_0$, where $G_{xy}$ is the shear modulus of the network. This modulus depends on the exact network topology and the bond stiffness $\mu=1$. For brevity, we write $\Sigma \equiv \Sigma_{xy}$ below.
+
+==========================================================================================
+Correction 45 — PDF page 132 (Highlight)
+Source: chapters/UltraDelayedFracture/chapter.tex:184
+Section: Stress Response
+
+Action:
+Write log(t*)∼1/T or, dimensionally, t*∼exp(A/T) with an activation parameter A.
+
+Relevant PDF text:
+t ∗ ∼ exp(1/T ).
+
+Reviewer comment:
+log t* ~ 1/T, or t* ~ exp(A/T)
+
+Current LaTeX context:
+ 182: \section[Dependence of the Failure Time \texorpdfstring{$t^*$}{t*} on  Temperature \texorpdfstring{$T$}{T}]{Dependence of the Failure Time \texorpdfstring{$t^*$}{t*} on \\ Temperature \texorpdfstring{$T$}{T}} \label{sec:LowGammaTemp}
+ 184: To quantify the delay in fracture following the imposition of the step strain, we define a characteristic failure time $t^*$ for the material. We take $t^*$ to be the time at which the stress $\Sigma(t)$ first falls below $\Sigma^*=0.75\Sigma_0$, as indicated by the red line in \cref{fig:LowGammaTempResponse}. This threshold lies below the plateau stress attained via non-affine relaxation at early times, and is therefore only crossed once significant bond failures have occurred. As such, it provides a reliable measure of the onset of macroscopic failure. In practice, the trends reported below are robust to moderate variations in the chosen threshold, provided it lies below the initial plateau reached after early-time relaxation. The resulting failure times are reported in \cref{fig:LowGammaTempFailure}a as a function of $1/T$, consistent with the form of the failure rate $\Gamma$, for which $t^* \sim \exp(1/T)$. Consequently, small values of $T$ (large $1/T$) lie to the right of the plot, while increasing temperature corresponds to moving left along the horizontal axis.
+ 186: \begin{figure}[b!]
+
+==========================================================================================
+Correction 46 — PDF page 133 (Text)
+Source: chapters/UltraDelayedFracture/chapter.tex:189
+Section: Stress Response
+
+Action:
+Consider extracting and reporting an apparent activation energy from the temperature dependence.
+
+Relevant PDF text:
+Figure 4.7. Failure time t ∗ a) and the corresponding fraction of broken bonds B ∗ b) as a
+function of temperature T at low imposed strain γ = 0.01.
+0
+
+Reviewer comment:
+Not necessarily a correction: we discussed in the viva whether it is possible to extract an apparent activation energy from this.
+
+Current LaTeX context:
+ 187:     \centering
+ 188:     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/LowGammaTemp/FailureJoin.pdf}
+ 189:     \caption[Failure time $t^*$ and the corresponding fraction of broken bonds $B^*$ as a function of temperature $T$ at low imposed strain $\gamma_0=0.01$.]{Failure time $t^*$ {\bf a)} and the corresponding fraction of broken bonds $B^*$ {\bf b)} as a function of temperature $T$ at low imposed strain $\gamma_0=0.01$. \newline
+ 190:     Parameters: $E=5.025\times10^{-5}$ and $N=64{,}000$.}
+ 191:     \label{fig:LowGammaTempFailure}
+
+==========================================================================================
+Correction 47 — PDF page 135 (Text)
+Source: chapters/UltraDelayedFracture/chapter.tex:213
+Section: Low Strain Regime
+
+Action:
+Check panel (d): relabel it as the number of broken bonds if it is not a fraction.
+
+Relevant PDF text:
+Figure 4.8. Network response for different values of imposed strain γ in the small-strain
+0
+regime (γ ≪ 1). The symbols in a) and b) show the location of snapshots in Fig. 4.9.
+
+Reviewer comment:
+Panel (d) looks like number, rather than fraction, of broken bonds.
+
+Current LaTeX context:
+ 211:     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/LowGammaStrain/LowGammaStrainJoint.pdf}
+ 212:     \caption[Network response for different values of $\gamma_0$ in the small-strain regime]{
+ 213:     Network response for different values of imposed strain $\gamma_0$ in the small-strain regime ($\gamma_0 \ll 1$). The symbols in {\bf a)} and {\bf b)} show the location of snapshots in \cref{fig:LowGammaStrainSnapshots}. \newline
+ 214:     {\bf a)} Normalised stress decay $\Sigma/\Sigma_0$ as a function of time $t$ since the shear strain was imposed. \newline
+ 215:     {\bf b)} Failure time $t^*$. \newline
+
+==========================================================================================
+Correction 48 — PDF page 144 (Highlight)
+Source: chapters/UltraDelayedFracture/chapter.tex:349
+Section: Direction of Fracture Propagation
+
+Action:
+Do not call this a failure mechanism until the mechanism has been explained; rephrase or add the missing explanation.
+
+Relevant PDF text:
+This crack failure mechanism
+is again illustrated in Fig. 4.14b.
+
+Reviewer comment:
+I don't think you've yet explained a mechanism... only the direction of bonds most likely to fail.
+
+Current LaTeX context:
+ 347: \end{figure}
+ 349: In contrast, the distribution of bond strain in the affinely deformed network at $\gamma_0=1$ is asymmetric about $\epsilon_b=0$, with a bias towards positive (extensional) strains. When the network subsequently relaxes to restore force balance, this distribution broadens further, producing a larger population of bonds with high strain magnitude. Consequently, the bonds most likely to fail are those whose initial orientation in the undeformed frame is $\theta\approx58^{\circ}$ (dotted blue line in \cref{fig:AffineBondStrain}a), corresponding to the angle that produces the largest affine deformation. This crack failure mechanism is again illustrated in \cref{fig:CrackDirections}b. We illustrate in black the directions parallel and perpendicular to the maximally strained bonds ($\theta\approx58^{\circ}$), which show qualitative agreement with the observed failure pattern in the network, for the eventual failure directions observed in both strain regimes ($\gamma \ll 1$ in \cref{fig:CrackDirections}a and $\gamma \sim 1$ in \cref{fig:CrackDirections}b). The exact fracture direction will depend strongly on the particular network topology and the local level of non-affine arrangement.
+ 351: \begin{figure}[t]
+
+==========================================================================================
+Correction 49 — PDF page 145 (Text)
+Source: chapters/UltraDelayedFracture/chapter.tex:354
+Section: Direction of Fracture Propagation
+
+Action:
+Swap panel labels (a) and (b); consider adding affinely deformed-state panels showing maximally stretched bond directions and their perpendiculars.
+
+Relevant PDF text:
+Figure 4.14. Snapshots of systems in the rest frame at failure. Arrows indicate directions
+parallel and perpendicular to lines at 45 ◦ (solid) and 58 ◦ (dashed) relative to the horizontal.
+The colour scale indicates the order in which bonds fail from dark to light.
+
+Reviewer comment:
+Labels (a) and (b) are the wrong way round. As discussed in the viva, it might be helpful to add sub figures for the "affinely deformed state" showing the direction of the most strongly stretched bonds and the direction perpendicular to that?
+
+Current LaTeX context:
+ 352:     \centering
+ 353:     \includegraphics[width=0.99\linewidth]{chapters/UltraDelayedFracture/CrackDirections/CrackSnapshots.png}
+ 354:     \caption[Snapshot of crack features plotted in its undeformed frame]{
+ 355:     Snapshots of systems in the rest frame at failure. Arrows indicate directions parallel and perpendicular to lines at $45^\circ$ (solid) and $58^\circ$ (dashed) relative to the horizontal. The colour scale indicates the order in which bonds fail from dark to light. \newline
+ 356:     Parameters {\bf a)} $\gamma_0=0.009$, $T=10^{-6}$, $E=5.025\times10^{-5}$ and {\bf b)} $\gamma_0=1.0$, $T=0.0062$, $E=0.35$, $N=64{,}000$.\newline
+
+==========================================================================================
+Correction 50 — PDF page 146 (Highlight)
+Source: chapters/UltraDelayedFracture/chapter.tex:368
+Section: Conclusion
+
+Action:
+Add any defensible qualitative or quantitative comparison with Lockwood et al. beyond the generic observation of delayed fracture.
+
+Relevant PDF text:
+Our central aim has been to show that the broad
+class of ultra-delayed post-strain instabilities highlighted by Lockwood et al. [52] has
+a clear fracture analogue in direct simulations of network materials.
+
+Reviewer comment:
+Are there any direct qualitative or quantitative comparisons that can be made beyond the obvious "delayed fracture" that might be anticipated for a thermally activated process.
+
+Current LaTeX context:
+ 367: \section{Conclusion}
+ 368: In this chapter, we have investigated the delayed failure of soft network materials under a simple set of assumptions. Our central aim has been to show that the broad class of ultra-delayed post-strain instabilities highlighted by Lockwood \etal~\cite{lockwood_ultradelayed_2025} has a clear fracture analogue in direct simulations of network materials. Within a minimal thermal model with thermally activated bond breakage events, we have shown that the failure time of the network can be pushed to extremely long timescales following the imposed deformation. In this regime, the networks can appear macroscopically stable over these long timescales, exhibiting little to no obvious precursor in the bulk material properties, before the eventual rupture of a critical bond triggers a catastrophic, brittle failure of the system.
+ 370: At low imposed step strains, we found that networks that ultimately undergo ultra-delayed failure initially relax in a manner that is almost indistinguishable from an equivalent athermal network in which bonds are not permitted to break. Following this initial non-affine relaxation, the system enters a long-lived stable state in which further mechanical deformation is minimal. In this state, bond failure is rare and controlled by thermal fluctuations in the bonds rather than by deterministic mechanical processes. The rupture of bonds is therefore well described by a stochastic Poisson process, modelling the process in which each bond explores its local energy well and occasionally escapes over the energy barrier that impedes its breakage.
+
+==========================================================================================
+Correction 51 — PDF page 156 (Text)
+Source: chapters/DoubleNetworkFracture/chapter.tex:4
+Section: Toughness of Double Network Hydrogels
+
+Action:
+Reframe the chapter against fracture-toughness literature: compare the double network with both constituent single networks and discuss crack-tip damage zones and missing multiscale crack propagation.
+
+Relevant PDF text:
+Toughness of Double Network
+
+Reviewer comment:
+General comment on this chapter: I think it is needed to set this in the context of the literature in a few respects: - one measure of "toughness" (fracture toughness) typically means the energy per unit area required to drive a crack through the material. (as you said in the viva, another measure is the integrated area under the force-extension curve up to failure... but the key question is when and how failure occurs in the real material) - The fracture toughness of double networks is typically much greater than single networks of EITHER the matrix or sacrificial material - as a result, double networks can often be deformed to a significantly greater extent (1000%-2000%) than single networks of the soft matrix (typically fail at strains ~100%). (NB... this also means that double networks are tougher under the definition of integrated area under the force-extension curve) - so, the real question isn't why double networks are tougher than the sacrificial network: the key question is why they are tougher than the matrix single network. - so far as I can tell, the explanation given in the literature has to do with the damage zone at the crack tip. In single networks the damage zone is small, so that not much energy is dissipated as the crack progresses. In double networks the damage zone becomes large (scale of mm , i.e. much larger than your simulation scale) so that significant energy is dissipated as the crack progresses. I think the above is fairly widespread in the relevant literature, see e.g. Creton and Gong. So: I think it is needed to add some commentary on this in your chapter introduction and conclusions. Your simulations form part of the story, but don't address all the above: what would you need to add to treat the whole problem, including the multiscale problem of crack propagation? I have left a few comments below at relevant parts of the chapter where these kind of questions come up.. .these are really just there as guides as to where you might need to modify your discussion.
+
+Current LaTeX context:
+   3: \setcounter{equation}{0}
+   4: \chapter{Toughness of Double Network Hydrogels} \label{sec:DoubleNetworks}
+   6: \section{Introduction}
+
+==========================================================================================
+Correction 52 — PDF page 160 (Highlight)
+Source: chapters/DoubleNetworkFracture/chapter.tex:40
+Section: Packing-Derived Double Networks
+
+Action:
+Explain what was done operationally to “ensure a homogeneous distribution”, or remove “taking care”.
+
+Relevant PDF text:
+taking care to ensure a homogeneous distribution
+of disks despite the inclusions introduced by the constrained sacrificial disks,
+
+Reviewer comment:
+was there anything you particularly needed to do to "take care" of this?
+
+Current LaTeX context:
+  38: \end{figure}
+  40: To define the inter-network connections between the sacrificial and matrix networks, we take the existing nodes from the sacrificial component. These nodes are scaled by a factor of $1/M$ and constrained to coincide with their corresponding sacrificial nodes, while the remaining $N_m - N_s$ disks are randomly initialised. The matrix ensemble is then equilibrated, taking care to ensure a homogeneous distribution of disks despite the inclusions introduced by the constrained sacrificial disks, with matrix bonds formed in the same manner as in the sacrificial network. The double network is formed by taking the sacrificial and matrix networks defined in the same domain ($L_x$ and $L_y$ are the same for both network components) and combining them into a single network. Nodes that were fixed during the construction of the matrix network coincide with nodes in the sacrificial network and are therefore shared by both networks. These shared nodes therefore provide the inter-network connections, allowing stress to be shared between the two components. This process is illustrated in \cref{fig:DoubleJammedNetwork}. For the packing-derived networks considered here, the corresponding coordinations for both components are $z_s = z_m \approx 5.4$.
+  42: For $M < 2$, the presence of constrained sacrificial disks renders energy minimisation computationally challenging. In such cases, alternative strategies such as swap Monte Carlo may need to be considered \cite{NiklasSwapMonte2023}. All results presented in this thesis correspond to systems with $M \geq 2$, for which energy minimisation remains computationally tractable using the F.I.R.E. algorithm \cite{guenole_assessment_2020}.
+
+==========================================================================================
+Correction 53 — PDF page 165 (Text)
+Source: chapters/DoubleNetworkFracture/chapter.tex:90
+Section: Stress-Strain Response
+
+Action:
+Correct the comparison: double networks can have greater toughness and failure strain than either constituent single network.
+
+Relevant PDF text:
+nescence reveals that bond scission in the sacrificial network is initially distributed
+homogeneously throughout the sample before becoming localised near the onset
+of necking. The double network then ultimately fails when the response becomes
+dominated by the matrix component through the same macroscopic failure observed
+in the single networks (blue dotted line in Fig. 5.2b).
+
+Reviewer comment:
+My understanding is that double networks are often tougher and have higher failure strain than either the sacrificial network or the matrix network on their own.
+
+Current LaTeX context:
+  88: Firstly, we consider the stress-strain response of a single matrix network (blue curve in \cref{fig:JammedStressStrain}a) and separately a single sacrificial network (red curve in \cref{fig:JammedStressStrain}a), where we observe a non-linear elastic stretching response with strain stiffening, often found in the network materials \cite{feng_nonlinear_2016,licup_nonlinear_2016,storm_nonlinear_2005}, followed by abrupt brittle or quasi-brittle failure \cite{dussi_athermal_2020, tauber_stretchy_2022} at its failure strain $\epsilon^*_{s/m}$. This response is to be expected and follows the same principle discussed in \cref{sec:Ultradelayed}. Next, considering the response of the double network (solid black curve in \cref{fig:JammedStressStrain}b), we see a similar feature with an initial non-linear elastic response, again commonly found in elastomers~\cite{millereauMechanicsElastomericMolecular2018, ducrot_toughening_2014}, hydrogels~\cite{gong_why_2010} and macroscopic composites~\cite{kingMacroscaleDoubleNetworks2019, takahashiCreatingStiffTough2018} up until the first sacrificial bond breaks, after which the network enters an extended softening regime before eventual failure at $\epsilon^*_d$.
+  90: In the intermediate regime, after the first sacrificial bond breaks but before macroscopic failure, the double network undergoes an irreversible softening response starting at the first sacrificial failure at a strain $\epsilon \approx \epsilon^*_{s}$. Throughout this interval, the sacrificial component contributions to the overall response plateau, as the sacrificial bonds fail (red dashed line in \cref{fig:JammedStressStrain}b) with these failure events arising diffusely across the system. This is seen experimentally in Ref.~\cite{millereauMechanicsElastomericMolecular2018}, where mechanoluminescence reveals that bond scission in the sacrificial network is initially distributed homogeneously throughout the sample before becoming localised near the onset of necking. The double network then ultimately fails when the response becomes dominated by the matrix component through the same macroscopic failure observed in the single networks (blue dotted line in \cref{fig:JammedStressStrain}b).
+  92: In the results that follow, we will explore the underlying physics that drives this difference in response between single and double networks. In particular, we consider how stress delocalisation suppresses macroscopic fracture and how $M$ and $\mu$ can be tuned to create an optimal double network.
+
+==========================================================================================
+Correction 54 — PDF page 167 (Text)
+Source: chapters/DoubleNetworkFracture/chapter.tex:126
+Section: Stress-Strain Response
+
+Action:
+Revisit criterion I against Ref. 28 and the much larger experimental failure strains of double networks.
+
+Relevant PDF text:
+network.
+Based on the experimental guidelines outlined in Ref. [28], a well-designed tough
+double network has two key requirements:
+
+Reviewer comment:
+Here you might look at ref 28 and other literature again. The double networks fail at 1000% - 2000% strain, whilst single networks do not typically last beyond 100% strain. Is your criterion I is quite right?
+
+Current LaTeX context:
+ 124: \end{figure}
+ 126: Based on the experimental guidelines outlined in Ref.~\cite{gong_why_2010}, a well-designed tough double network has two key requirements:
+ 127: \begin{enumerate}[label=\Roman*)]
+ 128:     \item It inherits the large failure strain of soft and ductile matrix components, such that the overall failure strain satisfies $\epsilon^*_D \approx \epsilon^*_m \gg \epsilon^*_s$.
+
+==========================================================================================
+Correction 55 — PDF page 171 (Text)
+Source: chapters/DoubleNetworkFracture/chapter.tex:182
+Section: Stress Propagation
+
+Action:
+Explain why the double network is tougher than a matrix-only single network, not only why it outperforms the sacrificial network.
+
+Relevant PDF text:
+d
+for other sacrificial bonds elsewhere in the material to fail instead, promoting more
+diffuse damage in the sacrificial component.
+To quantify the reduction in the stress propagated to the neighbouring bonds
+caused by the matrix, we plot the average change in stress resulting from the failure
+
+Reviewer comment:
+This seems to me to explain why the DN is tougher than a single network of sacrificial bonds... but it does not address why is it tougher than a SN formed of matrix only.
+
+Current LaTeX context:
+ 180: \end{figure}
+ 182: Optimally, to satisfy properties I) and II) discussed earlier, the matrix must be sufficiently stiff and tough to absorb enough stress to arrest the chain of sacrificial bond failures, while remaining compliant enough that it does not dominate the initial modulus $G_d$. This reduction in local stresses on neighbouring sacrificial bonds allows for other sacrificial bonds elsewhere in the material to fail instead, promoting more diffuse damage in the sacrificial component.
+ 184: To quantify the reduction in the stress propagated to the neighbouring bonds caused by the matrix, we plot the average change in stress resulting from the failure of the first sacrificial bond during deformation in \cref{fig:JammedPropogators}. To construct a detailed enough mapping, we plot binned averages taken over an ensemble of $100$ network realisations. Each system is strained as described in \cref{sec:NetworkQuasistatic} until the failure of the first sacrificial bond. To capture the resultant propagation of stress after this failure event, we now deviate from the method outlined in \cref{sec:NetworkQuasistatic}. The dynamics are resolved using the same overdamped equation; however, following the failure of the first sacrificial bond, we disallow any further bond failures, and the system is then allowed to relax to a local energy minimum. Each network is then rotated such that the two nodes of the broken bonds lie vertically aligned along the $y$ axis. Bonds are then assigned a bin based on the position of their centre relative to the centre of the broken bond, which is defined to be at $(0,0)$, and the reported quantities are taken as the average value over all bonds in each bin.
+
+==========================================================================================
+Correction 56 — PDF page 173 (Text)
+Source: chapters/DoubleNetworkFracture/chapter.tex:202
+Section: Stress Propagation
+
+Action:
+Include the matrix-only single network in the stress-propagation comparison or explain the limitation.
+
+Relevant PDF text:
+fixed µ and b) µ at fixed M , we observe a decrease in the amplitude of stress
+m m
+propagation. In each curve, the propagator decays as x −2 , consistent with the
+long-range propagator in eq. (2.26), and consistent with a linear elastic response.
+With increasing M or µ , the magnitude of δσ decreases as the stress released by a
+
+Reviewer comment:
+Again, this seems to be comparing against the sacrificial network rather than the soft network.
+
+Current LaTeX context:
+ 200: Correspondingly, panels c)-d) plot the change in scalar stress $\delta \sigma_{sb} = \mu_s\left(l/l_0 -1 \right)$ in each sacrificial bond along its own axis. Due to our choice in units, with $\mu_s=1.0$, $\delta \sigma_{sb}$ can be interpreted directly as the change in strain along each bond. Although this quantity alone does not determine if a bond fails, because the failure criterion also depends on the initial strain of each bond, it is nevertheless a reliable indicator of the underlying physics being driven by this reduction in stress propagation.
+ 202: By plotting slices of $\delta \sigma_{sb}$ along the $x$ axis in \cref{fig:JammedPropogatorsLines} as a function of a) $M$ at fixed $\mu_m$ and b) $\mu_m$ at fixed $M$, we observe a decrease in the amplitude of stress propagation. In each curve, the propagator decays as $x^{-2}$, consistent with the long-range propagator in \cref{eq:eshelbyReal}, and consistent with a linear elastic response. With increasing $M$ or $\mu_m$, the magnitude of $\delta \sigma_{sb}$ decreases as the stress released by a single bond failure is redistributed into an increasingly stiff matrix component, either through a larger matrix stiffness $\mu_m$ or a greater number of matrix bonds sharing the load. As a result, each bond experiences a smaller stress perturbation, and the amplitude of the stress propagator is reduced.
+ 204: In each inset, we extract the value $\delta \sigma_{sb}$ at $x = 1$ and plot its decay as a function of $M$ and $\mu_m$ respectively, suggesting an approximate power-law dependence for $M \gg 0$ or $\mu_m \gg 0$. We note that a different dependence must emerge as $M/\mu_m \to 0$, where the response must recover the finite value associated with the single sacrificial network.
+
+==========================================================================================
+Correction 57 — PDF page 177 (Highlight)
+Source: chapters/DoubleNetworkFracture/chapter.tex:251
+Section: Conclusion
+
+Action:
+Reframe the conclusion around why the double network outperforms the matrix-only network as well as the sacrificial network.
+
+Relevant PDF text:
+This reduction suppresses the cascade of
+bond failures that would otherwise drive brittle fracture in a single sacrificial network,
+instead promoting diffuse damage and delaying macroscopic failure.
+
+Reviewer comment:
+Again, here, the comparison is being made to the single sacrificial network, but this isn't the key question. Why is it tougher than the matrix network?
+
+Current LaTeX context:
+ 249: In this chapter, we studied the increased toughness of double network materials in a simple mesoscopic model. Our central aim was to understand how stress delocalisation in the sacrificial component of a double network allows for the double network to inherit both the stiffness of its stiff and brittle sacrificial component and the ductility of its soft and ductile matrix component. We show that this simple model reproduces several key qualitative features of double network materials observed experimentally.
+ 251: This framework has allowed us to systematically explore how stiffness and network length scales control the mechanical response of double network materials. Our results align with previous experimental findings: the enhanced ductility of double networks can be understood in terms of a reduction in the Eshelby stress propagator between neighbouring sacrificial bonds. This reduction suppresses the cascade of bond failures that would otherwise drive brittle fracture in a single sacrificial network, instead promoting diffuse damage and delaying macroscopic failure.
+ 253: The model presented in this work should be viewed as an idealised representation of real double network hydrogel systems. Our analysis has been restricted to two-dimensional networks governed by purely central-force interactions, with no energetic cost associated with bond bending. Although we do not anticipate that the introduction of bending interactions would qualitatively alter the key behaviours identified here, prior studies have demonstrated that a finite bending rigidity can act as a stabilising field, particularly in networks with low connectivity $z$ \cite{shivers_strain-controlled_2023}. Such stabilisation may enhance the ability of the sacrificial network to sustain diffuse damage, thereby potentially further increasing the toughness of double network materials.
+
+==========================================================================================
+Correction 58 — PDF page 177 (Highlight)
+Source: chapters/DoubleNetworkFracture/chapter.tex:253
+Section: Conclusion
+
+Action:
+Discuss whether moving from two to three dimensions is expected to alter the conclusions.
+
+Relevant PDF text:
+two-dimensional networks
+
+Reviewer comment:
+do you think 3D would change much?
+
+Current LaTeX context:
+ 251: This framework has allowed us to systematically explore how stiffness and network length scales control the mechanical response of double network materials. Our results align with previous experimental findings: the enhanced ductility of double networks can be understood in terms of a reduction in the Eshelby stress propagator between neighbouring sacrificial bonds. This reduction suppresses the cascade of bond failures that would otherwise drive brittle fracture in a single sacrificial network, instead promoting diffuse damage and delaying macroscopic failure.
+ 253: The model presented in this work should be viewed as an idealised representation of real double network hydrogel systems. Our analysis has been restricted to two-dimensional networks governed by purely central-force interactions, with no energetic cost associated with bond bending. Although we do not anticipate that the introduction of bending interactions would qualitatively alter the key behaviours identified here, prior studies have demonstrated that a finite bending rigidity can act as a stabilising field, particularly in networks with low connectivity $z$ \cite{shivers_strain-controlled_2023}. Such stabilisation may enhance the ability of the sacrificial network to sustain diffuse damage, thereby potentially further increasing the toughness of double network materials.
+ 255: In this work, we have considered networks above the isostatic point with an average network coordination $z \geq 4=2d$. By contrast, real gels inhabit three dimensions, and typically have connectivity below the critical point $z_c=2d=6$. In experimental tough double network hydrogels, the stiff sacrificial component, which is synthesised first, has a higher density of cross-linkers when compared to the soft, weakly cross-linked matrix network. Moreover, during the synthesis, the sacrificial network is often swollen to accommodate the formation of the second network, resulting in a naturally prestretched sacrificial network. In our current model, we have used a single stiffness parameter $\mu$ for each network, and taken $\mu_s > \mu_m$ as a proxy for both increased cross-link density and prestretch in the sacrificial network. This simplified approach has enabled us to capture the relevant physics at play while retaining only a minimal number of ingredients in our model.
+
+==========================================================================================
+Correction 59 — PDF page 178 (Text)
+Source: chapters/DoubleNetworkFracture/chapter.tex:255
+Section: Conclusion
+
+Action:
+Discuss how entropic elasticity in real gels may change the model predictions.
+
+Relevant PDF text:
+In this work, we have considered networks above the isostatic point with an
+average network coordination z ≥ 4 = 2d. By contrast, real gels inhabit three
+dimensions, and typically have connectivity below the critical point z = 2d = 6. In
+c
+experimental tough double network hydrogels, the stiff sacrificial component, which
+
+Reviewer comment:
+real gels are often more entropic in character: what does this change?
+
+Current LaTeX context:
+ 253: The model presented in this work should be viewed as an idealised representation of real double network hydrogel systems. Our analysis has been restricted to two-dimensional networks governed by purely central-force interactions, with no energetic cost associated with bond bending. Although we do not anticipate that the introduction of bending interactions would qualitatively alter the key behaviours identified here, prior studies have demonstrated that a finite bending rigidity can act as a stabilising field, particularly in networks with low connectivity $z$ \cite{shivers_strain-controlled_2023}. Such stabilisation may enhance the ability of the sacrificial network to sustain diffuse damage, thereby potentially further increasing the toughness of double network materials.
+ 255: In this work, we have considered networks above the isostatic point with an average network coordination $z \geq 4=2d$. By contrast, real gels inhabit three dimensions, and typically have connectivity below the critical point $z_c=2d=6$. In experimental tough double network hydrogels, the stiff sacrificial component, which is synthesised first, has a higher density of cross-linkers when compared to the soft, weakly cross-linked matrix network. Moreover, during the synthesis, the sacrificial network is often swollen to accommodate the formation of the second network, resulting in a naturally prestretched sacrificial network. In our current model, we have used a single stiffness parameter $\mu$ for each network, and taken $\mu_s > \mu_m$ as a proxy for both increased cross-link density and prestretch in the sacrificial network. This simplified approach has enabled us to capture the relevant physics at play while retaining only a minimal number of ingredients in our model.
+ 257: \begin{figure}[b!]
+
+==========================================================================================
+Correction 60 — PDF page 180 (Highlight)
+Source: chapters/DoubleNetworkFracture/chapter.tex:274
+Section: Conclusion
+
+Action:
+Qualify the claim that the model isolates the “key” fracture mechanisms and relate it to pre-notched fracture-toughness tests and large crack-tip damage zones.
+
+Relevant PDF text:
+key physical
+mechanisms governing fracture in double networks using minimal ingredients.
+
+Reviewer comment:
+Here you write that you have isolated the "key physical mechanisms governing fracture"... but for fracture especially: Typical experiments for "toughness" would take a pre-notched specimen and assess energy required to extend the crack into the specimen.... this is how "toughness" is quantified. Typical observations in DN gels find a large damage zone (scale of millimeters) at the crack tip... and the conventional explanation of large toughness is that the energy required to create the damage zone is large. How do your simulations interact with this viewpoint in literature?
+
+Current LaTeX context:
+ 272: Although the monotonic strain-startup simulations studied here do not address cyclic loading directly, the framework may provide a useful starting point for future studies of cyclic loading. It would be interesting to test whether repeated sacrificial-bond breakage and load transfer to the matrix network can be captured within this model over many cycles. This has not yet been theoretically explored due to the long timescales and system sizes. Our model, however, remains sufficiently simple to access the large number of cycles and parameter values required, while still explicitly resolving the essential physics. Additionally, recent experimental work done by You \etal \cite{you_damage_2025} has been able to establish a simple connection between monotonic and cyclic loading behaviours through damage modelling, which could be directly explored within this framework.
+ 274: In summary, this simplified approach has enabled us to isolate the key physical mechanisms governing fracture in double networks using minimal ingredients. We hope that this framework will serve as a foundation for future studies addressing more complex and realistic systems.
+ 276: \newpage

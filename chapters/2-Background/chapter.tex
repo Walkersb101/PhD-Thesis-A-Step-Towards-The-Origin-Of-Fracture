@@ -33,7 +33,7 @@ Extension and shear represent two key modes of deformation, with more general de
 \begin{figure}
     \centering
     \includegraphics[width=.95\linewidth]{chapters/2-Background/Figures/StrainModes.pdf}
-    \caption[Illustration of the two fundamental strain modes in 2D]{Illustration of the two fundamental strain modes in 2D: extensional strain $\epsilon$, where the element changes length, and shear strain $\gamma$, where the element changes shape through angular distortion. The dashed lines denote the material's undeformed configuration, while the solid lines indicate its deformed state.}
+    \caption[Illustration of the two fundamental strain modes in 2D]{Illustration of the two fundamental strain modes in 2D: extensional strain $\epsilon$, where the element changes length, and shear strain $\gamma\equiv\gamma_{xy}$, where the element changes shape through angular distortion. The dashed lines denote the material's undeformed configuration, while the solid lines indicate its deformed state.}
     \label{fig:typesOfStrain}
 \end{figure}
 
@@ -56,7 +56,7 @@ While $\bm{u}(\bm{x})$ describes the displacement of an individual material poin
 \[
     d\bm{X} = \frac{\partial \bm{X}}{\partial \bm{x}} d\bm{x} = \bm{F} d\bm{x} = \left( \bm{I} + \frac{\partial \bm{u}}{\partial \bm{x}} \right) d\bm{x},
 \]
-where $\bm{F}$ is the deformation gradient. The change in separation is therefore
+where $\bm{F}$ is the deformation gradient and $\bm{I}$ is the identity tensor. The change in separation is therefore
 \[
     d\bm{u} = d\bm{X} - d\bm{x} = \frac{\partial \bm{u}}{\partial \bm{x}} d\bm{x}.
 \]
@@ -148,6 +148,8 @@ In Cartesian coordinates, it may therefore be written as
     \end{bmatrix}.
 \]
 
+Here, $\bm{x}$ and $\bm{X}$ distinguish positions in the reference and deformed configurations, respectively. In the subsequent small-strain calculations, this distinction may be neglected to leading order, and we use $\bm{r}=(x,y,z)$ to denote a generic spatial position.
+
 For notational clarity, throughout the remainder of this thesis we distinguish between local and bulk measures of stress. In continuum descriptions, the bulk stress tensor $\bm{\Sigma}$ is defined as the spatial average of the local stress,
 \begin{equation}
     \Sigma_{ij}=\frac{1}{V}\int_V \sigma_{ij}(\bm{r})\, dV.
@@ -164,8 +166,9 @@ where $C_{ijkm}$ is a fourth-rank tensor, often called the stiffness or elastici
 
 For an isotropic material, the stiffness tensor can be expressed in terms of two independent elastic moduli, $\mu$ and $\lambda$ (the Lam\'e parameters). The stress can therefore be written as
 \[
-    \sigma_{ij} = \lambda \epsilon_{kk} \delta_{ij} + 2\mu \epsilon_{ij}.
+    \sigma_{ij} = \lambda \epsilon_{kk} \delta_{ij} + 2\mu \epsilon_{ij}
 \]
+where $\delta_{ij}$ is the Kronecker delta.
 
 For incompressible materials, the first term is replaced by a hydrostatic pressure $p$ that enforces the incompressibility constraint. The stress therefore reduces to
 \begin{equation}
@@ -232,7 +235,7 @@ In general, shear banding reflects a competition between mechanisms that promote
     \label{fig:ShearProtocols}
 \end{figure}
 
-There are many deformation protocols by which the mechanical response of a material can be probed, each emphasising different aspects of that response. In this thesis, we focus on strain-controlled protocols, in which the bulk deformation is prescribed throughout the simulation and the resulting stress response is measured. By contrast, in a stress-controlled protocol, the applied stress is prescribed and the material is allowed to deform accordingly \cite{macoskoRheologyPrinciplesMeasurements1994}. Stress-controlled tests are therefore naturally suited to studying the phenomena of creep and to the distinction between arrested, weakly creeping, and continuously deforming states, while strain-controlled tests instead resolve how the stress evolves under a prescribed deformation history, including through yielding and subsequent stress redistribution.
+There are many deformation protocols by which the mechanical response of a material can be probed, each emphasising different aspects of that response. In this thesis, we focus on strain-controlled protocols. In such protocols, a prescribed history of a macroscopic strain component, $\gamma(t)$ in shear or $\epsilon(t)$ in extension, is imposed through the boundaries or simulation cell, and the conjugate bulk stress $\Sigma(t)$ is measured as the material response. By contrast, in a stress-controlled protocol, the corresponding macroscopic stress history $\Sigma(t)$ is prescribed and the strain evolves as the response \cite{macoskoRheologyPrinciplesMeasurements1994}. Constant-stress tests are therefore naturally suited to studying creep and distinguishing between arrested, weakly creeping, and continuously deforming states, while strain-controlled tests resolve how stress evolves under a prescribed deformation history, including through yielding and subsequent stress redistribution.
 
 Within the linear elastic regime, stress- and strain-controlled protocols give equivalent information, because stress and strain are uniquely related by the elastic moduli. In the nonlinear regime, however, this equivalence no longer holds, and the two classes of protocol can produce qualitatively different responses. Since the focus of this thesis is on the evolution of stress under imposed deformation, including yielding, relaxation, and post-yield stress redistribution, strain-controlled protocols provide the most natural framework.
 
@@ -244,7 +247,7 @@ We consider two modes of deformation in this thesis: simple shear in \Cref{sec:F
 
 % We will consider two forms of deformation in this thesis: simple shear is used in \Cref{sec:Fatigue,sec:Ultradelayed} and elongational stretching in \Cref{sec:DoubleNetworks}. In addition, each chapter considers a different strain-controlled protocol, as illustrated in \cref{fig:ShearProtocols}.
 
-\subsection{Oscillatory Strain} \label{sec:lAOS}
+\subsection{Oscillatory Shear} \label{sec:lAOS}
 
 Oscillatory shear is a widely used protocol for characterising the rheology of soft materials, with large-amplitude oscillatory shear (LAOS) being particularly well studied \cite{rouyerLargeAmplitudeOscillatory2008a,yoshimuraResponseElasticBingham1987a,viasnoffHowAreColloidal2003,carterShearBandingPolymeric,ewoldtLargeAmplitudeOscillatory2010,renouYieldingProcessesColloidal2010}. In a conventional experiment, the strain is prescribed as a sinusoidal function of time,
 \[
@@ -252,7 +255,9 @@ Oscillatory shear is a widely used protocol for characterising the rheology of s
 \]
 where $\gamma_0$ is the strain amplitude and the frequency $\omega$ sets the inverse timescale over which the deformation is applied. For sufficiently small amplitudes, $\gamma_0 \ll 1$, the material responds in the linear viscoelastic regime, in which the stress is proportional to the applied strain. In this regime, it can be expressed in terms of the storage and loss moduli, which quantify the elastic and viscous contributions to the stress. At larger amplitudes, the response becomes nonlinear, leading to waveform distortion and the appearance of higher harmonics in the stress signal. These provide a sensitive probe of yielding and dissipative processes within the material \cite{ewoldtLargeAmplitudeOscillatory2010}.
 
-In addition to resolving the intra-cycle response, oscillatory shear provides access to the evolution of a material over successive cycles. In many amorphous systems, repeated driving leads to the emergence of either periodic, reversible responses in which the system returns to the same configuration stroboscopically in each cycle, or to progressively evolving dynamics associated with irreversible rearrangements. The former corresponds to absorbing or limit-cycle states, while the latter often reflects fatigue, in which plastic deformation accumulates over many cycles and can ultimately lead to yielding or failure \cite{liuFateShearoscillatedAmorphous2022,Leishangthem2017,Fiocco_memory_2014,Regev_onset_2013}. Oscillatory shear is therefore particularly well suited to probing the transition between reversible and irreversible behaviour in driven amorphous materials. 
+In addition to resolving the intra-cycle response, oscillatory shear provides access to the evolution of a material over successive cycles. In many amorphous systems, repeated driving leads to the emergence of either periodic, reversible responses in which the system returns to the same configuration stroboscopically in each cycle, or to progressively evolving dynamics associated with irreversible rearrangements. The former corresponds to absorbing or limit-cycle states, while the latter often reflects fatigue, in which plastic deformation accumulates over many cycles and can ultimately lead to yielding or failure \cite{liuFateShearoscillatedAmorphous2022,Leishangthem2017,Fiocco_memory_2014,Regev_onset_2013}. Oscillatory shear is therefore particularly well suited to probing the transition between reversible and irreversible behaviour in driven amorphous materials. Beyond its use as a rheological probe, oscillatory deformation also has practical relevance in materials science: cyclic loading forms the basis of many accelerated fatigue tests used to investigate damage accumulation and estimate material lifetimes \cite{Suresh1998,DowlingMechanical2013}.
+
+Experimentally, oscillatory shear is commonly realised using a rotational rheometer, with the sample confined between a stationary surface and a moving plate or cone. The instrument imposes a sinusoidal angular displacement and measures the resulting torque, which is converted into the macroscopic shear stress using the dimensions of the measuring geometry \cite{macoskoRheologyPrinciplesMeasurements1994}.
 
 In \cref{sec:Fatigue}, we consider the quasi-static limit of this oscillatory shear protocol, in which the driving frequency is taken to be small compared to the intrinsic inverse relaxation timescales of the material, $\omega \to 0$. In this limit, inertial and rate-dependent effects are negligible and the system evolves through a sequence of mechanically equilibrated states, even as plastic events occur. In practice in our computational simulations, this corresponds to cycling the strain between $-\gamma_0$ and $\gamma_0$ over successive cycles, pausing at strains where any local yielding events occur within the material, and evolving the system to a new equilibrium state before proceeding to the next strain in the cycle at which any further yielding events occur. This protocol has become a common tool for probing the stability and memory of amorphous solids under repeated loading, because it emphasises the role of accumulated plastic activity while minimising rate-dependent effects \cite{liuFateShearoscillatedAmorphous2022,Leishangthem2017,Fiocco_memory_2014,Regev_onset_2013}.
 
@@ -263,7 +268,7 @@ Mathematically, the imposed strain may be modelled as
 \[
     \gamma(t) = \gamma_0 \Theta(t),
 \]
-where $\Theta(t)$ is the Heaviside function. Formally, this corresponds to a Dirac delta function in the strain rate, $\dot{\gamma}(t) = \gamma_0 \delta(t)$. In practice, an idealised step strain cannot be realised experimentally due to the finite inertia of rheological instruments. Nevertheless, a strain ramp applied on a timescale which is short compared with the intrinsic material relaxation time can be modelled effectively as an instantaneous step \cite{Fang_inhomogeneity_2011}.
+where $\Theta(t)$ is the Heaviside function. Formally, this corresponds to a Dirac delta function in the strain rate, $\dot{\gamma}(t) = \gamma_0 \delta(t)$. In a physical experiment, the sample is placed in a strain-controlled rheometer, whose moving surface is rapidly displaced by an amount corresponding to $\gamma_0$ and then held fixed while the resulting torque is measured. An idealised step strain cannot be realised experimentally due to the finite inertia of rheological instruments. Nevertheless, a strain ramp applied on a timescale which is short compared with the intrinsic material relaxation time can be modelled effectively as an instantaneous step \cite{Fang_inhomogeneity_2011}.
 
 The step strain protocol is particularly useful because it isolates the intrinsic relaxation processes of the material. In linear viscoelastic systems, the stress typically decays smoothly over time, reflecting a spectrum of relaxation times associated with the underlying microstructure \cite{macoskoRheologyPrinciplesMeasurements1994,larson_structure_1999}. In disordered and glassy materials, however, the relaxation may be highly nontrivial, exhibiting multiple timescales, slow decay, ageing, or delayed yielding following the initial deformation \cite{fielding_complex_2007,moorcroft_age-dependent_2011,lockwood_ultradelayed_2025}.
 
@@ -271,7 +276,9 @@ The step strain protocol is particularly useful because it isolates the intrinsi
 
 Another common protocol for characterising a material’s rheological response prior to steady flow or failure is strain startup, in which deformation is imposed continuously at a constant rate $\dot{\epsilon}$ for all times $t>0$ in a sample that was previously undeformed for time $t<0$ \cite{larson_structure_1999,tannerEngineeringRheology2000,barnes_introduction_1989}. This protocol probes how the material evolves from its initial undeformed state under sustained driving and provides a direct means of accessing the transient dynamics leading to yielding and steady flow. In particular, it allows one to resolve the progression from elastic loading, through yielding, to a flowing or plastically deforming state, or to catastrophic material failure, and it is widely used to identify elastic regimes, and the onset of irreversible deformation \cite{divouxShearBandingComplex2016,moorcroft_age-dependent_2011}.
 
-For an elastoplastic material with a yield threshold, the stress initially increases linearly with strain, $\Sigma \propto \epsilon = \dot{\epsilon} t$, until a characteristic yield strain is reached, beyond which the response deviates from linear elasticity. By contrast, a Newtonian fluid exhibits a constant stress response, $\Sigma = \eta \dot{\epsilon}$, determined entirely by the imposed rate. Yield stress materials display behaviour intermediate between these limits: the stress initially increases approximately linearly with strain, reflecting an elastic regime, before approaching a steady-state in which the value of stress is set by the flow curve $\Sigma(\dot{\epsilon})$. In many such materials, particularly in shear, the stress reaches a maximum (a stress overshoot) and subsequently relaxes towards a steady-state value $\Sigma(t \to \infty) = \Sigma_{\mathrm{steady}}(\dot{\epsilon})$ consistent with the underlying flow curve \cite{divouxShearBandingComplex2016,larson_structure_1999}. However, not all materials evolve towards steady flow under continued deformation. In some cases, the material is unable to sustain any applied load beyond a critical strain $\epsilon^*$, and instead undergoes fracture or catastrophic failure.
+In a shear experiment, strain startup is realised by accelerating the moving surface of a rheometer to a prescribed constant velocity and measuring the resulting torque and forces. In an extensional experiment, as considered in \Cref{sec:DoubleNetworks}, the boundaries of the sample are separated at a prescribed rate while the resulting tensile force is measured. The latter is the basis of a conventional tensile test.
+
+For an elastoplastic material with a yield threshold, the stress initially increases linearly with strain, $\Sigma \propto \epsilon = \dot{\epsilon} t$, until a characteristic yield strain is reached, beyond which the response deviates from linear elasticity. By contrast, a Newtonian fluid exhibits a constant stress response, $\Sigma = \eta \dot{\epsilon}$, determined entirely by the imposed rate,where $\eta$ is the fluid viscosity. Yield stress materials display behaviour intermediate between these limits: the stress initially increases approximately linearly with strain, reflecting an elastic regime, before approaching a steady-state in which the value of stress is set by the flow curve $\Sigma(\dot{\epsilon})$. In many such materials, particularly in shear, the stress reaches a maximum (a stress overshoot) and subsequently relaxes towards a steady-state value $\Sigma(t \to \infty) = \Sigma_{\mathrm{steady}}(\dot{\epsilon})$ consistent with the underlying flow curve \cite{divouxShearBandingComplex2016,larson_structure_1999}. However, not all materials evolve towards steady flow under continued deformation. In some cases, the material is unable to sustain any applied load beyond a critical strain $\epsilon^*$, and instead undergoes fracture or catastrophic failure.
 
 In \Cref{sec:DoubleNetworks}, we consider a quasi-static version of this protocol, in which the imposed deformation is applied sufficiently slowly that the system remains close to mechanical equilibrium at all times, corresponding to $\dot{\epsilon} \to 0$. In this limit, inertial and finite-rate effects are negligible, and the response can be interpreted as a sequence of mechanically equilibrated states, allowing the onset of plasticity and failure to be resolved in terms of the underlying structural evolution.
 
@@ -312,7 +319,7 @@ The constitutive descriptions introduced above specify how local stress responds
 % \nabla \cdot (\mu \bm{\epsilon}) = \nabla \cdot \bm{\sigma} = 0.
 % \]
 
-\subsection{Navier-Stokes}
+\subsection{The Navier-Stokes Equations}
 From conservation of mass and momentum, the Navier--Stokes equations for a generalised incompressible flow read
 \begin{subequations}
 \label{eq:NavierStokes}
@@ -342,6 +349,8 @@ where $v$ and $L$ are characteristic velocity and length scales and $\nu$ is the
 
 In what follows, we adopt a displacement-based formulation. Introducing a displacement field $\bm{u}(\bm{r},t)$ with $\bm{v}=\partial_t\bm{u}$, the quasi-static limit corresponds to determining $\bm{u}$ at each time from the mechanical equilibrium condition \cref{eq:StokesLimit}.
 
+Although these equations are conventionally introduced for incompressible fluids, the force-balance and incompressibility conditions are not restricted to fluids. Whether the material responds as a fluid or a solid is determined by the constitutive relation for the deviatoric stress. For a Newtonian fluid, $\bm{\tau}$ is proportional to the strain-rate tensor, whereas for the solid-like materials considered here, it is proportional to the elastic strain. In the quasi-static limit, the equilibrium equations for an incompressible, linearly elastic solid have the same mathematical form as the Stokes equations, with the displacement $\bm{u}$ replacing the velocity $bm{v}$, and the shear modulus $\mu$ replacing the viscosity. We therefore adopt a displacement-based formulation, with $\bm{v}=\partial_t\bm{u}$, and determine $\bm{u}$ at each time from mechanical equilibrium.
+
 To connect this framework to models with local irreversible rearrangements (notably the elastoplastic model in \cref{sec:Fatigue}), we introduce a plastic eigenstrain field following Ref.~\cite{picard_elastic_2004}. Here, the eigenstrain $\bm{\epsilon}^{\mathrm{pl}}$ denotes a locally imposed, irreversible strain representing only the deformation generated by the rearrangement events themselves, excluding any elastic strain induced in the surrounding material. Assuming a homogeneous, isotropic, linearly elastic medium, the total strain may be written as
 \begin{subequations}    \label{eq:decompositionAndDeformation} \label{eq:EPStrain}
 \begin{gather}
@@ -369,8 +378,8 @@ where $\bm{u}(\bm{r})$ is the total displacement vector at a position $\bm{r}$. 
 % Under the assumption that the deformation is isotropic and incompressible ($\nabla \cdot \bm{u} = \bm{0}$) for any deformation at rest, we can express the left-hand side of \cref{eq:plasticStokes1} as 
 % \[\nabla \cdot \left( 2\mu \bm{\epsilon}^{\mathrm{el}1} - p^1 \bm{I} \right) = -\nabla p^1 + \mu \nabla^2 \bm{u}^1.\]
 
-\subsection{Oseen Tensor} \label{sec:Oseen}
-The solution to \cref{eq:StokesLimit} is well known and has been studied in a wide range of systems. For a local plastic eigenstrain, the displacement field in an unbounded medium obeys:
+\subsection{The Oseen Tensor} \label{sec:Oseen}
+Solutions to \cref{eq:StokesLimit} are well known and have been studied in a wide range of systems. For a local plastic eigenstrain, the displacement field in an unbounded medium obeys:
 \begin{subequations}
 \label{eq:Stokes}
 \begin{align}
@@ -380,11 +389,12 @@ The solution to \cref{eq:StokesLimit} is well known and has been studied in a wi
 \end{subequations}
 where $(\nabla \cdot \bm{\epsilon}^{\mathrm{pl}})_i = \partial_j \epsilon^{\mathrm{pl}}_{ij}$. The displacement field can then be expressed as a convolution of this eigenstrain source with the Green's function $\mathbb{O}_{ij}(\bm{r},\bm{r}^\prime)$,
 \begin{equation}
-    u_i(\bm{r}) = -2\mu \int \mathbb{O}_{ij}(\bm{r}-\bm{r}^\prime)\,\partial_l^\prime \epsilon_{jl}^{\mathrm{pl}}(\bm{r}^\prime)\, d\bm{r}^\prime.
+    u_i(\bm{r}) = -2\mu \int \mathbb{O}_{ij}(\bm{r}-\bm{r}^\prime)\,\partial_l^\prime \epsilon_{jl}^{\mathrm{pl}}(\bm{r}^\prime)\, d\bm{r}^\prime
 \end{equation}
-The tensor $\bm{\mathbb{O}}$ was first derived by Oseen in 1927 \cite{oseen_neuere_1927} and refined by Burgers in 1939 \cite{Burgers1939}. In the present context, it provides the projection kernel that maps the eigenstrain source onto an incompressible displacement field. This Green-function structure is closely related to Eshelby's treatment of an inclusion with a prescribed internal transformation strain \cite{eshelby_determination_1997}.
+where $\partial_l^\prime$ denotes differentiation with respect to the primed coordinates.
+The tensor $\bm{\mathbb{O}}$ was first derived by Oseen in 1927 \cite{oseen_neuere_1927} and refined by Burgers in 1938 \cite{Burgers1939}. In the present context, it provides the projection kernel that maps the eigenstrain source onto an incompressible displacement field. This Green-function structure is closely related to Eshelby's treatment of an inclusion with a prescribed internal transformation strain \cite{eshelby_determination_1997}.
 
-The Oseen tensor is obtained as
+The Fourier transform of the Oseen tensor is obtained as
 \begin{equation}
     \hat{\mathbb{O}}_{ij} = \frac{1}{\mu k^2}\left( \delta_{ij} - \frac{k_ik_j}{k^2} \right).
     \label{eq:Oseen}
@@ -418,7 +428,22 @@ and
     \tau_{ij} = 2\mu \epsilon^{\mathrm{el}}_{ij}
     \label{eq:eshelbyStress}
 \end{equation}
-These can then be expressed in terms of the deformation gradients found in \cref{eq:fourierDeformationGradient}. For simplicity, we consider a two-dimensional system and focus on the elastic stress redistribution associated with a local plastic shear event $\epsilon_{xy}^{\mathrm{pl}}$, characterised by the corresponding stress component $\tau_{xy}$. This choice is made for convenience, because the same analysis can be carried out for any component of the resulting stress and eigenstrain components. While the explicit form of the response differs between components and in three dimensions, the underlying mathematical structure of the formalism remains unchanged and extends straightforwardly to more general cases.
+These can then be expressed in terms of the deformation gradients found in \cref{eq:fourierDeformationGradient}.
+
+For simplicity, we consider a two-dimensional system and focus on the elastic stress redistribution $\tau_{xy}$ associated with a localised plastic event of simple-shear symmetry. Following Picard et al.~\cite{picard_elastic_2004}, we represent a point-like event centred at $\bm{r}_0$ as
+\begin{equation}
+    \epsilon_{xy}^{\mathrm{pl}}(\bm{r})
+    =
+    a^2\epsilon_0\delta^{(2)}(\bm{r}-\bm{r}_0),
+\end{equation}
+where $\epsilon_0$ is the dimensionless plastic-strain amplitude, $a^2$ is the microscopic area of the event and $\delta^{(2)}$ is the two-dimensional dirac delta function. The coefficient $a^2\epsilon_0$ therefore has dimensions of area. Its Fourier transform is
+\[
+    \hat{\epsilon}_{xy}^{\mathrm{pl}}(\bm{k})
+    =
+    a^2\epsilon_0e^{-i\bm{k}\cdot\bm{r}_0}.
+\]
+For an event at the origin, $\bm{r}_0=\bm{0}$, this reduces to $\hat{\epsilon}_{xy}^{\mathrm{pl}}=a^2\epsilon_0$, equal to the coefficient multiplying the real-space delta function.
+This choice is made for convenience, because the same analysis can be carried out for any component of the resulting stress and eigenstrain components. While the explicit form of the response differs between components and in three dimensions, the underlying mathematical structure of the formalism remains unchanged and extends straightforwardly to more general cases.
 
 In two dimensions, the Fourier representations of the displacement components $u_x$ and $u_y$ take the form,
 \begin{subequations}
@@ -436,20 +461,20 @@ where we use the symmetry of the Oseen tensor $\hat{\mathbb{O}}_{xy}=\hat{\mathb
 
 By collecting terms, we obtain the shear stress propagator $\mathbb{G}_{xy}$, which describes the stress redistribution produced by a single plastic event in an infinite medium:
 \begin{equation}
-\tau_{xy}(\bm{r}) = \mu \int \mathbb{G}_{xy}(\bm{r}-\bm{r}') \epsilon_{xy}^{\mathrm{pl}}(\bm{r}') \, d\bm{r}',
+\tau_{xy}(\bm{r}) = 2\mu \int \mathbb{G}_{xy}(\bm{r}-\bm{r}') \epsilon_{xy}^{\mathrm{pl}}(\bm{r}') \, d^2\bm{r}',
 \end{equation}
 where the Fourier-space kernel is
 \begin{equation}
 \hat{\mathbb{G}}_{xy}(\bm{k}) = -4\frac{k_x^2 k_y^2}{k^4}.
 \label{eq:StressPropogator}
 \end{equation}
-We illustrate in \cref{fig:Propogator} the stress redistribution resulting from a single plastic event with $\epsilon_{xy}^{\mathrm{pl}} = -1$ at the origin.
+We illustrate in \cref{fig:Propogator} the response to a point plastic event centred at the origin, $\bm{r}_0=\bm{0}$. For this normalised plot, we use grid units in which the area of one element is unity and choose $a^2\epsilon_0=-1$. This unit value normalises the linear Green-function response and does not represent a physical strain of magnitude one; the response to a physical event with $|\epsilon_0| \ll 1$ is obtained by linear rescaling. Numerically, the plastic eigenstrain is assigned to the central grid element, Fourier transformed, multiplied by the propogator $2\mu\hat{\mathbb{G}}_{xy}(\bm{k})$, and transformed back to real space using the FFTW3 library \cite{Frigo2005}.
 
-\begin{figure}
+\begin{figure}[t]
     \centering
     \includegraphics[width=0.75\linewidth]{chapters/2-Background/Figures/Prop_512_inset17.pdf}
     %\missingfigure{Plot of Propagator}
-    \caption[Quadrupolar elastoplastic stress propagator]{Quadrupolar redistribution of shear stress $\tau_{xy}$ in two dimensions, after a single local plastic event in a system with $\mu=1$. The system is initialised with $\tau_{xy}=0$ everywhere; one central element is then yielded and set to $\tau_{xy}=-1$, after which mechanical equilibrium is enforced. The main panel shows the full $N_x\times N_y = 512\times512$ propagator, and the inset shows the central $17\times17$ region around the propagator.}
+    \caption[Quadrupolar elastoplastic stress propagator]{Quadrupolar redistribution of shear stress $\tau_{xy}$ in two dimensions following a normalised point plastic event in a system with $\mu=1$. The system is initially unstressed, and the discrete plastic eigenstrain is set to $-1$ at the central grid element and zero elsewhere. The plastic strain, rather than the stress, is prescribed at the central element; the resulting equilibrated stress field is calculated using the Fourier-space propagator. The main panel shows the full $N_x\times N_y=512\times512$ field, and the inset shows the central $17\times17$ region.}
     \label{fig:Propogator}
 \end{figure}
 
@@ -466,7 +491,7 @@ consistent with the quadrupolar Eshelby field for an elliptical inclusion \cite{
 
 The Eshelby stress propagator defined in \cref{eq:StressPropogator} is specified only up to an additive constant because of the singular mode at $\bm{k}=\bm{0}$. In practice, this constant is fixed by the boundary conditions. In a strain-controlled protocol, the total elastic strain is conserved. The zero mode is therefore chosen such that $\hat{\mathbb{G}}_{xy}(\bm{0}) = -1$, ensuring that the total stress relaxed by plastic events equals
 \[
-    \mu\int \epsilon_{xy}^{\mathrm{pl}}(\bm{r}^\prime) \, d\bm{r}^\prime.
+    2\mu\int \epsilon_{xy}^{\mathrm{pl}}(\bm{r}^\prime) \, d^2\bm{r}^\prime.
 \]
 
 By contrast, under stress-controlled conditions, we set $\hat{\mathbb{G}}_{xy}(\bm{0}) = 0$. In this case, no net stress is removed from the system; instead, the stress released by plastic deformation is compensated by elastic loading of the surrounding material \cite{nicolas_deformation_2018,martens_spontaneous_2012,jocteur_protocol_2025,lin_scaling_2014}.
@@ -480,7 +505,7 @@ Although the explicit example above is written for plastic eigenstrains, the sam
 The continuum framework outlined above provides a basic description of stress transmission and flow in soft materials, and forms the foundation of the work considered in \cref{sec:Fatigue}. However, many of the systems of interest in this thesis derive their mechanical response from an underlying filamentous architecture that is not fully captured at this level. We will therefore adopt a mesoscale description in terms of soft networks, which retains the essential microscopic detail of how filaments are organised and connected, while remaining sufficiently coarse-grained to describe macroscopic behaviour. In such networks, the connectivity and arrangement of the constituent filaments play a central role in determining the emergent mechanics. The failure mechanisms of these networks are examined in detail in \cref{sec:Ultradelayed,sec:DoubleNetworks}.
 
 \subsection{Types of Network} \label{sec:TypesOfNetworks}
-With the term \quotes{soft networks}, we refer to materials composed of interconnected filaments. While this shared structure suggests some network-level behaviour may be universal, key features remain material-specific. To make clear where our models are expected to apply we therefore distinguish between generic precursors to failure and material-dependent mechanisms. Below, we provide a brief description of common classes of soft networks.
+With the term \quotes{soft networks}, we refer to materials composed of interconnected filaments. While this shared structure suggests some network-level behaviour may be universal, key features remain material-specific. To make clear where our models are expected to apply, we therefore distinguish between generic precursors to failure and material-dependent mechanisms. Below, we provide a brief description of common classes of soft networks.
 
 \paragraph{Elastomers:}
 Composed of long, flexible polymer chains cross-linked into a network, elastomers are perhaps the best-known class of soft networks and are commonly found in thermosetting rubbers and plastics. Existing above the glass transition temperature $T_g$ of polymer networks, their mechanical behaviour is largely governed by entropic elasticity: deformation reduces the configurational entropy of polymer chains, generating a restoring force \cite{treloarElasticityRelatedProperties1973}. As a result, elastomers typically exhibit large reversible deformations until bond or cross-linker (i.e., molecules that connect distinct polymer chains together) failure occurs, often with pronounced strain stiffening before failure \cite{kimMeasurementNonlinearMechanical2011}.
@@ -504,7 +529,7 @@ To describe their mechanical response more precisely, it is necessary to conside
 
 Filaments can be broadly classified according to the ratio of their persistence length \(l_p\) to a relevant contour length \(l_c\), which in networks is typically taken as the mean distance between crosslinks. The persistence length quantifies filament stiffness and sets the length scale over which the filament orientation remains correlated. Intuitively, $l_p$ can be considered as the length scale at which thermal fluctuations of order $k_BT$ have a large enough effect to perturb the filament direction. More formally, it is defined through the decay of tangent--tangent correlations, $\langle \bm{t}(s) \cdot \bm{t} (0) \rangle = e^{-s/l_p}$, where $\bm{t}(s)$ is the tangent vector at a position $s$ along the filament backbone \cite{doi_theory_1988}. 
 
-For short or stiff segments where $l_p \gg l_c$, the filaments act like a rigid rod with its mechanical response governed by enthalpic stretching of molecular bonds. For segments where persistence length is much smaller than the contour length $l_p \ll l_c$, thermal fluctuations are sufficient to induce significant bending, and the filament adopts a naturally coiled configuration. In this flexible region, the mechanical response is primarily entropic: small extensions reduce the number of accessible conformations, generating an effective restoring force. At larger extensions, the response again becomes governed by the enthalpic stretching of molecular bonds, as in the stiff case. 
+For short or stiff segments where $l_p \gg l_c$, the filaments act like a rigid rod with its mechanical response governed by enthalpic stretching of molecular bonds. For segments where persistence length is much smaller than the contour length $l_p \ll l_c$, thermal fluctuations are sufficient to induce significant bending, and the filament adopts a naturally coiled configuration. In this flexible regime, the mechanical response is primarily entropic. Stretching straightens the coiled filament and reduces the number of configurations it can adopt. The filament therefore tends to return to its more disordered, coiled state, producing a restoring force. At larger extensions, the response again becomes governed by the enthalpic stretching of molecular bonds, as in the stiff case. 
 
 Semi-flexible filaments, therefore, occupy an intermediate regime between these two limits, with a persistence length $l_p$ comparable to their contour length $l_c$. In this case, the filaments are stiff enough to avoid collapsing into a random coil but large enough that thermally induced bending remains relevant. 
 
@@ -567,9 +592,9 @@ First, each node position, together with the system unit cell (see \cref{sec:Lee
     \bm{r}_i' = \bm{r}_i(t) + \delta t \bm{v}_f(\bm{r}_i(t)).
 \end{equation*}
 
-In this thesis, deformations are either imposed instantaneously, as in \cref{sec:Ultradelayed}, or applied quasi-statically, as in \cref{sec:DoubleNetworks}. Under these conditions, the dynamics are effectively overdamped, and a first-order integration scheme is sufficient to capture the solvent drag and resulting node motion.
+In this thesis, deformations are either imposed instantaneously, as in \cref{sec:Ultradelayed}, or applied quasi-statically, as in \cref{sec:DoubleNetworks}. The subsequent dynamics are assumed to be overdamped, so that the node motion is governed by a first-order equation in time and no inertial dynamics need to be resolved. The numerical scheme must nevertheless resolve the transient relaxation and the evolution of fracture events accurately. We therefore employ an adaptive Euler--Heun method, in which a first-order predictor and second-order corrected solution provide an estimate of the local discretisation error and allow the timestep to be reduced when the dynamics vary rapidly. A maximum timestep is additionally imposed to maintain sufficient temporal resolution of fracture events.
 
-In the second substep, we employ an adaptive Euler--Heun method (also known as a Runge–Kutta 1(2) scheme) inspired by Ref.~\cite{sammullerAdaptiveBrownianDynamics2021}. This method uses an embedded Runge–Kutta pair, in which two solutions of different order are computed from the same intermediate evaluations to estimate the local discretisation error and adapt the time step $\delta t$. 
+In the second substep, we employ an adaptive Euler--Heun method (also known as a Runge–-Kutta 1(2) scheme) inspired by Ref.~\cite{sammullerAdaptiveBrownianDynamics2021}. This method uses an embedded Runge–-Kutta pair, in which two solutions of different order are computed from the same intermediate evaluations to estimate the local discretisation error and adapt the time step $\delta t$. 
 
 Starting from the advected position $\bm{r}^\prime_i$, we first compute the predictor estimate $\tilde{\bm{r}}_i$,
 \begin{equation*}
@@ -590,16 +615,18 @@ where $\Delta\tilde{\bm{r}}_i = \tilde{\bm{r}}_i - \bm{r}_i'$ and $\Delta\bm{r}_
 \end{equation*}
 where $\|\cdot\|_\infty$ denotes the maximum norm.
 
-Following Ref.~\cite{sammullerAdaptiveBrownianDynamics2021}, we define the timestep scaling factor
+Following Ref.~\cite{sammullerAdaptiveBrownianDynamics2021}, we adopt the conservative timestep scaling
 \begin{equation*}
-    q = \left( \frac{1}{2\mathcal{E}} \right)^2,
+    q = \left( \frac{1}{2\mathcal{E}} \right)^2.
 \end{equation*}
-which is restricted to the interval $[0.001, 1.2]$. Two cases are then distinguished:
+This choice includes a safety factor of two and causes the timestep to decrease rapidly when the estimated error exceeds the prescribed tolerance, while allowing only gradual increases when the error is small. We additionally restrict $q$ to the interval $[0.001, 1.2]$, following the same reference, to prevent excessively large changes in timestep between successive updates. Two cases are then distinguished:
 \begin{enumerate}
     \item $q \geq 1$: accept $\bm{r}_i(t+\delta t)$.
-    \item $q < 1$: reject the step and restore the configuration to time $t$ before retrying with a smaller timestep.
+    \item $q < 1$: reject the step and restore the configuration to time $t$.
 \end{enumerate}
-In both cases, the time step is updated via $\delta t \gets q \delta t$. We additionally impose a maximum time step $\delta t_{\max}$ to ensure adequate temporal resolution of fracture events.
+In both cases, the time step is updated via $\delta t \gets q \delta t$. For a rejected step, $q < 1$, so the integration is retried using the resulting smaller timestep.
+
+We additionally impose a maximum time step $\delta t_{\max} = 0.1$ in all simulations, which limits the timestep when the estimated local error is small. The numerical accuracy of the integration is controlled primarily through the error tolerance. The values of $\tau$ used throughout this thesis was selected from convergence tests, presented in \cref{app:stepStrainConvergence} , in which the simulated dynamics were compared for progressively smaller tolerances and first order fixed timestep simulation and verified for each scenario separately .  
 
 \subsection{Rigidity} \label{sec:Rigidity}
 
@@ -617,11 +644,18 @@ for every connected pair $ij$.
 
 If there exists a non-trivial set of velocities $\dot{\bm{r}}_i$ satisfying \cref{eq:FrameworkRigidity}, the framework admits an infinitesimal deformation (a floppy mode), because at least one node can be moved freely, and the structure is not first-order rigid. Conversely, the framework is defined to be first-order rigid if the only solutions to \cref{eq:FrameworkRigidity} are the trivial rigid-body motions. In simple terms, the network is first-order rigid if the constraints allow for a single unique configuration (up to rigid-body translations and rotations).
 
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.9\linewidth]{chapters/2-Background/Figures/maxwell_counting_diagram.pdf}
+    \caption[Illustration of Maxwell counting for a connected central-force network.]{Illustration of Maxwell counting for a connected central-force network with $N=4$ nodes in two dimensions. Removing two uniform translations and one rigid-body rotation leaves $2N-3=5$ non-trivial degrees of freedom, while each independent central-force bond supplies one constraint. (\textbf{a}) With $N_{\mathrm{c}}=4$, the framework is sub-isostatic; the grey dashed configuration and blue arrows show its floppy shear mode. (\textbf{b}) Adding one diagonal gives $N_{\mathrm{c}}=5$, producing an isostatic, marginally rigid framework. (\textbf{c}) Adding the second diagonal gives $N_{\mathrm{c}}=6$, producing a hyperstatic framework. The red bond is redundant: it does not remove another motion but instead produces a state of self-stress. Apart from such redundancies, the count assumes independent constraints.}
+    \label{fig:MaxwellCounting}
+\end{figure}
+
 This idea is most simply understood through a counting argument due to Maxwell \cite{maxwell_calculation_2011}, in which rigidity is determined by comparing the number of constraints to the number of degrees of freedom. For a $d$-dimensional system of $N$ nodes, there are $dN$ translational degrees of freedom, corresponding to the independent displacements of each node. However, not all of these contribute to internal deformation: $d$ degrees of freedom correspond to uniform translations of the entire system, and $d(d-1)/2$ correspond to rigid-body rotations, which leave all distances between nodes unchanged. Subtracting these trivial modes, the number of non-deforming degrees of freedom is $d(d+1)/2$, leaving $dN - d(d+1)/2$ non-trivial degrees of freedom. The total number of constraints $N_c$ needed for the system to be first-order rigid must therefore be at least equal to the number of non-trivial degrees of freedom
 \[
     N_c \geq d N - d ( d+1 ) / 2.
 \]
-Assuming the network is homogeneous, we define the average connectivity as $z=2N_c/N$, where a bond between two nodes contributes one constraint. In the thermodynamic limit $N \to \infty$, this yields the condition $z \ge 2d$ for rigidity. The critical point $z_c = 2d$ is referred to as the isostatic point. More generally, networks are classified according to their connectivity relative to this point: sub-isostatic networks possess fewer constraints than degrees of freedom and admit floppy modes, isostatic networks are marginally rigid, and hyperstatic networks contain redundant constraints and can support states of self-stress \cite{LernerCoordination2024,Mao2018,ellenbroek_rigidity_2015,wyart_elasticity_2008}.
+Assuming the network is homogeneous, we define the average connectivity as $z=2N_c/N$, where a bond between two nodes contributes one constraint. In the thermodynamic limit $N \to \infty$, this yields the condition $z \ge 2d$ for rigidity. The critical point $z_c = 2d$ is referred to as the isostatic point. More generally, networks are classified according to their connectivity relative to this point: sub-isostatic networks possess fewer constraints than degrees of freedom and admit floppy modes, isostatic networks are marginally rigid, and hyperstatic networks contain redundant constraints and can support states of self-stress \cite{LernerCoordination2024,Mao2018,ellenbroek_rigidity_2015,wyart_elasticity_2008}. We illustrate this counting argument in \cref{fig:MaxwellCounting} for a simple two-dimensional network of four nodes.
 
 % This idea is more simply understood through the work of Maxwell \cite{maxwell_calculation_2011}, who initially pointed out that this definition of rigidity is directly related to the number of constraints in the system. For a $d$-dimensional system of $N$ nodes, the condition for the number of constraints $N_c$ for the system to be rigid is 
 % \[
@@ -643,7 +677,7 @@ This transition is often referred to as second-order rigidity \cite{connelly_sec
 \begin{equation*}
 (\bm{r}_i(t) - \bm{r}_j(t))\cdot(\bm{\ddot{r}}_i(t) - \bm{\ddot{r}}_j(t)) + (\bm{\dot{r}}_i(t) - \bm{\dot{r}}_j(t))\cdot(\bm{\dot{r}}_i(t) - \bm{\dot{r}}_j(t)) = 0,
 \end{equation*}
-where $\ddot{\bm{r}}_i(t)$ is the acceleration of a node $i$. This criterion allows rigidity to arise even when non-trivial solutions to \cref{eq:FrameworkRigidity} exist, through the stabilising effect of internal force balance in the material. It therefore represents a weaker notion of rigidity, but one that still permits the network to support states of self-stress. Such configurations are significantly more difficult to predict \cite{holmes-cerfon_almost-rigidity_2021}, because they emerge from nonlinear geometric and mechanical effects that have been extensively studied in the context of frameworks and tensegrities \cite{connelly_frameworks_2022,connelly_second-order_1996,calladine_first-order_1991}. Indeed, determining whether a general planar spring network is rigid is NP-hard \cite{abbott_generalizations_2008}, and consequently, no simple, universally applicable criterion exists for establishing rigidity.
+where $\ddot{\bm{r}}_i(t)$ is the acceleration of a node $i$. This criterion allows rigidity to arise even when non-trivial solutions to \cref{eq:FrameworkRigidity} exist, through the stabilising effect of internal force balance in the material. It therefore represents a weaker notion of rigidity, but one that still permits the network to support states of self-stress. Such configurations are difficult to identify because their stability depends on higher-order geometric effects and, where present, internal stresses \cite{holmes-cerfon_almost-rigidity_2021,connelly_frameworks_2022,connelly_second-order_1996,calladine_first-order_1991}. Indeed, determining whether a general planar spring network is rigid is NP-hard \cite{abbott_generalizations_2008}, and consequently, no simple, universally applicable criterion exists for establishing rigidity.
 
 For systems composed of semi-flexible filaments with extensible bonds, both first- and second-order rigidity provide useful proxies for mechanical stability \cite{van_hecke_jamming_2010}. However, these kinematic criteria do not fully capture the complexity of the energy landscape explored by such networks. A more recent and intuitive perspective is provided by energetic rigidity \cite{damavandi_energetic_2022}, which characterises rigidity in terms of the local structure of the elastic energy landscape. In this framework, a configuration is defined to be rigid if any infinitesimal deformation increases the elastic energy, such that the network resides at a local minimum of the energy.
 
@@ -697,7 +731,7 @@ The effects of these system-spanning force chains can be mitigated by a second f
 
 Packing-derived networks are computationally constructed from simulated packings of soft particles and are widely used as model disordered networks \cite{rens_rigidity_2019,wyart_elasticity_2008,lerner_unified_2012,shivers_normal_2019,shivers_scaling_2019,shivers_phase_2022}. In practice, these networks are generated numerically by minimising the total energy of a bidisperse ensemble of soft disks at densities above the jamming transition $\phi_J$ \cite{Hernjamming2003,BoyerJamming2011,ikeda_unified_2012}, after which the contact network of overlapping particles is extracted and used to define the network connectivity. This procedure provides an idealised disordered topology and does not correspond to a specific experimental realisation, but instead serves as a controlled model for studying generic features of fibre and elastic networks.
 
-Each disk is initially placed at a random position within a square periodic domain of size $L_x=L_y=\sqrt{N}$, with radii drawn from a bidisperse distribution with values $R_0$ and $fR_0$ in equal proportion. The bidispersity parameter $f$ is chosen to suppress crystallisation and inhibit the formation of long-range positional order; a commonly adopted value, and the one used throughout this thesis, is $f=1.4$. Such bidisperse mixtures are well known to produce amorphous packings with minimal macroscopic ordering \cite{van_hecke_jamming_2010, chacko_slow_2019, desmond_random_2009, koezeMappingJammingTransition2016}. 
+Each disk is initially placed at a random position within a square periodic domain of size $L_x=L_y=\sqrt{N}$, with radii drawn from a bidisperse distribution with values $R_0$ and $fR_0$ in equal proportion. The bidispersity parameter $f$ is chosen to suppress crystallisation and inhibit the formation of long-range positional order; a commonly adopted value, and the one used throughout this thesis, is $f=1.4$. Such bidisperse mixtures are well known to produce amorphous packings with minimal macroscopic ordering \cite{van_hecke_jamming_2010, chacko_slow_2019, desmond_random_2009, koezeMappingJammingTransition2016}. Bidispersity does not, however, make the packing completely structureless: the two discrete particle sizes introduce preferred microscopic length scales, and their size ratio and relative abundance influence short-range order, contact statistics, and the jamming point \cite{koezeMappingJammingTransition2016}. A continuously polydisperse construction would replace these two length scales with a broader distribution of particle and bond lengths and could therefore alter the local coordination statistics and the resulting network topology, although the same contact-network construction procedure would apply.
 
 The base radius $R_0$ is then rescaled so that the total particle area matches the prescribed packing fraction $\phi$ within the simulation box. While several forms of soft-disk interaction potentials have been proposed in the literature, we adopt the form used in Ref.~\cite{chacko_slow_2019}. In this model, overlapping disks interact via a purely repulsive pair potential given by
 \begin{equation}
@@ -709,7 +743,7 @@ where $r_{ij}$ is the centre-to-centre distance between disk $i$ and $j$, and $D
 
 Starting from this random initial condition, the system is relaxed via energy minimisation of the soft repulsive interactions until a mechanically stable packing is obtained. In Ref.~\cite{chacko_slow_2019}, this minimisation is performed by integrating an overdamped equation of motion equivalent to that presented in \cref{sec:NetworkDynamics}.
 
-In the present work, however, our primary interest lies in the network structure obtained from the final minimised configuration rather than in the relaxation dynamics. We therefore generate packings using the Fast Inertial Relaxation Engine (F.I.R.E.) algorithm \cite{bitzek_structural_2006, guenole_assessment_2020}, which converges to local energy minima more efficiently. While this approach accelerates the energy minimisation, it does not capture physically accurate relaxation dynamics.
+In the present work, however, our primary interest lies in the network structure obtained from the final minimised configuration rather than in the relaxation dynamics. We therefore generate packings using the Fast Inertial Relaxation Engine (F.I.R.E.) algorithm \cite{bitzek_structural_2006,guenole_assessment_2020}, which converges efficiently to local energy minima. The trajectory generated by the F.I.R.E. algorithm is a numerical optimisation path and should not be interpreted as physical time evolution. Nevertheless, the resulting configurations are mechanically stable, force-balanced minima of the chosen interaction energy, so their contact networks provide reasonable idealised models of disordered elastic networks.
 
 \begin{figure}
 \centering
@@ -724,9 +758,7 @@ Steps for generating a packing-derived network from 400 soft disks at $\phi = 1$
 \label{fig:SingleNetworkGeneration}
 \end{figure}
 
-Network bonds are constructed from the contact network of an equilibrated packing \cite{lerner_simulations_2013,ellenbroek_non-affine_2009,mangal_topological_2023}. A network node is placed at the centre of each disk. For every overlapping pair of disks, the corresponding nodes are connected by a bond whose natural length is given by their centre-to-centre distance in the energy-minimised configuration.
-
-After all contacts have been processed, the disks themselves are removed, leaving a network composed solely of nodes and bonds. This construction procedure is illustrated in \cref{fig:SingleNetworkGeneration}. 
+Network bonds are constructed from the contact network of an equilibrated packing \cite{lerner_simulations_2013,ellenbroek_non-affine_2009,mangal_topological_2023}. A network node is placed at the centre of each disk. For every overlapping pair of disks, the corresponding nodes are connected by a bond whose natural length is given by their centre-to-centre distance in the energy-minimised configuration. After all contacts have been processed, the disks themselves are removed, leaving a network composed solely of nodes and bonds. This construction procedure is illustrated in \cref{fig:SingleNetworkGeneration}. 
 
 In this work, we take $\phi = 1 > \phi_J \approx 0.84$ unless stated otherwise \cite{chacko_slow_2019,ikeda_unified_2012}. For single networks, this corresponds to an average connectivity $z \approx 5.4$, which lies well above the isostatic threshold. In principle, networks with lower connectivity (while remaining above the isostatic threshold $z=4$) could be generated by preparing packings at $\phi$ closer to $\phi_J$. Instead, we obtain lower-connectivity networks by iteratively pruning bonds from an initially highly connected network constructed at $\phi=1$, following the procedure described below. This allows for tighter control of the network connectivity when studying systems with lower coordination.
 
@@ -755,7 +787,7 @@ Dangling components, shown in panel (a) of \cref{fig:PruningNetworks}, consist o
 
 Once a clean network has been generated, it can be pruned to reduce its average connectivity. This procedure is analogous to the bond dilution used in lattice-based networks to introduce disorder, although additional care is required due to the intrinsic positional disorder already present.
 
-Bonds are removed selectively based on the local pair connectivity $z_{ij}=z_i+z_j$, where $z_i$ and $z_j$ denote the coordination numbers (i.e. the number of bonds) of the nodes connected by bond $(i,j)$. Bonds associated with the most highly connected node pairs are preferentially pruned to minimise spatial heterogeneity in the coordination field \cite{wyart_elasticity_2008, lerner_breakdown_2014}. This process is repeated until the target average connectivity is reached. Any dangling or disconnected components that emerge during pruning are identified and removed as they are created.
+Bonds are removed selectively based on the local pair connectivity $z_{ij}=z_i+z_j$, where $z_i$ and $z_j$ denote the coordination numbers (i.e. the number of bonds) of the nodes connected by bond $(i,j)$. At each pruning step, $z_{ij}$ is recalculated for every remaining bond and the maximum value $z_{\max}$ is identified. One bond is then selected uniformly at random from the set of bonds satisfying $z_{ij}=z_{\max}$ and removed. The selection is therefore deterministic with respect to pair connectivity but stochastic among equally ranked candidate bonds. This preferential removal of bonds between highly connected nodes limits spatial heterogeneity in the coordination field \cite{wyart_elasticity_2008,lerner_breakdown_2014}. Following each removal, the coordination numbers are updated and any newly formed dangling or disconnected components are removed. The procedure is repeated until the target average connectivity is reached.
 
 \subsection{Calculating Stress} \label{sec:virialStress}
 
@@ -800,7 +832,7 @@ where $\bm{r}_{mn}=\bm{r}_n-\bm{r}_m$. The Heaviside factor in \cref{eq:virialDe
 
 The derivation above extends trivially to three dimensions, where instead force contributions above and below an arbitrary plane perpendicular to the $j$-axis are considered. Calculating the stress by this approach eliminates the computation of numerical derivatives and is more computationally efficient, because both $\bm{r}_{ij}$ and $\bm{f}_{ij}$ are already calculated at each timestep when evaluating the system's dynamics. A more thorough derivation of the virial stress tensor, including fluid effects, can be found in Ref.~\cite{yang_generalized_2012}.
 
-\subsection{Generalised Lees--Edwards Boundary Conditions} \label{sec:Lees-Edwards}
+\subsection{Lees--Edwards Boundary Conditions} \label{sec:Lees-Edwards}
 
 When studying rheology, we aim to characterise a material's response to an imposed bulk stress or strain. In experimental settings, this is typically achieved by placing a sample of the material in a rheometer and imposing the desired loading or deformation through the motion of one or more boundaries. To ensure that the measured response reflects the bulk behaviour, samples are typically made sufficiently large that edge effects do not dominate the physics.
 
@@ -831,12 +863,15 @@ While this method permits arbitrary homogeneous deformations, it can be computat
 
 To impose shear in the $x$ direction using Lees--Edwards boundary conditions, particle positions $\mathbf{r}_i=(x_i,y_i)$ are affinely transformed according to
 \begin{equation}
-    \begin{pmatrix}x_i \\ y_i
-    \end{pmatrix} \to 
-    \begin{pmatrix}x_i + \gamma y_i \\ y_i
+    \begin{pmatrix}
+        x_i \\ y_i
     \end{pmatrix}
+    \to
+    \begin{pmatrix}
+        x_i+\gamma y_i \\ y_i
+    \end{pmatrix},
 \end{equation}
-whilst periodic images are shifted by an amount $\gamma L_y$ between adjacent rows, as shown in \cref{fig:Lees-Edwards}. This construction is computationally advantageous because the primary simulation cell remains orthogonal. Implementation details can be found in Ref.~\cite{allen_computer_2017}.
+while periodic images in adjacent rows are displaced by $\gamma L_y$, as illustrated in \cref{fig:Lees-Edwards}. We use this representation as it retains the orthogonal primary simulation cell and allows periodic bond vectors, including those crossing the cell boundaries, to be calculated using simple shear-dependent image shifts. This avoids the complex basis transformations and increasingly skewed simulation cell, associated with an explicitly triclinic representation needed to calculate minimum-image distances. The imposed boundary conditions therefore only changes the geometry of each bond but not the network connectivity; bonds are removed only when the relevant failure criterion is satisfied. Further implementation details can be found in Ref.~\cite{allen_computer_2017}.
 
 \section{Units and Parameters}
 For the network simulations considered in this thesis, we work in units where the drag coefficient and filament stretching modulus are set to $\zeta = 1$ and $\mu = 1$, respectively, thereby fixing the characteristic viscous and elastic scales used throughout the network models. The reference length scale depends on the network construction: for lattice-based networks, the bond rest length is taken to be unity, whereas for packing-derived networks, the system size is taken to be $L_x = L_y = \sqrt{N}$, where $N$ is the number of nodes used to generate the initial packing. Unless stated otherwise, these packings are generated at packing fraction $\phi = 1$ with bidispersity parameter $f = 1.4$, which yields unpruned single networks with average connectivity $z \approx 5.4$. For the adaptive time-stepping scheme introduced in \cref{sec:EulerHeun}, we use an absolute error tolerance of $\tau = 10^{-4}$ and impose a maximum time step of $\delta t_{\max} = 0.1$.
@@ -920,5 +955,41 @@ The corresponding deformation gradients ($\partial_l u_i$), expressed in Fourier
     \label{eq:AppFourierDeformationGradientPointForce}
 \end{equation}
 which are the Fourier-space displacement and deformation-gradient fields used in \cref{sec:EshelbyPropogator}.
+
+\section{Convergence of Numerical Integration}
+\label{app:stepStrainConvergence}
+
+We test the numerical convergence of the overdamped network dynamics described in \cref{sec:EulerHeun} following an imposed step strain. The comparison is restricted to $0\leq t\leq10$, over which all trajectories share the same checkpoints, separated by $\Delta t_{\mathrm{out}}=0.1$. Each trajectory is integrated directly to these checkpoints; no interpolation or nearest-time matching is used. The measured observable is the bulk virial shear stress $\Sigma_{xy}(t)$, consistent with the notation introduced in \cref{sec:StressTensor,sec:virialStress}.
+
+Fixed Euler trajectories with time steps $\delta t=10^{-6},10^{-5},10^{-4},10^{-3},10^{-2},$ and $10^{-1}$ are compared with a fixed reference trajectory using $\delta t_{\mathrm{ref}}=10^{-7}$. For each non-reference trajectory, we write the difference in bulk shear stress as
+\begin{equation}
+    \Delta\Sigma_{xy,n}=\Sigma_{xy,n}-\Sigma_{xy,n}^{\mathrm{ref}}.
+\end{equation}
+The normalised root-mean-square and maximum errors shown in \cref{fig:stepStrainConvergence} are then
+\begin{align}
+ \frac{\mathrm{RMS}(\Delta\Sigma_{xy})}{\Sigma_{\mathrm{ref}}^{\max}}
+ &= \frac{1}{\Sigma_{\mathrm{ref}}^{\max}}
+ \left[\frac{1}{N_t}\sum_{n=1}^{N_t}
+ \left(\Delta\Sigma_{xy,n}\right)^2\right]^{1/2},\\
+ \frac{\max_n|\Delta\Sigma_{xy,n}|}{\Sigma_{\mathrm{ref}}^{\max}}
+ &= \frac{1}{\Sigma_{\mathrm{ref}}^{\max}}
+ \max_n\left|\Delta\Sigma_{xy,n}\right|,
+\end{align}
+where
+$\Sigma_{\mathrm{ref}}^{\max}=\max_n|\Sigma_{xy,n}^{\mathrm{ref}}|$. The fixed-step errors decrease linearly with $\delta t$, as expected for the first-order Euler method. Even the coarsest trajectory, $\delta t=10^{-1}$, gives a normalised RMS error of $9.20\times10^{-4}$ and a normalised maximum error of $4.12\times10^{-3}$ over this interval.
+
+We also test the adaptive Euler--Heun method using a rounded, approximately logarithmic grid of absolute tolerances,
+\begin{equation}
+    \tau=10^{-4},\;1.6\times10^{-4},\;2.5\times10^{-4},\;
+    4\times10^{-4},\;6.3\times10^{-4},\;10^{-3}.
+\end{equation}
+The production parameters are $\tau_0=10^{-4}$ and $\delta t_{\max}=10^{-1}$. At the production tolerance, the normalised RMS and maximum errors are $4.80\times10^{-7}$ and $1.54\times10^{-6}$, respectively. The systematic reduction in both errors on reducing $\tau$ demonstrates convergence of the adaptive integration scheme.
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.95\linewidth]{chapters/2-Background/Figures/convergence_validation_mosaic.pdf}
+    \caption[Time-step convergence of the step-strain dynamics]{Numerical convergence of the overdamped network dynamics over $0\leq t\leq10$. \textbf{(a)} Bulk shear stress $\Sigma_{xy}(t)$ for all fixed Euler and adaptive Euler--Heun trajectories, including the fixed reference trajectory ($\delta t_{\mathrm{ref}}=10^{-7}$). \textbf{(b), inset} Corresponding pointwise normalised absolute errors $|\Delta\Sigma_{xy}(t)|/\Sigma_{\mathrm{ref}}^{\max}$ for every non-reference trajectory. \textbf{(c)} Normalised RMS and maximum errors for fixed Euler trajectories, demonstrating first-order convergence with $\delta t$. \textbf{(d)} The same normalised errors as functions of the absolute tolerance $\tau$ over the rounded logarithmic grid from $10^{-4}$ to $10^{-3}$.}
+    \label{fig:stepStrainConvergence}
+\end{figure}
 
 \end{subappendices}
